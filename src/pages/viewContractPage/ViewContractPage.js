@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from "react-router-dom";
 import Header from '../../compononents/headerAdmin/HeaderAdmin'
 import { MainContainer, ColumnContainer, ButtonContainer, SideContainer } from "./styled"
@@ -15,12 +14,11 @@ import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 const ViewContractPage = () => {
     useProtectedPageAdmin()
     const params = useParams();
-    const { setters, states } = useContext(GlobalStateContext);
+    
     const history = useHistory()
-    setters.setAdmin(true)
+   
     const [addPlan, setAddPlan] = useState(false)
-    const user = states.currentUser
-
+   
 
     const addNewPlan = () => {
         setAddPlan(!addPlan)
@@ -28,7 +26,7 @@ const ViewContractPage = () => {
 
     useEffect(() => {
         
-    }, [addPlan, states.newRender])
+    }, [addPlan])
 
     return (
         <div>
@@ -36,10 +34,10 @@ const ViewContractPage = () => {
 
             <MainContainer>
                 <SideContainer>
-                    {user.id && <CheckinsDone user={user} />}
+                    {/* {user.id && <CheckinsDone user={user} />} */}
                 </SideContainer>
                 <ColumnContainer>
-                    {
+                    {/* {
                         user && user.plans
                         &&
                         <UserInfo
@@ -52,14 +50,14 @@ const ViewContractPage = () => {
                             totalClasses={user.plans[0].totalClasses}
                             avaliableClasses={user.plans[0].avaliableClasses}
                         />
-                    }
+                    } */}
 
                     <ButtonContainer>
                         <Button
                             type={"submit"}
                             variant={"contained"}
                             color={"variant"}
-                            onClick={() => goToEditContract(history, user.id)}
+                            onClick={() => goToEditContract(history, "user.id")}
                         >
                             Editar Usuário
                         </Button>
@@ -78,7 +76,7 @@ const ViewContractPage = () => {
 
                 </ColumnContainer>
 
-                {user.id && <ClosedPlansInfo />}
+                 <ClosedPlansInfo />
 
             </MainContainer>
 

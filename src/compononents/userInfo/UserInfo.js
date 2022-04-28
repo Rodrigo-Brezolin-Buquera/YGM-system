@@ -1,18 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { InfoContainer, FlexContainer } from './styled'
 import Typography from '@material-ui/core/Typography';
 import { goToViewContract } from '../../routes/coordinator';
-import { GlobalStateContext } from '../../global/GlobalStateContext';
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
 
 const UserInfo = (props) => {
-    const { setters, states } = useContext(GlobalStateContext);
+    
     const history = useHistory()
 
     return (
 
-        <InfoContainer onClick={states.admin ? () => goToViewContract(history, props.id) : null} >
+        <InfoContainer onClick={() => goToViewContract(history, props.id)} >
             <Typography variant="h6">Informações gerais</Typography>
             <FlexContainer>
                 <Typography component="subtitle2" style={{ fontWeight: 600 }} >Nome:</Typography>

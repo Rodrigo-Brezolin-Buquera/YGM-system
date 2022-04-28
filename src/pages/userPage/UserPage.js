@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+import React, { useEffect } from 'react'
 import Header from '../../compononents/headerUser/HeaderUser'
 import UserInfo from '../../compononents/userInfo/UserInfo'
 import { MainContainer, CentralContainer, SideContainer } from './styled'
@@ -13,14 +12,11 @@ import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
 const UserPage = () => {
     useProtectedPageStudent()
     const history = useHistory()
-    const { setters, states } = useContext(GlobalStateContext);
-    setters.setAdmin(false)
-    const user = states.currentUser
+   
 
     useEffect(() => {
-        // findUser(setters.setCurrentUser)
-        // findAllClasses(setters.setClasses) 
-    }, [states.newRender])
+        
+    }, [])
 
     return (
         <div>
@@ -32,7 +28,7 @@ const UserPage = () => {
                 </SideContainer>
 
                 <CentralContainer>
-                    {user && user.plans && user.plans.length &&
+                    {/* {user && user.plans && user.plans.length &&
                         <UserInfo
                             id={user.id}
                             name={user.name}
@@ -42,13 +38,15 @@ const UserPage = () => {
                             planEnds={user.plans[0].planEnds}
                             totalClasses={user.plans[0].totalClasses}
                             avaliableClasses={user.plans[0].avaliableClasses}
-                        />}
+                        />} */}
 
-                    <ClosedPlansInfo user={user} />
+                    <ClosedPlansInfo 
+                    //user={user} 
+                    />
                 </CentralContainer>
 
                 <SideContainer>
-                    {user && user.plans && user.plans.length && <CheckinsDone user={user} />}
+                    {/* {user && user.plans && user.plans.length && <CheckinsDone user={user} />} */}
                 </SideContainer>
             </MainContainer>
         </div>

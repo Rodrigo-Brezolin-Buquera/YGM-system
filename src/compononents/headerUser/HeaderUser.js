@@ -1,5 +1,4 @@
-import React, { useContext, useLayoutEffect } from 'react'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+import React, { useLayoutEffect } from 'react'
 import white from "../../assets/logo/white.png"
 import { goToAdmin, goToCreateUser, goToEditCalendar, goToEditProfile, goToLogin } from '../../routes/coordinator'
 import { HeaderContainer, Logo, ButtonContainer, StyledButton } from './styled'
@@ -7,7 +6,7 @@ import Button from '@material-ui/core/Button'
 
 
 const Header = ({history}) => {
-    const { setters, states } = useContext(GlobalStateContext);
+ 
 
     const logout = () => {
         localStorage.removeItem("token")

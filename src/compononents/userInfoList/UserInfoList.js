@@ -1,20 +1,19 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { InfoContainer, LineContainer, ColumnContainer } from './styled'
 import Typography from '@material-ui/core/Typography';
 import { goToViewContract } from '../../routes/coordinator';
-import { GlobalStateContext } from '../../global/GlobalStateContext';
 import { useHistory } from "react-router-dom";
 
 
 const UserInfoList = (props) => {
-    const { setters, states } = useContext(GlobalStateContext);
+    
     const history = useHistory()
 
     return (
 
         <InfoContainer 
         status={props.status} 
-        onClick={states.admin ? () => goToViewContract(history, props.id) : null} 
+        onClick={() => goToViewContract(history, props.id)} 
         >
 
             <ColumnContainer>

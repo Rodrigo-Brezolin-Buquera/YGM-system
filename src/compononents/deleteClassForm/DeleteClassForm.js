@@ -1,36 +1,36 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { LoginForm, Input } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, TextField, Typography } from '@material-ui/core'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+
 
 
 const DeleteClassForm = () => {
-    const { setters, states } = useContext(GlobalStateContext);
+    
     const [form, onChange, cleanFields] = useForm({
         classGroupId: "",
         date: ""
 
     })
 
-    const classesGroup = [];
-    states.classes && states.classes.forEach((item) => {
-        classesGroup.push(item.groupId);
-    });
+    // const classesGroup = [];
+    // states.classes && states.classes.forEach((item) => {
+    //     classesGroup.push(item.groupId);
+    // });
 
-    const groupIdList = classesGroup.filter((elem, index, self) => {
-        return index === self.indexOf(elem);
-    });
+    // const groupIdList = classesGroup.filter((elem, index, self) => {
+    //     return index === self.indexOf(elem);
+    // });
 
-    const finalList = []
-    groupIdList.forEach((id) => {
-        const foundClass = states.classes.find(yogaClass => yogaClass.groupId === id)
-        finalList.push(foundClass)
-    })
+    // const finalList = []
+    // groupIdList.forEach((id) => {
+    //     const foundClass = states.classes.find(yogaClass => yogaClass.groupId === id)
+    //     finalList.push(foundClass)
+    // })
 
-    const selectList = finalList.map((yogaClass) => {
-        return <option value={yogaClass.groupId} > {yogaClass.name} {yogaClass.day} {yogaClass.time}  </option>
-    })
+    // const selectList = finalList.map((yogaClass) => {
+    //     return <option value={yogaClass.groupId} > {yogaClass.name} {yogaClass.day} {yogaClass.time}  </option>
+    // })
 
     const onSubmitForm = (e) => {
         e.preventDefault()
@@ -49,7 +49,7 @@ const DeleteClassForm = () => {
                 required
             >
                 <option value="" >  Escolha um aula </option>
-                {selectList}
+                {/* {selectList} */}
             </select>
             <Typography > A partir de:</Typography>
             <TextField

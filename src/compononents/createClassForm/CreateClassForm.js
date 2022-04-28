@@ -1,13 +1,13 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { LoginForm } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, TextField, Typography } from '@material-ui/core'
 
 import { DayOptions, StyleOptions, TeacherOptions } from '../../constants/selectOptions'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+
 
 const CreateClassForm = () => {
-    const { setters, states } = useContext(GlobalStateContext);
+   
     const [form, onChange, cleanFields] = useForm({
         name: "",
         day: "",

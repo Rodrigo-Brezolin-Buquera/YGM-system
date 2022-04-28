@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from "react-router-dom";
 import Header from '../../compononents/headerAdmin/HeaderAdmin'
 import { MainContainer, ButtonContainer } from "./styled"
@@ -8,8 +8,6 @@ import EditPlanForm from '../../compononents/editPlanForm/EditPlanForm';
 import EditInfoForm from '../../compononents/editInfoForm/EditInfoForm';
 import { goBack } from '../../routes/coordinator';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { GlobalStateContext } from '../../global/GlobalStateContext'
-
 
 
 const EditContractPage = () => {
@@ -18,11 +16,11 @@ const EditContractPage = () => {
     const [info, setInfo] = useState(false)
     const history = useHistory()
     const params = useParams();
-    const { setters, states } = useContext(GlobalStateContext);
+   
 
     useEffect(() => {
-        // getUserById(params.userId, setters.setCurrentUser)
-    }, [states.newRender])
+       
+    }, [])
 
     const handlePlan = () => {
         if (window.confirm("Você deseja alterar a situação deste plano?")) {
@@ -53,7 +51,7 @@ const EditContractPage = () => {
                 >Voltar
                 </Button>
 
-                {
+                {/* {
 
                     states.currentUser && states.currentUser.plans && states.currentUser.plans.length &&
                     <UserInfo
@@ -66,7 +64,7 @@ const EditContractPage = () => {
                         totalClasses={states.currentUser.plans[0].totalClasses}
                         avaliableClasses={states.currentUser.plans[0].avaliableClasses}
 
-                    />}
+                    />} */}
 
                 <ButtonContainer>
                     <Button
@@ -75,7 +73,7 @@ const EditContractPage = () => {
                         color={"secondary"}
                         onClick={() => handlePlan()}
                     >
-                        {states.currentUser && states.currentUser.plans.length && states.currentUser.plans[0].status ? "Pausar Plano" : "Reativar plano"}
+                      {/* {states.currentUser && states.currentUser.plans.length && states.currentUser.plans[0].status ? "Pausar Plano" : "Reativar plano"} */}
                     </Button>
 
                     <Button

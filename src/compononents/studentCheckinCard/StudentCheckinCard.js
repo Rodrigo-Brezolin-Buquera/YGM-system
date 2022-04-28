@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect} from 'react'
 import { StudentCard, IconCont } from './styled';
 import Typography from '@material-ui/core/Typography';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
@@ -6,17 +6,17 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { goToViewContract } from '../../routes/coordinator';
 import { useHistory } from "react-router-dom";
 import CancelIcon from '@material-ui/icons/Cancel';
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+
 
 const StudentCheckinCard = (props) => {
-    const { setters, states } = useContext(GlobalStateContext)
+  
     const [checkin, setCheckin] = useState(props.verified)
     const [studentName, setStudentName] = useState("")
     const history = useHistory()
 
     useEffect(() => {
      
-    }, [states.newRender])
+    }, [])
 
     const confirmCheckin = () => {
         setCheckin(!checkin)
@@ -26,7 +26,7 @@ const StudentCheckinCard = (props) => {
     const cancelCheckin = () => {
         if (window.confirm("Deseja cancelar este checkin?")) {
             
-            setters.setNewRender(!states.newRender)
+          
         }
     }
 

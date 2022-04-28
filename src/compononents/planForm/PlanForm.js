@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
+import React from 'react'
 import { LoginForm, Input, Select } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, Typography } from '@material-ui/core'
@@ -7,10 +6,7 @@ import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions'
 
 const PlanForm = ({ setAddPlan }) => {
     const [form, onChange, cleanFields] = useForm({ type: "", frequency: "", planStarted: "" })
-    const { setters, states } = useContext(GlobalStateContext);
-
-    const userId = states.currentUser.id
-    const planId = states.currentUser.plans[0].id
+   
 
     const onSubmitForm = (e) => {
         e.preventDefault()

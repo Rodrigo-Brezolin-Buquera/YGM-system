@@ -1,26 +1,20 @@
-import React, { useContext } from 'react'
-import { GlobalStateContext } from '../../global/GlobalStateContext';
+import React from 'react'
 import useForm from '../../hooks/useForm'
 import { MainContainer, LoginForm, BoxContainer, Logo } from "./styled"
 import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
 import { useHistory } from "react-router-dom"
 import defaultLogo from "../../assets/logo/defaultLogo.png"
 import useUnprotectedPage from '../../hooks/useUnprotectedPage';
-import dotenv from "dotenv"
-
-
-dotenv.config()
-
 
 const LoginPage = () => {
-    const { setters, states } = useContext(GlobalStateContext);
+  
     const [form, onChange, cleanFields] = useForm({ email: "", password: "" })
     const history = useHistory()
-    // useUnprotectedPage()
+    useUnprotectedPage()
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-    //    login(form, history)
+    
   
     }
 
@@ -64,11 +58,11 @@ const LoginPage = () => {
                         variant={"contained"}
                         color={"secondary"}
                     >
-                        {states.loading ?
+                        {/* {states.loading ?
                             <CircularProgress color={"inherit"} size={24} />
                             :
                             <> <Typography>Login</Typography> </>
-                        }
+                        } */}
                     </Button>
                 </LoginForm>
             </BoxContainer>

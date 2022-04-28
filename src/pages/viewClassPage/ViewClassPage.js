@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useContext } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import Header from '../../compononents/headerAdmin/HeaderAdmin'
 import { useHistory, useParams } from "react-router-dom";
 import { MainContainer, SideContainer, CenterContainer } from './styled';
@@ -7,11 +7,9 @@ import { Typography } from '@material-ui/core';
 import ClassInfo from '../../compononents/classInfo/ClassInfo';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import moment from 'moment';
-import { GlobalStateContext } from '../../global/GlobalStateContext'
 
 const ViewClassPage = () => {
     useProtectedPageAdmin()
-    const { setters, states } = useContext(GlobalStateContext)
     const [yogaClass, setYogaClass] = useState({})
     const [checkins, setCheckins] = useState([])
     const history = useHistory()
@@ -20,7 +18,7 @@ const ViewClassPage = () => {
     useLayoutEffect(() => {
         // findClassById(params.classId, setYogaClass)
         // findCheckinByClassId(params.classId, setCheckins)
-    }, [states.newRender])
+    }, [])
 
 
     const studentList = checkins.map((checkin) => {
