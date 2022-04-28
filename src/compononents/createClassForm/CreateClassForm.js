@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import { LoginForm } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, TextField, Typography } from '@material-ui/core'
-import { createClasses } from '../../services/classes'
+
 import { DayOptions, StyleOptions, TeacherOptions } from '../../constants/selectOptions'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 
@@ -19,7 +19,7 @@ const CreateClassForm = () => {
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-        createClasses(form, setters.setClasses )
+
         cleanFields()
     }
    

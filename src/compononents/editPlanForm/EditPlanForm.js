@@ -3,7 +3,6 @@ import { LoginForm, Select } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, Typography, TextField } from '@material-ui/core'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
-import { editPlan } from '../../services/plans'
 import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions'
 import moment from 'moment'
 
@@ -20,7 +19,7 @@ const EditPlanForm = (props) => {
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-        editPlan(form, states.currentUser.plans[0].id)
+        
         props.setPlan(false)
         setters.setNewRender(!states.newRender)
         cleanFields()

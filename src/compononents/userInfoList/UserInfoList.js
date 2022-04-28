@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { InfoContainer, LineContainer, ColumnContainer } from './styled'
 import Typography from '@material-ui/core/Typography';
-import { goToViewUser } from '../../routes/coordinator';
+import { goToViewContract } from '../../routes/coordinator';
 import { GlobalStateContext } from '../../global/GlobalStateContext';
 import { useHistory } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const UserInfoList = (props) => {
 
         <InfoContainer 
         status={props.status} 
-        onClick={states.admin ? () => goToViewUser(history, props.id) : null} 
+        onClick={states.admin ? () => goToViewContract(history, props.id) : null} 
         >
 
             <ColumnContainer>

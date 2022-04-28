@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom"
 import defaultLogo from "../../assets/logo/defaultLogo.png"
 import useUnprotectedPage from '../../hooks/useUnprotectedPage';
 import dotenv from "dotenv"
-import { login } from '../../services/users';
+
 
 dotenv.config()
 
@@ -20,7 +20,7 @@ const LoginPage = () => {
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-       login(form, history)
+    //    login(form, history)
   
     }
 

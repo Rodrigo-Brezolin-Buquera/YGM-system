@@ -4,13 +4,12 @@ import { useHistory } from "react-router-dom";
 import { MainContainer, LoginForm, BoxContainer, Select } from "./styled"
 import useForm from '../../hooks/useForm'
 import { Button, Typography, TextField } from '@material-ui/core';
-import { createUser } from '../../services/users';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions';
 
 
 
-const CreateUserPage = () => {
+const CreateContractPage = () => {
     useProtectedPageAdmin()
     const [form, onChange, cleanFields] = useForm({ name: "", email: "", type: "", frequency: "", planStarted: "" })
     const history = useHistory()
@@ -18,7 +17,7 @@ const CreateUserPage = () => {
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-        createUser(form)
+        // createUser(form)
         cleanFields()
     }
 
@@ -108,4 +107,4 @@ const CreateUserPage = () => {
     )
 }
 
-export default CreateUserPage
+export default CreateContractPage

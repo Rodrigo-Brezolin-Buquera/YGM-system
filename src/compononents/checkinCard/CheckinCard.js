@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import { CheckinCardCont } from './styled'
 import Typography from '@material-ui/core/Typography';
-import { findClassById } from '../../services/classes';
+
 import moment from "moment"
 
 const CheckinCard = ({classId}) => {
     const [classInfo, setClassInfo] = useState({})
 
     useEffect(() => {
-       findClassById(classId, setClassInfo)
+ 
     }, [])
 
     return (

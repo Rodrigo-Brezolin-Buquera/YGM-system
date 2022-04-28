@@ -3,7 +3,6 @@ import { LoginForm, FormContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, TextField, Typography } from '@material-ui/core'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
-import { editUser, editUserById, sendNewPassword } from '../../services/users'
 
 const EditInfoForm = (props) => {
     const { setters, states } = useContext(GlobalStateContext);
@@ -15,7 +14,7 @@ const EditInfoForm = (props) => {
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-        states.admin ? editUserById(user.id, form) : editUser(form)
+       
         cleanFields()
         setters.setNewRender(!states.newRender)
         props.setInfo(false)
@@ -67,7 +66,7 @@ const EditInfoForm = (props) => {
 
             {states.admin &&
                 <Button
-                    onClick={()=> sendNewPassword(user.id) }
+                    // onClick={}
                     type={"submit"}
                     variant={"contained"}
                     color={"variant"}

@@ -8,7 +8,6 @@ import AvailableClasses from "../../compononents/availableClasses/AvailableClass
 import CreateClassForm from '../../compononents/createClassForm/CreateClassForm';
 import DeleteClassForm from '../../compononents/deleteClassForm/DeleteClassForm';
 import moment from "moment"
-import { findAllClasses } from '../../services/classes';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 
 
@@ -34,7 +33,7 @@ const EditCalendarPage = () => {
 
     useLayoutEffect(() => {
 
-        findAllClasses(setters.setClasses)
+        // findAllClasses(setters.setClasses)
 
     }, [states.newRender])
    

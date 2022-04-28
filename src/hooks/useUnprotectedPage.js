@@ -4,23 +4,23 @@ import * as jwt from "jsonwebtoken";
 import { goToAdmin, goToUser } from '../routes/coordinator';
 
 function useUnprotectedPage() {
-    const history = useHistory()
+    // const history = useHistory()
 
-    useLayoutEffect(() => {
-        const token = localStorage.getItem('token')
-        if(token) {
-            const {role, id} = jwt.verify(token, process.env.JWT_KEY)
+    // useLayoutEffect(() => {
+    //     const token = localStorage.getItem('token')
+    //     if(token) {
+    //         const {role, id} = jwt.verify(token, process.env.JWT_KEY)
            
-            if(role === "student"){
-                goToUser(history, id)
-            } else if ( role === "teacher" || role === "visitor" || role === "admin" ) {
-                goToAdmin(history)
+    //         if(role === "student"){
+    //             goToUser(history, id)
+    //         } else if ( role === "teacher" || role === "visitor" || role === "admin" ) {
+    //             goToAdmin(history)
 
-            } else {
-                alert("authentication problem, try again")
-            }
-        }
-    })
+    //         } else {
+    //             alert("authentication problem, try again")
+    //         }
+    //     }
+    // })
 }
 
 export default useUnprotectedPage;

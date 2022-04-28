@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { ClosedPlansContainer, PlanCard } from './styled'
 import Typography from '@material-ui/core/Typography';
-import { getClosedPlans } from '../../services/plans';
 import moment from 'moment';
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 
@@ -11,7 +10,7 @@ const ClosedPlansInfo = () => {
     const userID = states.currentUser.id
 
     useEffect(() => {
-        getClosedPlans(userID, setClosedPlans)
+
     }, [states.newRender])
 
     const closedPlansList = closedPlans.length && closedPlans.map((plan) => {

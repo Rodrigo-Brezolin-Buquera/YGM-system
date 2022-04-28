@@ -3,7 +3,7 @@ import { LoginForm, Input } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, TextField, Typography } from '@material-ui/core'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
-import { deleteClass } from '../../services/classes'
+
 
 const DeleteClassForm = () => {
     const { setters, states } = useContext(GlobalStateContext);
@@ -34,7 +34,6 @@ const DeleteClassForm = () => {
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-        deleteClass(form, setters.setClasses)
         cleanFields()       
     }
 

@@ -1,7 +1,7 @@
 import React, { useContext, useLayoutEffect } from 'react'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 import white from "../../assets/logo/white.png"
-import { goToAdmin, goToCreateUser, goToEditCalendar, goToEditProfile, goToLogin } from '../../routes/coordinator'
+import { goToAdmin, goToCreateContract, goToEditCalendar, goToLogin } from '../../routes/coordinator'
 import { HeaderContainer, Logo, ButtonContainer, StyledButton } from './styled'
 import Button from '@material-ui/core/Button'
 
@@ -31,7 +31,7 @@ const Header = ({history}) => {
                         type={"submit"}
                         variant={"text"}
                         color={"secondary"}
-                        onClick={() => goToCreateUser(history)}
+                        onClick={() => goToCreateContract(history)}
                     >Criar Usuário
                     </Button>
 

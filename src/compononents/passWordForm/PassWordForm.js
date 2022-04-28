@@ -2,7 +2,7 @@ import React from 'react'
 import { LoginForm, Input } from './styled'
 import useForm from '../../hooks/useForm'
 import {Button, Typography, TextField} from '@material-ui/core'
-import { changePassword } from '../../services/users'
+
 
 const PassWordForm = (props) => {
   
@@ -13,7 +13,7 @@ const PassWordForm = (props) => {
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-        changePassword(form)
+       
         props.setPasswordForm(false)
         cleanFields()
     }

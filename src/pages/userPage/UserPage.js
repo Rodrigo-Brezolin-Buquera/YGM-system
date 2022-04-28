@@ -8,8 +8,7 @@ import ClosedPlansInfo from '../../compononents/closedPlansInfo/ClosedPlansInfo'
 import CheckinsDone from '../../compononents/checkinsDone/CheckinsDone';
 import AvailableClasses from '../../compononents/availableClasses/AvailableClasses';
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
-import { findUser } from '../../services/users'
-import { findAllClasses } from '../../services/classes'
+
 
 const UserPage = () => {
     useProtectedPageStudent()
@@ -19,8 +18,8 @@ const UserPage = () => {
     const user = states.currentUser
 
     useEffect(() => {
-        findUser(setters.setCurrentUser)
-        findAllClasses(setters.setClasses) 
+        // findUser(setters.setCurrentUser)
+        // findAllClasses(setters.setClasses) 
     }, [states.newRender])
 
     return (

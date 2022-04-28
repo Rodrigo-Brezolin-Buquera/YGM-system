@@ -17,15 +17,7 @@ const Header = ({history}) => {
     return (
         <HeaderContainer>
             <Logo src={white} alt="logo" />
-                <ButtonContainer>
-                    <Button
-                        type={"submit"}
-                        variant={"text"}
-                        color={"secondary"}
-                        onClick={() => goToEditProfile(history)}
-                    >Editar Perfil
-                    </Button>
-
+                <ButtonContainer>              
                     <Button
                         type={"submit"}
                         variant={"text"}

@@ -7,8 +7,6 @@ import { Typography } from '@material-ui/core';
 import ClassInfo from '../../compononents/classInfo/ClassInfo';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import moment from 'moment';
-import { findClassById } from '../../services/classes';
-import { findCheckinByClassId } from '../../services/checkins';
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 
 const ViewClassPage = () => {
@@ -20,8 +18,8 @@ const ViewClassPage = () => {
     const params = useParams()
 
     useLayoutEffect(() => {
-        findClassById(params.classId, setYogaClass)
-        findCheckinByClassId(params.classId, setCheckins)
+        // findClassById(params.classId, setYogaClass)
+        // findCheckinByClassId(params.classId, setCheckins)
     }, [states.newRender])
 
 

@@ -3,7 +3,6 @@ import { GlobalStateContext } from '../../global/GlobalStateContext'
 import { LoginForm, Input, Select } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, Typography } from '@material-ui/core'
-import { changePlanStatus, createPlan } from '../../services/plans'
 import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions'
 
 const PlanForm = ({ setAddPlan }) => {
@@ -16,8 +15,6 @@ const PlanForm = ({ setAddPlan }) => {
     const onSubmitForm = (e) => {
         e.preventDefault()
         setAddPlan(false)
-        changePlanStatus(planId)
-        createPlan(form, userId, setters.setNewRender, states.newRender)
     }
 
     return (

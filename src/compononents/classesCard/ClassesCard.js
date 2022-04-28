@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 import { useHistory } from "react-router-dom";
 import { goToViewClass } from '../../routes/coordinator';
-import { createCheckin, deleteCheckin, verifyCheckin } from '../../services/checkins';
-import { addClassToPlan, removeClassFromPlan } from '../../services/plans';
 
 const ClassesCard = (props) => {
     const { setters, states } = useContext(GlobalStateContext);
@@ -19,10 +17,10 @@ const ClassesCard = (props) => {
 
         if (window.confirm(`Vocẽ deseja ${checkinButton ? "cancelar" : "fazer"} este checkin ?`)) {
             if (checkinButton) {
-                deleteCheckin(planId, classId)
+              
                 setters.setNewRender(!states.newRender)
             } else {
-                createCheckin(planId, classId)
+               
                 setters.setNewRender(!states.newRender)
             }
             setCheckinButton(!checkinButton)
@@ -30,11 +28,7 @@ const ClassesCard = (props) => {
     }
 
     useEffect(() => {
-        !states.admin &&
-            states.currentUser &&
-            states.currentUser.plans.length &&
-            states.currentUser.plans[0].id &&
-            verifyCheckin(props.id, states.currentUser.plans[0].id, setCheckinButton)
+       
     }, [])
 
     return (

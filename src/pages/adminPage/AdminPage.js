@@ -5,9 +5,8 @@ import { GlobalStateContext } from '../../global/GlobalStateContext'
 import { MainContainer, SideContainer } from './styled';
 import StudentList from '../../compononents/studentsList/StudentList';
 import AvailableClasses from "../../compononents/availableClasses/AvailableClasses"
-import { getUsers } from "../../services/users"
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { findAllClasses } from '../../services/classes';
+
 
 const AdminPage = () => {
     useProtectedPageAdmin()
@@ -16,8 +15,8 @@ const AdminPage = () => {
     setters.setAdmin(true)
 
     useEffect(() => {
-        getUsers(setters.setUsers)
-        findAllClasses(setters.setClasses)
+        // getUsers(setters.setUsers)
+        // findAllClasses(setters.setClasses)
     }, [states.newRender])
 
     return (

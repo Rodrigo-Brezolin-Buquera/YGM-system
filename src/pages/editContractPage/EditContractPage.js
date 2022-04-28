@@ -9,10 +9,10 @@ import EditInfoForm from '../../compononents/editInfoForm/EditInfoForm';
 import { goBack } from '../../routes/coordinator';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { GlobalStateContext } from '../../global/GlobalStateContext'
-import { changePlanStatus } from '../../services/plans';
-import { getUserById } from '../../services/users';
 
-const EditUserPage = () => {
+
+
+const EditContractPage = () => {
     useProtectedPageAdmin()
     const [plan, setPlan] = useState(false)
     const [info, setInfo] = useState(false)
@@ -21,12 +21,12 @@ const EditUserPage = () => {
     const { setters, states } = useContext(GlobalStateContext);
 
     useEffect(() => {
-        getUserById(params.userId, setters.setCurrentUser)
+        // getUserById(params.userId, setters.setCurrentUser)
     }, [states.newRender])
 
     const handlePlan = () => {
         if (window.confirm("Você deseja alterar a situação deste plano?")) {
-            changePlanStatus(states.currentUser.plans[0].id) 
+            
         }
     }
 
@@ -104,4 +104,4 @@ const EditUserPage = () => {
     )
 }
 
-export default EditUserPage
+export default EditContractPage

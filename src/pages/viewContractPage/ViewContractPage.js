@@ -7,12 +7,12 @@ import ClosedPlansInfo from '../../compononents/closedPlansInfo/ClosedPlansInfo'
 import CheckinsDone from '../../compononents/checkinsDone/CheckinsDone';
 import UserInfo from '../../compononents/userInfo/UserInfo'
 import Button from '@material-ui/core/Button';
-import { goToEditUser } from '../../routes/coordinator';
+import { goToEditContract } from '../../routes/coordinator';
 import PlanForm from '../../compononents/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { getUserById } from '../../services/users';
 
-const ViewUserPage = () => {
+
+const ViewContractPage = () => {
     useProtectedPageAdmin()
     const params = useParams();
     const { setters, states } = useContext(GlobalStateContext);
@@ -27,7 +27,7 @@ const ViewUserPage = () => {
     }
 
     useEffect(() => {
-        getUserById(params.userId, setters.setCurrentUser)
+        
     }, [addPlan, states.newRender])
 
     return (
@@ -59,7 +59,7 @@ const ViewUserPage = () => {
                             type={"submit"}
                             variant={"contained"}
                             color={"variant"}
-                            onClick={() => goToEditUser(history, user.id)}
+                            onClick={() => goToEditContract(history, user.id)}
                         >
                             Editar Usuário
                         </Button>
@@ -86,4 +86,4 @@ const ViewUserPage = () => {
     )
 }
 
-export default ViewUserPage
+export default ViewContractPage
