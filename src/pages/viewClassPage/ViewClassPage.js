@@ -1,10 +1,10 @@
 import React, { useLayoutEffect, useState } from 'react'
-import Header from '../../compononents/headerAdmin/HeaderAdmin'
+import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory, useParams } from "react-router-dom";
 import { MainContainer, SideContainer, CenterContainer } from './styled';
-import StudentCheckinCard from '../../compononents/studentCheckinCard/StudentCheckinCard';
+import StudentCheckinCard from '../../components/studentCheckinCard/StudentCheckinCard';
 import { Typography } from '@material-ui/core';
-import ClassInfo from '../../compononents/classInfo/ClassInfo';
+import ClassInfo from '../../components/classInfo/ClassInfo';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import moment from 'moment';
 

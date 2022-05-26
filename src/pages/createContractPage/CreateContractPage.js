@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../compononents/headerAdmin/HeaderAdmin'
+import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
 import { MainContainer, LoginForm, BoxContainer, Select } from "./styled"
 import useForm from '../../hooks/useForm'

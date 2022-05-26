@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from "react-router-dom";
-import Header from '../../compononents/headerAdmin/HeaderAdmin'
+import Header from '../../components/headerAdmin/HeaderAdmin'
 import { MainContainer, ButtonContainer } from "./styled"
 import Button from '@material-ui/core/Button';
-import UserInfo from '../../compononents/userInfo/UserInfo'
-import EditPlanForm from '../../compononents/editPlanForm/EditPlanForm';
-import EditInfoForm from '../../compononents/editInfoForm/EditInfoForm';
+import UserInfo from '../../components/userInfo/UserInfo'
+import EditPlanForm from '../../components/editPlanForm/EditPlanForm';
+import EditInfoForm from '../../components/editInfoForm/EditInfoForm';
 import { goBack } from '../../routes/coordinator';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 

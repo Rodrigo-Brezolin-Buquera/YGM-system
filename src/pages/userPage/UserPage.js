@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import Header from '../../compononents/headerUser/HeaderUser'
-import UserInfo from '../../compononents/userInfo/UserInfo'
+import Header from '../../components/headerUser/HeaderUser'
+import UserInfo from '../../components/userInfo/UserInfo'
 import { MainContainer, CentralContainer, SideContainer } from './styled'
 import { useHistory } from "react-router-dom";
-import ClosedPlansInfo from '../../compononents/closedPlansInfo/ClosedPlansInfo';
-import CheckinsDone from '../../compononents/checkinsDone/CheckinsDone';
-import AvailableClasses from '../../compononents/availableClasses/AvailableClasses';
+import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
+import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
+import AvailableClasses from '../../components/availableClasses/AvailableClasses';
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
 
 

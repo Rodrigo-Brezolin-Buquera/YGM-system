@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from "react-router-dom";
-import Header from '../../compononents/headerAdmin/HeaderAdmin'
+import Header from '../../components/headerAdmin/HeaderAdmin'
 import { MainContainer, ColumnContainer, ButtonContainer, SideContainer } from "./styled"
-import ClosedPlansInfo from '../../compononents/closedPlansInfo/ClosedPlansInfo';
-import CheckinsDone from '../../compononents/checkinsDone/CheckinsDone';
-import UserInfo from '../../compononents/userInfo/UserInfo'
+import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
+import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
+import UserInfo from '../../components/userInfo/UserInfo'
 import Button from '@material-ui/core/Button';
 import { goToEditContract } from '../../routes/coordinator';
-import PlanForm from '../../compononents/planForm/PlanForm';
+import PlanForm from '../../components/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 
 

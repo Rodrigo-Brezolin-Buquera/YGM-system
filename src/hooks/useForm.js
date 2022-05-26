@@ -8,10 +8,10 @@ function useForm(initialValue) {
         setForm({...form, [name]: value})
     }
 
-    const clear = () => {
+    const cleanFields = () => {
         setForm('')
     }
-    return [form, onChange, clear, setForm]
+    return [form, onChange, cleanFields, setForm]
 }
 
 export default useForm;
