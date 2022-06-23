@@ -2,12 +2,9 @@ import React, { useState } from 'react'
 import useForm from '../../../hooks/useForm'
 import { Form, BoxContainer } from ".././styled"
 import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
-import dotenv from "dotenv"
-import { login } from '../../../services/requests/authRequests';
+import { login } from '../../../services/firebase/auth';
 import { goToAdmin } from '../../../routes/coordinator';
 
-
-dotenv.config()
 
 
 export const LoginForm = (props) => {

@@ -5,6 +5,7 @@ import { MainContainer, SideContainer } from './styled';
 import StudentList from '../../components/studentsList/StudentList';
 import AvailableClasses from "../../components/availableClasses/AvailableClasses"
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
+import { getAllContracts } from '../../services/requests/contractRequests';
 
 
 const AdminPage = () => {
@@ -14,7 +15,7 @@ const AdminPage = () => {
     
 
     useEffect(() => {
-        
+        getAllContracts()
     }, [])
 
     return (
