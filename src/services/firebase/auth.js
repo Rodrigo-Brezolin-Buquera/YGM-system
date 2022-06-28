@@ -4,9 +4,7 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { BASE_URL } from "../../constants/baseURL";
 import { auth } from "./config";
 
-
 export const login = async (form) => {
-
   signInWithEmailAndPassword(auth, form.email, form.password)
     .then(userCredential => userCredential.user.accessToken)
     .then(token => axios.post(`${BASE_URL}/auth/login`, {token}))
@@ -14,12 +12,9 @@ export const login = async (form) => {
       localStorage.setItem("token", res.data.token)
     } )
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      console.log(error)
     });
-
 }
-
 
 export const logout = async () => {
   signOut(auth).then(() => {

@@ -2,9 +2,14 @@ export const TypeOptions = () => {
     return (
         <>
             <option value="" > Tipo plano </option>
-            <option value="Mensal" > Mensal </option>
-            <option value="Trimestral" > Trimestral </option>
-            <option value="Semestral" > Semestral </option>
+            <option value="1x-Mensal" > 1x Mensal </option>
+            <option value="2x-Mensal" > 2x Mensal </option>
+            <option value="1x-Trimestral" > 1x Trimestral </option>
+            <option value="2x-Trimestral" > 2x  Trimestral </option>
+            <option value="1x-Semestral"> 1x Semestral </option>
+            <option value="2x-Semestral"> 2x  Semestral </option>
+            <option value="---Avulsa"> Avulsa </option>
+            <option value="---Gympass"> Gympass </option>
         </>
     )
 }
@@ -58,8 +63,8 @@ export const FrequencyOptions = () => {
     return (
         <>
             <option value="" > Vezes na semana </option>
-            <option value="1X" > 1x </option>
-            <option value="2X" > 2x </option>
+            <option value="1x" > 1x </option>
+            <option value="2x" > 2x </option>
         </>
     )
 }

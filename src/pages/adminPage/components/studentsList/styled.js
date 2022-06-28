@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { darkNeutralColor } from "../../constants/colors"
+import { darkNeutralColor } from "../../../../constants/colors"
 
 export const List = styled.div`
 display:flex;

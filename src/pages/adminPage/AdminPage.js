@@ -1,28 +1,29 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
 import { MainContainer, SideContainer } from './styled';
-import StudentList from '../../components/studentsList/StudentList';
+import StudentList from './components/studentsList/StudentList';
 import AvailableClasses from "../../components/availableClasses/AvailableClasses"
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { getAllContracts } from '../../services/requests/contractRequests';
 
 
 const AdminPage = () => {
-    useProtectedPageAdmin()
-    
+    // useProtectedPageAdmin()
     const history = useHistory()
-    
+    const [contracts, setContracts] = useState([])
+
 
     useEffect(() => {
-        getAllContracts()
+        getAllContracts(setContracts)
     }, [])
 
+    // console.log("adminpage", contracts)
     return (
         <div>
             <Header history={history} />
             <MainContainer>
-                <StudentList />
+                <StudentList contracts={contracts} />
                 <SideContainer>
                     <AvailableClasses />
                 </SideContainer>

@@ -24,31 +24,27 @@ const UserInfoList = (props) => {
 
                 <LineContainer>
                     <Typography component="subtitle2" style={{ fontWeight: 600 }}>Plano: </Typography>
-                    <Typography component="p">{props.type} {props.frequency} na semana</Typography>
+                    <Typography component="p">{props.plan}</Typography>
                 </LineContainer>
             </ColumnContainer>
 
             <ColumnContainer>
                 <LineContainer>
                     <Typography component="subtitle2" style={{ fontWeight: 600 }}>Início do plano: </Typography>
-                    <Typography component="p">{props.planStarted}</Typography>
+                    <Typography component="p">{props.started}</Typography>
                 </LineContainer>
 
                 <LineContainer>
                     <Typography component="subtitle2" style={{ fontWeight: 600 }}>Fim previsto: </Typography>
-                    <Typography component="p"> {props.planEnds}</Typography>
+                    <Typography component="p"> {props.ends}</Typography>
                 </LineContainer>
             </ColumnContainer>
 
             <ColumnContainer>
-                <LineContainer>
-                    <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas totais: </Typography>
-                    <Typography component="p">{props.totalClasses}</Typography>
-                </LineContainer>
-
+             
                 <LineContainer>
                     <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas disponíveis:</Typography>
-                    <Typography component="p">{props.avaliableClasses}</Typography>
+                    <Typography component="p">{props.availableClasses}</Typography>
                 </LineContainer>
             </ColumnContainer>
 
