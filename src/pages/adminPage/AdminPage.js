@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
 import { MainContainer, SideContainer } from './styled';
 import StudentList from './components/studentsList/StudentList';
 import AvailableClasses from "../../components/availableClasses/AvailableClasses"
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { getAllContracts } from '../../services/requests/contractRequests';
+import { useRequestData } from '../../hooks/useRequestData';
 
 
 const AdminPage = () => {
     // useProtectedPageAdmin()
     const history = useHistory()
-    const [contracts, setContracts] = useState([])
-
+    const [contracts, getContracts] = useRequestData([], "/contracts/list")
+    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
 
     useEffect(() => {
-        getAllContracts(setContracts)
+        getContracts()
+        getyogaClasses()
     }, [])
 
-    // console.log("adminpage", contracts)
     return (
         <div>
             <Header history={history} />
             <MainContainer>
                 <StudentList contracts={contracts} />
                 <SideContainer>
-                    <AvailableClasses />
+                    <AvailableClasses yogaClasses={yogaClasses} />
                 </SideContainer>
             </MainContainer>
         </div>

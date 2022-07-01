@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { getHeader } from '../constants/header';
+import { useState } from 'react';
+import { BASE_URL } from '../constants/baseURL';
+import { setHeaders } from '../utils/setHeaders';
 
-const useRequestData = (initialData, url) => {
+export const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData)
-
-
+    const finalURL = `${BASE_URL}${url}`
     const getRequest = () => {
- 
-        axios.get(url, getHeader())
+        axios.get(finalURL, setHeaders())
             .then((res) => {
                 setData(res.data)
             })
@@ -19,5 +18,3 @@ const useRequestData = (initialData, url) => {
     }
     return [data, getRequest]
 };
-
-export default useRequestData;

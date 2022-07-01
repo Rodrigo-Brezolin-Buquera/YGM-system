@@ -1,10 +1,8 @@
 import React from 'react'
-
 import { List, Select, FilterContainer } from './styled';
 import TextField from '@material-ui/core/TextField';
 import useInput from '../../../../hooks/useInput';
 import UserInfoList from '../../../../components/userInfoList/UserInfoList';
-import moment from 'moment';
 import { StatusOptions, TypeOptions } from '../../../../constants/selectOptions';
 
 const StudentList = ({ contracts }) => {
