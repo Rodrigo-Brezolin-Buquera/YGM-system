@@ -7,8 +7,9 @@ background-color:${lightNeutralColor};
 
 `
 
-export const LineContainer = styled.div`
+export const LinearContainer = styled.div`
 display: flex;
+flex-direction: row;
 gap: 0.5em;
 padding: 1em;
 width:100%;
