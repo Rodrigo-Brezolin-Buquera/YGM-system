@@ -19,9 +19,9 @@ align-items:center;
 
 export const CenterContainer = styled.div`
 display: flex;
-justify-content: center;
-align-items:flex-start;
+flex-direction: column;
+justify-content: top; 
+align-items:center;
 padding-top: 1em;;
 width:100%;
 `
-

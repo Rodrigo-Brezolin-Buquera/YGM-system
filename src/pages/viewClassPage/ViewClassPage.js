@@ -9,6 +9,7 @@ import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from "../../hooks/useRequestData"
 import moment from 'moment';
 import StudentList from './components/studentList/StudentList';
+import DeleteClassButtons from './components/deleteClassButtons/DeleteClassButtons';
 
 const ViewClassPage = () => {
     // useProtectedPageAdmin()
@@ -33,6 +34,9 @@ const ViewClassPage = () => {
                         date={yogaClass.date}
                         teacher={yogaClass.teacher}
                         name={yogaClass.name}
+                    />
+                    <DeleteClassButtons 
+                        groupId={yogaClass.groupId} date={yogaClass.date} 
                     />
                 </CenterContainer>
                 <SideContainer>
