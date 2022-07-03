@@ -1,26 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { LoginForm } from './styled'
-import useForm from '../../hooks/useForm'
+import useForm from '../../../../hooks/useForm'
 import { Button, TextField, Typography } from '@material-ui/core'
-
-import { DayOptions, StyleOptions, TeacherOptions } from '../../constants/selectOptions'
-
+import { DayOptions, StyleOptions, TeacherOptions } from '../../../../constants/selectOptions'
+import { createClass } from '../../../../services/requests/calendarRequests'
 
 const CreateClassForm = () => {
-   
+    const [loading, setLoading] = useState(false)
     const [form, onChange, cleanFields] = useForm({
         name: "",
         day: "",
         time: "",
         teacher: "",
-        startingDate: ""
+        date: ""
     })
-
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-
+        setLoading(true)
+        createClass(form)
         cleanFields()
+        setLoading(false)
     }
    
     return (
@@ -69,10 +69,10 @@ const CreateClassForm = () => {
 
             <Typography > Dia de início:</Typography>
             <TextField
-                name="startingDate"
+                name="date"
                 onChange={onChange}
                 placeholder="Data de início"
-                value={form.startingDate}
+                value={form.date}
                 type="date"
                 required
                 fullWidth

@@ -1,11 +1,9 @@
 import React, { useLayoutEffect } from 'react'
-import Calendar from '../../components/calendar/Calendar'
+import Calendar from './components/calendar/Calendar'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
-import { LowerContainer, LinearContainer, SideContainer } from './styled';
-import AvailableClasses from "../../components/availableClasses/AvailableClasses"
-import CreateClassForm from '../../components/createClassForm/CreateClassForm';
-import DeleteClassForm from '../../components/deleteClassForm/DeleteClassForm';
+import { LowerContainer, LinearContainer } from './styled';
+import CreateClassForm from './components/createClassForm/CreateClassForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
 import moment from 'moment';

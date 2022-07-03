@@ -2,35 +2,23 @@ import React, { useLayoutEffect, useState } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory, useParams } from "react-router-dom";
 import { MainContainer, SideContainer, CenterContainer } from './styled';
-import StudentCheckinCard from '../../components/studentCheckinCard/StudentCheckinCard';
-import { Typography } from '@material-ui/core';
-import ClassInfo from '../../components/classInfo/ClassInfo';
+import StudentCheckinCard from './components/studentCheckinCard/StudentCheckinCard';
+
+import ClassInfo from './components/classInfo/ClassInfo';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
+import { useRequestData } from "../../hooks/useRequestData"
 import moment from 'moment';
+import StudentList from './components/studentList/StudentList';
 
 const ViewClassPage = () => {
-    useProtectedPageAdmin()
-    const [yogaClass, setYogaClass] = useState({})
-    const [checkins, setCheckins] = useState([])
+    // useProtectedPageAdmin()
     const history = useHistory()
     const params = useParams()
+    const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${params.classId}`)
 
     useLayoutEffect(() => {
-        // findClassById(params.classId, setYogaClass)
-        // findCheckinByClassId(params.classId, setCheckins)
+        getYogaClass()
     }, [])
-
-
-    const studentList = checkins.map((checkin) => {
-        return (
-            <StudentCheckinCard
-                key={checkin.classId + checkin.planId}
-                classId={checkin.classId}
-                planId={checkin.planId}
-                verified={checkin.verified}
-            />
-        )
-    })
 
     return (
         <div>
@@ -42,18 +30,14 @@ const ViewClassPage = () => {
                         id={yogaClass.id}
                         day={yogaClass.day}
                         time={yogaClass.time}
-                        date={moment(yogaClass.date).format("DD/MM/YY")}
+                        date={yogaClass.date}
                         teacher={yogaClass.teacher}
                         name={yogaClass.name}
-
                     />
                 </CenterContainer>
                 <SideContainer>
-                    <Typography variant="h6" > Lista de checkins: </Typography>
-                    {checkins.length ? studentList : <p> Não há check-ins até o momento </p>}
-
+                    <StudentList checkins={yogaClass.checkins} />
                 </SideContainer>
-
             </MainContainer>
         </div>
     )

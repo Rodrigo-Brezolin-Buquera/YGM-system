@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {darkNeutralColor, secondaryColor,lightNeutralColor } from "../../constants/colors"
+import {darkNeutralColor, secondaryColor,lightNeutralColor } from "../../../../constants/colors"
 
 export const TextContainer = styled.div`
 display:flex;

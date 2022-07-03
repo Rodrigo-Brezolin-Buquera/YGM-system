@@ -3,13 +3,13 @@ import white from "../../assets/logo/white.png"
 import { goToAdmin, goToCreateUser, goToEditCalendar, goToEditProfile, goToLogin } from '../../routes/coordinator'
 import { HeaderContainer, Logo, ButtonContainer, StyledButton } from './styled'
 import Button from '@material-ui/core/Button'
-
+import { logout } from '../../services/firebase/auth'
 
 const Header = ({history}) => {
  
 
-    const logout = () => {
-        localStorage.removeItem("token")
+    const exitApp = () => {
+        logout()
         goToLogin(history)
     }
 
@@ -21,7 +21,7 @@ const Header = ({history}) => {
                         type={"submit"}
                         variant={"text"}
                         color={"secondary"}
-                        onClick={() => logout()}
+                        onClick={() => exitApp()}
                     >Sair
                     </Button>
                 </ButtonContainer>    

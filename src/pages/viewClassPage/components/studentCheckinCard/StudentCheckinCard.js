@@ -1,32 +1,24 @@
-import React, { useState, useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import { StudentCard, IconCont } from './styled';
 import Typography from '@material-ui/core/Typography';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import { goToViewContract } from '../../routes/coordinator';
-import { useHistory } from "react-router-dom";
 import CancelIcon from '@material-ui/icons/Cancel';
-
+import { deleteCheckin, validateCheckin } from '../../../../services/requests/bookingRequests';
 
 const StudentCheckinCard = (props) => {
-  
-    const [checkin, setCheckin] = useState(props.verified)
-    const [studentName, setStudentName] = useState("")
-    const history = useHistory()
+    // const [checkin, setCheckin] = useState(props.verified)
 
-    useEffect(() => {
-     
-    }, [])
+    useEffect(()=>{}, [props])
 
     const confirmCheckin = () => {
-        setCheckin(!checkin)
-      
+        // setCheckin(!checkin)
+        validateCheckin(props.id, props.verified)
     }
 
     const cancelCheckin = () => {
         if (window.confirm("Deseja cancelar este checkin?")) {
-            
-          
+                deleteCheckin(props.id)
         }
     }
 
@@ -34,21 +26,19 @@ const StudentCheckinCard = (props) => {
         <StudentCard>
             <IconCont
                 onClick={() => confirmCheckin()}
-                type={checkin}
+                type={props.verified}
             >
-                {checkin ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+                {props.verified ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
             </IconCont>
 
             <StudentCard
                 key={props.id}
-                onClick={() => { goToViewContract(history, props.id) }}
             >
-                <Typography >  {studentName}  </Typography>
+                <Typography >  {props.name}  </Typography>
             </StudentCard>
 
             <IconCont
                 onClick={() => cancelCheckin()}
-                style={{ color: "red" }}
             >
                 <CancelIcon />
             </IconCont>
