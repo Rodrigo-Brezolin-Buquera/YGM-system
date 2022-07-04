@@ -1,13 +1,10 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory, useParams } from "react-router-dom";
 import { MainContainer, SideContainer, CenterContainer } from './styled';
-import StudentCheckinCard from './components/studentCheckinCard/StudentCheckinCard';
-
 import ClassInfo from './components/classInfo/ClassInfo';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from "../../hooks/useRequestData"
-import moment from 'moment';
 import StudentList from './components/studentList/StudentList';
 import DeleteClassButtons from './components/deleteClassButtons/DeleteClassButtons';
 
@@ -35,8 +32,10 @@ const ViewClassPage = () => {
                         teacher={yogaClass.teacher}
                         name={yogaClass.name}
                     />
-                    <DeleteClassButtons 
-                        groupId={yogaClass.groupId} date={yogaClass.date} 
+                    <DeleteClassButtons
+                        id={yogaClass.id} 
+                        groupId={yogaClass.groupId} 
+                        history={history}
                     />
                 </CenterContainer>
                 <SideContainer>

@@ -12,6 +12,7 @@ const EditCalendarPage = () => {
     // useProtectedPageAdmin()
     const history = useHistory()
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar")
+  
     
     useLayoutEffect(() => {
         getyogaClasses()

@@ -52,9 +52,9 @@ export const StyleOptions = () => {
     return (
         <>
             <option value="" >Estilo  </option>
-            <option value="Restaurativo" > Restaurativo </option>
-            <option value="Hatha" > Hatha </option>
-            <option value="Vinyasa" > Vinyasa </option>
+            <option value="Yoga Restaurativo" > Restaurativo </option>
+            <option value="Hatha Yoga" > Hatha </option>
+            <option value="Vinyasa Flow" > Vinyasa </option>
         </>
     )
 }

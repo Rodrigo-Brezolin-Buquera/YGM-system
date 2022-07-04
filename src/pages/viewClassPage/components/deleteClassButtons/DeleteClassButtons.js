@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
 import { ButtonContainer } from './styled'
 import { Button} from '@material-ui/core'
-import { deleteClassByDate, deleteClassById } from '../../../../services/requests/calendarRequests'
+import { deleteClassByGroupId, deleteClassById } from '../../../../services/requests/calendarRequests'
+import { goBack } from '../../../../routes/coordinator'
 
-const DeleteClassButtons = ({ groupId, date }) => {
+const DeleteClassButtons = ({id, groupId, history }) => {
     const [loading, setLoading] = useState(false)
 
     const deleteClass = () => {
         setLoading(true)
-        deleteClassById(groupId)
+        deleteClassById(id)
         setLoading(false)
+        goBack(history)
     }
 
     const deleteClasses = () => {
         setLoading(true)
-        deleteClassByDate(groupId, date)
+        deleteClassByGroupId(groupId)
         setLoading(false)
+        goBack(history)
     }
 
     return <ButtonContainer>
