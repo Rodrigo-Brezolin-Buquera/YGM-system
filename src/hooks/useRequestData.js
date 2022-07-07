@@ -12,7 +12,7 @@ export const useRequestData = (initialData, url) => {
                 setData(res.data)
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.message)
                 // alert('Ocorreu um erro, tente novamente')
             })
     }

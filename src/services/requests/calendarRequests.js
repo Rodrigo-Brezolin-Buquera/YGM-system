@@ -6,7 +6,7 @@ export const createClass = (form) => {
     const URL = `${BASE_URL}/calendar`
     axios.post(URL, form, setHeaders())
     .then(()=> console.log("Aulas criadas"))
-    .catch((err)=> console.log(err))
+    .catch((err)=> console.log(err.message))
 }
 
 export const deleteClassById = (id) => {

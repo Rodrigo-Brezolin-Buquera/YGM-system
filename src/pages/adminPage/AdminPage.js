@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
 import { MainContainer, SideContainer } from './styled';
@@ -14,7 +14,7 @@ const AdminPage = () => {
     const [contracts, getContracts] = useRequestData([], "/contracts/list")
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getContracts()
         getyogaClasses()
     }, [])

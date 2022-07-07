@@ -5,27 +5,24 @@ import { MainContainer, LoginForm, BoxContainer, Select } from "./styled"
 import useForm from '../../hooks/useForm'
 import { Button, Typography, TextField } from '@material-ui/core';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions';
-
-
+import { TypeOptions } from '../../constants/selectOptions';
+import { createContract } from '../../services/requests/contractRequests';
 
 const CreateContractPage = () => {
     useProtectedPageAdmin()
-    const [form, onChange, cleanFields] = useForm({ name: "", email: "", type: "", frequency: "", planStarted: "" })
+    const [form, onChange, cleanFields] = useForm({ name: "", email: "", plan: "", date: "" })
     const history = useHistory()
-
 
     const onSubmitForm = (e) => {
         e.preventDefault()
-        // createUser(form)
+        createContract(form)
         cleanFields()
     }
 
     return (
-        <div>
+        <>
             <Header history={history} />
             <MainContainer>
-
                 <BoxContainer>
                     <Typography variant="h5"> Informações pessoais:</Typography>
                     <LoginForm onSubmit={onSubmitForm} >
@@ -41,7 +38,6 @@ const CreateContractPage = () => {
                             label="Name"
                             ariant="filled"
                             color="primary"
-
                         ></TextField>
 
                         <TextField
@@ -57,34 +53,23 @@ const CreateContractPage = () => {
                             color="primary"
                         />
 
-                        <Typography variant="h5"> Informações do plano:</Typography>
+                        <Typography variant="h5"> Informações do contrato:</Typography>
 
                         <Select
-                            name="type"
+                            name="plan"
                             onChange={onChange}
                             placeholder="Escolha um plano"
-                            value={form.type}
+                            value={form.plan}
                             required
                         >
-                            <TypeOptions/>
+                            <TypeOptions />
 
-                        </Select>
-
-                        <Select
-                            name="frequency"
-                            onChange={onChange}
-                            placeholder="Escolha a frequência "
-                            value={form.frequency}
-                            required
-                        >
-                            <FrequencyOptions/>
                         </Select>
 
                         <TextField
-                            name="planStarted"
+                            name="date"
                             onChange={onChange}
-                            placeholder="Escolha um plano"
-                            value={form.planStarted}
+                            value={form.date}
                             type="date"
                             required
                             fullWidth
@@ -99,11 +84,10 @@ const CreateContractPage = () => {
                         >
                             Criar Usuário
                         </Button>
-
                     </LoginForm>
                 </BoxContainer>
             </MainContainer>
-        </div>
+        </>
     )
 }
 

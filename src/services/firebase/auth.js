@@ -9,6 +9,7 @@ export const login = async (form) => {
     .then(userCredential => userCredential.user.accessToken)
     .then(token => axios.post(`${BASE_URL}/auth/login`, {token}))
     .then(res=> {
+      console.log(res)
       localStorage.setItem("token", res.data.token)
     } )
     .catch((error) => {

@@ -5,7 +5,7 @@ import { Button, Typography } from '@material-ui/core'
 import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions'
 
 const PlanForm = ({ setAddPlan }) => {
-    const [form, onChange, cleanFields] = useForm({ type: "", frequency: "", planStarted: "" })
+    const [form, onChange, cleanFields] = useForm({ type: "", planStarted: "" })
    
 
     const onSubmitForm = (e) => {
@@ -25,16 +25,6 @@ const PlanForm = ({ setAddPlan }) => {
                 required
             >
                 <TypeOptions />
-            </Select>
-
-            <Select
-                name="frequency"
-                onChange={onChange}
-                placeholder="Escolha a frequência "
-                value={form.frequency}
-                required
-            >
-                <FrequencyOptions />
             </Select>
 
             <Typography>Início:</Typography>

@@ -2,14 +2,13 @@ import React from 'react'
 import { LoginForm, Select } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, Typography, TextField } from '@material-ui/core'
-import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions'
+import { TypeOptions } from '../../constants/selectOptions'
 import moment from 'moment'
 
 const EditPlanForm = (props) => {
   
     const [form, onChange, cleanFields] = useForm({
         type: "states.currentUser.plans[0].type",
-        frequency: "states.currentUser.plans[0].frequency",
         planStarted: "moment(states.currentUser.plans[0].planStarted)",
         planEnds: "moment(states.currentUser.plans[0].planEnds)",
         totalClasses: "states.currentUser.plans[0].totalClasses",
@@ -37,17 +36,7 @@ const EditPlanForm = (props) => {
             >
               <TypeOptions/>
             </Select>
-
-            <Select
-                name="frequency"
-                onChange={onChange}
-                placeholder="Escolha a frequência "
-                value={form.frequency}
-                required
-            >
-               <FrequencyOptions/>
-            </Select>
-
+  
             <Typography> Início: </Typography>
             <TextField
                 name="planStarted"

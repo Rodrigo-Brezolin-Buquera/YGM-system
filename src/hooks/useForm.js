@@ -9,7 +9,7 @@ function useForm(initialValue) {
     }
 
     const cleanFields = () => {
-        setForm('')
+        setForm({})
     }
     return [form, onChange, cleanFields, setForm]
 }
