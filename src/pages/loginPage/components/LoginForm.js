@@ -3,21 +3,17 @@ import useForm from '../../../hooks/useForm'
 import { Form, BoxContainer } from ".././styled"
 import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
 import { login } from '../../../services/firebase/auth';
-import { goToAdmin } from '../../../routes/coordinator';
 
-
-
-export const LoginForm = (props) => {
+export const LoginForm = ({history}) => {
   const [loading, setLoading] = useState(false)
   const [form, onChange, cleanFields] = useForm({ email: "", password: "" })
 
-  const onSubmitForm = (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault()
     setLoading(true)
+    await login(form, history, setLoading)
     cleanFields()
-    login(form)
-    setLoading(false)
-    goToAdmin(props.history) // mudar isso depois
+    
   }
 
   return (

@@ -7,24 +7,25 @@ import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
 import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
 import AvailableClasses from '../../components/availableClasses/AvailableClasses';
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
+import { useRequestData } from '../../hooks/useRequestData';
 
 
 const UserPage = () => {
-    useProtectedPageStudent()
+    // useProtectedPageStudent()
     const history = useHistory()
-   
-
+   const [contract, getContract] = useRequestData({}, `/contracts/user`)
+  
     useEffect(() => {
-        
+        getContract()
     }, [])
-
+    console.log(contract)
     return (
         <div>
             <Header history={history} />
             <MainContainer>
 
                 <SideContainer>
-                    <AvailableClasses />
+                    {/* <AvailableClasses /> */}
                 </SideContainer>
 
                 <CentralContainer>
