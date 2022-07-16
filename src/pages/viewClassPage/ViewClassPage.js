@@ -11,8 +11,8 @@ import DeleteClassButtons from './components/deleteClassButtons/DeleteClassButto
 const ViewClassPage = () => {
     // useProtectedPageAdmin()
     const history = useHistory()
-    const params = useParams()
-    const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${params.classId}`)
+    const {classId} = useParams()
+    const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${classId}`)
 
     useLayoutEffect(() => {
         getYogaClass()

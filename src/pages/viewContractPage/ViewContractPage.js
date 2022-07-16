@@ -9,11 +9,13 @@ import Button from '@material-ui/core/Button';
 import { goToEditContract } from '../../routes/coordinator';
 import PlanForm from '../../components/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
+import { useRequestData } from '../../hooks/useRequestData';
 
 
 const ViewContractPage = () => {
     useProtectedPageAdmin()
-    const params = useParams();
+    const {userId} = useParams();
+    const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
     
     const history = useHistory()
    
@@ -25,9 +27,9 @@ const ViewContractPage = () => {
     }
 
     useEffect(() => {
-        
+        getContracts()
     }, [addPlan])
-
+    console.log(contracts)
     return (
         <div>
             <Header history={history} />
@@ -37,20 +39,17 @@ const ViewContractPage = () => {
                     {/* {user.id && <CheckinsDone user={user} />} */}
                 </SideContainer>
                 <ColumnContainer>
-                    {/* {
-                        user && user.plans
-                        &&
+                    {
+                        contracts.id &&
                         <UserInfo
-                            id={user.id}
-                            name={user.name}
-                            type={user.plans[0].type}
-                            frequency={user.plans[0].frequency}
-                            planStarted={user.plans[0].planStarted}
-                            planEnds={user.plans[0].planEnds}
-                            totalClasses={user.plans[0].totalClasses}
-                            avaliableClasses={user.plans[0].avaliableClasses}
+                            id={contracts.id}
+                            name={contracts.name}
+                            plan={contracts.currentContract.plan}
+                            planStarted={contracts.currentContract.started}
+                            planEnds={contracts.currentContract.ends}
+                            avaliableClasses={contracts.currentContract.avaliableClasses}
                         />
-                    } */}
+                    }
 
                     <ButtonContainer>
                         <Button

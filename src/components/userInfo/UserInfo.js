@@ -3,10 +3,8 @@ import { InfoContainer, FlexContainer } from './styled'
 import Typography from '@material-ui/core/Typography';
 import { goToViewContract } from '../../routes/coordinator';
 import { useHistory } from "react-router-dom";
-import moment from 'moment';
 
-const UserInfo = (props) => {
-    
+const UserInfo = (props) => { 
     const history = useHistory()
 
     return (
@@ -20,22 +18,17 @@ const UserInfo = (props) => {
 
             <FlexContainer>
                 <Typography component="subtitle2" style={{ fontWeight: 600 }}>Plano: </Typography>
-                <Typography component="p">{props.type} {props.frequency} na semana</Typography>
+                <Typography component="p">{props.plan} </Typography>
             </FlexContainer>
 
             <FlexContainer>
                 <Typography component="subtitle2" style={{ fontWeight: 600 }}>Início do plano: </Typography>
-                <Typography component="p"> {moment(props.planStarted).format("DD/MM/YY")}</Typography>
+                <Typography component="p"> {props.planStarted}</Typography>
             </FlexContainer>
 
             <FlexContainer>
                 <Typography component="subtitle2" style={{ fontWeight: 600 }}>Fim previsto: </Typography>
-                <Typography component="p"> {moment(props.planEnds).format("DD/MM/YY")}</Typography>
-            </FlexContainer>
-
-            <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas totais: </Typography>
-                <Typography component="p">{props.totalClasses}</Typography>
+                <Typography component="p"> {props.planEnds}</Typography>
             </FlexContainer>
 
             <FlexContainer>

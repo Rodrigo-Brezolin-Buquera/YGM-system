@@ -6,6 +6,7 @@ import { setHeaders } from '../utils/setHeaders';
 export const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData)
     const finalURL = `${BASE_URL}${url}`
+   
     const getRequest = () => {
         axios.get(finalURL, setHeaders())
             .then((res) => {
