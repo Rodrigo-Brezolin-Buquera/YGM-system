@@ -13,7 +13,7 @@ import { useRequestData } from '../../hooks/useRequestData';
 
 
 const ViewContractPage = () => {
-    useProtectedPageAdmin()
+    // useProtectedPageAdmin()
     const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
     const [addPlan, setAddPlan] = useState(false)
@@ -53,7 +53,7 @@ const ViewContractPage = () => {
                             type={"submit"}
                             variant={"contained"}
                             color={"variant"}
-                            onClick={() => goToEditContract(history, "user.id")}
+                            onClick={() => goToEditContract(history, contracts.id)}
                         >
                             Editar Usuário
                         </Button>

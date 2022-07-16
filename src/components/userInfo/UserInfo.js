@@ -33,7 +33,7 @@ const UserInfo = (props) => {
 
             <FlexContainer>
                 <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas disponíveis:</Typography>
-                <Typography component="p">{props.avaliableClasses}</Typography>
+                <Typography component="p">{props.availableClasses}</Typography>
             </FlexContainer>
         </InfoContainer>
     )

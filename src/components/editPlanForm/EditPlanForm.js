@@ -1,47 +1,73 @@
 import React from 'react'
-import { LoginForm, Select } from './styled'
+import { PlanForm, Select } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, Typography, TextField } from '@material-ui/core'
 import { TypeOptions } from '../../constants/selectOptions'
 import moment from 'moment'
+import { editContract } from '../../services/requests/contractRequests'
+import { useParams } from 'react-router-dom'
 
-const EditPlanForm = (props) => {
-  
+const EditPlanForm = ({ contract, setPlan, name }) => {
+    const { userId } = useParams();
     const [form, onChange, cleanFields] = useForm({
-        type: "states.currentUser.plans[0].type",
-        planStarted: "moment(states.currentUser.plans[0].planStarted)",
-        planEnds: "moment(states.currentUser.plans[0].planEnds)",
-        totalClasses: "states.currentUser.plans[0].totalClasses",
-        avaliableClasses: "states.currentUser.plans[0].avaliableClasses"
+        name: name,
+        plan: contract.plan,
+        started: moment(contract.started, "DD/MM/YYYY").format("YYYY-MM-DD"),
+        ends: moment(contract.ends, "DD/MM/YYYY").format("YYYY-MM-DD"),
+        availableClasses: contract.availableClasses,
+        active: contract.active
     })
-
+   console.log(contract)
     const onSubmitForm = (e) => {
         e.preventDefault()
-        
-        props.setPlan(false)
-       
+        if (window.confirm("Você deseja alterar este plano?")) {
+            editContract(form, userId)
+        }
         cleanFields()
+        setPlan(false) 
     }
 
     return (
-        <LoginForm onSubmit={onSubmitForm} >
-
+        <PlanForm onSubmit={onSubmitForm} >
+            <Typography> Nome: </Typography>
+            <TextField
+                name="name"
+                onChange={onChange}
+                value={form.name}
+                type="text"
+                required
+                fullWidth
+                margin="normal"
+                id="filled-basic"
+                variant="filled"
+            />
             <Typography> Plano: </Typography>
             <Select
-                name="type"
+                name="plan"
                 onChange={onChange}
                 placeholder="Escolha um plano"
-                value={form.type}
+                value={form.plan}
                 required
             >
-              <TypeOptions/>
+                <TypeOptions />
             </Select>
-  
+            <Typography> Status: </Typography>
+            <Select
+                name="active"
+                onChange={onChange}
+                placeholder="Status do plano"
+                value={form.active}
+                required
+            >
+                <option value="" > Status </option>
+                <option value={true} > Ativo </option>
+                <option value={false} > Inativo </option>
+            </Select>
             <Typography> Início: </Typography>
             <TextField
-                name="planStarted"
+                name="started"
                 onChange={onChange}
-                value={form.planStarted}
+                value={form.started}
                 type="date"
                 required
                 fullWidth
@@ -51,9 +77,9 @@ const EditPlanForm = (props) => {
             />
             <Typography> Fim previsto: </Typography>
             <TextField
-                name="planEnds"
+                name="ends"
                 onChange={onChange}
-                value={form.planEnds}
+                value={form.ends}
                 type="date"
                 required
                 fullWidth
@@ -61,24 +87,10 @@ const EditPlanForm = (props) => {
                 id="filled-basic"
                 variant="filled"
             />
-
             <TextField
-                name="totalClasses"
+                name="availableClasses"
                 onChange={onChange}
-                value={form.totalClasses}
-                type="number"
-                required
-                fullWidth
-                margin="normal"
-                id="filled-basic"
-                label="Aulas totais"
-                variant="filled"
-            />
-
-            <TextField
-                name="avaliableClasses"
-                onChange={onChange}
-                value={form.avaliableClasses}
+                value={form.availableClasses}
                 type="number"
                 required
                 fullWidth
@@ -87,7 +99,6 @@ const EditPlanForm = (props) => {
                 label="Aulas disponíveis: "
                 variant="filled"
             />
-
             <Button
                 type={"submit"}
                 variant={"contained"}
@@ -95,7 +106,7 @@ const EditPlanForm = (props) => {
             >
                 Alterar plano
             </Button>
-        </LoginForm>
+        </PlanForm>
     )
 }
 

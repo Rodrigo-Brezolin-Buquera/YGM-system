@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import { primaryColor, lightNeutralColor } from "../../constants/colors"
 
-export const LoginForm = styled.form`
+export const PlanForm = styled.form`
 display: flex;
 flex-direction:column;
 align-items:center;
-gap: 0.1em;
+
 `
 
 export const Input = styled.input`

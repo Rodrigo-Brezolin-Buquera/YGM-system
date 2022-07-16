@@ -30,3 +30,12 @@ export const addNewContract = (form, id) => {
             console.log(err.response)
          })
 }
+
+export const editContract = (form, id) => {
+    const URL = `${BASE_URL}/contracts/edit/${id}`
+    axios.put(URL, form, setHeaders() )
+        .then(() => console.log("Contrato alterado"))
+        .catch((err) => { 
+            console.log(err.response)
+         })
+}
