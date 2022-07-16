@@ -21,3 +21,12 @@ export const getContract = (id) => {
             console.log(err.response)
          }))
 }
+
+export const addNewContract = (form, id) => {
+    const URL = `${BASE_URL}/contracts/addNew/${id}`
+    axios.put(URL, form, setHeaders() )
+        .then(() => console.log("Novo contrato adicionado"))
+        .catch((err) => { 
+            console.log(err.response)
+         })
+}

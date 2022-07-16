@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { lightNeutralColor, secondaryColor } from "../../constants/colors"
+import { secondaryColor } from "../../constants/colors"
 
 export const CheckinCardCont = styled.div`
 display:flex;

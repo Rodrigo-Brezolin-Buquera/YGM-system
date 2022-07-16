@@ -14,13 +14,10 @@ import { useRequestData } from '../../hooks/useRequestData';
 
 const ViewContractPage = () => {
     useProtectedPageAdmin()
-    const {userId} = useParams();
+    const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
-    
-    const history = useHistory()
-   
     const [addPlan, setAddPlan] = useState(false)
-   
+    const history = useHistory()
 
     const addNewPlan = () => {
         setAddPlan(!addPlan)
@@ -36,7 +33,7 @@ const ViewContractPage = () => {
 
             <MainContainer>
                 <SideContainer>
-                    {/* {user.id && <CheckinsDone user={user} />} */}
+                    { contracts.id && <CheckinsDone checkins={contracts.currentContract.checkins}/>}
                 </SideContainer>
                 <ColumnContainer>
                     {
@@ -71,11 +68,11 @@ const ViewContractPage = () => {
                         </Button>
                     </ButtonContainer>
 
-                    {addPlan && <PlanForm setAddPlan={setAddPlan} />}
+                    {addPlan && <PlanForm setAddPlan={setAddPlan} id={contracts.id} />}
 
                 </ColumnContainer>
 
-                 <ClosedPlansInfo />
+                <ClosedPlansInfo closedContracts={contracts.closedContracts} />
 
             </MainContainer>
 

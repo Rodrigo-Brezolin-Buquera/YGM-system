@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { lightNeutralColor, primaryColor, secondaryColor } from "../../constants/colors"
+import { primaryColor } from "../../constants/colors"
 
 export const CheckinsContainer = styled.div`
 grid-row:2/3;

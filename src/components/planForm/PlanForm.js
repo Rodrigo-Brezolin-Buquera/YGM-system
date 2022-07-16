@@ -1,27 +1,29 @@
 import React from 'react'
-import { LoginForm, Input, Select } from './styled'
+import { Form, Input, Select } from './styled'
 import useForm from '../../hooks/useForm'
 import { Button, Typography } from '@material-ui/core'
-import { FrequencyOptions, TypeOptions } from '../../constants/selectOptions'
+import { TypeOptions } from '../../constants/selectOptions'
+import { addNewContract } from '../../services/requests/contractRequests'
 
-const PlanForm = ({ setAddPlan }) => {
-    const [form, onChange, cleanFields] = useForm({ type: "", planStarted: "" })
-   
+const PlanForm = ({ setAddPlan, id }) => {
+    const [form, onChange, cleanFields] = useForm({ plan: "", date: "" })
 
     const onSubmitForm = (e) => {
         e.preventDefault()
+        addNewContract(form, id)
         setAddPlan(false)
+        cleanFields()
     }
 
     return (
-        <LoginForm onSubmit={onSubmitForm} >
-            
+        <Form onSubmit={onSubmitForm} >
+
             <Typography>Plano:</Typography>
             <Select
-                name="type"
+                name="plan"
                 onChange={onChange}
                 placeholder="Escolha um plano"
-                value={form.type}
+                value={form.plan}
                 required
             >
                 <TypeOptions />
@@ -29,10 +31,10 @@ const PlanForm = ({ setAddPlan }) => {
 
             <Typography>Início:</Typography>
             <Input
-                name="planStarted"
+                name="date"
                 onChange={onChange}
                 placeholder="Escolha um plano"
-                value={form.planStarted}
+                value={form.date}
                 type="date"
                 required
             />
@@ -44,7 +46,7 @@ const PlanForm = ({ setAddPlan }) => {
             >
                 Adicionar plano
             </Button>
-        </LoginForm>
+        </Form>
     )
 }
 
