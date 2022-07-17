@@ -3,9 +3,7 @@ import { ClassesListContainer } from './styled'
 import Typography from '@material-ui/core/Typography';
 import ClassesCard from '../classesCard/ClassesCard';
 
-
 const AvailableClasses = ({ yogaClasses, history }) => {
-
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard

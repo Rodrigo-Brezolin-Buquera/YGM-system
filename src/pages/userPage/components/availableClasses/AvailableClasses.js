@@ -4,24 +4,26 @@ import Typography from '@material-ui/core/Typography';
 import ClassesCard from '../classesCard/ClassesCard';
 
 
-const AvailableClasses = ({ yogaClasses }) => {
+const AvailableClasses = ({ yogaClasses, checkins, contractId }) => {
 
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard
                 key={yogaClass.id}
-                id={yogaClass.id}
+                yogaClassId={yogaClass.id}
                 day={yogaClass.day}
                 time={yogaClass.time}
                 teacher={yogaClass.teacher}
                 name={yogaClass.name}
+                checkins = {checkins}
+                contractId= {contractId}
             />
         )
     })
 
     return (
         <ClassesListContainer>
-            <Typography variant="h6" > Aulas de hoje:</Typography>
+            <Typography variant="h6" > Faça seu check-in:</Typography>
             {classesList.length ? classesList : <p> Não há aulas disponíveis </p>}
         </ClassesListContainer>
     )

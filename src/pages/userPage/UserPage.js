@@ -5,11 +5,9 @@ import { MainContainer, CentralContainer, SideContainer } from './styled'
 import { useHistory } from "react-router-dom";
 import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
 import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
-
+import AvailableClasses from "./components/availableClasses/AvailableClasses"
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
 import { useRequestData } from '../../hooks/useRequestData';
-import Typography from '@material-ui/core/Typography';
-
 
 const UserPage = () => {
     // useProtectedPageStudent()
@@ -28,8 +26,11 @@ const UserPage = () => {
             <MainContainer>
 
                 <SideContainer>
-                <Typography variant="h6" > Faça seu check-in!</Typography>
-                    {/* {<AvailableClasses yogaClasses={yogaClasses} /> } */}
+                    <AvailableClasses
+                        yogaClasses={yogaClasses}
+                        contractId={contract.id}
+                        checkins={contract?.currentContract?.checkins}
+                    />
                 </SideContainer>
 
                 <CentralContainer>
@@ -46,12 +47,12 @@ const UserPage = () => {
                     }
 
                     <ClosedPlansInfo
-                    closedContracts={contract.closedContracts} 
+                        closedContracts={contract.closedContracts}
                     />
                 </CentralContainer>
 
                 <SideContainer>
-                    {  <CheckinsDone checkins={contract?.currentContract?.checkins} /> }
+                    {<CheckinsDone checkins={contract?.currentContract?.checkins} />}
                 </SideContainer>
             </MainContainer>
         </div>
