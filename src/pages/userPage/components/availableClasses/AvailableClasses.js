@@ -3,6 +3,7 @@ import { ClassesListContainer } from './styled'
 import Typography from '@material-ui/core/Typography';
 import ClassesCard from '../classesCard/ClassesCard';
 
+
 const AvailableClasses = ({ yogaClasses }) => {
 
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
@@ -14,7 +15,8 @@ const AvailableClasses = ({ yogaClasses }) => {
                 time={yogaClass.time}
                 teacher={yogaClass.teacher}
                 name={yogaClass.name}
-            />)
+            />
+        )
     })
 
     return (

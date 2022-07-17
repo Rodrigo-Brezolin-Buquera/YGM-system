@@ -5,7 +5,7 @@ import { MainContainer, CentralContainer, SideContainer } from './styled'
 import { useHistory } from "react-router-dom";
 import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
 import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
-import AvailableClasses from '../../components/availableClasses/AvailableClasses';
+
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
 import { useRequestData } from '../../hooks/useRequestData';
 import Typography from '@material-ui/core/Typography';
@@ -29,7 +29,7 @@ const UserPage = () => {
 
                 <SideContainer>
                 <Typography variant="h6" > Faça seu check-in!</Typography>
-                    {<AvailableClasses yogaClasses={yogaClasses} /> }
+                    {/* {<AvailableClasses yogaClasses={yogaClasses} /> } */}
                 </SideContainer>
 
                 <CentralContainer>

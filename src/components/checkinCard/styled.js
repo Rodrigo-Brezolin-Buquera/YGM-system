@@ -6,10 +6,10 @@ display:flex;
 flex-direction:column;
 align-items: center;
 border-radius:25px;
-gap: 0.2em;
-min-width: 200px;
+gap: 0.1em;
+min-width: 150px;
 background-color: ${secondaryColor};
-padding: 0.5em 0.5em;
+padding: 0.3em 0.3em;
 `
 
 

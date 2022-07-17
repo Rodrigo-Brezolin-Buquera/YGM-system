@@ -6,8 +6,7 @@ const CheckinCard = ({checkin}) => {
    
     return (
         <CheckinCardCont>
-            <Typography component="subtitle2" style={{ fontWeight: 600 }}> {checkin.date}</Typography>
-            
+            <Typography component="subtitle2" style={{ fontWeight: 600 }}> {checkin.date}</Typography>    
         </CheckinCardCont>
     )
 }

@@ -1,10 +1,10 @@
 import styled from "styled-components"
-import {darkNeutralColor, secondaryColor,lightNeutralColor } from "../../constants/colors"
+import {darkNeutralColor, lightNeutralColor } from "../../../../constants/colors"
 
 export const TextContainer = styled.div`
 display:flex;
 flex-direction:column;
-align-items: flex-start;
+align-items: center;
 justify-content: center;
 width: 180px;
 `

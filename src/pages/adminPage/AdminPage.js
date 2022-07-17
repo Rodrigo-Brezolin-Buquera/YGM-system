@@ -3,7 +3,7 @@ import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
 import { MainContainer, SideContainer } from './styled';
 import StudentList from './components/studentsList/StudentList';
-import AvailableClasses from "../../components/availableClasses/AvailableClasses"
+import AvailableClasses from "./components/availableClasses/AvailableClasses"
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
 
@@ -25,7 +25,7 @@ const AdminPage = () => {
             <MainContainer>
                 <StudentList contracts={contracts} />
                 <SideContainer>
-                    <AvailableClasses yogaClasses={yogaClasses} />
+                    <AvailableClasses yogaClasses={yogaClasses} history={history}/>
                 </SideContainer>
             </MainContainer>
         </div>

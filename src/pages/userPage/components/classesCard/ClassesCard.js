@@ -5,7 +5,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import Typography from '@material-ui/core/Typography';
 
 import { useHistory } from "react-router-dom";
-import { goToViewClass } from '../../routes/coordinator';
+import { goToViewClass } from "../../../../routes/coordinator";
 
 const ClassesCard = (props) => {
  
@@ -32,7 +32,7 @@ const ClassesCard = (props) => {
     }, [])
 
     return (
-        <CardContainer onClick={ () => goToViewClass(history, props.id) } >
+        <CardContainer onClick={ () => goToViewClass(history, props.id)} >
             {/* {!states.admin &&
                 <IconCont onClick={() => handleCheckin(props.id)} >
                     {
