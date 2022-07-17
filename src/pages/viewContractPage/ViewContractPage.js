@@ -7,7 +7,7 @@ import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
 import UserInfo from '../../components/userInfo/UserInfo'
 import Button from '@material-ui/core/Button';
 import { goToEditContract } from '../../routes/coordinator';
-import PlanForm from '../../components/planForm/PlanForm';
+import PlanForm from './components/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
 

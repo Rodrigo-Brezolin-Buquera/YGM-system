@@ -1,11 +1,9 @@
 import styled from "styled-components"
-import { primaryColor, lightNeutralColor } from "../../constants/colors"
 
 export const PlanForm = styled.form`
 display: flex;
 flex-direction:column;
 align-items:center;
-
 `
 
 export const Input = styled.input`

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Form, Input, Select } from './styled'
-import useForm from '../../hooks/useForm'
+import useForm from '../../../../hooks/useForm'
 import { Button, Typography } from '@material-ui/core'
-import { TypeOptions } from '../../constants/selectOptions'
-import { addNewContract } from '../../services/requests/contractRequests'
+import { TypeOptions } from '../../../../constants/selectOptions'
+import { addNewContract } from '../../../../services/requests/contractRequests'
 
 const PlanForm = ({ setAddPlan, id }) => {
     const [form, onChange, cleanFields] = useForm({ plan: "", date: "" })

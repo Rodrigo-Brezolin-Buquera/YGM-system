@@ -4,7 +4,7 @@ import Header from '../../components/headerAdmin/HeaderAdmin'
 import { MainContainer, ButtonContainer } from "./styled"
 import Button from '@material-ui/core/Button';
 import UserInfo from '../../components/userInfo/UserInfo'
-import EditPlanForm from '../../components/editPlanForm/EditPlanForm';
+import EditPlanForm from './components/editPlanForm/EditPlanForm';
 import { goBack } from '../../routes/coordinator';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';

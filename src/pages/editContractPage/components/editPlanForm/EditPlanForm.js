@@ -1,10 +1,10 @@
 import React from 'react'
 import { PlanForm, Select } from './styled'
-import useForm from '../../hooks/useForm'
+import useForm from '../../../../hooks/useForm'
 import { Button, Typography, TextField } from '@material-ui/core'
-import { TypeOptions } from '../../constants/selectOptions'
+import { TypeOptions } from '../../../../constants/selectOptions'
 import moment from 'moment'
-import { editContract } from '../../services/requests/contractRequests'
+import { editContract } from '../../../../services/requests/contractRequests'
 import { useParams } from 'react-router-dom'
 
 const EditPlanForm = ({ contract, setPlan, name }) => {

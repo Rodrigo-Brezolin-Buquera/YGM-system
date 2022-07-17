@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { primaryColor, lightNeutralColor } from "../../constants/colors"
+import { primaryColor, lightNeutralColor } from "../../../../constants/colors"
 
 export const Form = styled.form`
 display: flex;
