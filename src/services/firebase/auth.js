@@ -9,25 +9,20 @@ export const login = async (form, history, setLoading) => {
   signInWithEmailAndPassword(auth, form.email, form.password)
     .then(userCredential => {
     const token = userCredential.user.accessToken
-    console.log("fb", token)
     return axios.post(`${BASE_URL}/auth/login`, {token})
     })
     .then(res=> {
-      console.log("token", res.data.token)
-      localStorage.setItem("token", res.data.token)
-      console.log("pós localStorage")
-      // const payload = verifyUserPermission(res.data.token)
-      // console.log("payload no login", payload)
-      // if (payload.admin) {
-      //   goToAdmin(history)
-      // } else {
-      //   goToUser(history, payload.id)
-      // }
-      goToAdmin(history)
-      // goToUser(history, "5c1bd1bf-04b7-47e1-992a-438f1903dc42")
+      localStorage.setItem("token", res.data.token) 
+      const payload = verifyUserPermission(res.data.token)
+      
+      if (payload.admin) {
+        goToAdmin(history)
+      } else {
+        goToUser(history, payload.id)
+      }
     } )
     .catch((err) => {
-      console.log(err.response || err )
+      console.log(err.response)
       setLoading(false)
     });
 }

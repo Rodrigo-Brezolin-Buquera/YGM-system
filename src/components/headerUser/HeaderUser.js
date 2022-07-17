@@ -1,7 +1,7 @@
-import React, { useLayoutEffect } from 'react'
+import React from 'react'
 import white from "../../assets/logo/white.png"
-import { goToAdmin, goToCreateUser, goToEditCalendar, goToEditProfile, goToLogin } from '../../routes/coordinator'
-import { HeaderContainer, Logo, ButtonContainer, StyledButton } from './styled'
+import { goToLogin } from '../../routes/coordinator'
+import { HeaderContainer, Logo, ButtonContainer } from './styled'
 import Button from '@material-ui/core/Button'
 import { logout } from '../../services/firebase/auth'
 

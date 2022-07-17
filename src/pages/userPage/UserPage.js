@@ -13,41 +13,43 @@ import { useRequestData } from '../../hooks/useRequestData';
 const UserPage = () => {
     // useProtectedPageStudent()
     const history = useHistory()
-   const [contract, getContract] = useRequestData({}, `/contracts/user`)
-  
+    const [contract, getContract] = useRequestData({}, `/contracts/user`)
+    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
+
     useEffect(() => {
         getContract()
+        getyogaClasses()
     }, [])
-    console.log(contract)
+
     return (
         <div>
             <Header history={history} />
             <MainContainer>
 
                 <SideContainer>
-                    {/* <AvailableClasses /> */}
+                    {<AvailableClasses yogaClasses={yogaClasses} /> }
                 </SideContainer>
 
                 <CentralContainer>
-                    {/* {user && user.plans && user.plans.length &&
+                    {
+                        contract.id &&
                         <UserInfo
-                            id={user.id}
-                            name={user.name}
-                            type={user.plans[0].type}
-                            frequency={user.plans[0].frequency}
-                            planStarted={user.plans[0].planStarted}
-                            planEnds={user.plans[0].planEnds}
-                            totalClasses={user.plans[0].totalClasses}
-                            avaliableClasses={user.plans[0].avaliableClasses}
-                        />} */}
+                            id={contract.id}
+                            name={contract.name}
+                            plan={contract.currentContract.plan}
+                            planStarted={contract.currentContract.started}
+                            planEnds={contract.currentContract.ends}
+                            availableClasses={contract.currentContract.availableClasses}
+                        />
+                    }
 
-                    <ClosedPlansInfo 
-                    //user={user} 
+                    <ClosedPlansInfo
+                    closedContracts={contract.closedContracts} 
                     />
                 </CentralContainer>
 
                 <SideContainer>
-                    {/* {user && user.plans && user.plans.length && <CheckinsDone user={user} />} */}
+                    {  <CheckinsDone checkins={contract?.currentContract?.checkins} /> }
                 </SideContainer>
             </MainContainer>
         </div>
