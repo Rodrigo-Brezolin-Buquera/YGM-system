@@ -19,7 +19,7 @@ const UserPage = () => {
         getContract()
         getyogaClasses()
     }, [])
-
+    console.log("contrato", contract.currentContract)
     return (
         <div>
             <Header history={history} />
@@ -39,10 +39,10 @@ const UserPage = () => {
                         <UserInfo
                             id={contract.id}
                             name={contract.name}
-                            plan={contract.currentContract.plan}
-                            planStarted={contract.currentContract.started}
-                            planEnds={contract.currentContract.ends}
-                            availableClasses={contract.currentContract.availableClasses}
+                            plan={contract?.currentContract?.plan}
+                            planStarted={contract?.currentContract?.started}
+                            planEnds={contract?.currentContract?.ends}
+                            availableClasses={contract?.currentContract?.availableClasses}
                         />
                     }
 

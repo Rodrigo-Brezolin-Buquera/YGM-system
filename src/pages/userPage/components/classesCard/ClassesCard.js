@@ -6,19 +6,17 @@ import { createCheckin, deleteCheckin } from '../../../../services/requests/book
 
 const ClassesCard = (props) => {
     const { contractId, yogaClassId, checkins, day, time, teacher, name } = props
-    const checkinId = `${contractId + yogaClassId}`
-    const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id.includes(yogaClassId))
+    const checkinId = `${contractId}+${yogaClassId}`
+    const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId)
 
-    console.log(checkins)
-    console.log(checkinId)
-    console.log(checkinDone)
+  
     const [checkin, setCheckin] = useState(checkinDone);
 
     const handleCheckin = () => {
 
         if (checkin) {
             if (window.confirm("Você quer cancelar este checkin?")) {
-            deleteCheckin(checkinId) // algum erro no endpoint do backend
+            deleteCheckin(checkinId) 
             // setCheckin(false)
             }
         } else {
