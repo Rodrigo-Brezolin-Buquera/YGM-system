@@ -1,14 +1,12 @@
-import React, { useLayoutEffect } from 'react'
+import React from 'react'
 import white from "../../assets/logo/white.png"
 import { goToAdmin, goToCreateContract, goToEditCalendar, goToLogin } from '../../routes/coordinator'
-import { HeaderContainer, Logo, ButtonContainer, StyledButton } from './styled'
+import { HeaderContainer, Logo, ButtonContainer } from './styled'
 import Button from '@material-ui/core/Button'
 import { logout } from '../../services/firebase/auth'
 
-
 const Header = ({history}) => {
     
-
     const exitApp = () => {
         logout()
         goToLogin(history)

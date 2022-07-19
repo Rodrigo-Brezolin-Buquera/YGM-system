@@ -5,7 +5,6 @@ import ClassesCard from '../classesCard/ClassesCard';
 
 
 const AvailableClasses = ({ yogaClasses, checkins, contractId }) => {
-
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard

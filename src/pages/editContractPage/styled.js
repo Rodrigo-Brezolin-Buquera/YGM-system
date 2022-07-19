@@ -13,15 +13,6 @@ gap: 0.5em;
 padding: 0.5em;
 `
 
-// export const ColumnContainer = styled.div`
-// display: flex;
-// flex-direction: column;
-// align-items:center;
-// background-color:${lightNeutralColor};
-// gap: 0.5em;
-// padding: 0.5em;
-// `
-
 export const ButtonContainer = styled.div`
 display: flex;
 justify-content: center;

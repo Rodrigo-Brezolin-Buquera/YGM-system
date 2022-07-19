@@ -9,7 +9,7 @@ import { useRequestData } from '../../hooks/useRequestData';
 import moment from 'moment';
 
 const EditCalendarPage = () => {
-    // useProtectedPageAdmin()
+    useProtectedPageAdmin()
     const history = useHistory()
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar")
   

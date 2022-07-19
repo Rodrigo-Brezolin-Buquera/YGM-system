@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { primaryColor, lightNeutralColor } from "../../../../constants/colors"
 
 export const LoginForm = styled.form`
 display: flex;

@@ -58,13 +58,3 @@ export const StyleOptions = () => {
         </>
     )
 }
-
-// export const FrequencyOptions = () => {
-//     return (
-//         <>
-//             <option value="" > Vezes na semana </option>
-//             <option value="1x" > 1x </option>
-//             <option value="2x" > 2x </option>
-//         </>
-//     )
-// }

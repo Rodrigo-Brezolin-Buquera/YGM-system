@@ -9,9 +9,8 @@ import { goBack } from '../../routes/coordinator';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
 
-
 const EditContractPage = () => {
-    // useProtectedPageAdmin()
+    useProtectedPageAdmin()
     const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
     const [plan, setPlan] = useState(false)

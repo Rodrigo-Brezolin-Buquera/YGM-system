@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { darkNeutralColor, lightNeutralColor, primaryColor } from "../../../../constants/colors"
+import { lightNeutralColor } from "../../../../constants/colors"
 
 export const StudentCard = styled.div`
 display:flex;

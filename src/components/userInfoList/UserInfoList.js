@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 
 
 const UserInfoList = (props) => {
-    
     const history = useHistory()
 
     return (

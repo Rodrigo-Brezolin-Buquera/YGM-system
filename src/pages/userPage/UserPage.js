@@ -10,7 +10,7 @@ import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
 import { useRequestData } from '../../hooks/useRequestData';
 
 const UserPage = () => {
-    // useProtectedPageStudent()
+    useProtectedPageStudent()
     const history = useHistory()
     const [contract, getContract] = useRequestData({}, `/contracts/user`)
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
@@ -19,7 +19,7 @@ const UserPage = () => {
         getContract()
         getyogaClasses()
     }, [])
-    console.log("contrato", contract.currentContract)
+   
     return (
         <div>
             <Header history={history} />

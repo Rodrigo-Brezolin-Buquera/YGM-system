@@ -9,7 +9,7 @@ import { useRequestData } from '../../hooks/useRequestData';
 
 
 const AdminPage = () => {
-    // useProtectedPageAdmin()
+    useProtectedPageAdmin()
     const history = useHistory()
     const [contracts, getContracts] = useRequestData([], "/contracts/list")
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { darkNeutralColor, lightNeutralColor, primaryColor } from "../../constants/colors"
+import { darkNeutralColor } from "../../constants/colors"
 
 export const InfoContainer = styled.div`
 display: flex;
@@ -8,7 +8,7 @@ border-radius:8px;
 border: 1px solid ${darkNeutralColor};
 min-width: 250px;
 gap: 0.5em;
-background-color: ${(props) => props.status === 0 && "lightgray" };
+background-color: ${({status}) => status === 0 && "lightgray" };
 `
 
 export const LineContainer = styled.div`
@@ -16,7 +16,6 @@ display: flex;
 gap: 0.3em;
 justify-content:flex-start;
 margin: 0.1em;
-
 `
 
 export const ColumnContainer = styled.div`

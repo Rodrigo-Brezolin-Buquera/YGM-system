@@ -6,8 +6,6 @@ import Button from '@material-ui/core/Button'
 import { logout } from '../../services/firebase/auth'
 
 const Header = ({history}) => {
- 
-
     const exitApp = () => {
         logout()
         goToLogin(history)

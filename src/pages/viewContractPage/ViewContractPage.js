@@ -11,9 +11,8 @@ import PlanForm from './components/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
 
-
 const ViewContractPage = () => {
-    // useProtectedPageAdmin()
+    useProtectedPageAdmin()
     const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
     const [addPlan, setAddPlan] = useState(false)
@@ -26,7 +25,7 @@ const ViewContractPage = () => {
     useEffect(() => {
         getContracts()
     }, [addPlan])
-    console.log(contracts)
+   
     return (
         <div>
             <Header history={history} />

@@ -1,26 +1,23 @@
 import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router';
-import * as jwt from "jsonwebtoken";
 import { goToAdmin, goToUser } from '../routes/coordinator';
+import { verifyUserPermission } from '../services/jwt/verifyUserPermission';
 
 function useUnprotectedPage() {
-    // const history = useHistory()
+    const history = useHistory()
 
-    // useLayoutEffect(() => {
-    //     const token = localStorage.getItem('token')
-    //     if(token) {
-    //         const {role, id} = jwt.verify(token, process.env.JWT_KEY)
-           
-    //         if(role === "student"){
-    //             goToUser(history, id)
-    //         } else if ( role === "teacher" || role === "visitor" || role === "admin" ) {
-    //             goToAdmin(history)
+    useLayoutEffect(() => {
+        const token = localStorage.getItem('token')
+        if (token) {
+            const { admin, id } = verifyUserPermission(token)
 
-    //         } else {
-    //             alert("authentication problem, try again")
-    //         }
-    //     }
-    // })
+            if (id && admin) {
+                goToAdmin(history)
+            } else if(id && !admin) {
+                goToUser(history, id)
+            }
+        }
+    })
 }
 
 export default useUnprotectedPage;

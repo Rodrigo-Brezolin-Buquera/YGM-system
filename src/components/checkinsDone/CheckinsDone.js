@@ -8,8 +8,7 @@ const CheckinsDone = ({checkins}) => {
         return (
             <CheckinCard
                 key={checkin.id }
-                checkin={checkin}
-                  
+                checkin={checkin}                
             />
         )
     })

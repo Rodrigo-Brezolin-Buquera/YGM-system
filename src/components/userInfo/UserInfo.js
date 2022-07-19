@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 
 const UserInfo = (props) => { 
     const history = useHistory()
-    console.log(props)
+
     return (
 
         <InfoContainer onClick={() => goToViewContract(history, props.id)} >

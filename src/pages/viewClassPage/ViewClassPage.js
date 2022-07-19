@@ -9,7 +9,7 @@ import StudentList from './components/studentList/StudentList';
 import DeleteClassButtons from './components/deleteClassButtons/DeleteClassButtons';
 
 const ViewClassPage = () => {
-    // useProtectedPageAdmin()
+    useProtectedPageAdmin()
     const history = useHistory()
     const {classId} = useParams()
     const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${classId}`)

@@ -9,7 +9,6 @@ const ClassesCard = (props) => {
     const checkinId = `${contractId}+${yogaClassId}`
     const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId)
 
-  
     const [checkin, setCheckin] = useState(checkinDone);
 
     const handleCheckin = () => {

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { primaryColor, lightNeutralColor } from "../../constants/colors"
+import { lightNeutralColor } from "../../constants/colors"
 
 export const LowerContainer = styled.div`
 display: flex;

@@ -17,7 +17,7 @@ const EditPlanForm = ({ contract, setPlan, name }) => {
         availableClasses: contract.availableClasses,
         active: contract.active
     })
-   console.log(contract)
+ 
     const onSubmitForm = (e) => {
         e.preventDefault()
         if (window.confirm("Você deseja alterar este plano?")) {

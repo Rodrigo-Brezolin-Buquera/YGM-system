@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { lightNeutralColor, primaryColor, secondaryColor } from "../../constants/colors"
 
 export const ClosedPlansContainer = styled.div`
 grid-row:2/3;

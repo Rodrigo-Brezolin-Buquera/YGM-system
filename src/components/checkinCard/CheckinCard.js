@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { CheckinCardCont } from './styled'
 import Typography from '@material-ui/core/Typography';
 

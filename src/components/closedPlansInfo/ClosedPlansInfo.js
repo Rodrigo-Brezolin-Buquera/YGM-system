@@ -2,8 +2,6 @@ import React from 'react'
 import { ClosedPlansContainer, PlanCard } from './styled'
 import Typography from '@material-ui/core/Typography';
 
-
-
 const ClosedPlansInfo = ({closedContracts}) => {
     
    
