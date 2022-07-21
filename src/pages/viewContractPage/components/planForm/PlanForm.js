@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Form, Input, Select } from './styled'
 import useForm from '../../../../hooks/useForm'
-import { Button, Typography } from '@material-ui/core'
+import { Button, CircularProgress, Typography } from '@material-ui/core'
 import { TypeOptions } from '../../../../constants/selectOptions'
 import { addNewContract } from '../../../../services/requests/contractRequests'
 
-const PlanForm = ({ setAddPlan, id, setLoading }) => {
+const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
     const [form, onChange, cleanFields] = useForm({ plan: "", date: "" })
    
 
@@ -45,7 +45,9 @@ const PlanForm = ({ setAddPlan, id, setLoading }) => {
                 variant={"contained"}
                 color={"secondary"}
             >
-                Adicionar plano
+               {loading ? <CircularProgress color={"inherit"} size={24} />
+            :
+            <> <Typography>Alterar contratro</Typography> </> } 
             </Button>
         </Form>
     )

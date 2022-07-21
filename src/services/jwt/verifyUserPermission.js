@@ -12,15 +12,10 @@ export const verifyUserPermission = (token, history) => {
     )
     return payload
   } catch (error) {
-     if(error === jwt.TokenExpiredError()){
-       alert("Sessão expirada, faça o login novamente")
-     } else {
-       alert(("Ocorreu um erro, tente novamente"))
-     }
-     console.log(error)
-     localStorage.clear()
-     goToLogin(history)
+    localStorage.clear()
+    goToLogin(history)
+    console.log(error)
+    alert(("Sessão expirada, faça o login novamente"))
   }
-
-} 
+}
 

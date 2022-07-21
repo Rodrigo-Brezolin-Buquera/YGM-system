@@ -14,11 +14,12 @@ const EditContractPage = () => {
     const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
     const [plan, setPlan] = useState(false)
+    const [loading, setLoading] = useState(false)
     const history = useHistory()
 
     useEffect(() => {
         getContracts()
-    }, [setPlan, plan])
+    }, [setPlan, plan, loading])
 
     return (
         <div>
@@ -52,7 +53,7 @@ const EditContractPage = () => {
                         color={"secondary"}
                         onClick={() => setPlan(!plan)}
                     >
-                        Alterar plano
+                        Alterar contrato
                     </Button>
                 </ButtonContainer>
 
@@ -61,6 +62,7 @@ const EditContractPage = () => {
                 setPlan={setPlan} 
                 contract={contracts.currentContract} 
                 name={contracts.name} 
+                setLoading={setLoading}
                 />}
 
             </MainContainer>

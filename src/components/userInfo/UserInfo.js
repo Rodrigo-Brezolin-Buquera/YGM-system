@@ -8,9 +8,7 @@ const UserInfo = (props) => {
     const history = useHistory()
 
     return (
-
         <InfoContainer onClick={() => goToViewContract(history, props.id)} >
-            <Typography variant="h6">Informações gerais</Typography>
             <FlexContainer>
                 <Typography component="subtitle2" style={{ fontWeight: 600 }} >Nome:</Typography>
                 <Typography component="p">{props.name}</Typography>

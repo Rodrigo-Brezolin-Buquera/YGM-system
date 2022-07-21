@@ -31,7 +31,7 @@ export const addNewContract = async (form, id) => {
          })
 }
 
-export const editContract = (form, id) => {
+export const editContract = async (form, id) => {
     const URL = `${BASE_URL}/contracts/edit/${id}`
     axios.put(URL, form, setHeaders() )
         .then(() => console.log("Contrato alterado"))

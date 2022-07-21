@@ -9,8 +9,9 @@ align-items:center;
 min-width: 100vw;
 min-height:100vh;
 background-color:${lightNeutralColor};
-gap: 0.5em;
+gap: 0.3em;
 padding: 0.5em;
+padding-top: 1em;
 `
 
 export const ButtonContainer = styled.div`

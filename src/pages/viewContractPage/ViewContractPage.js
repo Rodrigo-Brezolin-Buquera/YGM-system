@@ -44,7 +44,7 @@ const ViewContractPage = () => {
                             plan={contracts.currentContract.plan}
                             planStarted={contracts.currentContract.started}
                             planEnds={contracts.currentContract.ends}
-                            avaliableClasses={contracts.currentContract.avaliableClasses}
+                            availableClasses={contracts.currentContract.availableClasses}
                         />
                     }
 
@@ -72,6 +72,7 @@ const ViewContractPage = () => {
                     setAddPlan={setAddPlan} 
                     id={contracts.id} 
                     setLoading={setLoading}
+                    loading={loading}
                     />}
 
                 </ColumnContainer>
