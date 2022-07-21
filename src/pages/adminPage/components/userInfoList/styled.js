@@ -1,14 +1,15 @@
 import styled from "styled-components"
-import { darkNeutralColor } from "../../constants/colors"
+import { darkNeutralColor, lightNeutralColor } from "../../../../constants/colors"
 
 export const InfoContainer = styled.div`
 display: flex;
 padding: 0.5em;
 border-radius:8px;
-border: 1px solid ${darkNeutralColor};
+border: 0.5px solid ${darkNeutralColor};
 min-width: 250px;
 gap: 0.5em;
-background-color: ${({status}) => status === 0 && "lightgray" };
+background-color: ${lightNeutralColor}
+ ;
 `
 
 export const LineContainer = styled.div`

@@ -9,11 +9,9 @@ justify-content: center;
 width: 180px;
 `
 export const IconCont = styled.div`
-
 &:hover {
     cursor: pointer;
 }
-
 `
 
 export const CardContainer = styled.div`
@@ -21,8 +19,12 @@ display:flex;
 align-items: center;
 gap: 1em;
 border-radius:10px;
-
 background-color: ${lightNeutralColor};
 padding: 0.5em 0.5em;
-color: ${darkNeutralColor}
+color: ${darkNeutralColor};
+
+&:hover {
+    cursor: pointer;
+}
+
 `

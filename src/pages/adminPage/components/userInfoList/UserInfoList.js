@@ -1,15 +1,13 @@
 import React from 'react'
 import { InfoContainer, LineContainer, ColumnContainer } from './styled'
 import Typography from '@material-ui/core/Typography';
-import { goToViewContract } from '../../routes/coordinator';
+import { goToViewContract } from '../../../../routes/coordinator';
 import { useHistory } from "react-router-dom";
-
 
 const UserInfoList = (props) => {
     const history = useHistory()
 
     return (
-
         <InfoContainer 
         status={props.status} 
         onClick={() => goToViewContract(history, props.id)} 

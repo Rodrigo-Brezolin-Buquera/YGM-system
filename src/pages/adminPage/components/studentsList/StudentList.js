@@ -2,7 +2,7 @@ import React from 'react'
 import { List, Select, FilterContainer } from './styled';
 import TextField from '@material-ui/core/TextField';
 import useInput from '../../../../hooks/useInput';
-import UserInfoList from '../../../../components/userInfoList/UserInfoList';
+import UserInfoList from '../userInfoList/UserInfoList';
 import { StatusOptions, TypeOptions } from '../../../../constants/selectOptions';
 
 const StudentList = ({ contracts }) => {
@@ -59,7 +59,7 @@ const StudentList = ({ contracts }) => {
                     started={contract.started}
                     ends={contract.ends}
                     availableClasses={contract.availableClasses}
-                    status={contract.status}
+                    active={contract.active}
                 />
             )
         })
