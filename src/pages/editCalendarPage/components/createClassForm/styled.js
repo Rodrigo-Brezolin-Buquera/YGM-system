@@ -15,3 +15,9 @@ background: white;
 border: none;
 border-radius: 3px;
 `
+
+export const FormLine = styled.div`
+display: flex;
+align-items:center;
+gap: 0.5em;
+`

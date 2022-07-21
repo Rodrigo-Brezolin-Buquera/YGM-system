@@ -4,6 +4,7 @@ import { lightNeutralColor } from "../../constants/colors"
 export const LowerContainer = styled.div`
 display: flex;
 background-color:${lightNeutralColor};
+padding: 0.5em;
 `
 
 export const LinearContainer = styled.div`

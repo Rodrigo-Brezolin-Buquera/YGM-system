@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import Calendar from './components/calendar/Calendar'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
@@ -12,11 +12,12 @@ const EditCalendarPage = () => {
     useProtectedPageAdmin()
     const history = useHistory()
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar")
+    const [loading, setLoading] = useState(false)
   
     
     useLayoutEffect(() => {
         getyogaClasses()
-    }, [])
+    }, [loading])
 
     const calendarClasses = yogaClasses.length && yogaClasses.map((yogaClass) => {
         const result = {
@@ -43,7 +44,7 @@ const EditCalendarPage = () => {
 
             <LowerContainer>
                 <LinearContainer>
-                    <CreateClassForm  />
+                    <CreateClassForm loading={loading} setLoading={setLoading} />
                 </LinearContainer>
             </LowerContainer>
         </div>

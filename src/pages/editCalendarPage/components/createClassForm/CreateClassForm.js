@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { LoginForm } from './styled'
+import React from 'react'
+import { FormLine, LoginForm } from './styled'
 import useForm from '../../../../hooks/useForm'
-import { Button, TextField, Typography } from '@material-ui/core'
+import { Button, CircularProgress, TextField, Typography } from '@material-ui/core'
 import { DayOptions, StyleOptions, TeacherOptions } from '../../../../constants/selectOptions'
 import { createClass } from '../../../../services/requests/calendarRequests'
 
-const CreateClassForm = () => {
-    const [loading, setLoading] = useState(false)
+const CreateClassForm = ({ loading, setLoading }) => {
+
     const [form, onChange, cleanFields] = useForm({
         name: "",
         day: "",
@@ -15,39 +15,45 @@ const CreateClassForm = () => {
         date: ""
     })
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = async (e) => {
         e.preventDefault()
         setLoading(true)
-        createClass(form)
+        await createClass(form)
         cleanFields()
         setLoading(false)
     }
-   
+
     return (
         <LoginForm onSubmit={onSubmitForm} >
-            <Typography variant="h6" > Criar aulas:</Typography>
-
-            <select
-                name="name"
-                onChange={onChange}
-                placeholder="Escolha um estilo"
-                value={form.name}
-                required
-            >
-                <StyleOptions/>
-            </select>
-
-            <select
-                name="day"
-                onChange={onChange}
-                placeholder="Escolha um dia de aula"
-                value={form.day}
-                required
-            >
-                <DayOptions/>
-            </select>
-
-            <Typography > Horário:</Typography>
+            <FormLine>
+                <select
+                    name="name"
+                    onChange={onChange}
+                    placeholder="Escolha um estilo"
+                    value={form.name}
+                    required
+                >
+                    <StyleOptions />
+                </select>
+                <select
+                    name="day"
+                    onChange={onChange}
+                    placeholder="Escolha um dia de aula"
+                    value={form.day}
+                    required
+                >
+                    <DayOptions />
+                </select>
+                <select
+                    name="teacher"
+                    onChange={onChange}
+                    placeholder="Escolha um professor"
+                    value={form.teacher}
+                    required
+                >
+                    <TeacherOptions />
+                </select>
+            </FormLine>
             <TextField
                 name="time"
                 onChange={onChange}
@@ -56,18 +62,6 @@ const CreateClassForm = () => {
                 required
                 fullWidth
             />
-
-            <select
-                name="teacher"
-                onChange={onChange}
-                placeholder="Escolha um professor"
-                value={form.teacher}
-                required
-            >
-                <TeacherOptions/>
-            </select>
-
-            <Typography > Dia de início:</Typography>
             <TextField
                 name="date"
                 onChange={onChange}
@@ -77,13 +71,12 @@ const CreateClassForm = () => {
                 required
                 fullWidth
             />
-
             <Button
                 type={"submit"}
                 variant={"contained"}
                 color={"secondary"}
             >
-                Criar
+                {loading ? <CircularProgress color={"inherit"} size={24} ></CircularProgress> : <Typography>Criar aula</Typography>}
             </Button>
         </LoginForm>
     )
