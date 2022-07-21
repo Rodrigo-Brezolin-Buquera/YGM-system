@@ -8,8 +8,11 @@ border-radius:8px;
 border: 0.5px solid ${darkNeutralColor};
 min-width: 250px;
 gap: 0.5em;
-background-color: ${lightNeutralColor}
- ;
+background-color: ${lightNeutralColor};
+&:hover {
+    cursor: pointer;
+}
+
 `
 
 export const LineContainer = styled.div`
