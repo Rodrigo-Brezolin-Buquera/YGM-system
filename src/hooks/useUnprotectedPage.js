@@ -9,7 +9,7 @@ function useUnprotectedPage() {
     useLayoutEffect(() => {
         const token = localStorage.getItem('token')
         if (token) {
-            const { admin, id } = verifyUserPermission(token)
+            const { admin, id } = verifyUserPermission(token, history)
 
             if (id && admin) {
                 goToAdmin(history)

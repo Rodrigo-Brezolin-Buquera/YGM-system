@@ -11,7 +11,7 @@ export const useProtectedPageAdmin = () => {
         if(!token) {
             goToLogin(history)   
         } else {    
-            const { admin, id } = verifyUserPermission(token)
+            const { admin, id } = verifyUserPermission(token, history)
             if (id && !admin) {
                 goToUser(history, id)
             } 
