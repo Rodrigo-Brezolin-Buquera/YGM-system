@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { darkNeutralColor } from "../../constants/colors"
 
 export const InfoContainer = styled.div`
 display: flex;

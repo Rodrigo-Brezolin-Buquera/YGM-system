@@ -12,7 +12,6 @@ background-color: ${lightNeutralColor};
 &:hover {
     cursor: pointer;
 }
-
 `
 
 export const LineContainer = styled.div`

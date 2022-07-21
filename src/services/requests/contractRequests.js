@@ -22,7 +22,7 @@ export const getContract = (id) => {
          }))
 }
 
-export const addNewContract = (form, id) => {
+export const addNewContract = async (form, id) => {
     const URL = `${BASE_URL}/contracts/addNew/${id}`
     axios.put(URL, form, setHeaders() )
         .then(() => console.log("Novo contrato adicionado"))

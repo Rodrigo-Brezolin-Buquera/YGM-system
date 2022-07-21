@@ -16,6 +16,7 @@ const ViewContractPage = () => {
     const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
     const [addPlan, setAddPlan] = useState(false)
+    const [loading, setLoading] = useState(false)
     const history = useHistory()
 
     const addNewPlan = () => {
@@ -24,7 +25,7 @@ const ViewContractPage = () => {
 
     useEffect(() => {
         getContracts()
-    }, [addPlan])
+    }, [addPlan, loading])
    
     return (
         <div>
@@ -67,7 +68,11 @@ const ViewContractPage = () => {
                         </Button>
                     </ButtonContainer>
 
-                    {addPlan && <PlanForm setAddPlan={setAddPlan} id={contracts.id} />}
+                    {addPlan && <PlanForm 
+                    setAddPlan={setAddPlan} 
+                    id={contracts.id} 
+                    setLoading={setLoading}
+                    />}
 
                 </ColumnContainer>
 

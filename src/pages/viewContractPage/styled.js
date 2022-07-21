@@ -12,7 +12,6 @@ export const ColumnContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-items:center;
-background-color:${lightNeutralColor};
 gap: 0.5em;
 min-width:300px;
 `

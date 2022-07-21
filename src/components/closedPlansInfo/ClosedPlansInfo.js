@@ -15,8 +15,8 @@ const ClosedPlansInfo = ({closedContracts}) => {
     })
     return (
         <ClosedPlansContainer>
-            <Typography variant="h6" > Planos encerrados: </Typography>
-            {closedContracts?.length ? closedContractsList : <p> Não há planos encerrados </p>}
+            <Typography variant="h6" > Contratos encerrados: </Typography>
+            {closedContracts?.length ? closedContractsList : <p> Não há contratos encerrados </p>}
 
         </ClosedPlansContainer>
     )
