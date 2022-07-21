@@ -4,7 +4,7 @@ import { setHeaders } from "../../utils/setHeaders"
 
 
 
-export const createContract = (form) => {
+export const createContract = async (form) => {
     const URL = `${BASE_URL}/contracts`
     axios.post(URL, form, setHeaders() )
         .then(() => console.log("Contrato criado"))

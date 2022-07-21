@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
 import { MainContainer, LoginForm, BoxContainer, Select } from "./styled"
 import useForm from '../../hooks/useForm'
-import { Button, Typography, TextField } from '@material-ui/core';
+import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { TypeOptions } from '../../constants/selectOptions';
 import { createContract } from '../../services/requests/contractRequests';
@@ -12,19 +12,22 @@ const CreateContractPage = () => {
     useProtectedPageAdmin()
     const [form, onChange, cleanFields] = useForm({ name: "", email: "", plan: "", date: "" })
     const history = useHistory()
+    const [loading, setLoading] = useState(false)
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = async (e) => {
         e.preventDefault()
-        createContract(form)
+        setLoading(true)
+        await createContract(form)
         cleanFields()
+        setLoading(false)
     }
+ 
 
     return (
         <>
             <Header history={history} />
             <MainContainer>
                 <BoxContainer>
-                    <Typography variant="h5"> Informações pessoais:</Typography>
                     <LoginForm onSubmit={onSubmitForm} >
                         <TextField
                             name={"name"}
@@ -52,9 +55,6 @@ const CreateContractPage = () => {
                             label="Email"
                             color="primary"
                         />
-
-                        <Typography variant="h5"> Informações do contrato:</Typography>
-
                         <Select
                             name="plan"
                             onChange={onChange}
@@ -65,7 +65,6 @@ const CreateContractPage = () => {
                             <TypeOptions />
 
                         </Select>
-
                         <TextField
                             name="date"
                             onChange={onChange}
@@ -76,13 +75,14 @@ const CreateContractPage = () => {
                             margin="normal"
                             color="primary"
                         />
-
                         <Button
                             type={"submit"}
                             variant={"contained"}
                             color={"secondary"}
                         >
-                            Criar Usuário
+                            {loading ? <CircularProgress color={"inherit"} size={24} />
+                                :
+                                <Typography>Criar contratro</Typography>}
                         </Button>
                     </LoginForm>
                 </BoxContainer>
