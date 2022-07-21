@@ -7,6 +7,7 @@ import { Button, CircularProgress, TextField, Typography } from '@material-ui/co
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { TypeOptions } from '../../constants/selectOptions';
 import { createContract } from '../../services/requests/contractRequests';
+import { goToAdmin } from '../../routes/coordinator';
 
 const CreateContractPage = () => {
     useProtectedPageAdmin()
@@ -20,6 +21,7 @@ const CreateContractPage = () => {
         await createContract(form)
         cleanFields()
         setLoading(false)
+        goToAdmin(history)
     }
  
 
