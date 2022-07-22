@@ -3,12 +3,14 @@ import { lightNeutralColor } from "../../../../constants/colors"
 
 export const StudentCard = styled.div`
 display:flex;
-justify-items: center;
+justify-content: center;
 align-items: center;
 background-color: ${lightNeutralColor};
 border-radius:8px;
 margin: 0.5em;
 padding: 0.2em;
+width:90%;
+height:60px;
 &:hover {
     cursor: pointer;
 }    

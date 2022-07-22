@@ -1,47 +1,46 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
 import { StudentCard, IconCont } from './styled';
-import Typography from '@material-ui/core/Typography';
+import { Typography, CircularProgress } from '@material-ui/core';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { deleteCheckin, validateCheckin } from '../../../../services/requests/bookingRequests';
 
-const StudentCheckinCard = (props) => {
-    // const [checkin, setCheckin] = useState(props.verified)
+const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
+    useEffect(() => { }, [verified, loading])
 
-    useEffect(()=>{}, [props])
-
-    const confirmCheckin = () => {
-        // setCheckin(!checkin)
-        validateCheckin(props.id, props.verified)
+    const confirmCheckin = async () => {
+        setLoading(true)
+        await validateCheckin(id, !verified)
+        setLoading(false)
     }
 
-    const cancelCheckin = () => {
-        if (window.confirm("Deseja cancelar este checkin?")) {
-                deleteCheckin(props.id)
+    const cancelCheckin = async () => {
+        if (window.confirm("Cancelar este checkin?")) {
+            setLoading(true)
+            await deleteCheckin(id)
+            setLoading(false)
         }
     }
 
     return (
         <StudentCard>
-            <IconCont
-                onClick={() => confirmCheckin()}
-                type={props.verified}
-            >
-                {props.verified ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
-            </IconCont>
+            {loading ? <CircularProgress color={"inherit"} size={24} /> : <>
+                <IconCont
+                    onClick={() => confirmCheckin()}
+                    type={verified}
+                >
+                    {verified ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+                </IconCont>
 
-            <StudentCard
-                key={props.id}
-            >
-                <Typography >  {props.name}  </Typography>
-            </StudentCard>
+                <StudentCard key={id} >
+                    <Typography >  {name}  </Typography>
+                </StudentCard>
 
-            <IconCont
-                onClick={() => cancelCheckin()}
-            >
-                <CancelIcon />
-            </IconCont>
+                <IconCont onClick={() => cancelCheckin()}  >
+                    <CancelIcon />
+                </IconCont>
+            </>}
         </StudentCard>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory, useParams } from "react-router-dom";
 import { MainContainer, SideContainer, CenterContainer } from './styled';
@@ -13,10 +13,11 @@ const ViewClassPage = () => {
     const history = useHistory()
     const {classId} = useParams()
     const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${classId}`)
+    const [loading, setLoading] = useState(false)
 
     useLayoutEffect(() => {
         getYogaClass()
-    }, [])
+    }, [loading])
 
     return (
         <div>
@@ -39,7 +40,11 @@ const ViewClassPage = () => {
                     />
                 </CenterContainer>
                 <SideContainer>
-                    <StudentList checkins={yogaClass.checkins} />
+                    <StudentList 
+                    checkins={yogaClass.checkins} 
+                    loading={loading} 
+                    setLoading={setLoading}
+                    />
                 </SideContainer>
             </MainContainer>
         </div>

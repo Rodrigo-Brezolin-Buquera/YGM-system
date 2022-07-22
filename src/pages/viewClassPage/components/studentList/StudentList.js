@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '@material-ui/core';
 import StudentCheckinCard from "../studentCheckinCard/StudentCheckinCard"
 
-const StudentList = ({ checkins }) => {
+const StudentList = ({ checkins, loading, setLoading }) => {
     const studentList = checkins?.length && checkins.map((checkin) => {
         return (
             <StudentCheckinCard
@@ -10,6 +10,8 @@ const StudentList = ({ checkins }) => {
                 id={checkin.id}
                 verified={checkin.verified}
                 name={checkin.name}
+                loading={loading} 
+                setLoading={setLoading}
             />
         )
     })
