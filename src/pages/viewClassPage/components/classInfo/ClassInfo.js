@@ -5,7 +5,6 @@ import { TextContainer } from './styled';
 const ClassInfo = (props) => {
     return (
         <TextContainer>
-            <Typography variant="h6" > Informações da aula: </Typography>
             <Typography  > Dia: {props.day} - {props.time} </Typography>
             <Typography  > Data: {props.date} </Typography>
             <Typography> Prof.: {props.teacher} </Typography>

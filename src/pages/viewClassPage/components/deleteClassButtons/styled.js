@@ -5,6 +5,6 @@ display: flex;
 flex-direction: column;
 justify-content: space-evenly;
 align-items:center;
-padding-top: 1em;;
-gap: 2em;
+padding-top: 0.5em;;
+gap: 1em;
 `

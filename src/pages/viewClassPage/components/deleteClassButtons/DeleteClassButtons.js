@@ -1,24 +1,29 @@
 import React, { useState } from 'react'
 import { ButtonContainer } from './styled'
-import { Button} from '@material-ui/core'
+import { Button, Typography, CircularProgress } from '@material-ui/core'
 import { deleteClassByGroupId, deleteClassById } from '../../../../services/requests/calendarRequests'
 import { goBack } from '../../../../routes/coordinator'
 
-const DeleteClassButtons = ({id, groupId, history }) => {
+const DeleteClassButtons = ({ id, groupId, history }) => {
     const [loading, setLoading] = useState(false)
 
-    const deleteClass = () => {
-        setLoading(true)
-        deleteClassById(id)
-        setLoading(false)
-        goBack(history)
+    const deleteClass = async () => {
+        if (window.confirm("Deletar aula?")) {
+            setLoading(true)
+            await deleteClassById(id)
+            setLoading(false)
+            goBack(history)
+        }
+
     }
 
-    const deleteClasses = () => {
-        setLoading(true)
-        deleteClassByGroupId(groupId)
-        setLoading(false)
-        goBack(history)
+    const deleteClasses = async () => {
+        if (window.confirm("Deletar todas as aulas nesse horário?")) {
+            setLoading(true)
+            await deleteClassByGroupId(groupId)
+            setLoading(false)
+            goBack(history)
+        }
     }
 
     return <ButtonContainer>
@@ -27,7 +32,8 @@ const DeleteClassButtons = ({id, groupId, history }) => {
             color={"secondary"}
             onClick={deleteClass}
         >
-            Excluir aula
+            {loading ? <CircularProgress color={"inherit"} size={24} /> :   <Typography> Excluir aula</Typography>}
+          
         </Button>
 
         <Button
@@ -35,7 +41,7 @@ const DeleteClassButtons = ({id, groupId, history }) => {
             color={"secondary"}
             onClick={deleteClasses}
         >
-            Excluir horário de aula
+             {loading ? <CircularProgress color={"inherit"} size={24} /> :   <Typography> Excluir horário</Typography>}
         </Button>
     </ButtonContainer>
 }

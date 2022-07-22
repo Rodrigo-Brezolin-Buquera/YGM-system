@@ -9,16 +9,16 @@ export const createClass = async (form) => {
     .catch((err)=> console.log(err.message))
 }
 
-export const deleteClassById = (id) => {
+export const deleteClassById = async (id) => {
     const URL = `${BASE_URL}/calendar/${id}`
-    axios.delete(URL, setHeaders())
+   await axios.delete(URL, setHeaders())
     .then(()=> console.log("Aula deletada"))
     .catch((err)=> console.log(err.message))
 }
 
-export const deleteClassByGroupId = (id) => {
+export const deleteClassByGroupId =  async(id) => {
     const URL = `${BASE_URL}/calendar/${id}?allClasses=true`
-    axios.delete(URL, setHeaders())
+   await axios.delete(URL, setHeaders())
     .then(()=> console.log("Aulas deletadas"))
     .catch((err)=> console.log(err.message))
 }
