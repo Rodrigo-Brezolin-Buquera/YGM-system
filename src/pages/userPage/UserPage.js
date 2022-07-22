@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/headerUser/HeaderUser'
-import UserInfo from '../../components/userInfo/UserInfo'
+import UserInfo from './components/userInfo/UserInfo'
 import { MainContainer, CentralContainer, SideContainer } from './styled'
 import { useHistory } from "react-router-dom";
 import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
@@ -14,12 +14,13 @@ const UserPage = () => {
     const history = useHistory()
     const [contract, getContract] = useRequestData({}, `/contracts/user`)
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getContract()
         getyogaClasses()
-    }, [])
-   
+    }, [loading])
+
     return (
         <div>
             <Header history={history} />
@@ -30,6 +31,8 @@ const UserPage = () => {
                         yogaClasses={yogaClasses}
                         contractId={contract.id}
                         checkins={contract?.currentContract?.checkins}
+                        loading={loading}
+                        setLoading={setLoading}
                     />
                 </SideContainer>
 

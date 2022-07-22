@@ -12,7 +12,7 @@ display:flex;
 flex-direction:column;
 align-items: center;
 width:100%;
-gap: 3em;
+gap: 1em;
 `
 
 export const SideContainer = styled.div`

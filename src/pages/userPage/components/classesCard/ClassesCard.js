@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { CardContainer, TextContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import { Typography, CircularProgress } from '@material-ui/core';
 import { createCheckin, deleteCheckin } from '../../../../services/requests/bookingRequests';
+import { async } from '@firebase/util';
 
 
 const ClassesCard = (props) => {
-    const { contractId, yogaClassId, checkins, day, time, teacher, name } = props
+    const { contractId, yogaClassId, checkins, day, time, teacher, name, loading, setLoading } = props
     const checkinId = `${contractId}+${yogaClassId}`
     const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId)
-
     const [checkin, setCheckin] = useState(checkinDone);
 
-    const handleCheckin = () => {
-
+    const handleCheckin = async () => {
         if (checkin) {
-            if (window.confirm("Você quer cancelar este checkin?")) {
-            deleteCheckin(checkinId) 
-            // setCheckin(false)
+            if (window.confirm("Cancelar este checkin?")) {
+                setLoading(true)
+                await deleteCheckin(checkinId)
+                setLoading(false)
+                setCheckin(false)
+
             }
         } else {
-            if (window.confirm("Você quer agendar o checkin neste horário")) {
-                createCheckin(contractId, yogaClassId)
-                // setCheckin(true)
+            if (window.confirm("Agendar o checkin neste horário?")) {
+                setLoading(true)
+                await createCheckin(contractId, yogaClassId)
+                setLoading(false)
+                setCheckin(true)
             }
         }
     }
@@ -31,13 +35,20 @@ const ClassesCard = (props) => {
     }, [handleCheckin, checkins, checkin])
 
     return (
-        <CardContainer onClick={() => handleCheckin() } checkin={checkin} >
-            <TextContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }} > {day} - {time}</Typography>
-                <Typography>  {name}  </Typography>
-                <Typography> {teacher}   </Typography>   
-            </TextContainer>
-        </CardContainer>
+        <>
+            
+
+                <CardContainer onClick={() => handleCheckin()} checkin={checkin} >
+                {loading ? <CircularProgress color={"inherit"} size={24} /> :
+                    <TextContainer>
+                        <Typography component="subtitle2" style={{ fontWeight: 600 }} > {day} - {time}</Typography>
+                        <Typography>  {name}  </Typography>
+                        <Typography> {teacher}   </Typography>
+                    </TextContainer>
+}
+                </CardContainer>
+            
+        </>
     )
 }
 

@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import ClassesCard from '../classesCard/ClassesCard';
 
 
-const AvailableClasses = ({ yogaClasses, checkins, contractId }) => {
+const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoading }) => {
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard
@@ -14,8 +14,10 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId }) => {
                 time={yogaClass.time}
                 teacher={yogaClass.teacher}
                 name={yogaClass.name}
-                checkins = {checkins}
-                contractId= {contractId}
+                checkins={checkins}
+                contractId={contractId}
+                loading={loading}
+                setLoading={setLoading}
             />
         )
     })

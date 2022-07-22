@@ -23,6 +23,7 @@ export const login = async (form, history, setLoading) => {
     } )
     .catch((err) => {
       console.log(err.response)
+      alert("Erro no login, tente novamente")
       setLoading(false)
     });
 }
