@@ -11,7 +11,7 @@ const StudentList = ({ contracts }) => {
     const [planType, handlePlanType] = useInput("")
 
     const userList = contracts.length && contracts
-        .filter(user => user.name.toLowerCase().includes(nameFilter.toLowerCase()))
+        .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter(user => {
             const contract = user.currentContract
             switch (status) {
