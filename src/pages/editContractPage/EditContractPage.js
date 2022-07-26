@@ -8,6 +8,9 @@ import EditPlanForm from './components/editPlanForm/EditPlanForm';
 import { goBack } from '../../routes/coordinator';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
+import { ChangePasswordButton } from './components/changePasswordButton/ChangePasswordButton';
+import { DeleteContractButton } from './components/deleteContractButton/DeleteContractButton';
+import { Typography } from '@material-ui/core';
 
 const EditContractPage = () => {
     useProtectedPageAdmin()
@@ -53,8 +56,16 @@ const EditContractPage = () => {
                         color={"secondary"}
                         onClick={() => setPlan(!plan)}
                     >
-                        Alterar contrato
+                       <Typography>Alterar contrato</Typography> 
                     </Button>
+
+                    <ChangePasswordButton
+                    id={contracts.id}                  
+                    />
+                    <DeleteContractButton
+                    id={contracts.id}
+                    history={history}
+                    />
                 </ButtonContainer>
 
                 {plan && 
