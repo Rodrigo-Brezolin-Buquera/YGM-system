@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { lightNeutralColor } from "../../constants/colors"
+import { cellMaxWidth } from "../../constants/responsiveness"
 
 export const MainContainer = styled.div`
 display: flex;
@@ -20,4 +21,8 @@ justify-content: center;
 align-items:center;
 gap: 0.5em;
 padding: 0.5em;
+
+@media (max-width: ${cellMaxWidth}) {
+  flex-direction: column;
+  }
 `
