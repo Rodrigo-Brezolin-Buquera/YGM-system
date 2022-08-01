@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { lightNeutralColor } from "../../../../constants/colors"
+import { cellMaxWidth } from "../../../../constants/responsiveness"
 
 export const StudentCard = styled.div`
 display:flex;
@@ -11,6 +12,11 @@ margin: 0.5em;
 padding: 0.2em;
 width:90%;
 height:60px;
+
+@media (max-width: ${cellMaxWidth}) {
+    width:75%;
+}
+
 &:hover {
     cursor: pointer;
 }    
