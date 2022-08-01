@@ -1,10 +1,15 @@
 import styled from "styled-components"
 import { lightNeutralColor, primaryColor } from "../../constants/colors"
+import { cellMaxWidth  } from "../../constants/responsiveness"
 
 export const MainContainer = styled.div`
 display:flex;
 min-height:100vh;
 background-color:${lightNeutralColor};
+
+@media (max-width: ${cellMaxWidth}) {
+  flex-direction: column;
+  }
 `
 
 export const CentralContainer = styled.div`
