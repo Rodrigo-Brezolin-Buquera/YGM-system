@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { darkNeutralColor, lightNeutralColor } from "../../../../constants/colors"
+import { cellMaxWidth } from "../../../../constants/responsiveness"
 
 export const InfoContainer = styled.div`
 display: flex;
@@ -13,7 +14,7 @@ background-color: ${lightNeutralColor};
     cursor: pointer;
 }
 
-@media (max-width: 480px) {
+@media (max-width: ${cellMaxWidth}) {
     width: 90vw;
     min-width: 50px;
   }
@@ -26,7 +27,7 @@ gap: 0.3em;
 justify-content:flex-start;
 margin: 0.1em;
 
-@media (max-width: 480px) {
+@media (max-width: ${cellMaxWidth}) {
     flex-direction: column;;
   }
 `
@@ -37,7 +38,7 @@ flex-direction: column;
 justify-content:center;
 min-width: 250px;
 
-@media (max-width: 480px) {
+@media (max-width: ${cellMaxWidth}) {
     min-width: 100px;
   }
 `

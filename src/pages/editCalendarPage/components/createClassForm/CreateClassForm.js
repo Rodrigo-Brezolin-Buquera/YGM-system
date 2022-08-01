@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormLine, LoginForm } from './styled'
+import { FormLine, Form } from './styled'
 import useForm from '../../../../hooks/useForm'
 import { Button, CircularProgress, TextField, Typography } from '@material-ui/core'
 import { DayOptions, StyleOptions, TeacherOptions } from '../../../../constants/selectOptions'
@@ -24,7 +24,7 @@ const CreateClassForm = ({ loading, setLoading }) => {
     }
 
     return (
-        <LoginForm onSubmit={onSubmitForm} >
+        <Form onSubmit={onSubmitForm} >
             <FormLine>
                 <select
                     name="name"
@@ -78,7 +78,7 @@ const CreateClassForm = ({ loading, setLoading }) => {
             >
                 {loading ? <CircularProgress color={"inherit"} size={24} ></CircularProgress> : <Typography>Criar aula</Typography>}
             </Button>
-        </LoginForm>
+        </Form>
     )
 }
 

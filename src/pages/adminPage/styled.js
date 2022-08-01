@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { lightNeutralColor, primaryColor } from "../../constants/colors"
+import { cellMaxWidth } from "../../constants/responsiveness"
 
 export const MainContainer = styled.div`
 display: flex;
@@ -19,7 +20,7 @@ background-color:${primaryColor};
 min-width: 250px;
 padding-top: 1em;
 
-@media (max-width: 480px) {
+@media (max-width: ${cellMaxWidth}) {
     padding-bottom: 1em;
   }
 `

@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { darkNeutralColor } from "../../../../constants/colors"
+import { cellMaxWidth } from "../../../../constants/responsiveness"
+
 
 export const List = styled.div`
 display:flex;
@@ -12,7 +13,7 @@ margin: 0 1em;
 export const FilterContainer = styled.div`
 display:flex;
 
-@media (max-width: 480px) {
+@media (max-width: ${cellMaxWidth}) {
     flex-direction: column;
     width: 90vw;
   }
