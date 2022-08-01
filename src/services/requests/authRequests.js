@@ -9,9 +9,5 @@ export const changePassword = async (id) => {
     .catch(err => console(err.response))
 }
 
-export const deleteContract = async (id) => {
-    await axios.delete(`${BASE_URL}/auth/${id}`, setHeaders())
-    .then(res => console.log("contrato deletado"))
-    .catch(err => console(err.response))
-}
+
 

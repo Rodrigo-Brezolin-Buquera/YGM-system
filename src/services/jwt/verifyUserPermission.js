@@ -14,8 +14,8 @@ export const verifyUserPermission = (token, history) => {
   } catch (error) {
     localStorage.clear()
     goToLogin(history)
-    console.log(error)
-    alert(("Sessão expirada, faça o login novamente"))
+    console.log(error.response)
+    // alert(("Sessão expirada, faça o login novamente"))
   }
 }
 

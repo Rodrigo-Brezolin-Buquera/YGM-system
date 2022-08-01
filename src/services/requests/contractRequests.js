@@ -39,3 +39,9 @@ export const editContract = async (form, id) => {
             console.log(err.response)
          })
 }
+
+export const deleteContract = async (id) => {
+    await axios.delete(`${BASE_URL}/contracts/${id}`, setHeaders())
+    .then(res => console.log("contrato deletado"))
+    .catch(err => console.log(err.response))
+}

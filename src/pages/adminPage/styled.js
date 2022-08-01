@@ -6,6 +6,10 @@ display: flex;
 width:100%;
 min-height:100vh;
 justify-content:space-between;
+
+@media (max-width: 480px) {
+    flex-direction: column-reverse;
+  }
 `
 
 export const SideContainer = styled.div`
@@ -15,4 +19,9 @@ background-color:${primaryColor};
 min-width: 250px;
 padding-top: 1em;
 
+@media (max-width: 480px) {
+    padding-bottom: 1em;
+  }
 `
+
+

@@ -11,6 +11,12 @@ margin: 0 1em;
 
 export const FilterContainer = styled.div`
 display:flex;
+
+@media (max-width: 480px) {
+    flex-direction: column;
+    width: 90vw;
+  }
+
 `
 
 export const Select = styled.select`

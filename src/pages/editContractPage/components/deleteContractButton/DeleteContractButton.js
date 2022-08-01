@@ -1,7 +1,7 @@
 import { Button, Typography, CircularProgress } from '@material-ui/core';
 import { useState } from 'react';
 import { goToAdmin } from '../../../../routes/coordinator';
-import { deleteContract } from '../../../../services/requests/authRequests';
+import { deleteContract } from '../../../../services/requests/contractRequests';
 
 export const DeleteContractButton = ({ id, history }) => {
     const [loading, setLoading] = useState(false)
@@ -13,9 +13,9 @@ export const DeleteContractButton = ({ id, history }) => {
             await deleteContract(id)
             setLoading(false)
             goToAdmin(history)
-        }
-       
+        }    
     }
+    
     return (
         <Button
             variant={"contained"}
