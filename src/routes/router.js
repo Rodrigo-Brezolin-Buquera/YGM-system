@@ -3,13 +3,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LoginPage from "../pages/loginPage/LoginPage"
 import ErrorPage from "../pages/errorPage/ErrorPage"
 import UserPage from "../pages/userPage/UserPage"
-import EditProfilePage from "../pages/editProfilePage/EditProfilePage"
 import AdminPage from '../pages/adminPage/AdminPage';
-import CreateUserPage from '../pages/createUserPage/CreateUserPage';
+import CreateContractPage from '../pages/createContractPage/CreateContractPage';
 import EditCalendarPage from '../pages/editCalendarPage/EditCalendarPage';
 import ViewClassPage from '../pages/viewClassPage/ViewClassPage';
-import ViewUserPage from '../pages/viewUserPage/ViewUserPage';
-import EditUserPage from '../pages/editUserPage/EditUserPage';
+import ViewContractPage from '../pages/viewContractPage/ViewContractPage';
+import EditContractPage from '../pages/editContractPage/EditContractPage';
 
 const Router = () => {
     return (
@@ -23,16 +22,12 @@ const Router = () => {
                     <UserPage />
                 </Route>
 
-                <Route exact path="/usuário/:userId/editar">
-                    <EditProfilePage />
-                </Route>
-
                 <Route exact path="/admin">
                     <AdminPage />
                 </Route>
 
                 <Route exact path="/admin/adicionar-usuário">
-                    <CreateUserPage />
+                    <CreateContractPage />
                 </Route>
 
                 <Route exact path="/admin/calendário">
@@ -44,11 +39,11 @@ const Router = () => {
                 </Route>
 
                 <Route exact path="/admin/usuário/:userId">
-                    <ViewUserPage />
+                    <ViewContractPage />
                 </Route>
 
                 <Route exact path="/admin/usuário/:userId/editar">
-                    <EditUserPage />
+                    <EditContractPage />
                 </Route>
 
                 <Route>

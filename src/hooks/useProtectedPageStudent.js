@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router';
 import { goToAdmin, goToLogin } from '../routes/coordinator';
-import * as jwt from "jsonwebtoken";
+import { verifyUserPermission } from '../services/jwt/verifyUserPermission';
 
 export const useProtectedPageStudent = () => {
     const history = useHistory()
@@ -11,8 +11,8 @@ export const useProtectedPageStudent = () => {
         if(!token) {
             goToLogin(history)   
         } else {
-            const { role } = jwt.verify(token, process.env.REACT_APP_JWT_KEY)
-            if (role === "teacher" || role === "visitor" || role === "admin") {
+            const { admin, id } = verifyUserPermission(token, history)
+            if (id && admin) {
                 goToAdmin(history)
             } 
         }   

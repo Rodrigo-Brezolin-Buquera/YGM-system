@@ -1,11 +1,17 @@
 import styled from "styled-components"
-import { darkNeutralColor,primaryColor } from "../../constants/colors"
+import { primaryColor } from "../../constants/colors"
+import { cellMaxWidth } from "../../constants/responsiveness"
 
 export const MainContainer = styled.div`
 display: flex;
 justify-content: space-between;            
 width:100%;
 min-height:100vh;
+
+@media (max-width: ${cellMaxWidth}) {
+  flex-direction: column-reverse;
+  justify-content: flex-end;  
+  }
 `
 
 export const SideContainer = styled.div`
@@ -19,9 +25,11 @@ align-items:center;
 
 export const CenterContainer = styled.div`
 display: flex;
-justify-content: center;
-align-items:flex-start;
+flex-direction: column;
+justify-content: top; 
+align-items:center;
 padding-top: 1em;;
 width:100%;
-`
 
+
+`

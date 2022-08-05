@@ -1,29 +1,30 @@
-import React, { useContext, useLayoutEffect } from 'react'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
-import Calendar from '../../compononents/calendar/Calendar'
-import Header from '../../compononents/headerAdmin/HeaderAdmin'
+import React, { useLayoutEffect, useState } from 'react'
+import Calendar from './components/calendar/Calendar'
+import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
-import { LowerContainer, LineContainer, SideContainer } from './styled';
-import AvailableClasses from "../../compononents/availableClasses/AvailableClasses"
-import CreateClassForm from '../../compononents/createClassForm/CreateClassForm';
-import DeleteClassForm from '../../compononents/deleteClassForm/DeleteClassForm';
-import moment from "moment"
-import { findAllClasses } from '../../services/classes';
+import { LowerContainer, LinearContainer } from './styled';
+import CreateClassForm from './components/createClassForm/CreateClassForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-
+import { useRequestData } from '../../hooks/useRequestData';
+import moment from 'moment';
 
 const EditCalendarPage = () => {
     useProtectedPageAdmin()
     const history = useHistory()
-    const { setters, states } = useContext(GlobalStateContext);
-    setters.setAdmin(true)
+    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar")
+    const [loading, setLoading] = useState(false)
+  
+    
+    useLayoutEffect(() => {
+        getyogaClasses()
+    }, [loading])
 
-    const calendarClasses = states.classes.map((yogaClass) => {
+    const calendarClasses = yogaClasses.length && yogaClasses.map((yogaClass) => {
         const result = {
             id: yogaClass.id,
             groupId: yogaClass.groupId,
             title: `${yogaClass.name} ${yogaClass.time}`,
-            date: moment(yogaClass.date).format("YYYY-MM-DD"),
+            date: moment(yogaClass.date, "DD/MM/YYYY").format("YYYY-MM-DD"),
             backgroundColor: "",
             borderColor: "",
             textColor: "",
@@ -32,12 +33,6 @@ const EditCalendarPage = () => {
         return result
     })
 
-    useLayoutEffect(() => {
-
-        findAllClasses(setters.setClasses)
-
-    }, [states.newRender])
-   
     return (
         <div>
             <Header history={history} />
@@ -48,14 +43,9 @@ const EditCalendarPage = () => {
             />
 
             <LowerContainer>
-                <SideContainer>
-                    <AvailableClasses />
-                </SideContainer>
-
-                <LineContainer>
-                    <CreateClassForm  />
-                    <DeleteClassForm  />
-                </LineContainer>
+                <LinearContainer>
+                    <CreateClassForm loading={loading} setLoading={setLoading} />
+                </LinearContainer>
             </LowerContainer>
         </div>
     )

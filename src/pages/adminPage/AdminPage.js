@@ -1,32 +1,31 @@
-import React, { useEffect, useContext } from 'react'
-import Header from '../../compononents/headerAdmin/HeaderAdmin'
+import React, { useLayoutEffect } from 'react'
+import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
-import { GlobalStateContext } from '../../global/GlobalStateContext'
 import { MainContainer, SideContainer } from './styled';
-import StudentList from '../../compononents/studentsList/StudentList';
-import AvailableClasses from "../../compononents/availableClasses/AvailableClasses"
-import { getUsers } from "../../services/users"
+import StudentList from './components/studentsList/StudentList';
+import AvailableClasses from "./components/availableClasses/AvailableClasses"
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { findAllClasses } from '../../services/classes';
+import { useRequestData } from '../../hooks/useRequestData';
+
 
 const AdminPage = () => {
     useProtectedPageAdmin()
-    const { setters, states } = useContext(GlobalStateContext);
     const history = useHistory()
-    setters.setAdmin(true)
+    const [contracts, getContracts] = useRequestData([], "/contracts/list")
+    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
 
-    useEffect(() => {
-        getUsers(setters.setUsers)
-        findAllClasses(setters.setClasses)
-    }, [states.newRender])
+    useLayoutEffect(() => {
+        getContracts()
+        getyogaClasses()
+    }, [])
 
     return (
         <div>
             <Header history={history} />
             <MainContainer>
-                <StudentList />
+                <StudentList contracts={contracts} />
                 <SideContainer>
-                    <AvailableClasses />
+                    <AvailableClasses yogaClasses={yogaClasses} history={history}/>
                 </SideContainer>
             </MainContainer>
         </div>

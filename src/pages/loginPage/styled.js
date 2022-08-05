@@ -9,7 +9,7 @@ padding-top: 1em;
 background-color: ${lightNeutralColor};
 min-height: 100vh;
 `
-export const LoginForm = styled.form`
+export const Form = styled.form`
 display: flex;
 flex-direction:column;
 align-items:center;

@@ -1,27 +1,25 @@
-import React, { useContext, useEffect } from 'react'
-import { GlobalStateContext } from '../../global/GlobalStateContext'
-import Header from '../../compononents/headerUser/HeaderUser'
-import UserInfo from '../../compononents/userInfo/UserInfo'
+import React, { useEffect, useState } from 'react'
+import Header from '../../components/headerUser/HeaderUser'
+import UserInfo from './components/userInfo/UserInfo'
 import { MainContainer, CentralContainer, SideContainer } from './styled'
 import { useHistory } from "react-router-dom";
-import ClosedPlansInfo from '../../compononents/closedPlansInfo/ClosedPlansInfo';
-import CheckinsDone from '../../compononents/checkinsDone/CheckinsDone';
-import AvailableClasses from '../../compononents/availableClasses/AvailableClasses';
+import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
+import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
+import AvailableClasses from "./components/availableClasses/AvailableClasses"
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
-import { findUser } from '../../services/users'
-import { findAllClasses } from '../../services/classes'
+import { useRequestData } from '../../hooks/useRequestData';
 
 const UserPage = () => {
     useProtectedPageStudent()
     const history = useHistory()
-    const { setters, states } = useContext(GlobalStateContext);
-    setters.setAdmin(false)
-    const user = states.currentUser
+    const [contract, getContract] = useRequestData({}, `/contracts/user`)
+    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        findUser(setters.setCurrentUser)
-        findAllClasses(setters.setClasses) 
-    }, [states.newRender])
+        getContract()
+        getyogaClasses()
+    }, [loading])
 
     return (
         <div>
@@ -29,27 +27,35 @@ const UserPage = () => {
             <MainContainer>
 
                 <SideContainer>
-                    <AvailableClasses />
+                    <AvailableClasses
+                        yogaClasses={yogaClasses}
+                        contractId={contract.id}
+                        checkins={contract?.currentContract?.checkins}
+                        loading={loading}
+                        setLoading={setLoading}
+                    />
                 </SideContainer>
 
                 <CentralContainer>
-                    {user && user.plans && user.plans.length &&
+                    {
+                        contract.id &&
                         <UserInfo
-                            id={user.id}
-                            name={user.name}
-                            type={user.plans[0].type}
-                            frequency={user.plans[0].frequency}
-                            planStarted={user.plans[0].planStarted}
-                            planEnds={user.plans[0].planEnds}
-                            totalClasses={user.plans[0].totalClasses}
-                            avaliableClasses={user.plans[0].avaliableClasses}
-                        />}
+                            id={contract.id}
+                            name={contract.name}
+                            plan={contract?.currentContract?.plan}
+                            planStarted={contract?.currentContract?.started}
+                            planEnds={contract?.currentContract?.ends}
+                            availableClasses={contract?.currentContract?.availableClasses}
+                        />
+                    }
 
-                    <ClosedPlansInfo user={user} />
+                    <ClosedPlansInfo
+                        closedContracts={contract.closedContracts}
+                    />
                 </CentralContainer>
 
                 <SideContainer>
-                    {user && user.plans && user.plans.length && <CheckinsDone user={user} />}
+                    {<CheckinsDone checkins={contract?.currentContract?.checkins} />}
                 </SideContainer>
             </MainContainer>
         </div>

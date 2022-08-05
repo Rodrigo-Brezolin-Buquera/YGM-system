@@ -1,26 +1,22 @@
 import styled from "styled-components"
-import { primaryColor, lightNeutralColor } from "../../constants/colors"
+import { lightNeutralColor } from "../../constants/colors"
+import { cellMaxWidth } from "../../constants/responsiveness"
 
 export const LowerContainer = styled.div`
 display: flex;
 background-color:${lightNeutralColor};
-
+padding: 0.5em;
+@media (max-width: ${cellMaxWidth}) {
+  height:40vh;
+  }
 `
 
-export const LineContainer = styled.div`
+export const LinearContainer = styled.div`
 display: flex;
+flex-direction: row;
 gap: 0.5em;
 padding: 1em;
 width:100%;
 justify-content: space-evenly;
-`
-
-export const SideContainer = styled.div`
-display: flex;
-flex-direction:column;
-background-color:${primaryColor};
-min-width: 250px;
-padding-top: 1em;
-
 `
 
