@@ -6,6 +6,7 @@
     "node": "16.15.0",
     "npm": "8.5.5"
   },
+  "homepage": "https://yogamangala-test.herokuapp.com/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
