@@ -10,7 +10,7 @@ export const createCheckin = async (contractId, yogaClassId) => {
     }
     await axios.post(URL, body, setHeaders())
         .then(() => console.log("checkin alterado"))
-        .catch((err) => console.log(err.response))
+        .catch((err) => alert(err.response.message))
 }
 
 export const validateCheckin = async (checkinId, verified) => {
@@ -21,12 +21,12 @@ export const validateCheckin = async (checkinId, verified) => {
     }
     await axios.put(URL, body, setHeaders())
         .then(() => console.log("checkin alterado"))
-        .catch((err) => console.log(err.response))
+        .catch((err) => alert(err.response.message))
 }
 
 export const deleteCheckin = async (id) => {
     const URL = `${BASE_URL}/booking/${id}`
     await axios.delete(URL, setHeaders())
         .then(() => console.log("checkin deletado"))
-        .catch((err) => console.log(err.response))
+        .catch((err) => alert(err.response.message))
 }

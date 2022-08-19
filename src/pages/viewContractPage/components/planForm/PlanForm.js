@@ -12,10 +12,8 @@ const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
     const onSubmitForm = async (e) => {
         e.preventDefault()
         setLoading(true)
-        await addNewContract(form, id)
-        cleanFields()
-        setLoading(false)
-        setAddPlan(false)
+        addNewContract(form, id, setLoading, setAddPlan)
+        cleanFields() 
     }
 
     return (

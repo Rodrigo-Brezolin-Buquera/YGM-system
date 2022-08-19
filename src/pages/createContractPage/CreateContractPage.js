@@ -18,10 +18,9 @@ const CreateContractPage = () => {
     const onSubmitForm = async (e) => {
         e.preventDefault()
         setLoading(true)
-        await createContract(form)
+        createContract(form, setLoading, goToAdmin, history)
         cleanFields()
-        setLoading(false)
-        goToAdmin(history)
+        
     }
  
 
