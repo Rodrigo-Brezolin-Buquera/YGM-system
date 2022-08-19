@@ -7,22 +7,17 @@ import { goBack } from '../../../../routes/coordinator'
 const DeleteClassButtons = ({ id, groupId, history }) => {
     const [loading, setLoading] = useState(false)
 
-    const deleteClass = async () => {
+    const deleteClass = () => {
         if (window.confirm("Deletar aula?")) {
             setLoading(true)
-            await deleteClassById(id)
-            setLoading(false)
-            goBack(history)
+            deleteClassById(id, setLoading, goBack, history)
         }
-
     }
 
-    const deleteClasses = async () => {
+    const deleteClasses = () => {
         if (window.confirm("Deletar todas as aulas nesse horário?")) {
             setLoading(true)
-            await deleteClassByGroupId(groupId)
-            setLoading(false)
-            goBack(history)
+            deleteClassByGroupId(groupId, setLoading, goBack, history)
         }
     }
 
@@ -32,8 +27,8 @@ const DeleteClassButtons = ({ id, groupId, history }) => {
             color={"secondary"}
             onClick={deleteClass}
         >
-            {loading ? <CircularProgress color={"inherit"} size={24} /> :   <Typography> Excluir aula</Typography>}
-          
+            {loading ? <CircularProgress color={"inherit"} size={24} /> : <Typography> Excluir aula</Typography>}
+
         </Button>
 
         <Button
@@ -41,7 +36,7 @@ const DeleteClassButtons = ({ id, groupId, history }) => {
             color={"secondary"}
             onClick={deleteClasses}
         >
-             {loading ? <CircularProgress color={"inherit"} size={24} /> :   <Typography> Excluir horário</Typography>}
+            {loading ? <CircularProgress color={"inherit"} size={24} /> : <Typography> Excluir horário</Typography>}
         </Button>
     </ButtonContainer>
 }

@@ -9,7 +9,7 @@ const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
     const [form, onChange, cleanFields] = useForm({ plan: "", date: "" })
    
 
-    const onSubmitForm = async (e) => {
+    const onSubmitForm = (e) => {
         e.preventDefault()
         setLoading(true)
         addNewContract(form, id, setLoading, setAddPlan)

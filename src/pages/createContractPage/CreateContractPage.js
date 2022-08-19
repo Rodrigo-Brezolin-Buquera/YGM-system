@@ -15,7 +15,7 @@ const CreateContractPage = () => {
     const history = useHistory()
     const [loading, setLoading] = useState(false)
 
-    const onSubmitForm = async (e) => {
+    const onSubmitForm = (e) => {
         e.preventDefault()
         setLoading(true)
         createContract(form, setLoading, goToAdmin, history)

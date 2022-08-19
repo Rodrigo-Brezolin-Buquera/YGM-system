@@ -15,12 +15,11 @@ const CreateClassForm = ({ loading, setLoading }) => {
         date: ""
     })
 
-    const onSubmitForm = async (e) => {
+    const onSubmitForm = (e) => {
         e.preventDefault()
         setLoading(true)
-        await createClass(form)
+        createClass(form, setLoading)
         cleanFields()
-        setLoading(false)
     }
 
     return (
