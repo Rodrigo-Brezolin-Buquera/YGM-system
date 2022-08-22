@@ -2,14 +2,18 @@ import axios from "axios"
 import { BASE_URL } from "../../constants/baseURL"
 import { setHeaders } from "../../utils/setHeaders"
 
-
-
-export const createContract = async (form) => {
+export const createContract = (form, setLoading, goToAdmin, history) => {
     const URL = `${BASE_URL}/contracts`
     axios.post(URL, form, setHeaders() )
-        .then(() => console.log("Contrato criado"))
+        .then(() => {
+            setLoading(false)
+            alert("Contrato criado")
+            goToAdmin(history)
+        })
         .catch((err) => { 
+            setLoading(false)
             console.log(err.response)
+            alert(err.response.message)
          })
 }
 
@@ -22,21 +26,33 @@ export const getContract = (id) => {
          }))
 }
 
-export const addNewContract = async (form, id) => {
+export const addNewContract = (form, id, setLoading, setAddPlan) => {
     const URL = `${BASE_URL}/contracts/addNew/${id}`
     axios.put(URL, form, setHeaders() )
-        .then(() => console.log("Novo contrato adicionado"))
+        .then(() => {
+            console.log("Novo contrato adicionado")
+            setLoading(false)
+            setAddPlan(false)
+        })
         .catch((err) => { 
-            console.log(err.response)
+            alert(err.response.message)
+            setLoading(false)
          })
 }
 
-export const editContract = async (form, id) => {
+export const editContract = (form, id, setLoading, setPlan) => {
     const URL = `${BASE_URL}/contracts/edit/${id}`
     axios.put(URL, form, setHeaders() )
-        .then(() => console.log("Contrato alterado"))
-        .catch((err) => { 
+        .then(() => {
+            console.log("Contrato alterado")
+            setLoading(false)
+            setPlan(false)
+        }
+            )
+        .catch((err) => {
+            setLoading(false) 
             console.log(err.response)
+            alert(err.response.message)
          })
 }
 

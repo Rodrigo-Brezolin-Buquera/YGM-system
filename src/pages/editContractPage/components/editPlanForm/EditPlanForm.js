@@ -22,11 +22,9 @@ const EditPlanForm = ({ contract, setPlan, name, setLoading, loading }) => {
         e.preventDefault()
         if (window.confirm("Você deseja alterar este plano?")) {
             setLoading(true)
-            await editContract(form, userId)
+            editContract(form, userId, setLoading, setPlan)
         }
         cleanFields()
-        setLoading(false)
-        setPlan(false)
     }
 
     return (
