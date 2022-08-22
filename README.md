@@ -25,12 +25,18 @@ As relações entre as páginas pode ser vista na imagem:
 ---
 
 ## Surge
-
+Link: https://yogamangala-test.surge.sh/
 
 ---
 
-## Usuários
+## Usuários teste
+Estudante:
+email: rodrigobbuquera@gmail.com
+senha: 123456
 
+Admin:
+email: admintest@email.com
+senha: 123456
 
 ---
 ## Rodando o Projeto
