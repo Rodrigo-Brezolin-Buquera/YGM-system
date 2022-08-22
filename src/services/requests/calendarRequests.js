@@ -4,7 +4,7 @@ import { setHeaders } from "../../utils/setHeaders"
 
 export const createClass = (form, setLoading) => {
     const URL = `${BASE_URL}/calendar`
-    await axios.post(URL, form, setHeaders())
+    axios.post(URL, form, setHeaders())
         .then(() => {
             console.log("Aulas criadas")
             setLoading(false)
@@ -17,7 +17,7 @@ export const createClass = (form, setLoading) => {
 
 export const deleteClassById = (id, setLoading, goBack, history) => {
     const URL = `${BASE_URL}/calendar/${id}`
-    await axios.delete(URL, setHeaders())
+    axios.delete(URL, setHeaders())
         .then(() => {
             setLoading(false)
             console.log("Aula deletada")
@@ -31,7 +31,7 @@ export const deleteClassById = (id, setLoading, goBack, history) => {
 
 export const deleteClassByGroupId = (id, setLoading, goBack, history) => {
     const URL = `${BASE_URL}/calendar/${id}?allClasses=true`
-    await axios.delete(URL, setHeaders())
+    axios.delete(URL, setHeaders())
         .then(() => {
             setLoading(false)
             console.log("Aulas deletadas")

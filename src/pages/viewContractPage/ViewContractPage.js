@@ -55,7 +55,7 @@ const ViewContractPage = () => {
                             color={"variant"}
                             onClick={() => goToEditContract(history, contracts.id)}
                         >
-                            Editar Usuário
+                            Editar Contrato
                         </Button>
 
                         <Button

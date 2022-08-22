@@ -12,6 +12,7 @@ export const createContract = (form, setLoading, goToAdmin, history) => {
         })
         .catch((err) => { 
             setLoading(false)
+            console.log(err.response)
             alert(err.response.message)
          })
 }
@@ -50,6 +51,7 @@ export const editContract = (form, id, setLoading, setPlan) => {
             )
         .catch((err) => {
             setLoading(false) 
+            console.log(err.response)
             alert(err.response.message)
          })
 }
