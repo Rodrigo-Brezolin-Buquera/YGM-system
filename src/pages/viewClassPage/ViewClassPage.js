@@ -13,10 +13,12 @@ const ViewClassPage = () => {
     const history = useHistory()
     const {classId} = useParams()
     const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${classId}`)
+    const [checkins, getCheckins] = useRequestData([], `/booking/yogaClass/${classId}` )
     const [loading, setLoading] = useState(false)
 
     useLayoutEffect(() => {
         getYogaClass()
+        getCheckins()
     }, [loading])
 
     return (
@@ -41,7 +43,7 @@ const ViewClassPage = () => {
                 </CenterContainer>
                 <SideContainer>
                     <StudentList 
-                    checkins={yogaClass.checkins} 
+                    checkins={checkins} 
                     loading={loading} 
                     setLoading={setLoading}
                     />

@@ -15,6 +15,7 @@ const ViewContractPage = () => {
     useProtectedPageAdmin()
     const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
+    const [checkins, getCheckins] = useRequestData([], `/booking/contract/${userId}` )
     const [addPlan, setAddPlan] = useState(false)
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -25,6 +26,7 @@ const ViewContractPage = () => {
 
     useEffect(() => {
         getContracts()
+        getCheckins()
     }, [addPlan, loading])
    
     return (
@@ -33,7 +35,7 @@ const ViewContractPage = () => {
 
             <MainContainer>
                 <SideContainer>
-                    { contracts.id && <CheckinsDone checkins={contracts.currentContract.checkins}/>}
+                    <CheckinsDone checkins={checkins}/>
                 </SideContainer>
                 <ColumnContainer>
                     {

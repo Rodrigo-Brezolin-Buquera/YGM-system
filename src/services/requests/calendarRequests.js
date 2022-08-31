@@ -6,8 +6,8 @@ export const createClass = (form, setLoading) => {
     const URL = `${BASE_URL}/calendar`
     axios.post(URL, form, setHeaders())
         .then(() => {
-            console.log("Aulas criadas")
             setLoading(false)
+            alert("Aulas criadas")
         })
         .catch((err) => {
             setLoading(false)
