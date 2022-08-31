@@ -5,10 +5,10 @@ import ErrorPage from "../pages/errorPage/ErrorPage"
 import UserPage from "../pages/userPage/UserPage"
 import AdminPage from '../pages/adminPage/AdminPage';
 import CreateContractPage from '../pages/createContractPage/CreateContractPage';
-import EditCalendarPage from '../pages/editCalendarPage/EditCalendarPage';
+import CalendarPage from '../pages/calendarPage/CalendarPage';
 import ViewClassPage from '../pages/viewClassPage/ViewClassPage';
 import ViewContractPage from '../pages/viewContractPage/ViewContractPage';
-import EditContractPage from '../pages/editContractPage/EditContractPage';
+import EditContractPage from '../pages/contractPage/ContractPage';
 
 const Router = () => {
     return (
@@ -31,7 +31,7 @@ const Router = () => {
                 </Route>
 
                 <Route exact path="/admin/calendário">
-                    <EditCalendarPage />
+                    <CalendarPage />
                 </Route>
 
                 <Route exact path="/admin/aula/:classId">

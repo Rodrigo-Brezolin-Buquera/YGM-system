@@ -14,12 +14,16 @@ const UserPage = () => {
     const history = useHistory()
     const [contract, getContract] = useRequestData({}, `/contracts/user`)
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
+    const [checkins, getCheckins] = useRequestData([], `/booking/`)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getContract()
         getyogaClasses()
+        getCheckins()
     }, [loading])
+
+  
 
     return (
         <div>
@@ -30,7 +34,7 @@ const UserPage = () => {
                     <AvailableClasses
                         yogaClasses={yogaClasses}
                         contractId={contract.id}
-                        checkins={contract?.currentContract?.checkins}
+                        checkins={checkins}
                         loading={loading}
                         setLoading={setLoading}
                     />
@@ -55,7 +59,7 @@ const UserPage = () => {
                 </CentralContainer>
 
                 <SideContainer>
-                    {<CheckinsDone checkins={contract?.currentContract?.checkins} />}
+                    {<CheckinsDone checkins={checkins} />}
                 </SideContainer>
             </MainContainer>
         </div>
