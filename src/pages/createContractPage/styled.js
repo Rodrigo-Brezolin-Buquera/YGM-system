@@ -23,11 +23,11 @@ margin-top: 1em;
 border-radius:25px;
 `
 
-export const Select = styled.select`
-font-size: 1em;
-padding: 0.5em;
-margin: 0.4em;
-background: white;
-border: none;
+// export const Select = styled.select`
+// font-size: 1em;
+// padding: 0.5em;
+// margin: 0.4em;
+// background: white;
+// border: none;
 
-`
+// `

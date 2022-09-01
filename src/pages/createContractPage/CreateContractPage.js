@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
-import { MainContainer, LoginForm, BoxContainer, Select } from "./styled"
-import useForm from '../../hooks/useForm'
-import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
+import { MainContainer, LoginForm, BoxContainer } from "./styled"
+import { useForm } from "react-hook-form";
+import {
+    FormErrorMessage,
+    FormControl,
+    Input,
+    Button,
+    Select
+} from "@chakra-ui/react";
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { TypeOptions } from '../../constants/selectOptions';
 import { createContract } from '../../services/requests/contractRequests';
@@ -11,80 +17,73 @@ import { goToAdmin } from '../../routes/coordinator';
 
 const CreateContractPage = () => {
     useProtectedPageAdmin()
-    const [form, onChange, cleanFields] = useForm({ name: "", email: "", plan: "", date: "" })
+    const {
+        handleSubmit,
+        register,
+        formState: { errors, isSubmitting },
+        reset
+    } = useForm();
     const history = useHistory()
-    const [loading, setLoading] = useState(false)
+  
+    const onSubmit = (values) => {
 
-    const onSubmitForm = (e) => {
-        e.preventDefault()
-        setLoading(true)
-        createContract(form, setLoading, goToAdmin, history)
-        cleanFields()
-        
+        createContract(values, goToAdmin, history)
+        reset();
+
     }
- 
 
     return (
         <>
             <Header history={history} />
             <MainContainer>
                 <BoxContainer>
-                    <LoginForm onSubmit={onSubmitForm} >
-                        <TextField
-                            name={"name"}
-                            value={form.name}
-                            onChange={onChange}
-                            type="text"
-                            required
-                            placeholder="Nome completo"
-                            fullWidth
-                            margin="normal"
-                            label="Name"
-                            ariant="filled"
-                            color="primary"
-                        ></TextField>
+                    <LoginForm onSubmit={handleSubmit(onSubmit)}>
+                        <FormControl isInvalid={errors.name || errors.email || errors.plan || errors.date}>
+                            <Input
+                                id="name"
+                                placeholder="Nome completo"
+                                {...register("name", {
+                                    required: "Campo Obrigátorio",
+                                    minLength: { value: 3, message: "O nome precisa ter no mínimo 3 carateres" }
+                                })}
+                            />
 
-                        <TextField
-                            name={"email"}
-                            value={form.email}
-                            onChange={onChange}
-                            type="email"
-                            required
-                            placeholder="Email"
-                            fullWidth
-                            margin="normal"
-                            label="Email"
-                            color="primary"
-                        />
-                        <Select
-                            name="plan"
-                            onChange={onChange}
-                            placeholder="Escolha um plano"
-                            value={form.plan}
-                            required
-                        >
-                            <TypeOptions />
+                            <Input
+                                id="email"
+                                placeholder="email"
+                                {...register("email", {
+                                    required: "Campo Obrigátorio"
+                                })}
+                            />
+                            <Select
+                                id="plan"
+                                placeholder="Escolha um plano"
+                                {...register("plan", {
+                                    required: "Campo Obrigátorio"
+                                })}
+                            >
+                                <TypeOptions />
 
-                        </Select>
-                        <TextField
-                            name="date"
-                            onChange={onChange}
-                            value={form.date}
-                            type="date"
-                            required
-                            fullWidth
-                            margin="normal"
-                            color="primary"
-                        />
-                        <Button
-                            type={"submit"}
-                            variant={"contained"}
-                            color={"secondary"}
-                        >
-                            {loading ? <CircularProgress color={"inherit"} size={24} />
-                                :
-                                <Typography>Criar contratro</Typography>}
+                            </Select>
+                            <Input
+                                id="date"
+                                type="date"
+                                placeholder="Data"
+                                {...register("date", {
+                                    required: "This is required"
+                                })}
+                            />
+                            <FormErrorMessage>
+                                {errors.name && errors.name.message}
+                                {errors.email && errors.email.message}
+                                {errors.plan && errors.plan.message}
+                                {errors.date && errors.date.message}
+                            </FormErrorMessage>
+                        </FormControl>
+                        <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+                            Submit
                         </Button>
+
                     </LoginForm>
                 </BoxContainer>
             </MainContainer>

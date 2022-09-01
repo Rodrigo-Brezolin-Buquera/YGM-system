@@ -2,16 +2,16 @@ import axios from "axios"
 import { BASE_URL } from "../../constants/baseURL"
 import { setHeaders } from "../../utils/setHeaders"
 
-export const createContract = (form, setLoading, goToAdmin, history) => {
+export const createContract = (form, goToAdmin, history) => {
     const URL = `${BASE_URL}/contracts`
     axios.post(URL, form, setHeaders() )
         .then(() => {
-            setLoading(false)
+            
             alert("Contrato criado")
             goToAdmin(history)
         })
         .catch((err) => { 
-            setLoading(false)
+            
             console.log(err.response)
             alert(err.response.message)
          })
