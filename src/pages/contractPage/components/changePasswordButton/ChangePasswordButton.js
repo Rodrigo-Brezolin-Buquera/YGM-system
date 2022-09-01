@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Typography } from '@material-ui/core';
+import { Button, CircularProgress, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { changePassword } from '../../../../services/requests/authRequests';
 
@@ -23,7 +23,7 @@ export const ChangePasswordButton = ({ id }) => {
             {loading ?
                 <CircularProgress color={"inherit"} size={24} />
                 :
-                <Typography>Nova senha</Typography>
+                <Text>Nova senha</Text>
             }
         </Button>
     )

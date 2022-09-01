@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from "react-router-dom";
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { MainContainer, ButtonContainer } from "./styled"
-import Button from '@material-ui/core/Button';
 import UserInfo from '../../components/userInfo/UserInfo'
 import EditPlanForm from './components/editPlanForm/EditPlanForm';
 import { goBack } from '../../routes/coordinator';
@@ -10,7 +9,7 @@ import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
 import { ChangePasswordButton } from './components/changePasswordButton/ChangePasswordButton';
 import { DeleteContractButton } from './components/deleteContractButton/DeleteContractButton';
-import { Typography } from '@material-ui/core';
+import { Button, Text } from '@chakra-ui/react'
 
 const EditContractPage = () => {
     useProtectedPageAdmin()
@@ -51,12 +50,10 @@ const EditContractPage = () => {
 
                 <ButtonContainer>
                     <Button
-                        type={"submit"}
-                        variant={"contained"}
-                        color={"secondary"}
+                        colorScheme='teal'
                         onClick={() => setPlan(!plan)}
                     >
-                       <Typography>Alterar contrato</Typography> 
+                       <Text>Alterar contrato</Text> 
                     </Button>
 
                     <ChangePasswordButton

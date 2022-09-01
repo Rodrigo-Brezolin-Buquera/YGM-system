@@ -40,17 +40,15 @@ export const addNewContract = (form, id, setLoading, setAddPlan) => {
          })
 }
 
-export const editContract = (form, id, setLoading, setPlan) => {
+export const editContract = (form, id, setPlan, setLoading) => {
     const URL = `${BASE_URL}/contracts/edit/${id}`
     axios.put(URL, form, setHeaders() )
         .then(() => {
             console.log("Contrato alterado")
-            setLoading(false)
             setPlan(false)
         }
             )
-        .catch((err) => {
-            setLoading(false) 
+        .catch((err) => { 
             console.log(err.response)
             alert(err.response.message)
          })

@@ -1,122 +1,122 @@
 import React from 'react'
-import { FormLine, PlanForm, Select } from './styled'
-import useForm from '../../../../hooks/useForm'
-import { Button, Typography, TextField, CircularProgress } from '@material-ui/core'
+import { FormLine, PlanForm } from './styled'
+import { useForm } from "react-hook-form";
+import {
+    FormErrorMessage,
+    FormControl,
+    Input,
+    Button,
+    Select,
+    Text
+} from "@chakra-ui/react";
 import { TypeOptions } from '../../../../constants/selectOptions'
-import moment from 'moment'
 import { editContract } from '../../../../services/requests/contractRequests'
 import { useParams } from 'react-router-dom'
 
 const EditPlanForm = ({ contract, setPlan, name, setLoading, loading }) => {
     const { userId } = useParams();
-    const [form, onChange, cleanFields] = useForm({
-        name: name,
-        plan: contract.plan,
-        started: moment(contract.started, "DD/MM/YYYY").format("YYYY-MM-DD"),
-        ends: moment(contract.ends, "DD/MM/YYYY").format("YYYY-MM-DD"),
-        availableClasses: contract.availableClasses,
-        active: contract.active
-    })
+    const {
+        handleSubmit,
+        register,
+        formState: { errors, isSubmitting },
+        reset
+    } = useForm();
 
-    const onSubmitForm = async (e) => {
-        e.preventDefault()
+    const onSubmit = (values) => {
         if (window.confirm("Você deseja alterar este plano?")) {
             setLoading(true)
-            editContract(form, userId, setLoading, setPlan)
+            editContract(values, userId, setLoading, setPlan)
+            reset()
         }
-        cleanFields()
+
     }
-
+    // como fazer ele ter valores iniciais!!!!
     return (
-        <PlanForm onSubmit={onSubmitForm} >
-
-            <TextField
-                name="name"
-                onChange={onChange}
-                value={form.name}
-                type="text"
-                required
-                fullWidth
-                margin="normal"
-                id="filled-basic"
-                variant="filled"
-            />
-
-            <FormLine>
-                <Typography> Plano: </Typography>
-                <Select
-                    name="plan"
-                    onChange={onChange}
-                    placeholder="Escolha um plano"
-                    value={form.plan}
-                    required
-                >
-                    <TypeOptions />
-                </Select>
-            </FormLine>
-            <FormLine>
-                <Typography> Status: </Typography>
-                <Select
-                    name="active"
-                    onChange={onChange}
-                    placeholder="Status do plano"
-                    value={form.active}
-                    required
-                >
-                    <option value="" > Status </option>
-                    <option value={true} > Ativo </option>
-                    <option value={false} > Inativo </option>
-                </Select>
-            </FormLine>
-            <FormLine>
-                <Typography> Início: </Typography>
-                <TextField
-                    name="started"
-                    onChange={onChange}
-                    value={form.started}
-                    type="date"
-                    required
-                    fullWidth
-                    margin="normal"
-                    id="filled-basic"
-                    variant="filled"
+        <PlanForm onSubmit={handleSubmit(onSubmit)}>
+            <FormControl isInvalid={errors.name || errors.plan || errors.active ||
+                errors.started || errors.ends || errors.availableClasses}>
+                <Input
+                    id="name"
+                    placeholder="name"
+                    {...register("name", {
+                        required: "Campo Obrigatório",
+                        minLength: { value: 3, message: "O nome precisa de no mínimo 3 caracteres" }
+                    })}
                 />
-            </FormLine>
-            <FormLine>
-                <Typography> Fim: </Typography>
-                <TextField
-                    name="ends"
-                    onChange={onChange}
-                    value={form.ends}
-                    type="date"
-                    required
-                    fullWidth
-                    margin="normal"
-                    id="filled-basic"
-                    variant="filled"
-                />
-            </FormLine>
 
-            <TextField
-                name="availableClasses"
-                onChange={onChange}
-                value={form.availableClasses}
-                type="number"
-                required
-                fullWidth
-                margin="normal"
-                id="filled-basic"
-                label="Aulas disponíveis: "
-                variant="filled"
-            />
+                <FormLine>
+                    <Text> Plano: </Text>
+                    <Select
+                        id="plan"
+                        placeholder="Escolha um plano"
+                        {...register("plan", {
+                            required: "Campo Obrigatório"
+                        })}
+                    >
+                        <TypeOptions />
+                    </Select>
+                </FormLine>
+                <FormLine>
+                    <Text> Status: </Text>
+                    <Select
+                        id="active"
+                        placeholder="Status do plano"
+                        {...register("active", {
+                            required: "Campo Obrigatório"
+                        })}
+                    >
+                        <option value="" > Status </option>
+                        <option value={true} > Ativo </option>
+                        <option value={false} > Inativo </option>
+                    </Select>
+                </FormLine>
+                <FormLine>
+                    <Text> Início: </Text>
+                    <Input
+                        id="started"
+                        type="date"
+                        {...register("started", {
+                            required: "Campo Obrigatório"
+                        })}
+                    />
+                </FormLine>
+                <FormLine>
+                    <Text> Fim: </Text>
+                    <Input
+                        id="ends"
+                        type="date"
+                        {...register("ends", {
+                            required: "Campo Obrigatório"
+                        })}
+                    />
+                </FormLine>
+
+                <Input
+                    name="availableClasses"
+                    type="number"
+                    {...register("availableClasses", {
+                        required: "Campo Obrigatório"
+                    })}
+                />
+
+                <FormErrorMessage>
+                    {errors.name && errors.name.message}
+                    {errors.plan && errors.plan.message}
+                    {errors.active && errors.active.message}
+                    {errors.started && errors.started.message}
+                    {errors.ends && errors.ends.message}
+                    {errors.availableClasses && errors.availableClasses.message}
+                </FormErrorMessage>
+            </FormControl>
+
             <Button
                 type={"submit"}
                 variant={"contained"}
                 color={"secondary"}
             >
-                {loading ? <CircularProgress color={"inherit"} size={24} />
-                    :
-                    <> <Typography>Alterar contratro</Typography> </>}
+                <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+                    Alterar
+                </Button>
             </Button>
         </PlanForm>
     )
