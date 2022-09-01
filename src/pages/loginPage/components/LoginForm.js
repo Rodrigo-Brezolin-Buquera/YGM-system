@@ -1,64 +1,58 @@
 import React, { useState } from 'react'
-import useForm from '../../../hooks/useForm'
 import { Form, BoxContainer } from ".././styled"
-import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
 import { login } from '../../../services/firebase/auth';
+import { useForm } from "react-hook-form";
+import {
+  FormErrorMessage,
+  FormControl,
+  Input,
+  Button
+} from "@chakra-ui/react";
 
-export const LoginForm = ({history}) => {
+export const LoginForm = ({ history }) => {
   const [loading, setLoading] = useState(false)
-  const [form, onChange, cleanFields] = useForm({ email: "", password: "" })
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm();
 
-  const onSubmitForm = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    await login(form, history, setLoading)
-    cleanFields()
-    
+  const onSubmit = async (values) => {
+    await login(values, history, setLoading)
+    reset()
   }
 
   return (
     <BoxContainer>
-      <Form onSubmit={onSubmitForm} >
-        <TextField
-          name={"email"}
-          value={form.email}
-          onChange={onChange}
-          type="email"
-          required
-          placeholder="Email"
-          fullWidth
-          margin="normal"
-          id="filled-basic"
-          label="Email"
-          variant="filled"
-        ></TextField>
+      <Form onSubmit={handleSubmit(onSubmit)} >
+        <FormControl isInvalid={errors.email || errors.password}>
+          <Input
+            id="email"
+            placeholder="Email"
+            {...register("email", {
+              required: "Campo obrigatório",
+            })}
+          />
 
-        <TextField
-          name={"password"}
- 
-          value={form.password}
-          onChange={onChange}
-          type="password"
-          required
-          placeholder="Senha"
-          fullWidth
-          margin="normal"
-          id="filled-basic"
-          label="Senha"
-          variant="filled"
-        ></TextField>
+          <Input
+            id="password"
+            placeholder="Senha"
+            {...register("password", {
+              required: "Campo obrigatório",
+            })}
+          />
 
-        <Button
-          type={"submit"}
-          variant={"contained"}
-          color={"secondary"}
-        >
-          {loading ?
-            <CircularProgress color={"inherit"} size={24} />
-            :
-            <> <Typography>Login</Typography> </>
-          }
-        </Button>
+          <Button
+            mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit"
+          >
+            Login
+          </Button>
+          <FormErrorMessage>
+            {errors.email && errors.email.message}
+            {errors.password && errors.password.message}
+          </FormErrorMessage>
+        </FormControl>
       </Form>
     </BoxContainer>
   )

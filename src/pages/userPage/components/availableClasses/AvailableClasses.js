@@ -24,7 +24,7 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoadi
 
     return (
         <ClassesListContainer>
-            <Typography variant="h6" > Faça seu check-in:</Typography>
+            <h6 > Faça seu check-in:</h6>
             {classesList.length ? classesList : <p> Não há aulas disponíveis </p>}
         </ClassesListContainer>
     )
