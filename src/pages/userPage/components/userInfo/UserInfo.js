@@ -1,33 +1,34 @@
 import React from 'react'
 import { InfoContainer, FlexContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import { Text } from '@chakra-ui/react'
+
 
 const UserInfo = (props) => { 
     return (
         <InfoContainer  >
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }} >Nome:</Typography>
-                <Typography component="p">{props.name}</Typography>
+                <Text  fontSize='lg' >Nome:</Text>
+                <Text >{props.name}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Plano: </Typography>
-                <Typography component="p">{props.plan} </Typography>
+                <Text fontSize='lg' >Plano: </Text>
+                <Text >{props.plan} </Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Início do plano: </Typography>
-                <Typography component="p"> {props.planStarted}</Typography>
+                <Text fontSize='lg' >Início do plano: </Text>
+                <Text > {props.planStarted}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Fim previsto: </Typography>
-                <Typography component="p"> {props.planEnds}</Typography>
+                <Text fontSize='lg' >Fim previsto: </Text>
+                <Text > {props.planEnds}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas disponíveis:</Typography>
-                <Typography component="p">{props.availableClasses}</Typography>
+                <Text fontSize='lg' >Aulas disponíveis:</Text>
+                <Text >{props.availableClasses}</Text>
             </FlexContainer>
         </InfoContainer>
     )

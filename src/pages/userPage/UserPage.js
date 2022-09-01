@@ -23,8 +23,6 @@ const UserPage = () => {
         getCheckins()
     }, [loading])
 
-  
-
     return (
         <div>
             <Header history={history} />

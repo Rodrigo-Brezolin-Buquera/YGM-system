@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { CardContainer, TextContainer } from './styled'
 import { Typography, CircularProgress } from '@material-ui/core';
 import { createCheckin, deleteCheckin } from '../../../../services/requests/bookingRequests';
-import { async } from '@firebase/util';
+
 
 
 const ClassesCard = (props) => {

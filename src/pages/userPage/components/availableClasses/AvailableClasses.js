@@ -1,7 +1,7 @@
 import React from 'react'
 import { ClassesListContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
 import ClassesCard from '../classesCard/ClassesCard';
+import { Text } from '@chakra-ui/react'
 
 
 const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoading }) => {
@@ -24,7 +24,7 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoadi
 
     return (
         <ClassesListContainer>
-            <h6 > Faça seu check-in:</h6>
+            <Text fontSize='xl' > Faça seu check-in:</Text>
             {classesList.length ? classesList : <p> Não há aulas disponíveis </p>}
         </ClassesListContainer>
     )
