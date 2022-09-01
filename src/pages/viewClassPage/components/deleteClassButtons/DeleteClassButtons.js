@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ButtonContainer } from './styled'
-import { Button, Typography, CircularProgress } from '@material-ui/core'
+import { Button, CircularProgress } from '@chakra-ui/react'
 import { deleteClassByGroupId, deleteClassById } from '../../../../services/requests/calendarRequests'
 import { goBack } from '../../../../routes/coordinator'
 
@@ -23,20 +23,18 @@ const DeleteClassButtons = ({ id, groupId, history }) => {
 
     return <ButtonContainer>
         <Button
-            variant={"contained"}
-            color={"secondary"}
+            colorScheme='teal'
             onClick={deleteClass}
         >
-            {loading ? <CircularProgress color={"inherit"} size={24} /> : <Typography> Excluir aula</Typography>}
+            {loading ? <CircularProgress /> :  "Excluir aula"}
 
         </Button>
 
         <Button
-            variant={"contained"}
-            color={"secondary"}
+            colorScheme='teal'
             onClick={deleteClasses}
         >
-            {loading ? <CircularProgress color={"inherit"} size={24} /> : <Typography> Excluir horário</Typography>}
+            {loading ? <CircularProgress /> :  "Excluir horário"}
         </Button>
     </ButtonContainer>
 }

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { StudentCard, IconCont } from './styled';
-import { Typography, CircularProgress } from '@material-ui/core';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import CancelIcon from '@material-ui/icons/Cancel';
+import { Text, CircularProgress } from '@chakra-ui/react'
+import { CheckIcon, DeleteIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import { deleteCheckin, validateCheckin } from '../../../../services/requests/bookingRequests';
+CheckIcon
 
 const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
     useEffect(() => { }, [verified, loading])
@@ -30,15 +29,15 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
                     onClick={() => confirmCheckin()}
                     type={verified}
                 >
-                    {verified ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+                    {verified ? <CheckIcon /> : <ArrowRightIcon />}
                 </IconCont>
 
                 <StudentCard key={id} >
-                    <Typography >  {name}  </Typography>
+                    <Text >  {name}  </Text>
                 </StudentCard>
 
                 <IconCont onClick={() => cancelCheckin()}  >
-                    <CancelIcon />
+                    <DeleteIcon />
                 </IconCont>
             </>}
         </StudentCard>
