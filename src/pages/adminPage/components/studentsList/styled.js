@@ -20,11 +20,11 @@ display:flex;
 
 `
 
-export const Select = styled.select`
-font-size: 1em;
-padding: 0.5em;
-margin: 0.5em;
-border: none;
-border-radius: 3px;
+// export const Select = styled.select`
+// font-size: 1em;
+// padding: 0.5em;
+// margin: 0.5em;
+// border: none;
+// border-radius: 3px;
 
-`
+// `

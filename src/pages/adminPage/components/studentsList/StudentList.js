@@ -1,7 +1,6 @@
 import React from 'react'
-import { List, Select, FilterContainer } from './styled';
-import TextField from '@material-ui/core/TextField';
-import useInput from '../../../../hooks/useInput';
+import { List, FilterContainer } from './styled';
+import { Input, Select } from '@chakra-ui/react'
 import UserInfoList from '../userInfoList/UserInfoList';
 import { StatusOptions, TypeOptions } from '../../../../constants/selectOptions';
 
@@ -67,22 +66,22 @@ const StudentList = ({ contracts }) => {
     return (
         <List>
             <FilterContainer>
-                <TextField
+                <Input
                     onChange={handleNameFilter}
                     fullWidth
-                    margin="normal"
                     placeholder="Buscar por nome "
-                    variant="outlined"
-                    label="Name"
+                    variant="outline"          
                 />
 
                 <Select
+                placeholder='Plano'
                     onChange={handlePlanType}
                 >
                     <TypeOptions />
                 </Select>
 
                 <Select
+                placeholder='Status'
                     onChange={handleStatus}
                 >
                     <StatusOptions />

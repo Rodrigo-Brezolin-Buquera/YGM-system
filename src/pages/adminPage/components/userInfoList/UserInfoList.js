@@ -1,6 +1,6 @@
 import React from 'react'
 import { InfoContainer, LineContainer, ColumnContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import { Text } from '@chakra-ui/react'
 import { goToViewContract } from '../../../../routes/coordinator';
 import { useHistory } from "react-router-dom";
 
@@ -8,40 +8,40 @@ const UserInfoList = (props) => {
     const history = useHistory()
 
     return (
-        <InfoContainer 
-        status={props.status} 
-        onClick={() => goToViewContract(history, props.id)} 
+        <InfoContainer
+            status={props.status}
+            onClick={() => goToViewContract(history, props.id)}
         >
 
             <ColumnContainer>
                 <LineContainer>
-                    <Typography component="subtitle2" style={{ fontWeight: 600 }} >Nome:</Typography>
-                    <Typography component="p">{props.name}</Typography>
+                    <Text fontSize='xl'  >Nome:</Text>
+                    <Text >{props.name}</Text>
                 </LineContainer>
 
                 <LineContainer>
-                    <Typography component="subtitle2" style={{ fontWeight: 600 }}>Plano: </Typography>
-                    <Typography component="p">{props.plan}</Typography>
-                </LineContainer>
-            </ColumnContainer>
-
-            <ColumnContainer>
-                <LineContainer>
-                    <Typography component="subtitle2" style={{ fontWeight: 600 }}>Início do plano: </Typography>
-                    <Typography component="p">{props.started}</Typography>
-                </LineContainer>
-
-                <LineContainer>
-                    <Typography component="subtitle2" style={{ fontWeight: 600 }}>Fim previsto: </Typography>
-                    <Typography component="p"> {props.ends}</Typography>
+                    <Text fontSize='xl' >Plano: </Text>
+                    <Text >{props.plan}</Text>
                 </LineContainer>
             </ColumnContainer>
 
             <ColumnContainer>
-             
                 <LineContainer>
-                    <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas disponíveis:</Typography>
-                    <Typography component="p">{props.availableClasses}</Typography>
+                    <Text fontSize='xl' >Início do plano: </Text>
+                    <Text >{props.started}</Text>
+                </LineContainer>
+
+                <LineContainer>
+                    <Text fontSize='xl'  >Fim previsto: </Text>
+                    <Text > {props.ends}</Text>
+                </LineContainer>
+            </ColumnContainer>
+
+            <ColumnContainer>
+
+                <LineContainer>
+                    <Text fontSize='xl' >Aulas disponíveis:</Text>
+                    <Text >{props.availableClasses}</Text>
                 </LineContainer>
             </ColumnContainer>
 

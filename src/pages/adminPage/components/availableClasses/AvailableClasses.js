@@ -1,6 +1,6 @@
 import React from 'react'
 import { ClassesListContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import { Text } from '@chakra-ui/react'
 import ClassesCard from '../classesCard/ClassesCard';
 
 const AvailableClasses = ({ yogaClasses, history }) => {
@@ -20,7 +20,7 @@ const AvailableClasses = ({ yogaClasses, history }) => {
 
     return (
         <ClassesListContainer>
-            <Typography variant="h6" > Aulas de hoje:</Typography>
+            <Text fontSize='xl' > Aulas de hoje:</Text>
             {classesList.length ? classesList : <p> Não há aulas hoje </p>}
         </ClassesListContainer>
     )
