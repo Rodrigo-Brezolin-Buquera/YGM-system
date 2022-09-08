@@ -1,23 +1,23 @@
 import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router';
 import { goToAdmin, goToUser } from '../routes/coordinator';
-import { verifyUserPermission } from '../services/jwt/verifyUserPermission';
+// import { verifyUserPermission } from '../services/jwt/verifyUserPermission';
 
 function useUnprotectedPage() {
-    const history = useHistory()
+    // const history = useHistory()
 
-    useLayoutEffect(() => {
-        const token = localStorage.getItem('token')
-        if (token) {
-            const { admin, id } = verifyUserPermission(token, history)
+    // useLayoutEffect(() => {
+    //     const token = localStorage.getItem('token')
+    //     if (token) {
+    //         const { admin, id } = verifyUserPermission(token, history)
 
-            if (id && admin) {
-                goToAdmin(history)
-            } else if(id && !admin) {
-                goToUser(history, id)
-            }
-        }
-    })
+    //         if (id && admin) {
+    //             goToAdmin(history)
+    //         } else if(id && !admin) {
+    //             goToUser(history, id)
+    //         }
+    //     }
+    // })
 }
 
 export default useUnprotectedPage;

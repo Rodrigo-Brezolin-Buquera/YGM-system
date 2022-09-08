@@ -1,15 +1,15 @@
 import React from 'react'
 import white from "../../assets/logo/white.png"
-import { goToAdmin, goToCreateContract, goToEditCalendar, goToLogin } from '../../routes/coordinator'
+import { goToAdmin, goToCreateContract, goToCalendar, goToLogin, goToAdminLogin } from '../../routes/coordinator'
 import { HeaderContainer, Logo, ButtonContainer } from './styled'
-import Button from '@material-ui/core/Button'
+import {Button} from '@chakra-ui/react'
 import { logout } from '../../services/firebase/auth'
 
 const Header = ({history}) => {
     
     const exitApp = () => {
         logout()
-        goToLogin(history)
+        goToAdminLogin(history)
     }
 
     return (
@@ -17,10 +17,7 @@ const Header = ({history}) => {
             <Logo src={white} alt="logo" />
 
                 <ButtonContainer>
-                    <Button
-                        type={"submit"}
-                        variant={"text"}
-                        color={"secondary"}
+                    <Button                  
                         onClick={() => goToAdmin(history)}
                     >Home
                     </Button>
@@ -37,7 +34,7 @@ const Header = ({history}) => {
                         type={"submit"}
                         variant={"text"}
                         color={"secondary"}
-                        onClick={() => goToEditCalendar(history)}
+                        onClick={() => goToCalendar(history)}
                     >Agenda
                     </Button>
 

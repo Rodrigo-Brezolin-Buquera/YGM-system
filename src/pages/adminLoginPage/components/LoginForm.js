@@ -8,7 +8,7 @@ import {
   Input,
   Button
 } from "@chakra-ui/react";
-import { goToUser } from '../../../routes/coordinator';
+import { goToAdmin, goToUser } from '../../../routes/coordinator';
 
 export const LoginForm = ({ history }) => {
   const [loading, setLoading] = useState(false)
@@ -20,7 +20,7 @@ export const LoginForm = ({ history }) => {
   } = useForm();
 
   const onSubmit = async (values) => {
-    await login(values, history, goToUser, setLoading)
+    await login(values, history, goToAdmin, setLoading)
     reset()
   }
 

@@ -2,10 +2,10 @@ import axios from "axios";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { BASE_URL } from "../../constants/baseURL";
 import { goToAdmin, goToUser } from "../../routes/coordinator";
-import { verifyUserPermission } from "../jwt/verifyUserPermission";
+
 import { auth } from "./config";
 
-export const login = async (form, history, setLoading) => {
+export const login = async (form, history, goToPage, setLoading) => {
   signInWithEmailAndPassword(auth, form.email, form.password)
     .then(userCredential => {
     const token = userCredential.user.accessToken
@@ -13,13 +13,8 @@ export const login = async (form, history, setLoading) => {
     })
     .then(res=> {
       localStorage.setItem("token", res.data.token) 
-      const payload = verifyUserPermission(res.data.token)
+      goToPage(history)
       
-      if (payload.admin) {
-        goToAdmin(history)
-      } else {
-        goToUser(history, payload.id)
-      }
     } )
     .catch((err) => {
       console.log(err.response)

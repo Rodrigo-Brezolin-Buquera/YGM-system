@@ -2,7 +2,7 @@ import React from 'react'
 import white from "../../assets/logo/white.png"
 import { goToLogin } from '../../routes/coordinator'
 import { HeaderContainer, Logo, ButtonContainer } from './styled'
-import Button from '@material-ui/core/Button'
+import {Button} from '@chakra-ui/react'
 import { logout } from '../../services/firebase/auth'
 
 const Header = ({history}) => {
@@ -16,9 +16,7 @@ const Header = ({history}) => {
             <Logo src={white} alt="logo" />
                 <ButtonContainer>              
                     <Button
-                        type={"submit"}
-                        variant={"text"}
-                        color={"secondary"}
+                        
                         onClick={() => exitApp()}
                     >Sair
                     </Button>

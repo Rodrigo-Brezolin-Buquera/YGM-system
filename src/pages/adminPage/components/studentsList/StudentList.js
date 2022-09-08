@@ -3,6 +3,7 @@ import { List, FilterContainer } from './styled';
 import { Input, Select } from '@chakra-ui/react'
 import UserInfoList from '../userInfoList/UserInfoList';
 import { StatusOptions, TypeOptions } from '../../../../constants/selectOptions';
+import useInput from "../../../../hooks/useInput"
 
 const StudentList = ({ contracts }) => {
     const [nameFilter, handleNameFilter] = useInput("")

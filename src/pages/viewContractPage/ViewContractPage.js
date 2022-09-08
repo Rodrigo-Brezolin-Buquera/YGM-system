@@ -5,7 +5,7 @@ import { MainContainer, ColumnContainer, ButtonContainer, SideContainer } from "
 import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
 import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
 import UserInfo from '../../components/userInfo/UserInfo'
-import Button from '@material-ui/core/Button';
+import {Button} from '@chakra-ui/react';
 import { goToEditContract } from '../../routes/coordinator';
 import PlanForm from './components/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
@@ -52,18 +52,14 @@ const ViewContractPage = () => {
 
                     <ButtonContainer>
                         <Button
-                            type={"submit"}
-                            variant={"contained"}
-                            color={"variant"}
+                            
                             onClick={() => goToEditContract(history, contracts.id)}
                         >
                             Editar Contrato
                         </Button>
 
                         <Button
-                            type={"submit"}
-                            variant={"contained"}
-                            color={"secondary"}
+                           
                             onClick={() => addNewPlan()}
                         >
                             {addPlan ? "Fechar" : "Novo Plano"}

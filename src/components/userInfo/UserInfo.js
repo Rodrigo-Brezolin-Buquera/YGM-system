@@ -1,6 +1,6 @@
 import React from 'react'
 import { InfoContainer, FlexContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import {Text} from '@chakra-ui/react';
 import { goToViewContract } from '../../routes/coordinator';
 import { useHistory } from "react-router-dom";
 
@@ -10,28 +10,28 @@ const UserInfo = (props) => {
     return (
         <InfoContainer onClick={() => goToViewContract(history, props.id)} >
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }} >Nome:</Typography>
-                <Typography component="p">{props.name}</Typography>
+                <Text  >Nome:</Text>
+                <Text >{props.name}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Plano: </Typography>
-                <Typography component="p">{props.plan} </Typography>
+                <Text >Plano: </Text>
+                <Text >{props.plan} </Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Início do plano: </Typography>
-                <Typography component="p"> {props.planStarted}</Typography>
+                <Text >Início do plano: </Text>
+                <Text > {props.planStarted}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Fim previsto: </Typography>
-                <Typography component="p"> {props.planEnds}</Typography>
+                <Text >Fim previsto: </Text>
+                <Text > {props.planEnds}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas disponíveis:</Typography>
-                <Typography component="p">{props.availableClasses}</Typography>
+                <Text >Aulas disponíveis:</Text>
+                <Text >{props.availableClasses}</Text>
             </FlexContainer>
         </InfoContainer>
     )

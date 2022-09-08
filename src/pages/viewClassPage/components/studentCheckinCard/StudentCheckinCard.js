@@ -6,7 +6,8 @@ import { deleteCheckin, validateCheckin } from '../../../../services/requests/bo
 CheckIcon
 
 const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
-    useEffect(() => { }, [verified, loading])
+    useEffect(() => {
+     }, [verified, loading])
 
     const confirmCheckin = async () => {
         setLoading(true)
@@ -19,12 +20,15 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
             setLoading(true)
             await deleteCheckin(id)
             setLoading(false)
-        }
+        } 
     }
 
     return (
         <StudentCard>
-            {loading ? <CircularProgress color={"inherit"} size={24} /> : <>
+            {(loading) ? 
+            <CircularProgress color={"inherit"} size={24} /> 
+            : 
+            <div>
                 <IconCont
                     onClick={() => confirmCheckin()}
                     type={verified}
@@ -39,7 +43,8 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
                 <IconCont onClick={() => cancelCheckin()}  >
                     <DeleteIcon />
                 </IconCont>
-            </>}
+            </div>
+            }
         </StudentCard>
     )
 }

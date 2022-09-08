@@ -1,6 +1,6 @@
 import React from 'react'
 import { ClosedPlansContainer, PlanCard } from './styled'
-import Typography from '@material-ui/core/Typography';
+import {Text} from '@chakra-ui/react';
 
 const ClosedPlansInfo = ({closedContracts}) => {
     
@@ -8,14 +8,14 @@ const ClosedPlansInfo = ({closedContracts}) => {
     const closedContractsList = closedContracts && closedContracts.length && closedContracts.map((contract) => {
         return (
             <PlanCard key={contract.id}>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}> Plano: {contract.plan}</Typography>
-                <Typography> Terminou em: {contract.ended}</Typography>
+                <Text > Plano: {contract.plan}</Text>
+                <Text> Terminou em: {contract.ended}</Text>
             </PlanCard>
         )
     })
     return (
         <ClosedPlansContainer>
-            <Typography variant="h6" > Contratos encerrados: </Typography>
+            <Text  > Contratos encerrados: </Text>
             {closedContracts?.length ? closedContractsList : <p> Não há contratos encerrados </p>}
 
         </ClosedPlansContainer>

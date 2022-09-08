@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CardContainer, TextContainer } from './styled'
-import { Typography, CircularProgress } from '@material-ui/core';
+import { Text, CircularProgress } from '@chakra-ui/react';
 import { createCheckin, deleteCheckin } from '../../../../services/requests/bookingRequests';
 
 
@@ -41,9 +41,9 @@ const ClassesCard = (props) => {
                 <CardContainer onClick={() => handleCheckin()} checkin={checkin} >
                 {loading ? <CircularProgress color={"inherit"} size={24} /> :
                     <TextContainer>
-                        <Typography component="subtitle2" style={{ fontWeight: 600 }} > {day} - {time}</Typography>
-                        <Typography>  {name}  </Typography>
-                        <Typography> {teacher}   </Typography>
+                        <Text fontSize='xl' > {day} - {time}</Text>
+                        <Text>  {name}  </Text>
+                        <Text> {teacher}   </Text>
                     </TextContainer>
 }
                 </CardContainer>

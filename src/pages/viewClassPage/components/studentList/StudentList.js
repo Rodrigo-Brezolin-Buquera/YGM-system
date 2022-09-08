@@ -17,7 +17,7 @@ const StudentList = ({ checkins, loading, setLoading }) => {
     })
     return (
         <>
-            <TExt fontSize='xl' > Lista de checkins: </TExt>
+            <Text fontSize='xl' > Lista de checkins: </Text>
             {checkins?.length ? studentList : <p> Não há check-ins até o momento </p>}
         </>
     )
