@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, BoxContainer } from ".././styled"
+import { Form, BoxContainer, InputContainer } from "./styled"
 import { login } from '../../../services/firebase/auth';
 import { useForm } from "react-hook-form";
 import {
@@ -28,12 +28,15 @@ export const LoginForm = ({ history }) => {
     <BoxContainer>
       <Form onSubmit={handleSubmit(onSubmit)} >
         <FormControl isInvalid={errors.email || errors.password}>
+          <InputContainer>
           <Input
             id="email"
             placeholder="Email"
             {...register("email", {
               required: "Campo obrigatório",
             })}
+            variant="outline"
+            
           />
 
           <Input
@@ -42,13 +45,16 @@ export const LoginForm = ({ history }) => {
             {...register("password", {
               required: "Campo obrigatório",
             })}
+            variant="outline"
+            type= 'password'
           />
 
           <Button
-            mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit"
+            mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit"
           >
             Login
           </Button>
+          </InputContainer>
           <FormErrorMessage>
             {errors.email && errors.email.message}
             {errors.password && errors.password.message}

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 import defaultLogo from "../../assets/logo/defaultLogo.png"
 import useUnprotectedPage from '../../hooks/useUnprotectedPage';
 import { LoginForm } from "./components/LoginForm"
-import {Text} from "@chakra-ui/react";
+
 
 const AdminLoginPage = () => {
     const history = useHistory()
@@ -12,8 +12,7 @@ const AdminLoginPage = () => {
 
     return (
         <MainContainer>
-            <Logo src={defaultLogo} alt="logo" />
-            <Text>Admin</Text>
+            <Logo src={defaultLogo} alt="logo" />      
             <LoginForm history={history} />
         </MainContainer>
     )
