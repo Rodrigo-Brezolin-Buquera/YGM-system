@@ -6,7 +6,7 @@ const CheckinCard = ({checkin}) => {
    
     return (
         <CheckinCardCont>
-            <Text > {checkin.date}</Text>    
+            <Text as="b" > {checkin.date}</Text>    
         </CheckinCardCont>
     )
 }

@@ -21,7 +21,7 @@ export const ChangePasswordButton = ({ id }) => {
             onClick={() => sendPasswordLink()}
         >
             {loading ?
-                <CircularProgress color={"inherit"} size={24} />
+                <CircularProgress isIndeterminate color="yellow.400" size="75px"  />
                 :
                 <Text>Nova senha</Text>
             }

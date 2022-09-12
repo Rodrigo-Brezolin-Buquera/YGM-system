@@ -15,7 +15,7 @@ const CheckinsDone = ({checkins}) => {
     
     return ( 
         <CheckinsContainer>
-            <Text > Checkins realizados: </Text>
+            <Text fontSize='lg' as="b" > Checkins realizados: </Text>
             { checkins?.length ? checkinsList : <p> Não há check-ins no momento </p> }
         </CheckinsContainer>
     )

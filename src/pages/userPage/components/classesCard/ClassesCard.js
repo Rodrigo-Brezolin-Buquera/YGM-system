@@ -15,17 +15,17 @@ const ClassesCard = (props) => {
         if (checkin) {
             if (window.confirm("Cancelar este checkin?")) {
                 setLoading(true)
-                await deleteCheckin(checkinId)
+                await deleteCheckin(checkinId, setCheckin)
                 setLoading(false)
-                setCheckin(false)
+               
 
             }
         } else {
             if (window.confirm("Agendar o checkin neste horário?")) {
                 setLoading(true)
-                await createCheckin(contractId, yogaClassId)
+                await createCheckin(contractId, yogaClassId, setCheckin)
                 setLoading(false)
-                setCheckin(true)
+                
             }
         }
     }
@@ -39,9 +39,9 @@ const ClassesCard = (props) => {
             
 
                 <CardContainer onClick={() => handleCheckin()} checkin={checkin} >
-                {loading ? <CircularProgress color={"inherit"} size={24} /> :
+                {loading ? <CircularProgress isIndeterminate color="yellow.400" size="75px" /> :
                     <TextContainer>
-                        <Text fontSize='xl' > {day} - {time}</Text>
+                        <Text fontSize='lg' as="b" > {day} - {time}</Text>
                         <Text>  {name}  </Text>
                         <Text> {teacher}   </Text>
                     </TextContainer>

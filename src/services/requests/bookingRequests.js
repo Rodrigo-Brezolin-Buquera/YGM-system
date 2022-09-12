@@ -2,14 +2,16 @@ import axios from "axios"
 import { BASE_URL } from "../../constants/baseURL"
 import { setHeaders } from "../../utils/setHeaders"
 
-export const createCheckin = async (contractId, yogaClassId) => {
+export const createCheckin = async (contractId, yogaClassId, setCheckin) => {
     const URL = `${BASE_URL}/booking`
     const body = {
         contractId,
         yogaClassId
     }
     await axios.post(URL, body, setHeaders())
-        .then(() => console.log("checkin alterado"))
+        .then(() => {
+            setCheckin(true)
+            console.log("checkin alterado")})
         .catch((err) => {
             console.log(err.response)
             alert(err.response.message)
@@ -30,10 +32,12 @@ export const validateCheckin = async (checkinId, verified) => {
         })
 }
 
-export const deleteCheckin = async (id) => {
+export const deleteCheckin = async (id, setCheckin) => {
     const URL = `${BASE_URL}/booking/${id}`
     await axios.delete(URL, setHeaders())
-        .then(() => console.log("checkin deletado"))
+        .then(() => {
+            setCheckin(false)
+            console.log("checkin deletado")})
         .catch((err) => {
             console.log(err.response)
             alert(err.response.message)

@@ -3,32 +3,32 @@ import { InfoContainer, FlexContainer } from './styled'
 import { Text } from '@chakra-ui/react'
 
 
-const UserInfo = (props) => { 
+const UserInfo = (props) => {
     return (
         <InfoContainer  >
             <FlexContainer>
-                <Text  fontSize='lg' >Nome:</Text>
-                <Text >{props.name}</Text>
+                <Text as='b' fontSize='lg' >Nome:</Text>
+                <Text fontSize='lg' >{props.name}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Text fontSize='lg' >Plano: </Text>
-                <Text >{props.plan} </Text>
+                <Text as='b' fontSize='lg' >Plano: </Text>
+                <Text fontSize='lg' >{props.plan} </Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Text fontSize='lg' >Início do plano: </Text>
-                <Text > {props.planStarted}</Text>
+                <Text as='b' fontSize='lg' >Início do plano: </Text>
+                <Text fontSize='lg' > {props.planStarted}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Text fontSize='lg' >Fim previsto: </Text>
-                <Text > {props.planEnds}</Text>
+                <Text as='b' fontSize='lg' >Fim previsto: </Text>
+                <Text fontSize='lg' > {props.planEnds}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Text fontSize='lg' >Aulas disponíveis:</Text>
-                <Text >{props.availableClasses}</Text>
+                <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
+                <Text fontSize='lg' >{props.availableClasses}</Text>
             </FlexContainer>
         </InfoContainer>
     )

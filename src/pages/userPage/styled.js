@@ -28,6 +28,10 @@ background-color:${primaryColor};
 min-width: 250px;
 padding-top: 1em;
 
+@media (max-width: ${cellMaxWidth}) {
+  min-height: 200px;
+  justify-content: center;
+  }
 `
 
 

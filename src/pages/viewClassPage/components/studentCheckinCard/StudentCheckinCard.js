@@ -26,7 +26,7 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
     return (
         <StudentCard>
             {(loading) ? 
-            <CircularProgress color={"inherit"} size={24} /> 
+            <CircularProgress isIndeterminate color="yellow.400" size="75px"  /> 
             : 
             <div>
                 <IconCont
