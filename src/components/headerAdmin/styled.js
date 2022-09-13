@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { darkNeutralColor } from "../../constants/colors"
+import { cellMaxWidth } from "../../constants/responsiveness"
 
 export const HeaderContainer = styled.div`
 background-color: ${darkNeutralColor};
@@ -18,6 +19,10 @@ export const ButtonContainer = styled.div`
 display:flex;
 gap: 0.2em;
 margin-right: 0.2em;
+
+@media (max-width: ${cellMaxWidth}) {
+ 
+  }
 `
 
 

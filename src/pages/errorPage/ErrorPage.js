@@ -17,7 +17,7 @@ const ErrorPage = () => {
                 <Text > Verifique a URL ou clique em voltar </Text>
 
                 <Button
-                    colorScheme='teal'
+                    colorScheme='yellow'
                     onClick={() => goBack(history)}
                 >Voltar
                 </Button>

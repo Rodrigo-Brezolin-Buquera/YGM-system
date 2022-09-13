@@ -52,14 +52,14 @@ const ViewContractPage = () => {
 
                     <ButtonContainer>
                         <Button
-                            
+                            colorScheme={"yellow"}
                             onClick={() => goToEditContract(history, contracts.id)}
                         >
                             Editar Contrato
                         </Button>
 
                         <Button
-                           
+                           colorScheme={"yellow"}
                             onClick={() => addNewPlan()}
                         >
                             {addPlan ? "Fechar" : "Novo Plano"}

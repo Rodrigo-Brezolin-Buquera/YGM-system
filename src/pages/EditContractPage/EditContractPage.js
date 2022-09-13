@@ -29,9 +29,7 @@ const EditContractPage = () => {
             <MainContainer>
 
                 <Button
-                    type={"submit"}
-                    variant={"contained"}
-                    color={"variant"}
+                   colorScheme={"yellow"}
                     onClick={() => goBack(history)}
                 >Voltar
                 </Button>
@@ -50,7 +48,7 @@ const EditContractPage = () => {
 
                 <ButtonContainer>
                     <Button
-                        colorScheme='teal'
+                        colorScheme='yellow'
                         onClick={() => setPlan(!plan)}
                     >
                        <Text>Alterar contrato</Text> 

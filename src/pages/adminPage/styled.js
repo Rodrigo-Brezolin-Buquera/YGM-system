@@ -10,6 +10,7 @@ justify-content:space-between;
 
 @media (max-width: 480px) {
     flex-direction: column-reverse;
+    justify-content:flex-end;
   }
 `
 

@@ -88,8 +88,10 @@ const StudentList = ({ contracts }) => {
                     <StatusOptions />
                 </Select>
             </FilterContainer>
-
+            
             {userList.length ? userList : <p> Nenhum resultado encontrado, selecione as opções </p>}
+           
+           
         </List>
     )
 }

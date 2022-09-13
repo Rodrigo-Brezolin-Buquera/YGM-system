@@ -24,7 +24,7 @@ const CreateContractPage = () => {
         reset
     } = useForm();
     const history = useHistory()
-  
+
     const onSubmit = (values) => {
 
         createContract(values, goToAdmin, history)
@@ -40,6 +40,7 @@ const CreateContractPage = () => {
                     <LoginForm onSubmit={handleSubmit(onSubmit)}>
                         <FormControl isInvalid={errors.name || errors.email || errors.plan || errors.date}>
                             <Input
+                                variant={"outline"}
                                 id="name"
                                 placeholder="Nome completo"
                                 {...register("name", {
@@ -49,6 +50,7 @@ const CreateContractPage = () => {
                             />
 
                             <Input
+                                variant={"outline"}
                                 id="email"
                                 placeholder="email"
                                 {...register("email", {
@@ -56,6 +58,7 @@ const CreateContractPage = () => {
                                 })}
                             />
                             <Select
+                                variant={"outline"}
                                 id="plan"
                                 placeholder="Escolha um plano"
                                 {...register("plan", {
@@ -66,6 +69,7 @@ const CreateContractPage = () => {
 
                             </Select>
                             <Input
+                                variant={"outline"}
                                 id="date"
                                 type="date"
                                 placeholder="Data"
@@ -80,7 +84,7 @@ const CreateContractPage = () => {
                                 {errors.date && errors.date.message}
                             </FormErrorMessage>
                         </FormControl>
-                        <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+                        <Button mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit">
                             Submit
                         </Button>
 

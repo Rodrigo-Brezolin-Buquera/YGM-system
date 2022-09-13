@@ -8,7 +8,7 @@ import CreateContractPage from '../pages/createContractPage/CreateContractPage';
 import CalendarPage from '../pages/calendarPage/CalendarPage';
 import ViewClassPage from '../pages/viewClassPage/ViewClassPage';
 import ViewContractPage from '../pages/viewContractPage/ViewContractPage';
-import EditContractPage from '../pages/contractPage/ContractPage';
+import EditContractPage from '../pages/EditContractPage/EditContractPage';
 import AdminLoginPage from '../pages/adminLoginPage/LoginPage';
 
 const Router = () => {

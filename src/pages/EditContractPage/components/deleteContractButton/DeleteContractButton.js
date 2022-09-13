@@ -18,8 +18,7 @@ export const DeleteContractButton = ({ id, history }) => {
     
     return (
         <Button
-            variant={"contained"}
-            color={"secondary"}
+        colorScheme='teal'
             onClick={() => excludeContract()}
         >
             {loading ?

@@ -30,8 +30,8 @@ const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
             <FormControl isInvalid={errors.plan || errors.date}>
                 <Select
                     id="plan"
-
-                    placeholder="Escolha um plano"
+                    variant={"outline"}
+                    placeholder="Plano"
                     {...register("plan", {
                         required: "Campo Obrigatório"
                     })}
@@ -39,8 +39,8 @@ const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
                     <TypeOptions />
                 </Select>
 
-                <Text>Início:</Text>
                 <Input
+                 variant={"outline"}
                     id="date"
                     placeholder="Escolha um plano"
                     type="date"
@@ -53,8 +53,8 @@ const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
                     {errors.date && errors.date.message}
                 </FormErrorMessage>
             </FormControl>
-            <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
-                Alterar
+            <Button mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit">
+                Adcionar plano
             </Button>
 
         </Form>
