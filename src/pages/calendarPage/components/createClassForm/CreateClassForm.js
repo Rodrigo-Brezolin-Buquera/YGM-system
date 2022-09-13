@@ -30,8 +30,9 @@ const CreateClassForm = ({ loading, setLoading }) => {
             <FormControl isInvalid={errors.name || errors.day || errors.teacher || errors.time || errors.date}>
                 <FormLine>
                     <Select
+                        variant="outline"
                         id="name"
-                        placeholder="Escolha um estilo"
+                        placeholder="Estilo"
                         {...register("name", {
                             required: "Campo Obrigatório",
                         })}
@@ -39,8 +40,9 @@ const CreateClassForm = ({ loading, setLoading }) => {
                         <StyleOptions />
                     </Select>
                     <Select
+                        variant="outline"
                         id="day"
-                        placeholder="Escolha um dia de aula"
+                        placeholder="Dia "
                         {...register("day", {
                             required: "Campo Obrigatório",
                         })}
@@ -48,8 +50,9 @@ const CreateClassForm = ({ loading, setLoading }) => {
                         <DayOptions />
                     </Select>
                     <Select
+                        variant="outline"
                         id="teacher"
-                        placeholder="Escolha um professor"
+                        placeholder="Professor"
                         {...register("teacher", {
                             required: "Campo Obrigatório",
                         })}
@@ -57,21 +60,26 @@ const CreateClassForm = ({ loading, setLoading }) => {
                         <TeacherOptions />
                     </Select>
                 </FormLine>
-                <Input
-                    id="time"
-                    type="time"
-                    {...register("time", {
-                        required: "Campo Obrigatório",
-                    })}
-                />
-                <Input
-                    id="date"
-                    placeholder="Data de início"
-                    type="date"
-                    {...register("date", {
-                        required: "Campo Obrigatório",
-                    })}
-                />
+                <FormLine>
+                    <Input
+                        variant="outline"
+                        id="time"
+                        type="time"
+                        {...register("time", {
+                            required: "Campo Obrigatório",
+                        })}
+                    />
+                    <Input
+                        variant="outline"
+                        id="date"
+                        placeholder="Data de início"
+                        type="date"
+                        {...register("date", {
+                            required: "Campo Obrigatório",
+                        })}
+                    />
+                </FormLine>
+
                 <FormErrorMessage>
                     {errors.name && errors.name.message}
                     {errors.day && errors.day.message}
@@ -81,7 +89,7 @@ const CreateClassForm = ({ loading, setLoading }) => {
                 </FormErrorMessage>
 
             </FormControl>
-            <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+            <Button mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit">
                 Criar aula
             </Button>
         </Form>
