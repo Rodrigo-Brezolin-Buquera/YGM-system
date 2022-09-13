@@ -17,31 +17,26 @@ const Header = ({history}) => {
             <Logo src={white} alt="logo" />
 
                 <ButtonContainer>
-                    <Button                  
+                    <Button  
+                    colorScheme={"yellow"}                
                         onClick={() => goToAdmin(history)}
                     >Home
                     </Button>
 
                     <Button
-                        type={"submit"}
-                        variant={"text"}
-                        color={"secondary"}
+                        colorScheme={"yellow"}   
                         onClick={() => goToCreateContract(history)}
                     >Criar Usuário
                     </Button>
 
                     <Button
-                        type={"submit"}
-                        variant={"text"}
-                        color={"secondary"}
+                        colorScheme={"yellow"}   
                         onClick={() => goToCalendar(history)}
                     >Agenda
                     </Button>
 
                     <Button
-                        type={"submit"}
-                        variant={"text"}
-                        color={"secondary"}
+                      colorScheme={"yellow"}     
                         onClick={() => exitApp()}
                     >Sair
                     </Button>

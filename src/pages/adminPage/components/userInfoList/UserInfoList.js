@@ -15,24 +15,24 @@ const UserInfoList = (props) => {
 
             <ColumnContainer>
                 <LineContainer>
-                    <Text fontSize='xl'  >Nome:</Text>
+                    <Text as="b"  >Nome:</Text>
                     <Text >{props.name}</Text>
                 </LineContainer>
 
                 <LineContainer>
-                    <Text fontSize='xl' >Plano: </Text>
+                    <Text as="b" >Plano: </Text>
                     <Text >{props.plan}</Text>
                 </LineContainer>
             </ColumnContainer>
 
             <ColumnContainer>
                 <LineContainer>
-                    <Text fontSize='xl' >Início do plano: </Text>
+                    <Text as="b" >Início do plano: </Text>
                     <Text >{props.started}</Text>
                 </LineContainer>
 
                 <LineContainer>
-                    <Text fontSize='xl'  >Fim previsto: </Text>
+                    <Text as="b"  >Fim previsto: </Text>
                     <Text > {props.ends}</Text>
                 </LineContainer>
             </ColumnContainer>
@@ -40,7 +40,7 @@ const UserInfoList = (props) => {
             <ColumnContainer>
 
                 <LineContainer>
-                    <Text fontSize='xl' >Aulas disponíveis:</Text>
+                    <Text as="b" >Aulas disponíveis:</Text>
                     <Text >{props.availableClasses}</Text>
                 </LineContainer>
             </ColumnContainer>

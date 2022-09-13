@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const ClassesListContainer = styled.div`
-padding: 0.1em;
 display:flex;
 flex-direction:column;
 align-items: center;

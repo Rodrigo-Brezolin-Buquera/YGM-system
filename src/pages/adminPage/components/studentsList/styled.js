@@ -6,12 +6,13 @@ export const List = styled.div`
 display:flex;
 flex-direction:column;
 gap: 0.5em;
-width: 70%;
-margin: 0 1em;
+width: 100%;
+margin: 0.5em ;
 `
 
 export const FilterContainer = styled.div`
 display:flex;
+gap: 1em;
 
 @media (max-width: ${cellMaxWidth}) {
     flex-direction: column;

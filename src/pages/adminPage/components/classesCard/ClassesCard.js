@@ -7,7 +7,7 @@ const ClassesCard = (props) => {
     return (
         <CardContainer onClick={ () => goToViewClass(props.history, props.id)} >
             <TextContainer>
-                <Text fontSize='lg'> {props.day} - {props.time}</Text>
+                <Text fontSize='lg' as="b"> {props.day} - {props.time}</Text>
                 <Text> {props.teacher} - {props.name}  </Text>
             </TextContainer>
         </CardContainer>
