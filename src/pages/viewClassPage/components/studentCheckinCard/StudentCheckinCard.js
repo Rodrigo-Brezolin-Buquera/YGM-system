@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { StudentCard, IconCont } from './styled';
+import { StudentCard, IconCont, LineContainer } from './styled';
 import { Text, CircularProgress } from '@chakra-ui/react'
 import { CheckIcon, DeleteIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import { deleteCheckin, validateCheckin } from '../../../../services/requests/bookingRequests';
@@ -26,9 +26,9 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
     return (
         <StudentCard>
             {(loading) ? 
-            <CircularProgress isIndeterminate color="yellow.400" size="75px"  /> 
+            <CircularProgress isIndeterminate color="yellow.400" size="50px"  /> 
             : 
-            <div>
+            <LineContainer>
                 <IconCont
                     onClick={() => confirmCheckin()}
                     type={verified}
@@ -43,7 +43,7 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
                 <IconCont onClick={() => cancelCheckin()}  >
                     <DeleteIcon />
                 </IconCont>
-            </div>
+            </LineContainer>
             }
         </StudentCard>
     )

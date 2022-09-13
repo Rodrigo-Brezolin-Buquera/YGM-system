@@ -23,7 +23,7 @@ const DeleteClassButtons = ({ id, groupId, history }) => {
 
     return <ButtonContainer>
         <Button
-            colorScheme='teal'
+            colorScheme='yellow'
             onClick={deleteClass}
         >
             {loading ? <CircularProgress isIndeterminate color="yellow.400" size="75px"  /> :  "Excluir aula"}
@@ -31,7 +31,7 @@ const DeleteClassButtons = ({ id, groupId, history }) => {
         </Button>
 
         <Button
-            colorScheme='teal'
+            colorScheme='yellow'
             onClick={deleteClasses}
         >
             {loading ? <CircularProgress isIndeterminate color="yellow.400" size="75px"  /> :  "Excluir horário"}

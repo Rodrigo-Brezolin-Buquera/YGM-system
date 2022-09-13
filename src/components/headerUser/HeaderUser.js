@@ -16,7 +16,7 @@ const Header = ({history}) => {
             <Logo src={white} alt="logo" />
                 <ButtonContainer>              
                     <Button
-                        colorScheme={"yellow"}   
+                       
                         onClick={() => exitApp()}
                     >Sair
                     </Button>

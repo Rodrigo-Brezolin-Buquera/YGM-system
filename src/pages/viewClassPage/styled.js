@@ -19,7 +19,7 @@ display: flex;
 flex-direction:column;
 background-color:${primaryColor};
 min-width: 250px;
-padding-top: 1em;
+padding-top: 0.5em;
 align-items:center;
 `
 

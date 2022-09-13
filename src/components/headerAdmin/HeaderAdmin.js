@@ -18,25 +18,25 @@ const Header = ({history}) => {
 
                 <ButtonContainer>
                     <Button  
-                    colorScheme={"yellow"}                
+                                    
                         onClick={() => goToAdmin(history)}
                     >Home
                     </Button>
 
                     <Button
-                        colorScheme={"yellow"}   
+                           
                         onClick={() => goToCreateContract(history)}
                     >Criar Usuário
                     </Button>
 
                     <Button
-                        colorScheme={"yellow"}   
+                           
                         onClick={() => goToCalendar(history)}
                     >Agenda
                     </Button>
 
                     <Button
-                      colorScheme={"yellow"}     
+                           
                         onClick={() => exitApp()}
                     >Sair
                     </Button>
