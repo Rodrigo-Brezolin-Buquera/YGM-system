@@ -2,7 +2,7 @@ import axios from "axios";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { BASE_URL } from "../../constants/baseURL";
 import { goToAdmin, goToUser } from "../../routes/coordinator";
-
+import { decodeToken } from "react-jwt";
 import { auth } from "./config";
 
 export const login = async (form, history,setLoading) => {
@@ -13,7 +13,8 @@ export const login = async (form, history,setLoading) => {
     })
     .then(res=> {
       localStorage.setItem("token", res.data.token) 
-      res.data.admin ? goToAdmin(history) : goToUser(history) 
+      const tokenData =decodeToken(res.data.token)
+      tokenData.admin ? goToAdmin(history) : goToUser(history, tokenData.id) 
     } )
     .catch((err) => {
       console.log(err.response)
