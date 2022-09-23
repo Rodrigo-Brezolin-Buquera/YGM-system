@@ -5,7 +5,7 @@ import { goToAdmin, goToUser } from "../../routes/coordinator";
 
 import { auth } from "./config";
 
-export const login = async (form, history, goToPage, setLoading) => {
+export const login = async (form, history,setLoading) => {
   signInWithEmailAndPassword(auth, form.email, form.password)
     .then(userCredential => {
     const token = userCredential.user.accessToken
@@ -13,8 +13,7 @@ export const login = async (form, history, goToPage, setLoading) => {
     })
     .then(res=> {
       localStorage.setItem("token", res.data.token) 
-      goToPage(history)
-      
+      res.data.admin ? goToAdmin(history) : goToUser(history) 
     } )
     .catch((err) => {
       console.log(err.response)

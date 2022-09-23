@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { darkNeutralColor, lightNeutralColor } from "../../../../constants/colors"
+import { darkNeutralColor } from "../../../../constants/colors"
 import { cellMaxWidth } from "../../../../constants/responsiveness"
 
 export const InfoContainer = styled.div`
@@ -8,8 +8,9 @@ padding: 0.5em;
 border-radius:8px;
 border: 0.5px solid ${darkNeutralColor};
 min-width: 250px;
+width: 90%;
 gap: 0.5em;
-background-color: ${lightNeutralColor};
+background-color: white;
 &:hover {
     cursor: pointer;
 }

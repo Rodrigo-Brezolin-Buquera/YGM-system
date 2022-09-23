@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { StudentCard, IconCont, LineContainer } from './styled';
 import { Text, CircularProgress } from '@chakra-ui/react'
-import { CheckIcon, DeleteIcon, ArrowRightIcon } from '@chakra-ui/icons'
+import { CheckIcon, DeleteIcon, QuestionOutlineIcon } from '@chakra-ui/icons'
 import { deleteCheckin, validateCheckin } from '../../../../services/requests/bookingRequests';
 CheckIcon
 
@@ -33,7 +33,7 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
                     onClick={() => confirmCheckin()}
                     type={verified}
                 >
-                    {verified ? <CheckIcon /> : <ArrowRightIcon />}
+                    {verified ? <CheckIcon /> : <QuestionOutlineIcon />}
                 </IconCont>
 
                 <StudentCard key={id} >

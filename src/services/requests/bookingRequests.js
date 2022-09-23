@@ -11,7 +11,8 @@ export const createCheckin = async (contractId, yogaClassId, setCheckin) => {
     await axios.post(URL, body, setHeaders())
         .then(() => {
             setCheckin(true)
-            console.log("checkin alterado")})
+           
+        })
         .catch((err) => {
             console.log(err.response)
             alert(err.response.message)
@@ -37,7 +38,8 @@ export const deleteCheckin = async (id, setCheckin) => {
     await axios.delete(URL, setHeaders())
         .then(() => {
             setCheckin(false)
-            console.log("checkin deletado")})
+           
+        })
         .catch((err) => {
             console.log(err.response)
             alert(err.response.message)

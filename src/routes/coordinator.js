@@ -6,12 +6,9 @@ export const goToUser = (history, id) => {
     history.push(`/user/${id}`)
 }
 
-export const goToAdminLogin = (history) => {
-    history.push(`/admin/login`)
-}
 
 export const goToAdmin = (history) => {
-    history.push('/admin/main')
+    history.push('/admin')
 }
 
 export const goToCreateContract = (history) => {

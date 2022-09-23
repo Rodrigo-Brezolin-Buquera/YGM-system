@@ -69,7 +69,6 @@ const StudentList = ({ contracts }) => {
             <FilterContainer>
                 <Input
                     onChange={handleNameFilter}
-                    fullWidth
                     placeholder="Buscar por nome "
                     variant="outline"          
                 />

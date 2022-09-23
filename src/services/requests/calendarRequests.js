@@ -20,7 +20,6 @@ export const deleteClassById = (id, setLoading, goBack, history) => {
     axios.delete(URL, setHeaders())
         .then(() => {
             setLoading(false)
-            console.log("Aula deletada")
             goBack(history)
         })
         .catch((err) => {
@@ -34,7 +33,6 @@ export const deleteClassByGroupId = (id, setLoading, goBack, history) => {
     axios.delete(URL, setHeaders())
         .then(() => {
             setLoading(false)
-            console.log("Aulas deletadas")
             goBack(history)
         })
         .catch((err) => {

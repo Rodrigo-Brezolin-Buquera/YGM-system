@@ -5,7 +5,6 @@ import { cellMaxWidth } from "../../../../constants/responsiveness"
 export const List = styled.div`
 display:flex;
 flex-direction:column;
-
 align-items: flex-start;
 gap: 0.5em;
 width: 100%;
@@ -22,12 +21,3 @@ gap: 1em;
   }
 
 `
-
-// export const Select = styled.select`
-// font-size: 1em;
-// padding: 0.5em;
-// margin: 0.5em;
-// border: none;
-// border-radius: 3px;
-
-// `

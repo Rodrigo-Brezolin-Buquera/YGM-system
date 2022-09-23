@@ -8,8 +8,7 @@ import CreateContractPage from '../pages/createContractPage/CreateContractPage';
 import CalendarPage from '../pages/calendarPage/CalendarPage';
 import ViewClassPage from '../pages/viewClassPage/ViewClassPage';
 import ViewContractPage from '../pages/viewContractPage/ViewContractPage';
-import EditContractPage from '../pages/EditContractPage/EditContractPage';
-import AdminLoginPage from '../pages/adminLoginPage/LoginPage';
+import EditContractPage from '../pages/editContractPage/EditContractPage';
 
 const Router = () => {
     return (
@@ -22,12 +21,8 @@ const Router = () => {
                 <Route exact path="/user/:userId">
                     <UserPage />
                 </Route>
-
-                <Route exact path="/admin/login">
-                    <AdminLoginPage />
-                </Route>
-
-                <Route exact path="/admin/main">
+            
+                <Route exact path="/admin">
                     <AdminPage />
                 </Route>
 

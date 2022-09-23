@@ -14,6 +14,7 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoadi
                 time={yogaClass.time}
                 teacher={yogaClass.teacher}
                 name={yogaClass.name}
+                capacity={yogaClass.capacity}
                 checkins={checkins}
                 contractId={contractId}
                 loading={loading}

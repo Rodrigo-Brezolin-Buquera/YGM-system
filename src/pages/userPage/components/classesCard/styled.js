@@ -10,7 +10,8 @@ width: 180px;
 `
 
 export const CardContainer = styled.div`
-display:flex;
+
+display: flex ;
 align-items: center;
 justify-content: center;
 gap: 1em;

@@ -21,8 +21,14 @@ gap: 0.2em;
 margin-right: 0.2em;
 
 @media (max-width: ${cellMaxWidth}) {
- 
+ display:none
   }
 `
+export const MenuContainer = styled.div`
+margin-right: 0.2em;
 
+@media (min-width: ${cellMaxWidth}) {
+ display:none
+  }
+`
 
