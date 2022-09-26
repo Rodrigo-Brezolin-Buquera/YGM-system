@@ -2,18 +2,18 @@ import axios from "axios"
 import { BASE_URL } from "../../constants/baseURL"
 import { setHeaders } from "../../utils/setHeaders"
 
-export const createContract = (form, goToAdmin, history) => {
+export const createContract =  (form, goToAdmin, history,setLoading) => {
     const URL = `${BASE_URL}/contracts`
     axios.post(URL, form, setHeaders() )
         .then(() => {
-            
             alert("Contrato criado")
+            setLoading(false)
             goToAdmin(history)
         })
         .catch((err) => { 
-            
+            setLoading(false)
             console.log(err.response)
-            alert(err.response.message)
+            alert(err.response.data)
          })
 }
 
@@ -35,22 +35,24 @@ export const addNewContract = (form, id, setLoading, setAddPlan) => {
             setAddPlan(false)
         })
         .catch((err) => { 
-            alert(err.response.message)
+            alert(err.response.data)
             setLoading(false)
          })
 }
 
 export const editContract = (form, id, setPlan, setLoading) => {
     const URL = `${BASE_URL}/contracts/edit/${id}`
+    form.active =  form.active === "true"
     axios.put(URL, form, setHeaders() )
         .then(() => {
-            console.log("Contrato alterado")
+            alert("Contrato alterado")
             setPlan(false)
         }
             )
         .catch((err) => { 
             console.log(err.response)
-            alert(err.response.message)
+            alert(err.response.data )
+           
          })
 }
 

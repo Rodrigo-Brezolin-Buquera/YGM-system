@@ -8,14 +8,14 @@ const ClosedPlansInfo = ({closedContracts}) => {
     const closedContractsList = closedContracts && closedContracts.length && closedContracts.map((contract) => {
         return (
             <PlanCard key={contract.id}>
-                <Text > Plano: {contract.plan}</Text>
-                <Text> Terminou em: {contract.ended}</Text>
+                <Text fontSize="xl"  > Plano: {contract.plan}</Text>
+                <Text fontSize="xl" > Terminou em: {contract.ended}</Text>
             </PlanCard>
         )
     })
     return (
         <ClosedPlansContainer>
-            <Text as="b" > Contratos encerrados: </Text>
+            <Text as="b" fontSize="xl" > Contratos encerrados: </Text>
             {closedContracts?.length ? closedContractsList : <p> Não há contratos encerrados </p>}
 
         </ClosedPlansContainer>

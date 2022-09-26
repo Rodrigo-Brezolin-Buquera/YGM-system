@@ -22,7 +22,6 @@ export const useProtectedPageAdmin = () => {
             console.log("Ocorreu um problema, faça login novamente")
             goToLogin(history) 
         }
-
     })
 }
 

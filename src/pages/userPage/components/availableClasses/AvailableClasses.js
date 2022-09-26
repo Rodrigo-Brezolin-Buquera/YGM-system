@@ -3,7 +3,6 @@ import { ClassesListContainer } from './styled'
 import ClassesCard from '../classesCard/ClassesCard';
 import { Text } from '@chakra-ui/react'
 
-
 const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoading }) => {
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
@@ -26,7 +25,7 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoadi
     return (
         <ClassesListContainer>
             <Text fontSize='lg' as="b" > Faça seu check-in:</Text>
-            {classesList.length ? classesList : <p> Não há aulas disponíveis </p>}
+            {classesList.length ? classesList : <Text fontSize='lg' > Não há aulas disponíveis </Text>}
         </ClassesListContainer>
     )
 }

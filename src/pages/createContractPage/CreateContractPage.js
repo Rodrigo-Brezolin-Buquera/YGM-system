@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../components/headerAdmin/HeaderAdmin'
 import { useHistory } from "react-router-dom";
 import { MainContainer, LoginForm, BoxContainer } from "./styled"
@@ -8,7 +8,7 @@ import {
     FormControl,
     Input,
     Button,
-    Select
+    Select, Text, CircularProgress
 } from "@chakra-ui/react";
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { TypeOptions } from '../../constants/selectOptions';
@@ -17,6 +17,7 @@ import { goToAdmin } from '../../routes/coordinator';
 
 const CreateContractPage = () => {
     useProtectedPageAdmin()
+    const [loading, setLoading] = useState(false)
     const {
         handleSubmit,
         register,
@@ -26,10 +27,8 @@ const CreateContractPage = () => {
     const history = useHistory()
 
     const onSubmit = (values) => {
-
-        createContract(values, goToAdmin, history)
-        reset();
-
+        setLoading(true)
+        createContract(values, goToAdmin, history,setLoading)
     }
 
     return (
@@ -85,7 +84,9 @@ const CreateContractPage = () => {
                             </FormErrorMessage>
                         </FormControl>
                         <Button mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit">
-                            Submit
+                            {loading ?
+                                <CircularProgress isIndeterminate color="gray.400" size="40px" />
+                                : <Text>Criar</Text>}
                         </Button>
 
                     </LoginForm>

@@ -22,7 +22,7 @@ export const DeleteContractButton = ({ id, history }) => {
             onClick={() => excludeContract()}
         >
             {loading ?
-                <CircularProgress isIndeterminate color="yellow.400" size="75px"  />
+                <CircularProgress isIndeterminate color="grey.400" size="40px"  />
                 : <Text>Excluir contrato </Text>
             }
         </Button>

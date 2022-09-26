@@ -11,7 +11,7 @@ export const createClass = (form, setLoading) => {
         })
         .catch((err) => {
             setLoading(false)
-            alert(err.response.message)
+            alert(err.response.data)
         })
 }
 
@@ -24,7 +24,7 @@ export const deleteClassById = (id, setLoading, goBack, history) => {
         })
         .catch((err) => {
             setLoading(false)
-            alert(err.response.message)
+            alert(err.response.data)
         })
 }
 
@@ -37,6 +37,6 @@ export const deleteClassByGroupId = (id, setLoading, goBack, history) => {
         })
         .catch((err) => {
             setLoading(false)
-            alert(err.response.message)
+            alert(err.response.data)
         })
 }

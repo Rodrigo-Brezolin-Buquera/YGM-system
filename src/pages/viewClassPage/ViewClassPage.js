@@ -7,13 +7,14 @@ import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from "../../hooks/useRequestData"
 import StudentList from './components/studentList/StudentList';
 import DeleteClassButtons from './components/deleteClassButtons/DeleteClassButtons';
+import { CircularProgress } from '@chakra-ui/react'
 
 const ViewClassPage = () => {
     useProtectedPageAdmin()
     const history = useHistory()
-    const {classId} = useParams()
+    const { classId } = useParams()
     const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${classId}`)
-    const [checkins, getCheckins] = useRequestData([], `/booking/yogaClass/${classId}` )
+    const [checkins, getCheckins] = useRequestData([], `/booking/yogaClass/${classId}`)
     const [loading, setLoading] = useState(false)
 
     useLayoutEffect(() => {
@@ -26,7 +27,7 @@ const ViewClassPage = () => {
             <Header history={history} />
             <MainContainer>
                 <CenterContainer>
-                    <ClassInfo
+                    {yogaClass.id ? <ClassInfo
                         key={yogaClass.id}
                         id={yogaClass.id}
                         day={yogaClass.day}
@@ -34,18 +35,21 @@ const ViewClassPage = () => {
                         date={yogaClass.date}
                         teacher={yogaClass.teacher}
                         name={yogaClass.name}
-                    />
+                    /> :
+                        <CircularProgress isIndeterminate color="yellow.400" size="70px" />
+                    }
+
                     <DeleteClassButtons
-                        id={yogaClass.id} 
-                        groupId={yogaClass.groupId} 
+                        id={yogaClass.id}
+                        groupId={yogaClass.groupId}
                         history={history}
                     />
                 </CenterContainer>
                 <SideContainer>
-                    <StudentList 
-                    checkins={checkins} 
-                    loading={loading} 
-                    setLoading={setLoading}
+                    <StudentList
+                        checkins={checkins}
+                        loading={loading}
+                        setLoading={setLoading}
                     />
                 </SideContainer>
             </MainContainer>

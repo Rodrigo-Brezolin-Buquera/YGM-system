@@ -51,7 +51,7 @@ const EditContractPage = () => {
                         colorScheme='yellow'
                         onClick={() => setPlan(!plan)}
                     >
-                       <Text>Alterar contrato</Text> 
+                       <Text> { plan ? "Fechar" : "Alterar contrato"}</Text> 
                     </Button>
 
                     <ChangePasswordButton

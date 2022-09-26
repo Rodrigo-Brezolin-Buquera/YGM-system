@@ -29,7 +29,7 @@ export const validateCheckin = async (checkinId, verified) => {
         .then(() => console.log("checkin alterado"))
         .catch((err) => {
             console.log(err.response)
-            alert(err.response.message)
+            alert(err.response.data)
         })
 }
 
@@ -42,6 +42,6 @@ export const deleteCheckin = async (id, setCheckin) => {
         })
         .catch((err) => {
             console.log(err.response)
-            alert(err.response.message)
+            alert(err.response.data)
         })
 }

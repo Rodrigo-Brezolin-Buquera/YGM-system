@@ -6,7 +6,7 @@ import {
   FormErrorMessage,
   FormControl,
   Input,
-  Button
+  Button, Text, CircularProgress
 } from "@chakra-ui/react";
 
 export const LoginForm = ({ history }) => {
@@ -19,6 +19,7 @@ export const LoginForm = ({ history }) => {
   } = useForm();
 
   const onSubmit = async (values) => {
+    setLoading(true)
     await login(values, history, setLoading)
     reset()
   }
@@ -28,31 +29,33 @@ export const LoginForm = ({ history }) => {
       <Form onSubmit={handleSubmit(onSubmit)} >
         <FormControl isInvalid={errors.email || errors.password}>
           <InputContainer>
-          <Input
-            id="email"
-            placeholder="Email"
-            {...register("email", {
-              required: "Campo obrigatório",
-            })}
-            variant="outline"
-            
-          />
+            <Input
+              id="email"
+              placeholder="Email"
+              {...register("email", {
+                required: "Campo obrigatório",
+              })}
+              variant="outline"
 
-          <Input
-            id="password"
-            placeholder="Senha"
-            {...register("password", {
-              required: "Campo obrigatório",
-            })}
-            variant="outline"
-            type= 'password'
-          />
+            />
 
-          <Button
-            mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit"
-          >
-            Login
-          </Button>
+            <Input
+              id="password"
+              placeholder="Senha"
+              {...register("password", {
+                required: "Campo obrigatório",
+              })}
+              variant="outline"
+              type='password'
+            />
+
+            <Button
+              mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit"
+            >
+              {loading ?
+                <CircularProgress isIndeterminate color="gray.400" size="40px" />
+                : <Text>Login</Text>}
+            </Button>
           </InputContainer>
           <FormErrorMessage>
             {errors.email && errors.email.message}

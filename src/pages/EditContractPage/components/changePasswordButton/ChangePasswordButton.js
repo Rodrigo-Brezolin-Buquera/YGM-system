@@ -19,7 +19,7 @@ export const ChangePasswordButton = ({ id }) => {
             onClick={() => sendPasswordLink()}
         >
             {loading ?
-                <CircularProgress isIndeterminate color="yellow.400" size="75px" />
+                <CircularProgress isIndeterminate color="yellow.400" size="40px" />
                 :
                 <Text>Nova senha</Text>
             }

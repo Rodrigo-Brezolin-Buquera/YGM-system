@@ -6,7 +6,7 @@ import {
     FormControl,
     Input,
     Button,
-    Select
+    Select, Text, CircularProgress
 } from "@chakra-ui/react";
 import { DayOptions, StyleOptions, TeacherOptions } from '../../../../constants/selectOptions'
 import { createClass } from '../../../../services/requests/calendarRequests'
@@ -90,7 +90,9 @@ const CreateClassForm = ({ loading, setLoading }) => {
 
             </FormControl>
             <Button mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit">
-                Criar aula
+            {loading ?
+                <CircularProgress isIndeterminate color="gray.400" size="40px" />
+                : <Text>Criar aula</Text>}
             </Button>
         </Form>
     )

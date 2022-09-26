@@ -13,8 +13,8 @@ import {
 import { ChevronDownIcon } from "@chakra-ui/icons"
 
 const Header = ({ history }) => {
-
     const exitApp = () => {
+
         logout()
         goToLogin(history)
     }
@@ -41,7 +41,8 @@ const Header = ({ history }) => {
 
                 <Button
                     onClick={() => exitApp()}
-                >Sair
+                >
+                    Sair
                 </Button>
             </ButtonContainer>
 

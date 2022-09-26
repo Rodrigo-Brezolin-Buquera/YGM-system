@@ -5,7 +5,7 @@ import { MainContainer, ColumnContainer, ButtonContainer, SideContainer } from "
 import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
 import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
 import UserInfo from '../../components/userInfo/UserInfo'
-import {Button} from '@chakra-ui/react';
+import {Button, CircularProgress} from '@chakra-ui/react';
 import { goToEditContract } from '../../routes/coordinator';
 import PlanForm from './components/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
@@ -30,7 +30,7 @@ const ViewContractPage = () => {
     }, [addPlan, loading])
    
     return (
-        <div>
+        <>
             <Header history={history} />
 
             <MainContainer>
@@ -39,7 +39,7 @@ const ViewContractPage = () => {
                 </SideContainer>
                 <ColumnContainer>
                     {
-                        contracts.id &&
+                        contracts.id ?
                         <UserInfo
                             id={contracts.id}
                             name={contracts.name}
@@ -47,7 +47,8 @@ const ViewContractPage = () => {
                             planStarted={contracts.currentContract.started}
                             planEnds={contracts.currentContract.ends}
                             availableClasses={contracts.currentContract.availableClasses}
-                        />
+                        /> :
+                        <CircularProgress isIndeterminate color="yellow.400" size="70px" />  
                     }
 
                     <ButtonContainer>
@@ -79,7 +80,7 @@ const ViewContractPage = () => {
 
             </MainContainer>
 
-        </div>
+        </>
     )
 }
 

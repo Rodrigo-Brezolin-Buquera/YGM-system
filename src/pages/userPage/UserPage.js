@@ -8,6 +8,7 @@ import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
 import AvailableClasses from "./components/availableClasses/AvailableClasses"
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
 import { useRequestData } from '../../hooks/useRequestData';
+import {CircularProgress} from '@chakra-ui/react'
 
 const UserPage = () => {
     useProtectedPageStudent()
@@ -40,7 +41,7 @@ const UserPage = () => {
 
                 <CentralContainer>
                     {
-                        contract.id &&
+                        contract.id ?
                         <UserInfo
                             id={contract.id}
                             name={contract.name}
@@ -48,9 +49,9 @@ const UserPage = () => {
                             planStarted={contract?.currentContract?.started}
                             planEnds={contract?.currentContract?.ends}
                             availableClasses={contract?.currentContract?.availableClasses}
-                        />
+                        /> :
+                        <CircularProgress isIndeterminate color="yellow.400" size="70px" />                    
                     }
-
                     <ClosedPlansInfo
                         closedContracts={contract.closedContracts}
                     />

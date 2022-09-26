@@ -13,8 +13,7 @@ export const useProtectedPageStudent = () => {
             goToLogin(history)
         }
 
-        if (isExpired(token)) {
-            
+        if (isExpired(token)) {          
             console.log("Sessão expirada, faça login novamente")
             goToLogin(history)
         }
