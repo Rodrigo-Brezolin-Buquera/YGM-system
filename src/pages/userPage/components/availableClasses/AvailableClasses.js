@@ -1,8 +1,7 @@
 import React from 'react'
 import { ClassesListContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
 import ClassesCard from '../classesCard/ClassesCard';
-
+import { Text } from '@chakra-ui/react'
 
 const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoading }) => {
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
@@ -14,6 +13,7 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoadi
                 time={yogaClass.time}
                 teacher={yogaClass.teacher}
                 name={yogaClass.name}
+                capacity={yogaClass.capacity}
                 checkins={checkins}
                 contractId={contractId}
                 loading={loading}
@@ -24,8 +24,8 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoadi
 
     return (
         <ClassesListContainer>
-            <Typography variant="h6" > Faça seu check-in:</Typography>
-            {classesList.length ? classesList : <p> Não há aulas disponíveis </p>}
+            <Text fontSize='lg' as="b" > Faça seu check-in:</Text>
+            {classesList.length ? classesList : <Text fontSize='lg' > Não há aulas disponíveis </Text>}
         </ClassesListContainer>
     )
 }

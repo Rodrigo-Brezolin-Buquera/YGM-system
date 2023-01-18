@@ -5,7 +5,7 @@ display: flex;
 flex-direction:column;
 align-items:center;
 gap: 0.5em;
-
+width: 500px;
 `
 
 export const Input = styled.input`
@@ -21,4 +21,5 @@ export const FormLine = styled.div`
 display: flex;
 align-items:center;
 gap: 0.5em;
+margin: 0.em;
 `

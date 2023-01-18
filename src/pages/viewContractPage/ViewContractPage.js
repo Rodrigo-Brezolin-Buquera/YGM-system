@@ -5,7 +5,7 @@ import { MainContainer, ColumnContainer, ButtonContainer, SideContainer } from "
 import ClosedPlansInfo from '../../components/closedPlansInfo/ClosedPlansInfo';
 import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
 import UserInfo from '../../components/userInfo/UserInfo'
-import Button from '@material-ui/core/Button';
+import {Button, CircularProgress} from '@chakra-ui/react';
 import { goToEditContract } from '../../routes/coordinator';
 import PlanForm from './components/planForm/PlanForm';
 import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
@@ -15,6 +15,7 @@ const ViewContractPage = () => {
     useProtectedPageAdmin()
     const { userId } = useParams();
     const [contracts, getContracts] = useRequestData({}, `/contracts/${userId}`)
+    const [checkins, getCheckins] = useRequestData([], `/booking/contract/${userId}` )
     const [addPlan, setAddPlan] = useState(false)
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -25,19 +26,20 @@ const ViewContractPage = () => {
 
     useEffect(() => {
         getContracts()
+        getCheckins()
     }, [addPlan, loading])
    
     return (
-        <div>
+        <>
             <Header history={history} />
 
             <MainContainer>
                 <SideContainer>
-                    { contracts.id && <CheckinsDone checkins={contracts.currentContract.checkins}/>}
+                    <CheckinsDone checkins={checkins}/>
                 </SideContainer>
                 <ColumnContainer>
                     {
-                        contracts.id &&
+                        contracts.id ?
                         <UserInfo
                             id={contracts.id}
                             name={contracts.name}
@@ -45,23 +47,20 @@ const ViewContractPage = () => {
                             planStarted={contracts.currentContract.started}
                             planEnds={contracts.currentContract.ends}
                             availableClasses={contracts.currentContract.availableClasses}
-                        />
+                        /> :
+                        <CircularProgress isIndeterminate color="yellow.400" size="70px" />  
                     }
 
                     <ButtonContainer>
                         <Button
-                            type={"submit"}
-                            variant={"contained"}
-                            color={"variant"}
+                            colorScheme={"yellow"}
                             onClick={() => goToEditContract(history, contracts.id)}
                         >
                             Editar Contrato
                         </Button>
 
                         <Button
-                            type={"submit"}
-                            variant={"contained"}
-                            color={"secondary"}
+                           colorScheme={"yellow"}
                             onClick={() => addNewPlan()}
                         >
                             {addPlan ? "Fechar" : "Novo Plano"}
@@ -81,7 +80,7 @@ const ViewContractPage = () => {
 
             </MainContainer>
 
-        </div>
+        </>
     )
 }
 

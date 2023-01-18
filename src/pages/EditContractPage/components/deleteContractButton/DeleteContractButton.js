@@ -1,4 +1,4 @@
-import { Button, Typography, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { goToAdmin } from '../../../../routes/coordinator';
 import { deleteContract } from '../../../../services/requests/contractRequests';
@@ -18,13 +18,12 @@ export const DeleteContractButton = ({ id, history }) => {
     
     return (
         <Button
-            variant={"contained"}
-            color={"secondary"}
+        colorScheme='teal'
             onClick={() => excludeContract()}
         >
             {loading ?
-                <CircularProgress color={"inherit"} size={24} />
-                : <Typography>Excluir contrato </Typography>
+                <CircularProgress isIndeterminate color="grey.400" size="40px"  />
+                : <Text>Excluir contrato </Text>
             }
         </Button>
     )

@@ -1,64 +1,67 @@
 import React, { useState } from 'react'
-import useForm from '../../../hooks/useForm'
-import { Form, BoxContainer } from ".././styled"
-import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
+import { Form, BoxContainer, InputContainer } from "./styled"
 import { login } from '../../../services/firebase/auth';
+import { useForm } from "react-hook-form";
+import {
+  FormErrorMessage,
+  FormControl,
+  Input,
+  Button, Text, CircularProgress
+} from "@chakra-ui/react";
 
-export const LoginForm = ({history}) => {
+export const LoginForm = ({ history }) => {
   const [loading, setLoading] = useState(false)
-  const [form, onChange, cleanFields] = useForm({ email: "", password: "" })
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm();
 
-  const onSubmitForm = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (values) => {
     setLoading(true)
-    await login(form, history, setLoading)
-    cleanFields()
-    
+    await login(values, history, setLoading)
+    reset()
   }
 
   return (
     <BoxContainer>
-      <Form onSubmit={onSubmitForm} >
-        <TextField
-          name={"email"}
-          value={form.email}
-          onChange={onChange}
-          type="email"
-          required
-          placeholder="Email"
-          fullWidth
-          margin="normal"
-          id="filled-basic"
-          label="Email"
-          variant="filled"
-        ></TextField>
+      <Form onSubmit={handleSubmit(onSubmit)} >
+        <FormControl isInvalid={errors.email || errors.password}>
+          <InputContainer>
+            <Input
+              id="email"
+              placeholder="Email"
+              {...register("email", {
+                required: "Campo obrigatório",
+              })}
+              variant="outline"
 
-        <TextField
-          name={"password"}
- 
-          value={form.password}
-          onChange={onChange}
-          type="password"
-          required
-          placeholder="Senha"
-          fullWidth
-          margin="normal"
-          id="filled-basic"
-          label="Senha"
-          variant="filled"
-        ></TextField>
+            />
 
-        <Button
-          type={"submit"}
-          variant={"contained"}
-          color={"secondary"}
-        >
-          {loading ?
-            <CircularProgress color={"inherit"} size={24} />
-            :
-            <> <Typography>Login</Typography> </>
-          }
-        </Button>
+            <Input
+              id="password"
+              placeholder="Senha"
+              {...register("password", {
+                required: "Campo obrigatório",
+              })}
+              variant="outline"
+              type='password'
+            />
+
+            <Button
+              mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit"
+            >
+              {loading ?
+                <CircularProgress isIndeterminate color="gray.400" size="40px" />
+                : <Text>Login</Text>}
+            </Button>
+          </InputContainer>
+          <FormErrorMessage>
+            {errors.email && errors.email.message}
+            {errors.password && errors.password.message}
+          </FormErrorMessage>
+        </FormControl>
       </Form>
     </BoxContainer>
   )

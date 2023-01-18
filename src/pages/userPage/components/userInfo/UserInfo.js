@@ -1,33 +1,34 @@
 import React from 'react'
 import { InfoContainer, FlexContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import { Text } from '@chakra-ui/react'
 
-const UserInfo = (props) => { 
+
+const UserInfo = (props) => {
     return (
         <InfoContainer  >
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }} >Nome:</Typography>
-                <Typography component="p">{props.name}</Typography>
+                <Text as='b' fontSize='lg' >Nome:</Text>
+                <Text fontSize='lg' >{props.name}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Plano: </Typography>
-                <Typography component="p">{props.plan} </Typography>
+                <Text as='b' fontSize='lg' >Plano: </Text>
+                <Text fontSize='lg' >{props.plan} </Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Início do plano: </Typography>
-                <Typography component="p"> {props.planStarted}</Typography>
+                <Text as='b' fontSize='lg' >Início do plano: </Text>
+                <Text fontSize='lg' > {props.planStarted}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Fim previsto: </Typography>
-                <Typography component="p"> {props.planEnds}</Typography>
+                <Text as='b' fontSize='lg' >Fim previsto: </Text>
+                <Text fontSize='lg' > {props.planEnds}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas disponíveis:</Typography>
-                <Typography component="p">{props.availableClasses}</Typography>
+                <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
+                <Text fontSize='lg' >{props.availableClasses}</Text>
             </FlexContainer>
         </InfoContainer>
     )

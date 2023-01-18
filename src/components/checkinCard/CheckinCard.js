@@ -1,12 +1,12 @@
 import React from 'react'
 import { CheckinCardCont } from './styled'
-import Typography from '@material-ui/core/Typography';
+import {Text} from '@chakra-ui/react';
 
 const CheckinCard = ({checkin}) => {
    
     return (
         <CheckinCardCont>
-            <Typography component="subtitle2" style={{ fontWeight: 600 }}> {checkin.date}</Typography>    
+            <Text as="b" > {checkin.date}</Text>    
         </CheckinCardCont>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {CheckinsContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import {Text} from '@chakra-ui/react';
 import CheckinCard from '../checkinCard/CheckinCard';
 
 const CheckinsDone = ({checkins}) => {
@@ -15,7 +15,7 @@ const CheckinsDone = ({checkins}) => {
     
     return ( 
         <CheckinsContainer>
-            <Typography variant="h6" > Checkins realizados: </Typography>
+            <Text fontSize='lg' as="b" > Checkins realizados: </Text>
             { checkins?.length ? checkinsList : <p> Não há check-ins no momento </p> }
         </CheckinsContainer>
     )

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import { StudentCard, IconCont } from './styled';
-import { Typography, CircularProgress } from '@material-ui/core';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import CancelIcon from '@material-ui/icons/Cancel';
+import { StudentCard, IconCont, LineContainer } from './styled';
+import { Text, CircularProgress } from '@chakra-ui/react'
+import { CheckIcon, DeleteIcon, QuestionOutlineIcon } from '@chakra-ui/icons'
 import { deleteCheckin, validateCheckin } from '../../../../services/requests/bookingRequests';
+CheckIcon
 
 const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
-    useEffect(() => { }, [verified, loading])
+    useEffect(() => {
+     }, [verified, loading])
 
     const confirmCheckin = async () => {
         setLoading(true)
@@ -20,27 +20,31 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
             setLoading(true)
             await deleteCheckin(id)
             setLoading(false)
-        }
+        } 
     }
 
     return (
         <StudentCard>
-            {loading ? <CircularProgress color={"inherit"} size={24} /> : <>
+            {(loading) ? 
+            <CircularProgress isIndeterminate color="yellow.400" size="50px"  /> 
+            : 
+            <LineContainer>
                 <IconCont
                     onClick={() => confirmCheckin()}
                     type={verified}
                 >
-                    {verified ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+                    {verified ? <CheckIcon /> : <QuestionOutlineIcon />}
                 </IconCont>
 
                 <StudentCard key={id} >
-                    <Typography >  {name}  </Typography>
+                    <Text >  {name}  </Text>
                 </StudentCard>
 
                 <IconCont onClick={() => cancelCheckin()}  >
-                    <CancelIcon />
+                    <DeleteIcon />
                 </IconCont>
-            </>}
+            </LineContainer>
+            }
         </StudentCard>
     )
 }

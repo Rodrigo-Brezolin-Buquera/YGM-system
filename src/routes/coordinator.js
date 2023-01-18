@@ -3,31 +3,32 @@ export const goToLogin = (history) => {
 }
 
 export const goToUser = (history, id) => {
-    history.push(`/usuário/${id}`)
+    history.push(`/user/${id}`)
 }
+
 
 export const goToAdmin = (history) => {
     history.push('/admin')
 }
 
 export const goToCreateContract = (history) => {
-    history.push('/admin/adicionar-usuário')
+    history.push('/admin/addUser')
 }
 
-export const goToEditCalendar = (history) => {
-    history.push('/admin/calendário')
+export const goToCalendar = (history) => {
+    history.push('/admin/calendar')
 }
 
 export const goToViewClass = (history, id) => {
-    history.push(`/admin/aula/${id}`)
+    history.push(`/admin/class/${id}`)
 }
 
 export const goToViewContract = (history, id) => {
-    history.push(`/admin/usuário/${id}`)
+    history.push(`/admin/user/${id}`)
 }
 
 export const goToEditContract = (history, id) => {
-    history.push(`/admin/usuário/${id}/editar`)
+    history.push(`/admin/user/${id}/edit`)
 }
 
 export const goBack = (history) => {

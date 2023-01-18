@@ -1,31 +1,10 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import {  secondaryColor, darkNeutralColor } from "./colors";
+import { extendTheme } from '@chakra-ui/react'
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: darkNeutralColor,
-            contrastText: "white"
-        },
-        secondary: {
-            main: secondaryColor,
-            contrastText: "black"
-        },
-        variant: {
-          main: darkNeutralColor,
-          contrastText: "white"
-        }
-    },
-    typography: {
-        subtitle2: {
-          fontWeight: 600 // or 'bold'
-        }
-      },
-      typography: {
-        button: {
-          textTransform: "none"
-        }
-      }
-});
+const theme = extendTheme({
+  fonts: {
+    heading: `'Open Sans', sans-serif`,
+    body: `'Raleway', sans-serif`,
+  },
+})
 
 export default theme

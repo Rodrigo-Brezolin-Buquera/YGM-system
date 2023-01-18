@@ -22,7 +22,7 @@ height:60px;
 }    
 `
 export const IconCont = styled.div`
-color: ${props => props.type ? "green" : "black"};
+color: ${props => props.type ? "green" : "red"};
 
 &:hover {
     cursor: pointer;

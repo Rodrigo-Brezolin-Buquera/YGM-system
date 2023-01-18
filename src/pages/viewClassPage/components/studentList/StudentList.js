@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography } from '@material-ui/core';
+import { Text } from '@chakra-ui/react'
 import StudentCheckinCard from "../studentCheckinCard/StudentCheckinCard"
 
 const StudentList = ({ checkins, loading, setLoading }) => {
@@ -17,7 +17,7 @@ const StudentList = ({ checkins, loading, setLoading }) => {
     })
     return (
         <>
-            <Typography variant="h6" > Lista de checkins: </Typography>
+            <Text fontSize='xl' > Lista de checkins: </Text>
             {checkins?.length ? studentList : <p> Não há check-ins até o momento </p>}
         </>
     )

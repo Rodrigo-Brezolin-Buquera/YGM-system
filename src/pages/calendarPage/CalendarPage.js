@@ -8,7 +8,7 @@ import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
 import { useRequestData } from '../../hooks/useRequestData';
 import moment from 'moment';
 
-const EditCalendarPage = () => {
+const CalendarPage = () => {
     useProtectedPageAdmin()
     const history = useHistory()
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar")
@@ -51,4 +51,4 @@ const EditCalendarPage = () => {
     )
 }
 
-export default EditCalendarPage
+export default CalendarPage

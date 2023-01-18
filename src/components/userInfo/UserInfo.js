@@ -1,37 +1,37 @@
 import React from 'react'
 import { InfoContainer, FlexContainer } from './styled'
-import Typography from '@material-ui/core/Typography';
+import { Text } from '@chakra-ui/react';
 import { goToViewContract } from '../../routes/coordinator';
 import { useHistory } from "react-router-dom";
 
-const UserInfo = (props) => { 
+const UserInfo = (props) => {
     const history = useHistory()
 
     return (
         <InfoContainer onClick={() => goToViewContract(history, props.id)} >
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }} >Nome:</Typography>
-                <Typography component="p">{props.name}</Typography>
+                <Text fontSize="xl" >Nome:</Text>
+                <Text fontSize="xl" >{props.name}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Plano: </Typography>
-                <Typography component="p">{props.plan} </Typography>
+                <Text fontSize="xl"  >Plano: </Text>
+                <Text fontSize="xl" >{props.plan} </Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Início do plano: </Typography>
-                <Typography component="p"> {props.planStarted}</Typography>
+                <Text fontSize="xl"  >Início do plano: </Text>
+                <Text fontSize="xl" > {props.planStarted}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Fim previsto: </Typography>
-                <Typography component="p"> {props.planEnds}</Typography>
+                <Text fontSize="xl"  >Fim previsto: </Text>
+                <Text fontSize="xl" > {props.planEnds}</Text>
             </FlexContainer>
 
             <FlexContainer>
-                <Typography component="subtitle2" style={{ fontWeight: 600 }}>Aulas disponíveis:</Typography>
-                <Typography component="p">{props.availableClasses}</Typography>
+                <Text fontSize="xl" >Aulas disponíveis:</Text>
+                <Text fontSize="xl" >{props.availableClasses}</Text>
             </FlexContainer>
         </InfoContainer>
     )

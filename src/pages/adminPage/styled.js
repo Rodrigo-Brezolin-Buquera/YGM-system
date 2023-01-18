@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { lightNeutralColor, primaryColor } from "../../constants/colors"
+import { lightNeutralColor, primaryColor,  } from "../../constants/colors"
 import { cellMaxWidth } from "../../constants/responsiveness"
 
 export const MainContainer = styled.div`
@@ -7,9 +7,11 @@ display: flex;
 width:100%;
 min-height:100vh;
 justify-content:space-between;
+background-color: ${lightNeutralColor};
 
 @media (max-width: 480px) {
     flex-direction: column-reverse;
+    justify-content:flex-end;
   }
 `
 

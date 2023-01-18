@@ -8,17 +8,20 @@ import CheckinsDone from '../../components/checkinsDone/CheckinsDone';
 import AvailableClasses from "./components/availableClasses/AvailableClasses"
 import { useProtectedPageStudent } from '../../hooks/useProtectedPageStudent'
 import { useRequestData } from '../../hooks/useRequestData';
+import {CircularProgress} from '@chakra-ui/react'
 
 const UserPage = () => {
     useProtectedPageStudent()
     const history = useHistory()
     const [contract, getContract] = useRequestData({}, `/contracts/user`)
     const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true")
+    const [checkins, getCheckins] = useRequestData([], `/booking/`)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         getContract()
         getyogaClasses()
+        getCheckins()
     }, [loading])
 
     return (
@@ -30,7 +33,7 @@ const UserPage = () => {
                     <AvailableClasses
                         yogaClasses={yogaClasses}
                         contractId={contract.id}
-                        checkins={contract?.currentContract?.checkins}
+                        checkins={checkins}
                         loading={loading}
                         setLoading={setLoading}
                     />
@@ -38,7 +41,7 @@ const UserPage = () => {
 
                 <CentralContainer>
                     {
-                        contract.id &&
+                        contract.id ?
                         <UserInfo
                             id={contract.id}
                             name={contract.name}
@@ -46,16 +49,16 @@ const UserPage = () => {
                             planStarted={contract?.currentContract?.started}
                             planEnds={contract?.currentContract?.ends}
                             availableClasses={contract?.currentContract?.availableClasses}
-                        />
+                        /> :
+                        <CircularProgress isIndeterminate color="yellow.400" size="70px" />                    
                     }
-
                     <ClosedPlansInfo
                         closedContracts={contract.closedContracts}
                     />
                 </CentralContainer>
 
                 <SideContainer>
-                    {<CheckinsDone checkins={contract?.currentContract?.checkins} />}
+                    {<CheckinsDone checkins={checkins} />}
                 </SideContainer>
             </MainContainer>
         </div>

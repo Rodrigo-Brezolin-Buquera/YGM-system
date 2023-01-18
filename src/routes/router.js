@@ -5,7 +5,7 @@ import ErrorPage from "../pages/errorPage/ErrorPage"
 import UserPage from "../pages/userPage/UserPage"
 import AdminPage from '../pages/adminPage/AdminPage';
 import CreateContractPage from '../pages/createContractPage/CreateContractPage';
-import EditCalendarPage from '../pages/editCalendarPage/EditCalendarPage';
+import CalendarPage from '../pages/calendarPage/CalendarPage';
 import ViewClassPage from '../pages/viewClassPage/ViewClassPage';
 import ViewContractPage from '../pages/viewContractPage/ViewContractPage';
 import EditContractPage from '../pages/editContractPage/EditContractPage';
@@ -18,31 +18,31 @@ const Router = () => {
                     <LoginPage />
                 </Route>
 
-                <Route exact path="/usuário/:userId">
+                <Route exact path="/user/:userId">
                     <UserPage />
                 </Route>
-
+            
                 <Route exact path="/admin">
                     <AdminPage />
                 </Route>
 
-                <Route exact path="/admin/adicionar-usuário">
+                <Route exact path="/admin/addUser">
                     <CreateContractPage />
                 </Route>
 
-                <Route exact path="/admin/calendário">
-                    <EditCalendarPage />
+                <Route exact path="/admin/calendar">
+                    <CalendarPage />
                 </Route>
 
-                <Route exact path="/admin/aula/:classId">
+                <Route exact path="/admin/class/:classId">
                     <ViewClassPage />
                 </Route>
 
-                <Route exact path="/admin/usuário/:userId">
+                <Route exact path="/admin/user/:userId">
                     <ViewContractPage />
                 </Route>
 
-                <Route exact path="/admin/usuário/:userId/editar">
+                <Route exact path="/admin/user/:userId/edit">
                     <EditContractPage />
                 </Route>
 

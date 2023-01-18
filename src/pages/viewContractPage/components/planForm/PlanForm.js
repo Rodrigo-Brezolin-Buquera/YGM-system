@@ -1,52 +1,67 @@
 import React from 'react'
-import { Form, Input, Select } from './styled'
-import useForm from '../../../../hooks/useForm'
-import { Button, CircularProgress, Typography } from '@material-ui/core'
+import { Form } from './styled'
+import { useForm } from "react-hook-form";
+import {
+    FormErrorMessage,
+    FormControl,
+    Input,
+    Button,
+    Select, Text, CircularProgress
+} from "@chakra-ui/react";
 import { TypeOptions } from '../../../../constants/selectOptions'
 import { addNewContract } from '../../../../services/requests/contractRequests'
 
 const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
-    const [form, onChange, cleanFields] = useForm({ plan: "", date: "" })
-   
+    const {
+        handleSubmit,
+        register,
+        formState: { errors, isSubmitting },
+        reset
+    } = useForm();
 
-    const onSubmitForm = (e) => {
-        e.preventDefault()
+
+    const onSubmit = (values) => {
+        console.log(values)
         setLoading(true)
-        addNewContract(form, id, setLoading, setAddPlan)
-        cleanFields() 
+        addNewContract(values, id, setLoading, setAddPlan)
+        reset()
     }
 
     return (
-        <Form onSubmit={onSubmitForm} >
-            <Select
-                name="plan"
-                onChange={onChange}
-                placeholder="Escolha um plano"
-                value={form.plan}
-                required
-            >
-                <TypeOptions />
-            </Select>
+        <Form onSubmit={handleSubmit(onSubmit)} >
+            <FormControl isInvalid={errors.plan || errors.date}>
+                <Select
+                    id="plan"
+                    variant={"outline"}
+                    placeholder="Plano"
+                    {...register("plan", {
+                        required: "Campo Obrigatório"
+                    })}
+                >
+                    <TypeOptions />
+                </Select>
 
-            <Typography>Início:</Typography>
-            <Input
-                name="date"
-                onChange={onChange}
-                placeholder="Escolha um plano"
-                value={form.date}
-                type="date"
-                required
-            />
-
-            <Button
-                type={"submit"}
-                variant={"contained"}
-                color={"secondary"}
-            >
-               {loading ? <CircularProgress color={"inherit"} size={24} />
-            :
-            <> <Typography>Alterar contratro</Typography> </> } 
+                <Input
+                    variant={"outline"}
+                    id="date"
+                    placeholder="Escolha um plano"
+                    type="date"
+                    {...register("date", {
+                        required: "Campo Obrigatório"
+                    })}
+                />
+                <FormErrorMessage>
+                    {errors.plan && errors.plan.message}
+                    {errors.date && errors.date.message}
+                </FormErrorMessage>
+            </FormControl>
+            <Button mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit">
+                {loading ?
+                    <CircularProgress isIndeterminate color="grey.400" size="40px" />
+                    : <Text>Adicionar plano </Text>
+                }
             </Button>
+
         </Form>
     )
 }
