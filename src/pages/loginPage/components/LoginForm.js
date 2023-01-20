@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, BoxContainer, InputContainer } from "./styled"
-import { login } from '../../../services/firebase/auth';
+import { login } from '../../../services/auth/auth';
 import { useForm } from "react-hook-form";
 import {
   FormErrorMessage,

@@ -3,8 +3,6 @@ import React from 'react';
 import Router from './routes/router';
 import theme from './constants/theme';
 
-
-
 function App() {
   return (
     <ChakraProvider theme={theme}  >  

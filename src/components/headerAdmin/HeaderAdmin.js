@@ -3,7 +3,7 @@ import white from "../../assets/logo/white.png"
 import { goToAdmin, goToCreateContract, goToCalendar, goToLogin } from '../../routes/coordinator'
 import { HeaderContainer, Logo, ButtonContainer, MenuContainer } from './styled'
 import { Button } from '@chakra-ui/react'
-import { logout } from '../../services/firebase/auth'
+import { logout } from '../../services/auth/auth'
 import {
     Menu,
     MenuButton,
