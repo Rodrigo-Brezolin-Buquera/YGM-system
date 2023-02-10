@@ -1,9 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import defaultLogo from "../../assets/defaultLogo.png";
 import { LogoImg } from "../../theme/LogoImg";
 import { colors } from "../../theme/colors";
 import { LoginForm } from "./LoginForm";
-import defaultLogo from "../../assets/defaultLogo.png";
 
 const LoginPage = () => {
     const navigate = useNavigate();

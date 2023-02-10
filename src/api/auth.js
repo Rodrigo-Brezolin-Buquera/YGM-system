@@ -1,5 +1,5 @@
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { goToAdmin, goToUser } from "../routes/coordinator";
+import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 import { auth, usersCol } from "./config";
 import { findItemById } from ".";
 
@@ -29,9 +29,11 @@ export const singUp = async (form, setLoading) => {
     }
 };
 
-export const logout = async () => {
+export const logout = async (navigate) => {
     try {  
         await signOut(auth);
+        goToLogin(navigate);
+
     } catch (err) {
         console.log(err);
         

@@ -8,8 +8,8 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
-import { colors } from "../../theme/colors";
 import { FormButton } from "../../theme/FormButton";
+import { colors } from "../../theme/colors";
 
 export const LoginForm = ({ navigate }) => {
     const [loading, setLoading] = useState(false);

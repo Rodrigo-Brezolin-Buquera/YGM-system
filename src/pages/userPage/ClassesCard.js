@@ -8,7 +8,7 @@ const ClassesCard = (props) => {
     const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
     // eslint-disable-next-line autofix/no-unused-vars
     // eslint-disable-next-line no-unused-vars
-    const [checkin, setCheckin] = useState(checkinDone);
+    const [checkin, ] = useState(checkinDone);
 
     const handleCheckin = async () => {
         if (checkin && capacity === 0) {

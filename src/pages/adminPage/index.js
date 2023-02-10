@@ -1,34 +1,51 @@
-import React, { useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom";
-import Header from "../../components/headerAdmin/HeaderAdmin";
-import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
-import { useRequestData } from "../../hooks/useRequestData";
-import AvailableClasses from "./components/availableClasses/AvailableClasses";
-import StudentList from "./components/studentsList/StudentList";
-import { MainContainer, SideContainer } from "./styled";
-
+import { Box } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { findItemWhere, findAllItems } from "../../api";
+import { contractsCol, yogaClassesCol } from "../../api/config";
+import HeaderAdmin from "../../components/HeaderAdmin";
+// import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
+import { getToday } from "../../services/moment";
+import AvailableClasses from "./AvailableClasses";
+import StudentList from "./StudentList";
+import { SideContainer  } from "../../theme/SideContainer"
+import { colors } from "../../theme/colors";
 
 const AdminPage = () => {
-    useProtectedPageAdmin();
-    const history = useHistory();
-    const [contracts, getContracts] = useRequestData([], "/contracts/list");
-    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true");
+    // useProtectedPageAdmin();
+    const navigate = useNavigate();
+    const [contracts, setContracts] = useState([], "/contracts/list");
+    const [yogaClasses, setyogaClasses] = useState([], "/calendar?today=true");
 
-    useLayoutEffect(() => {
-        getContracts();
-        getyogaClasses();
+    useEffect(() => {
+        findAllItems(contractsCol)
+            .then(res => setContracts(res))
+            .catch(err => console.log(err.message))
+        setContracts()
+        findItemWhere(yogaClassesCol, "date", getToday())
+            .then(res => setyogaClasses(res))
+            .catch(err => console.log(err.message))
     }, []);
 
     return (
-        <div>
-            <Header history={history} />
-            <MainContainer>
-                <StudentList contracts={contracts} />
+        <
+        >
+            <HeaderAdmin navigate={navigate} />
+            <Box
+                display={"flex"}
+                w={"100%"}
+                h={"100%"}
+                minH={"100vh"}
+                backgroundColor={colors.lightNeutral}
+                flexDirection={["column-reverse", "row", "row"]}
+                justifyContent={["flex-end", "start", "start"]}
+            >
+                <StudentList contracts={contracts} navigate={navigate}/>
                 <SideContainer>
-                    <AvailableClasses yogaClasses={yogaClasses} history={history}/>
+                    <AvailableClasses yogaClasses={yogaClasses} navigate={navigate} />
                 </SideContainer>
-            </MainContainer>
-        </div>
+            </Box>
+        </>
     );
 };
 

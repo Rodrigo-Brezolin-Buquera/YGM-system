@@ -1,73 +1,60 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Button } from "@chakra-ui/react";
 import {
+    Button,
     Menu,
     MenuButton,
     MenuList,
-    MenuItem
+    MenuItem,
+    Show,
+    Hide
 } from "@chakra-ui/react";
-import React from "react";
-import white from "../../assets/logo/white.png";
-import { goToAdmin, goToCreateContract, goToCalendar, goToLogin } from "../routes/coordinator";
-import { logout } from "../services/auth/auth";
-import { HeaderContainer, Logo, ButtonContainer, MenuContainer } from "./headerAdmin/styled";
+import { logout } from "../api/auth";
+import { goToAdmin, goToCreateContract, goToCalendar } from "../routes/coordinator";
+import Header from "../theme/Header"
 
-const Header = ({ history }) => {
-    const exitApp = () => {
-
-        logout();
-        goToLogin(history);
-    };
+const HeaderAdmin = ({ navigate }) => {
 
     return (
+        <Header>
+            <Show above='md'>
+                <Hide below="md">
+                    <Button
+                        onClick={() => goToAdmin(navigate)}
+                    >Home
+                    </Button>
+                    <Button
+                        onClick={() => goToCreateContract(navigate)}
+                    >Criar Usuário
+                    </Button>
+                    <Button
+                        onClick={() => goToCalendar(navigate)}
+                    >Agenda
+                    </Button>
+                    <Button
+                        onClick={() => logout(navigate)}
+                    >Sair
+                    </Button>
+                </Hide>
 
+            </Show>
 
-        // deletar esse compoente e pegar apenas os botoes!!!!!!!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-        <HeaderContainer>
-            <Logo src={white} alt="logo" />
-
-            <ButtonContainer>
-                <Button
-                    onClick={() => goToAdmin(history)}
-                >Home
-                </Button>
-
-                <Button
-                    onClick={() => goToCreateContract(history)}
-                >Criar Usuário
-                </Button>
-
-                <Button
-                    onClick={() => goToCalendar(history)}
-                >Agenda
-                </Button>
-
-                <Button
-                    onClick={() => exitApp()}
-                >
-                    Sair
-                </Button>
-            </ButtonContainer>
-
-            <MenuContainer>
-                <Menu>
-                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                        Menu
-                    </MenuButton>
-                    <MenuList>
-                        <MenuItem onClick={() => goToAdmin(history)} >Home</MenuItem>
-                        <MenuItem onClick={() => goToCreateContract(history)} >Criar Usuário</MenuItem>
-                        <MenuItem onClick={() => goToCalendar(history)} >Agenda</MenuItem>
-                        <MenuItem onClick={() => exitApp()}>Sair</MenuItem>
-                    </MenuList>
-                </Menu>
-            </MenuContainer>
-
-        </HeaderContainer>
+            <Show below='md'>
+                <Hide above="md" >
+                    <Menu>
+                        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                            Menu
+                        </MenuButton>
+                        <MenuList>
+                            <MenuItem onClick={() => goToAdmin(navigate)} >Home</MenuItem>
+                            <MenuItem onClick={() => goToCreateContract(navigate)} >Criar Usuário</MenuItem>
+                            <MenuItem onClick={() => goToCalendar(navigate)} >Agenda</MenuItem>
+                            <MenuItem onClick={() => logout(navigate)}>Sair</MenuItem>
+                        </MenuList>
+                    </Menu>
+                </Hide>
+            </Show>
+        </Header>
     );
 };
 
-export default Header;
+export default HeaderAdmin;

@@ -2,7 +2,7 @@ import { CircularProgress } from "@chakra-ui/react";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-// const AdminPage = lazy(() => import("../pages/adminPage"))
+const AdminPage = lazy(() => import("../pages/adminPage"))
 // const CalendarPage = lazy(() => import("../pages/calendarPage"))
 // const CreateContractPage = lazy(() => import("../pages/createContractPage"))
 // const EditContractPage = lazy(() => import("../pages/editContractPage"))
@@ -23,8 +23,8 @@ const Router = () => {
 
                     <Route index element={<LoginPage />} />
                     <Route path="/user/:userId" element={<UserPage />} /> 
-                    {/* <Route path="/admin" element={<AdminPage />} />
-                    <Route exact path="/admin/addUser" element={<CreateContractPage />} />
+                    <Route path="/admin" element={<AdminPage />} />
+                    {/* <Route exact path="/admin/addUser" element={<CreateContractPage />} />
                     <Route exact path="/admin/calendar" element={<CalendarPage />} />
                     <Route exact path="/admin/class/:classId" element={<ViewClassPage />} />
                     <Route exact path="/admin/user/:userId" element={<ViewContractPage />} />

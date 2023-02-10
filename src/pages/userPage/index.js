@@ -1,21 +1,23 @@
-import { Box, CircularProgress } from "@chakra-ui/react";
+import { Box, CircularProgress, Button } from "@chakra-ui/react";
 import  { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { findItemById, findItemWhere } from "../../api";
 import { checkinsCol, contractsCol, yogaClassesCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import ClosedPlansInfo from "../../components/ClosedPlansInfo";
-import Header from "../../components/Header"
+import Header from "../../theme/Header"
+import UserInfo from "../../components/UserInfo";
 import { getToday } from "../../services/moment";
-import { colors } from "../../theme/colors";
 import { SideContainer } from "../../theme/SideContainer";
+import { colors } from "../../theme/colors";
 // import { useProtectedPageStudent } from "../../hooks/useProtectedPageStudent";
 import AvailableClasses from "./AvailableClasses";
-import UserInfo from "../../components/UserInfo";
+import { logout } from "../../api/auth";
 
 const UserPage = () => {
     // useProtectedPageStudent();
     const { userId } = useParams();
+    const navigate = useNavigate()
     const [contract, setContract] = useState({});
     const [yogaClasses, setyogaClasses] = useState([]);
     const [checkins, setCheckins] = useState([]);
@@ -27,15 +29,21 @@ const UserPage = () => {
             .catch(err => console.log(err.message))
         findItemWhere(yogaClassesCol, "date", getToday()) 
             .then(res => setyogaClasses(res))
-            .catch(err => console.log("aulas",err.message))
+            .catch(err => console.log(err.message))
         findItemWhere(checkinsCol, "contractId", userId) 
             .then(res => setCheckins(res))
-            .catch(err => console.log("checks",err.message))
+            .catch(err => console.log(err.message))
     }, [loading, userId]);
 
     return (
         <>
-            <Header />
+            <Header>
+                <Button
+                    onClick={()=>logout(navigate)}
+                >
+                    Sair
+                </Button>
+            </Header>
             <Box
                 display={"flex"}
                 flexDirection={["column", "row", "row"]}
