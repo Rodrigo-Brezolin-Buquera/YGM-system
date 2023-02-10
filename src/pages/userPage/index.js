@@ -2,17 +2,17 @@ import { Box, CircularProgress, Button } from "@chakra-ui/react";
 import  { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById, findItemWhere } from "../../api";
+import { logout } from "../../api/auth";
 import { checkinsCol, contractsCol, yogaClassesCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import ClosedPlansInfo from "../../components/ClosedPlansInfo";
-import Header from "../../theme/Header"
 import UserInfo from "../../components/UserInfo";
 import { getToday } from "../../services/moment";
+import Header from "../../theme/Header"
 import { SideContainer } from "../../theme/SideContainer";
 import { colors } from "../../theme/colors";
 // import { useProtectedPageStudent } from "../../hooks/useProtectedPageStudent";
 import AvailableClasses from "./AvailableClasses";
-import { logout } from "../../api/auth";
 
 const UserPage = () => {
     // useProtectedPageStudent();

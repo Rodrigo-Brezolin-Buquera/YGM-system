@@ -13,38 +13,38 @@ const StudentList = ({ contracts, navigate }) => {
         .filter(user => {
             const contract = user.currentContract;
             switch (status) {
-                case "ativos":
-                    return contract.active === true;
-                case "inativos":
-                    return contract.active === false;
-                default:
-                    return contract.active === true || contract.active === false;
+            case "ativos":
+                return contract.active === true;
+            case "inativos":
+                return contract.active === false;
+            default:
+                return contract.active === true || contract.active === false;
 
             }
         })
         .filter((user) => {
             const contract = user.currentContract;
             switch (planType) {
-                case "":
-                    return contract.plan;
-                case "1x-Mensal":
-                    return contract.plan === "1x-Mensal";
-                case "2x-Mensal":
-                    return contract.plan === "2x-Mensal";
-                case "1x-Trimestral":
-                    return contract.plan === "1x-Trimestral";
-                case "2x-Trimestral":
-                    return contract.plan === "2x-Trimestral";
-                case "1x-Semestral":
-                    return contract.plan === "1x-Semestral";
-                case "2x-Semestral":
-                    return contract.plan === "2x-Semestral";
-                case "Avulsa":
-                    return contract.plan === "---Avulsa";
-                case "Gympass":
-                    return contract.plan === "---Gympass";
-                default:
-                    return contract.plan;
+            case "":
+                return contract.plan;
+            case "1x-Mensal":
+                return contract.plan === "1x-Mensal";
+            case "2x-Mensal":
+                return contract.plan === "2x-Mensal";
+            case "1x-Trimestral":
+                return contract.plan === "1x-Trimestral";
+            case "2x-Trimestral":
+                return contract.plan === "2x-Trimestral";
+            case "1x-Semestral":
+                return contract.plan === "1x-Semestral";
+            case "2x-Semestral":
+                return contract.plan === "2x-Semestral";
+            case "Avulsa":
+                return contract.plan === "---Avulsa";
+            case "Gympass":
+                return contract.plan === "---Gympass";
+            default:
+                return contract.plan;
             }
         })
         .map((user) => {
@@ -100,7 +100,7 @@ const StudentList = ({ contracts, navigate }) => {
                 </Select>
             </Box>
 
-            {userList?.length ? userList : <p> Nenhum resultado encontrado, selecione as opções </p>}
+            {userList?.length ? userList : <p> Nenhum contrato encontrado </p>}
 
 
         </Box>

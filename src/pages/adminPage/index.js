@@ -6,16 +6,17 @@ import { contractsCol, yogaClassesCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 // import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import { getToday } from "../../services/moment";
-import AvailableClasses from "./AvailableClasses";
-import StudentList from "./StudentList";
 import { SideContainer  } from "../../theme/SideContainer"
 import { colors } from "../../theme/colors";
+import AvailableClasses from "./AvailableClasses";
+import StudentList from "./StudentList";
 
 const AdminPage = () => {
     // useProtectedPageAdmin();
     const navigate = useNavigate();
     const [contracts, setContracts] = useState([], "/contracts/list");
     const [yogaClasses, setyogaClasses] = useState([], "/calendar?today=true");
+
 
     useEffect(() => {
         findAllItems(contractsCol)
@@ -28,8 +29,7 @@ const AdminPage = () => {
     }, []);
 
     return (
-        <
-        >
+        <>
             <HeaderAdmin navigate={navigate} />
             <Box
                 display={"flex"}
@@ -45,6 +45,7 @@ const AdminPage = () => {
                     <AvailableClasses yogaClasses={yogaClasses} navigate={navigate} />
                 </SideContainer>
             </Box>
+
         </>
     );
 };

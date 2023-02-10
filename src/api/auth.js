@@ -7,36 +7,30 @@ export const login = async (form, navigate) => {
     try {
         const { user } = await signInWithEmailAndPassword(auth, form.email, form.password);
         const userDoc = await findItemById(usersCol, user.uid)
-        
+
         userDoc.admin ? goToAdmin(navigate) : goToUser(navigate, user.uid)
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
         alert("Login error, try again later");
 
     }
 };
 
-export const singUp = async (form, setLoading) => {
-    try {
-        setLoading(true);
-        await createUserWithEmailAndPassword(auth, form.email, form.password);
-        setLoading(false);
-    } catch (err) {
-        console.log(err);
-        alert("SingUp error, try again later");
-        setLoading(false);
+export const singUp = async (values) => {
+    const { user } = await createUserWithEmailAndPassword(auth, values.email, values.password );
+    // nodeMailer
 
-    }
+    return user.uid
 };
 
 export const logout = async (navigate) => {
-    try {  
+    try {
         await signOut(auth);
         goToLogin(navigate);
 
     } catch (err) {
-        console.log(err);
-        
+        console.log(err.message);
+
     }
 };
 

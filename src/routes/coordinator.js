@@ -10,10 +10,6 @@ export const goToAdmin = (navigate) => {
     navigate("/admin");
 };
 
-export const goToCreateContract = (navigate) => {
-    navigate("/admin/addUser");
-};
-
 export const goToCalendar = (navigate) => {
     navigate("/admin/calendar");
 };

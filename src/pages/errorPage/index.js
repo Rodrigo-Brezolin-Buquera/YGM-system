@@ -1,28 +1,38 @@
-import { Text } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import React from "react";
-import { useHistory } from "react-router-dom";
-import flower from "../../assets/logo/flower.png";
+import { Box, Text, Image, Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import flower from "../../assets/flower.png";
 import { goBack } from "../../routes/coordinator";
-import { FlowerLogo, ErrorContainer, TextContainer } from "./styled";
+import { colors } from "../../theme/colors";
 
 const ErrorPage = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     return (
-        <ErrorContainer>
-            <FlowerLogo src={flower} alt="logo flor" />
-            <TextContainer>
+        <Box
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            backgroundColor={colors.primary}
+            h="100vh"
+            w={"100vw"}
+        >
+            <Image src={flower} maxWidth={"250px"} alt="logo flor" />
+            <Box
+                display={"flex"}
+                flexDirection={"column"}
+                justifyContent={"center"}
+                alignItems={"center"}
+            >
                 <Text fontSize='2xl'> Erro 404: Página não encontrada </Text>
                 <Text > Verifique a URL ou clique em voltar </Text>
 
                 <Button
                     colorScheme='yellow'
-                    onClick={() => goBack(history)}
+                    onClick={() => goBack(navigate)}
                 >Voltar
                 </Button>
-            </TextContainer>
-        </ErrorContainer>
+            </Box>
+        </Box>
     );
 };
 

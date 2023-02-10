@@ -2,66 +2,70 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text, Box
+    Select, Text, Modal, ModalBody, ModalOverlay, ModalContent, 
+    ModalHeader, ModalCloseButton
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { createItem } from "../../api";
-import { contractsCol } from "../../api/config";
-import HeaderAdmin from "../../components/HeaderAdmin";
-import { TypeOptions } from "../../components/selectOptions";
-// import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
-import { goToAdmin } from "../../routes/coordinator";
-import { FormButton } from "../../theme/FormButton";
-import { colors } from "../../theme/colors";
 
-const CreateContractPage = () => {
-    // useProtectedPageAdmin();
+import { TypeOptions } from "./selectOptions";
+import { FormButton } from "../theme/FormButton";
+import { colors } from "../theme/colors";
+// import { formatDate } from "@fullcalendar/react";
+// import { singUp } from "../api/auth";
+// import { createItem } from "../api";
+// import { contractsCol } from "../api/config";
+
+export const CreateContractModal = ({ isOpen, onClose}) => {
     const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
         register,
+        // reset,
         formState: { errors, isSubmitting }
-
+       
     } = useForm();
-    const navigate = useNavigate();
 
     const onSubmit = (values) => {
         setLoading(true);
-        createItem(contractsCol, values, "ID")
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err.message))
-            .finally(() => {
-                setLoading(false)
-                goToAdmin(navigate)
-            })
-        // createContract(values, goToAdmin, navigate, setLoading);
+        // const newValues ={
+        //     ...values,
+        //     date: formatDate(values.date, "DD/MM/YYYY" )
+        // }
+        
+        // 
+
+        console.log(values); // ver pq não aparece??
+
+        // singUp() primerio, ele retorna um ID depois fazer o de baixo
+
+        // createItem(contractsCol, values, "ID") // formatar a data!
+        //     .then(() => {
+        //         //signUp
+        //         reset()
+        //         onClose() 
+        //     })
+        //     .catch((err) => console.log(err.message))
+        //     .finally(() => {
+        //         setLoading(false)
+        //     })
     };
 
     return (
-        <>
-            <HeaderAdmin navigate={navigate} />
-            <Box
-                display={"flex"}
-                flexDirection={"column"}
-                alignItems={"center"}
-                backgroundColor={colors.lightNeutral}
-                minH={"100vh"}
-            >
-                <Box
-                    display={"flex"}
-                    flexDirection={"column"}
-                    alignItems={"center"}
-                    marginTop={"1em"}
-                >
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+                <ModalHeader textAlign={"center"}>Adicionar contrato</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <FormControl
                             isInvalid={errors.name || errors.email || errors.plan || errors.date}
                             display={"flex"}
                             flexDirection={"column"}
                             alignItems={"center"}
-                            gap={"0.1em"}
+                            justifyContent={"center"}
+                            gap={"1em"}
                             minW={"300px"}
                         >
                             <Input
@@ -117,10 +121,11 @@ const CreateContractPage = () => {
                             <Text>Criar</Text>
                         </FormButton>
                     </form>
-                </Box>
-            </Box>
-        </>
+                </ModalBody>
+            </ModalContent>
+        </Modal>
+                    
+          
     );
 };
 
-export default CreateContractPage;
