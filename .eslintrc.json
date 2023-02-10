@@ -82,7 +82,7 @@
       "react/jsx-no-bind": ["warn", {
         "ignoreDOMComponents": false,
         "ignoreRefs":  false,
-        "allowArrowFunctions": false,
+        "allowArrowFunctions": true,
         "allowFunctions": false,
         "allowBind":  false
       }]

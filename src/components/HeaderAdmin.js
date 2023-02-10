@@ -8,9 +8,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import white from "../../assets/logo/white.png";
-import { goToAdmin, goToCreateContract, goToCalendar, goToLogin } from "../../routes/coordinator";
-import { logout } from "../../services/auth/auth";
-import { HeaderContainer, Logo, ButtonContainer, MenuContainer } from "./styled";
+import { goToAdmin, goToCreateContract, goToCalendar, goToLogin } from "../routes/coordinator";
+import { logout } from "../services/auth/auth";
+import { HeaderContainer, Logo, ButtonContainer, MenuContainer } from "./headerAdmin/styled";
 
 const Header = ({ history }) => {
     const exitApp = () => {
@@ -20,6 +20,12 @@ const Header = ({ history }) => {
     };
 
     return (
+
+
+        // deletar esse compoente e pegar apenas os botoes!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
         <HeaderContainer>
             <Logo src={white} alt="logo" />
 

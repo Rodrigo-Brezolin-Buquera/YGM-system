@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { LogoImg } from "../../theme/LogoImg";
 import { colors } from "../../theme/colors";
 import { LoginForm } from "./LoginForm";
+import defaultLogo from "../../assets/defaultLogo.png";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const LoginPage = () => {
             backgroundColor={colors.lightNeutral}
             minH={"100vh"}
         >
-            <LogoImg />
+            <LogoImg width={"300px"} logo={defaultLogo}/>
             <LoginForm navigate={navigate} />
         </Box>
     );

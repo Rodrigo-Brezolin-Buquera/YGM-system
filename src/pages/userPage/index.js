@@ -1,33 +1,47 @@
-import {CircularProgress} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import CheckinsDone from "../../components/checkinsDone/CheckinsDone";
-import ClosedPlansInfo from "../../components/closedPlansInfo/ClosedPlansInfo";
-import Header from "../../components/headerUser/HeaderUser";
-import { useProtectedPageStudent } from "../../hooks/useProtectedPageStudent";
-import { useRequestData } from "../../hooks/useRequestData";
-import AvailableClasses from "./components/availableClasses/AvailableClasses";
-import UserInfo from "./components/userInfo/UserInfo";
-import { MainContainer, CentralContainer, SideContainer } from "./styled";
+import { Box, CircularProgress } from "@chakra-ui/react";
+import  { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { findItemById, findItemWhere } from "../../api";
+import { checkinsCol, contractsCol, yogaClassesCol } from "../../api/config";
+import CheckinsDone from "../../components/CheckinsDone";
+import ClosedPlansInfo from "../../components/ClosedPlansInfo";
+import Header from "../../components/Header"
+import { getToday } from "../../services/moment";
+import { colors } from "../../theme/colors";
+import { SideContainer } from "../../theme/SideContainer";
+// import { useProtectedPageStudent } from "../../hooks/useProtectedPageStudent";
+import AvailableClasses from "./AvailableClasses";
+import UserInfo from "../../components/UserInfo";
 
 const UserPage = () => {
-    useProtectedPageStudent();
-    const history = useHistory();
-    const [contract, getContract] = useRequestData({}, "/contracts/user");
-    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar?today=true");
-    const [checkins, getCheckins] = useRequestData([], "/booking/");
+    // useProtectedPageStudent();
+    const { userId } = useParams();
+    const [contract, setContract] = useState({});
+    const [yogaClasses, setyogaClasses] = useState([]);
+    const [checkins, setCheckins] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        getContract();
-        getyogaClasses();
-        getCheckins();
-    }, [loading]);
+        findItemById(contractsCol, userId) 
+            .then(res => setContract(res))
+            .catch(err => console.log(err.message))
+        findItemWhere(yogaClassesCol, "date", getToday()) 
+            .then(res => setyogaClasses(res))
+            .catch(err => console.log("aulas",err.message))
+        findItemWhere(checkinsCol, "contractId", userId) 
+            .then(res => setCheckins(res))
+            .catch(err => console.log("checks",err.message))
+    }, [loading, userId]);
 
     return (
-        <div>
-            <Header history={history} />
-            <MainContainer>
+        <>
+            <Header />
+            <Box
+                display={"flex"}
+                flexDirection={["column", "row", "row"]}
+                minH={"100vh"}
+                backgroundColor={colors.lightNeutral}
+            >
 
                 <SideContainer>
                     <AvailableClasses
@@ -39,7 +53,13 @@ const UserPage = () => {
                     />
                 </SideContainer>
 
-                <CentralContainer>
+                <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    width={"100%"}
+                    gap={"1em"}
+                >
                     {
                         contract.id ?
                             <UserInfo
@@ -50,18 +70,18 @@ const UserPage = () => {
                                 planEnds={contract?.currentContract?.ends}
                                 availableClasses={contract?.currentContract?.availableClasses}
                             /> :
-                            <CircularProgress isIndeterminate color="yellow.400" size="70px" />                    
+                            <CircularProgress isIndeterminate color={colors.secondary} size="70px" />
                     }
                     <ClosedPlansInfo
                         closedContracts={contract.closedContracts}
                     />
-                </CentralContainer>
+                </Box>
 
                 <SideContainer>
                     {<CheckinsDone checkins={checkins} />}
                 </SideContainer>
-            </MainContainer>
-        </div>
+            </Box>
+        </>
     );
 };
 

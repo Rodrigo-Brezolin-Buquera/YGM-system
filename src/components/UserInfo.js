@@ -1,36 +1,55 @@
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import { InfoContainer, FlexContainer } from "./styled";
 
+const Line = ({children}) => {
+    return (
+        <Box
+            display={"flex"}
+            justifyContent={"center"}
+            gap={"0.5em"}
+            m={"0.5em"}
+        >
+            {children}
+        </Box>
+    );
+}
 
 const UserInfo = (props) => {
     return (
-        <InfoContainer  >
-            <FlexContainer>
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+            alignItems={"center"}
+            p={"1m"}
+            borderRadius={"25px"}
+            minW={"250px"}
+            onClick={props.handler}
+        >
+            <Line>
                 <Text as='b' fontSize='lg' >Nome:</Text>
                 <Text fontSize='lg' >{props.name}</Text>
-            </FlexContainer>
+            </Line>
 
-            <FlexContainer>
+            <Line>
                 <Text as='b' fontSize='lg' >Plano: </Text>
                 <Text fontSize='lg' >{props.plan} </Text>
-            </FlexContainer>
+            </Line>
 
-            <FlexContainer>
+            <Line>
                 <Text as='b' fontSize='lg' >Início do plano: </Text>
                 <Text fontSize='lg' > {props.planStarted}</Text>
-            </FlexContainer>
+            </Line>
 
-            <FlexContainer>
+            <Line>
                 <Text as='b' fontSize='lg' >Fim previsto: </Text>
                 <Text fontSize='lg' > {props.planEnds}</Text>
-            </FlexContainer>
+            </Line>
 
-            <FlexContainer>
+            <Line>
                 <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
                 <Text fontSize='lg' >{props.availableClasses}</Text>
-            </FlexContainer>
-        </InfoContainer>
+            </Line>
+        </Box>
     );
 };
 

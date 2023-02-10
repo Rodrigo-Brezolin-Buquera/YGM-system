@@ -29,15 +29,12 @@ export const singUp = async (form, setLoading) => {
     }
 };
 
-export const logout = async (setLoading) => {
-    try {
-        setLoading(true);
+export const logout = async () => {
+    try {  
         await signOut(auth);
-        setLoading(false);
-
     } catch (err) {
         console.log(err);
-        setLoading(false);
+        
     }
 };
 

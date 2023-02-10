@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // const EditContractPage = lazy(() => import("../pages/editContractPage"))
 // const ErrorPage = lazy(() => import("../pages/errorPage"))
 const LoginPage = lazy(() => import("../pages/loginPage"))
-// const UserPage = lazy(() => import("../pages/userPage"))
+const UserPage = lazy(() => import("../pages/userPage"))
 // const ViewClassPage = lazy(() => import("../pages/viewClassPage"))
 // const ViewContractPage = lazy(() => import("../pages/viewContractPage"))
 
@@ -22,8 +22,8 @@ const Router = () => {
                 <Routes>
 
                     <Route index element={<LoginPage />} />
-                    {/* <Route path="/user/:userId" element={<UserPage />} />
-                    <Route path="/admin" element={<AdminPage />} />
+                    <Route path="/user/:userId" element={<UserPage />} /> 
+                    {/* <Route path="/admin" element={<AdminPage />} />
                     <Route exact path="/admin/addUser" element={<CreateContractPage />} />
                     <Route exact path="/admin/calendar" element={<CalendarPage />} />
                     <Route exact path="/admin/class/:classId" element={<ViewClassPage />} />
