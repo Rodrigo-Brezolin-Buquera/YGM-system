@@ -1,12 +1,13 @@
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { goToAdmin, goToUser } from "../routes/coordinator";
 import { auth, usersCol } from "./config";
-import { findItemById } from "./crud";
+import { findItemById } from ".";
 
 export const login = async (form, navigate) => {
     try {
         const { user } = await signInWithEmailAndPassword(auth, form.email, form.password);
-        const userDoc = findItemById(usersCol, user.uid)
+        const userDoc = await findItemById(usersCol, user.uid)
+        
         userDoc.admin ? goToAdmin(navigate) : goToUser(navigate, user.uid)
     } catch (err) {
         console.log(err);

@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/react"
-import defaultLogo from "../../assets/logo/defaultLogo.png";
+import defaultLogo from "../assets/defaultLogo.png";
 
 
 

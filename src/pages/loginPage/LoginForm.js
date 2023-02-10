@@ -2,13 +2,14 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Button, Text, CircularProgress, Box
+    Text,
+    Box
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
 import { colors } from "../../theme/colors";
-
+import { FormButton } from "../../theme/FormButton";
 
 export const LoginForm = ({ navigate }) => {
     const [loading, setLoading] = useState(false);
@@ -23,6 +24,7 @@ export const LoginForm = ({ navigate }) => {
         setLoading(true);
         await login(values, navigate)
         reset();
+        setLoading(false);
     };
 
     return (
@@ -34,14 +36,16 @@ export const LoginForm = ({ navigate }) => {
             mt={"1em"}
             backgroundColor={colors.primary}
             borderRadius={"25px"}
+            w={"300px"}
         >
             <form onSubmit={handleSubmit(onSubmit)} >
-                <FormControl isInvalid={errors.email || errors.password}>
+                <FormControl isInvalid={errors.email || errors.password} >
                     <Box
-                        minW={"250px"}
                         display={"flex"}
                         flexDirection={"column"}
-                        gap={"0.5em"}
+                        alignItems={"center"}
+                        gap={"1em"}
+                        w={"276px"} 
                     >
                         <Input
                             id="email"
@@ -49,9 +53,9 @@ export const LoginForm = ({ navigate }) => {
                             {...register("email", {
                                 required: "Campo obrigatório",
                             })}
-                            variant="outline"
-                            borderRadius={"2px"}
-
+                            variant="filled"
+                            borderRadius={"10px"}
+                            
                         />
 
                         <Input
@@ -60,18 +64,21 @@ export const LoginForm = ({ navigate }) => {
                             {...register("password", {
                                 required: "Campo obrigatório",
                             })}
-                            variant="outline"
+                            variant="filled"
                             type='password'
-                            borderRadius={"2px"}
+                            borderRadius={"10px"}
+
                         />
 
-                        <Button
-                            mt={4} colorScheme={colors.secondary} isLoading={isSubmitting} type="submit"
+                        <FormButton
+                            isSubmitting={isSubmitting}
+                            color={colors.secondary}
+                            loading={loading
+                            }
                         >
-                            {loading ?
-                                <CircularProgress isIndeterminate color={colors.lightNeutral} size="40px" />
-                                : <Text>Login</Text>}
-                        </Button>
+                            <Text>Login</Text>
+                        </FormButton>
+
                     </Box>
                     <FormErrorMessage>
                         {errors.email && errors.email.message}

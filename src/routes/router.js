@@ -15,11 +15,12 @@ const LoginPage = lazy(() => import("../pages/loginPage"))
 const Router = () => {
     return (
         <BrowserRouter>
-            <Routes>
-                <Suspense
-                    fallback={
-                        <CircularProgress alignSelf={"center"} size='120px' isIndeterminate color="gold" />
-                    }>
+            <Suspense
+                fallback={
+                    <CircularProgress alignSelf={"center"} size='120px' isIndeterminate color="gold" />
+                }>
+                <Routes>
+
                     <Route index element={<LoginPage />} />
                     {/* <Route path="/user/:userId" element={<UserPage />} />
                     <Route path="/admin" element={<AdminPage />} />
@@ -29,9 +30,10 @@ const Router = () => {
                     <Route exact path="/admin/user/:userId" element={<ViewContractPage />} />
                     <Route exact path="/admin/user/:userId/edit" element={<EditContractPage />} />
                     <Route path='*' element={<ErrorPage />} /> */}
-                </Suspense>
 
-            </Routes>
+
+                </Routes>
+            </Suspense>
         </BrowserRouter>
     );
 

@@ -9,8 +9,8 @@ export const findAllItems = async (itemCol) => {
 };
 
 export const findItemById = async (itemCol, id) => {
-    const col = collection(database, itemCol);
-    const snap = await getDoc(col, id);
+    const docRef = doc(collection(database, itemCol), id);
+    const snap = await getDoc(docRef);
     return snap.data();
 };
 
@@ -21,31 +21,26 @@ export const findItemWhere = async (itemCol, atribute, value) => {
 };
   
 export const createItem = async (itemCol, object, id) => {
-    const col = collection(database, itemCol);
-    const docRef = doc(col, id);
+    const docRef = doc(collection(database, itemCol), id);
     await setDoc(docRef, object);
 };
 
 export const updateItem = async (itemCol, object, id) => {
-    const col = collection(database, itemCol);
-    const docRef = doc(col, id);
+    const docRef = doc(collection(database, itemCol), id);
     await updateDoc(docRef, object);
 };
 
 export const updateItemWhere = async (itemCol, object, atribute, value) => {
-    const col = collection(database, itemCol);
-    const docRef = doc(col); 
+    const docRef = doc(collection(database, itemCol)); 
     await updateDoc(docRef, object).where({ [atribute]: value });
 };
 
 export const deleteItemById = async (itemCol, id) => {
-    const col = collection(database, itemCol);
-    const docRef = doc(col, id);
+    const docRef = doc(collection(database, itemCol), id);
     await deleteDoc(docRef);
 };
 
 export const deleteItemWhere = async (itemCol, atribute, value) => {
-    const col = collection(database, itemCol);
-    const docRef = doc(col);
+    const docRef = doc(collection(database, itemCol));
     await deleteDoc(docRef).where({ [atribute]: value });
 };
