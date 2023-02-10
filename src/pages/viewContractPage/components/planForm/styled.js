@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Form = styled.form`
 display: flex;
@@ -7,5 +7,5 @@ justify-content: flex-start;
 align-items:center;
 gap: 0.1em;
 max-width:300px;
-`
+`;
 

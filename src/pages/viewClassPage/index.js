@@ -1,26 +1,26 @@
-import React, { useLayoutEffect, useState } from 'react'
-import Header from '../../components/headerAdmin/HeaderAdmin'
+import { CircularProgress } from "@chakra-ui/react";
+import React, { useLayoutEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { MainContainer, SideContainer, CenterContainer } from './styled';
-import ClassInfo from './components/classInfo/ClassInfo';
-import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { useRequestData } from "../../hooks/useRequestData"
-import StudentList from './components/studentList/StudentList';
-import DeleteClassButtons from './components/deleteClassButtons/DeleteClassButtons';
-import { CircularProgress } from '@chakra-ui/react'
+import Header from "../../components/headerAdmin/HeaderAdmin";
+import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
+import { useRequestData } from "../../hooks/useRequestData";
+import ClassInfo from "./components/classInfo/ClassInfo";
+import DeleteClassButtons from "./components/deleteClassButtons/DeleteClassButtons";
+import StudentList from "./components/studentList/StudentList";
+import { MainContainer, SideContainer, CenterContainer } from "./styled";
 
 const ViewClassPage = () => {
-    useProtectedPageAdmin()
-    const history = useHistory()
-    const { classId } = useParams()
-    const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${classId}`)
-    const [checkins, getCheckins] = useRequestData([], `/booking/yogaClass/${classId}`)
-    const [loading, setLoading] = useState(false)
+    useProtectedPageAdmin();
+    const history = useHistory();
+    const { classId } = useParams();
+    const [yogaClass, getYogaClass] = useRequestData({}, `/calendar/${classId}`);
+    const [checkins, getCheckins] = useRequestData([], `/booking/yogaClass/${classId}`);
+    const [loading, setLoading] = useState(false);
 
     useLayoutEffect(() => {
-        getYogaClass()
-        getCheckins()
-    }, [loading])
+        getYogaClass();
+        getCheckins();
+    }, [loading]);
 
     return (
         <div>
@@ -54,7 +54,7 @@ const ViewClassPage = () => {
                 </SideContainer>
             </MainContainer>
         </div>
-    )
-}
+    );
+};
 
-export default ViewClassPage
+export default ViewClassPage;

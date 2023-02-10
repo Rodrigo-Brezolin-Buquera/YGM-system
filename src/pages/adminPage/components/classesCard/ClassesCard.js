@@ -1,7 +1,7 @@
-import React from 'react'
-import { CardContainer, TextContainer } from './styled'
-import { Text } from '@chakra-ui/react'
+import { Text } from "@chakra-ui/react";
+import React from "react";
 import { goToViewClass } from "../../../../routes/coordinator";
+import { CardContainer, TextContainer } from "./styled";
 
 const ClassesCard = (props) => {
     return (
@@ -11,7 +11,7 @@ const ClassesCard = (props) => {
                 <Text> {props.teacher} - {props.name}  </Text>
             </TextContainer>
         </CardContainer>
-    )
-}
+    );
+};
 
-export default ClassesCard
+export default ClassesCard;

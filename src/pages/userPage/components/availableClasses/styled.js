@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { cellMaxWidth } from "../../../../constants/responsiveness"
+import styled from "styled-components";
+import { cellMaxWidth } from "../../../../constants/responsiveness";
 
 export const ClassesListContainer = styled.div`
 padding: 0.1em;
@@ -12,5 +12,5 @@ width:100%;
 @media (max-width: ${cellMaxWidth}) {
   padding-bottom: 1em;
   }
-`
+`;
 

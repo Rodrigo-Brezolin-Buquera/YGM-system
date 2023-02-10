@@ -11,8 +11,8 @@ export const TypeOptions = () => {
             <option value="---Avulsa"> Avulsa </option>
             <option value="---Gympass"> Gympass </option>
         </>
-    )
-}
+    );
+};
 
 export const StatusOptions = () => {
     return (
@@ -21,8 +21,8 @@ export const StatusOptions = () => {
             <option value="ativos" > Ativos </option>
             <option value="inativos" > Inativos </option>
         </>
-    )
-}
+    );
+};
 
 export const TeacherOptions = () => {
     return (
@@ -31,8 +31,8 @@ export const TeacherOptions = () => {
             <option value="Louize" > Louize </option>
             <option value="Rodrigo" > Rodrigo </option>
         </>
-    )
-}
+    );
+};
 
 export const DayOptions = () => {
     return (
@@ -45,8 +45,8 @@ export const DayOptions = () => {
             <option value="Sexta" > Sexta </option>
             <option value="Sábado" > Sábado </option>
         </>
-    )
-}
+    );
+};
 
 export const StyleOptions = () => {
     return (
@@ -56,5 +56,5 @@ export const StyleOptions = () => {
             <option value="Hatha Yoga" > Hatha </option>
             <option value="Vinyasa Flow" > Vinyasa </option>
         </>
-    )
-}
+    );
+};

@@ -1,13 +1,13 @@
-import React from 'react'
-import flower from "../../assets/logo/flower.png"
-import { FlowerLogo, ErrorContainer, TextContainer } from './styled'
-import { Text } from '@chakra-ui/react'
-import { goBack } from '../../routes/coordinator'
-import { Button } from '@chakra-ui/react'
+import { Text } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import flower from "../../assets/logo/flower.png";
+import { goBack } from "../../routes/coordinator";
+import { FlowerLogo, ErrorContainer, TextContainer } from "./styled";
 
 const ErrorPage = () => {
-    const history = useHistory()
+    const history = useHistory();
 
     return (
         <ErrorContainer>
@@ -23,7 +23,7 @@ const ErrorPage = () => {
                 </Button>
             </TextContainer>
         </ErrorContainer>
-    )
-}
+    );
+};
 
-export default ErrorPage
+export default ErrorPage;

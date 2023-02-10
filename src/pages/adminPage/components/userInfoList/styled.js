@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { darkNeutralColor } from "../../../../constants/colors"
-import { cellMaxWidth } from "../../../../constants/responsiveness"
+import styled from "styled-components";
+import { darkNeutralColor } from "../../../../constants/colors";
+import { cellMaxWidth } from "../../../../constants/responsiveness";
 
 export const InfoContainer = styled.div`
 display: flex;
@@ -20,7 +20,7 @@ background-color: white;
     min-width: 50px;
   }
 
-`
+`;
 
 export const LineContainer = styled.div`
 display: flex;
@@ -31,7 +31,7 @@ margin: 0.1em;
 @media (max-width: ${cellMaxWidth}) {
     flex-direction: column;;
   }
-`
+`;
 
 export const ColumnContainer = styled.div`
 display: flex;
@@ -42,5 +42,5 @@ min-width: 250px;
 @media (max-width: ${cellMaxWidth}) {
     min-width: 100px;
   }
-`
+`;
 

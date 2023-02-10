@@ -1,11 +1,11 @@
-import React from 'react'
-import { InfoContainer, FlexContainer } from './styled'
-import { Text } from '@chakra-ui/react';
-import { goToViewContract } from '../../routes/coordinator';
+import { Text } from "@chakra-ui/react";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import { goToViewContract } from "../../routes/coordinator";
+import { InfoContainer, FlexContainer } from "./styled";
 
 const UserInfo = (props) => {
-    const history = useHistory()
+    const history = useHistory();
 
     return (
         <InfoContainer onClick={() => goToViewContract(history, props.id)} >
@@ -34,7 +34,7 @@ const UserInfo = (props) => {
                 <Text fontSize="xl" >{props.availableClasses}</Text>
             </FlexContainer>
         </InfoContainer>
-    )
-}
+    );
+};
 
-export default UserInfo
+export default UserInfo;

@@ -1,55 +1,55 @@
-import React from 'react'
-import { List, FilterContainer } from './styled';
-import { Input, Select } from '@chakra-ui/react'
-import UserInfoList from '../userInfoList/UserInfoList';
-import { StatusOptions, TypeOptions } from '../../../../constants/selectOptions';
-import useInput from "../../../../hooks/useInput"
+import { Input, Select } from "@chakra-ui/react";
+import React from "react";
+import { StatusOptions, TypeOptions } from "../../../../constants/selectOptions";
+import useInput from "../../../../hooks/useInput";
+import UserInfoList from "../userInfoList/UserInfoList";
+import { List, FilterContainer } from "./styled";
 
 const StudentList = ({ contracts }) => {
-    const [nameFilter, handleNameFilter] = useInput("")
-    const [status, handleStatus] = useInput("")
-    const [planType, handlePlanType] = useInput("")
+    const [nameFilter, handleNameFilter] = useInput("");
+    const [status, handleStatus] = useInput("");
+    const [planType, handlePlanType] = useInput("");
 
     const userList = contracts.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter(user => {
-            const contract = user.currentContract
+            const contract = user.currentContract;
             switch (status) {
-                case "":
-                    return contract.active === true || contract.active === false
-                case "ativos":
-                    return contract.active === true
-                case "inativos":
-                    return contract.active === false
+            case "":
+                return contract.active === true || contract.active === false;
+            case "ativos":
+                return contract.active === true;
+            case "inativos":
+                return contract.active === false;
             }
         })
         .filter((user) => {
-            const contract = user.currentContract
+            const contract = user.currentContract;
             switch (planType) {
-                case "":
-                    return contract.plan
-                case "1x-Mensal":
-                    return contract.plan === "1x-Mensal"
-                case "2x-Mensal":
-                    return contract.plan === "2x-Mensal"
-                case "1x-Trimestral":
-                    return contract.plan === "1x-Trimestral"
-                case "2x-Trimestral":
-                    return contract.plan === "2x-Trimestral"
-                case "1x-Semestral":
-                    return contract.plan === "1x-Semestral"
-                case "2x-Semestral":
-                    return contract.plan === "2x-Semestral"
-                case "Avulsa":
-                    return contract.plan === "---Avulsa"
-                case "Gympass":
-                    return contract.plan === "---Gympass"
-                default:
-                    return contract.plan
+            case "":
+                return contract.plan;
+            case "1x-Mensal":
+                return contract.plan === "1x-Mensal";
+            case "2x-Mensal":
+                return contract.plan === "2x-Mensal";
+            case "1x-Trimestral":
+                return contract.plan === "1x-Trimestral";
+            case "2x-Trimestral":
+                return contract.plan === "2x-Trimestral";
+            case "1x-Semestral":
+                return contract.plan === "1x-Semestral";
+            case "2x-Semestral":
+                return contract.plan === "2x-Semestral";
+            case "Avulsa":
+                return contract.plan === "---Avulsa";
+            case "Gympass":
+                return contract.plan === "---Gympass";
+            default:
+                return contract.plan;
             }
         })
         .map((user) => {
-            const contract = user.currentContract
+            const contract = user.currentContract;
             return (
                 <UserInfoList
                     key={user.id}
@@ -61,8 +61,8 @@ const StudentList = ({ contracts }) => {
                     availableClasses={contract.availableClasses}
                     active={contract.active}
                 />
-            )
-        })
+            );
+        });
 
     return (
         <List>
@@ -74,14 +74,14 @@ const StudentList = ({ contracts }) => {
                 />
 
                 <Select
-                placeholder='Plano'
+                    placeholder='Plano'
                     onChange={handlePlanType}
                 >
                     <TypeOptions />
                 </Select>
 
                 <Select
-                placeholder='Status'
+                    placeholder='Status'
                     onChange={handleStatus}
                 >
                     <StatusOptions />
@@ -92,7 +92,7 @@ const StudentList = ({ contracts }) => {
            
            
         </List>
-    )
-}
+    );
+};
 
-export default StudentList
+export default StudentList;

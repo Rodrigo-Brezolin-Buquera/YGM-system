@@ -1,6 +1,3 @@
-import React from 'react'
-import { FormLine, Form } from './styled'
-import { useForm } from "react-hook-form";
 import {
     FormErrorMessage,
     FormControl,
@@ -8,8 +5,11 @@ import {
     Button,
     Select, Text, CircularProgress
 } from "@chakra-ui/react";
-import { DayOptions, StyleOptions, TeacherOptions } from '../../../../constants/selectOptions'
-import { createClass } from '../../../../services/requests/calendarRequests'
+import React from "react";
+import { useForm } from "react-hook-form";
+import { DayOptions, StyleOptions, TeacherOptions } from "../../../../constants/selectOptions";
+import { createClass } from "../../../../services/requests/calendarRequests";
+import { FormLine, Form } from "./styled";
 
 const CreateClassForm = ({ loading, setLoading }) => {
     const {
@@ -20,10 +20,10 @@ const CreateClassForm = ({ loading, setLoading }) => {
     } = useForm();
 
     const onSubmit = (values) => {
-        setLoading(true)
-        createClass(values, setLoading)
-        reset()
-    }
+        setLoading(true);
+        createClass(values, setLoading);
+        reset();
+    };
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -90,12 +90,12 @@ const CreateClassForm = ({ loading, setLoading }) => {
 
             </FormControl>
             <Button mt={4} colorScheme="yellow" isLoading={isSubmitting} type="submit">
-            {loading ?
-                <CircularProgress isIndeterminate color="gray.400" size="40px" />
-                : <Text>Criar aula</Text>}
+                {loading ?
+                    <CircularProgress isIndeterminate color="gray.400" size="40px" />
+                    : <Text>Criar aula</Text>}
             </Button>
         </Form>
-    )
-}
+    );
+};
 
-export default CreateClassForm
+export default CreateClassForm;

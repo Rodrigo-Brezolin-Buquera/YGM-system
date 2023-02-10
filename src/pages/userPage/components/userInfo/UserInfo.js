@@ -1,6 +1,6 @@
-import React from 'react'
-import { InfoContainer, FlexContainer } from './styled'
-import { Text } from '@chakra-ui/react'
+import { Text } from "@chakra-ui/react";
+import React from "react";
+import { InfoContainer, FlexContainer } from "./styled";
 
 
 const UserInfo = (props) => {
@@ -31,7 +31,7 @@ const UserInfo = (props) => {
                 <Text fontSize='lg' >{props.availableClasses}</Text>
             </FlexContainer>
         </InfoContainer>
-    )
-}
+    );
+};
 
-export default UserInfo
+export default UserInfo;

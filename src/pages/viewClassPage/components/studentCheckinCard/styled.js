@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { lightNeutralColor } from "../../../../constants/colors"
-import { cellMaxWidth } from "../../../../constants/responsiveness"
+import styled from "styled-components";
+import { lightNeutralColor } from "../../../../constants/colors";
+import { cellMaxWidth } from "../../../../constants/responsiveness";
 
 export const StudentCard = styled.div`
 display:flex;
@@ -20,14 +20,14 @@ height:60px;
 &:hover {
     cursor: pointer;
 }    
-`
+`;
 export const IconCont = styled.div`
 color: ${props => props.type ? "green" : "red"};
 
 &:hover {
     cursor: pointer;
 }
-`
+`;
 
 export const LineContainer = styled.div`
 display:flex;
@@ -36,4 +36,4 @@ align-items: center;
 &:hover {
     cursor: pointer;
 }
-`
+`;

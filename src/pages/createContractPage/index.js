@@ -1,8 +1,3 @@
-import React, { useState } from 'react'
-import Header from '../../components/headerAdmin/HeaderAdmin'
-import { useHistory } from "react-router-dom";
-import { MainContainer, LoginForm, BoxContainer } from "./styled"
-import { useForm } from "react-hook-form";
 import {
     FormErrorMessage,
     FormControl,
@@ -10,26 +5,31 @@ import {
     Button,
     Select, Text, CircularProgress
 } from "@chakra-ui/react";
-import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { TypeOptions } from '../../constants/selectOptions';
-import { createContract } from '../../services/requests/contractRequests';
-import { goToAdmin } from '../../routes/coordinator';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import Header from "../../components/headerAdmin/HeaderAdmin";
+import { TypeOptions } from "../../constants/selectOptions";
+import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
+import { goToAdmin } from "../../routes/coordinator";
+import { createContract } from "../../services/requests/contractRequests";
+import { MainContainer, LoginForm, BoxContainer } from "./styled";
 
 const CreateContractPage = () => {
-    useProtectedPageAdmin()
-    const [loading, setLoading] = useState(false)
+    useProtectedPageAdmin();
+    const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
         register,
-        formState: { errors, isSubmitting },
-        reset
+        formState: { errors, isSubmitting }
+        
     } = useForm();
-    const history = useHistory()
+    const history = useHistory();
 
     const onSubmit = (values) => {
-        setLoading(true)
-        createContract(values, goToAdmin, history,setLoading)
-    }
+        setLoading(true);
+        createContract(values, goToAdmin, history,setLoading);
+    };
 
     return (
         <>
@@ -93,7 +93,7 @@ const CreateContractPage = () => {
                 </BoxContainer>
             </MainContainer>
         </>
-    )
-}
+    );
+};
 
-export default CreateContractPage
+export default CreateContractPage;

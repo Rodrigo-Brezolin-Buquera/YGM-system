@@ -1,7 +1,7 @@
-import React from 'react'
-import { ClassesListContainer } from './styled'
-import { Text } from '@chakra-ui/react'
-import ClassesCard from '../classesCard/ClassesCard';
+import { Text } from "@chakra-ui/react";
+import React from "react";
+import ClassesCard from "../classesCard/ClassesCard";
+import { ClassesListContainer } from "./styled";
 
 const AvailableClasses = ({ yogaClasses, history }) => {
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
@@ -15,15 +15,15 @@ const AvailableClasses = ({ yogaClasses, history }) => {
                 name={yogaClass.name}
                 history={history} 
             />
-        )
-    })
+        );
+    });
 
     return (
         <ClassesListContainer>
             <Text fontSize='xl' > Aulas de hoje:</Text>
             {classesList.length ? classesList : <p> Não há aulas hoje </p>}
         </ClassesListContainer>
-    )
-}
+    );
+};
 
-export default AvailableClasses
+export default AvailableClasses;

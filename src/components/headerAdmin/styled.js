@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { darkNeutralColor } from "../../constants/colors"
-import { cellMaxWidth } from "../../constants/responsiveness"
+import styled from "styled-components";
+import { darkNeutralColor } from "../../constants/colors";
+import { cellMaxWidth } from "../../constants/responsiveness";
 
 export const HeaderContainer = styled.div`
 background-color: ${darkNeutralColor};
@@ -9,11 +9,11 @@ justify-content: space-between;
 align-items: center;               
 height:60px;
 padding: 0.3em;
-`
+`;
 
 export const Logo = styled.img`
 max-height: 50px;
-`
+`;
 
 export const ButtonContainer = styled.div`
 display:flex;
@@ -23,12 +23,12 @@ margin-right: 0.2em;
 @media (max-width: ${cellMaxWidth}) {
  display:none
   }
-`
+`;
 export const MenuContainer = styled.div`
 margin-right: 0.2em;
 
 @media (min-width: ${cellMaxWidth}) {
  display:none
   }
-`
+`;
 

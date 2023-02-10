@@ -1,23 +1,23 @@
-import React, { useLayoutEffect, useState } from 'react'
-import Calendar from './components/calendar/Calendar'
-import Header from '../../components/headerAdmin/HeaderAdmin'
+import moment from "moment";
+import React, { useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { LowerContainer, LinearContainer } from './styled';
-import CreateClassForm from './components/createClassForm/CreateClassForm';
-import { useProtectedPageAdmin } from '../../hooks/useProtectedPageAdmin';
-import { useRequestData } from '../../hooks/useRequestData';
-import moment from 'moment';
+import Header from "../../components/headerAdmin/HeaderAdmin";
+import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
+import { useRequestData } from "../../hooks/useRequestData";
+import Calendar from "./components/calendar/Calendar";
+import CreateClassForm from "./components/createClassForm/CreateClassForm";
+import { LowerContainer, LinearContainer } from "./styled";
 
 const CalendarPage = () => {
-    useProtectedPageAdmin()
-    const history = useHistory()
-    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar")
-    const [loading, setLoading] = useState(false)
+    useProtectedPageAdmin();
+    const history = useHistory();
+    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar");
+    const [loading, setLoading] = useState(false);
   
     
     useLayoutEffect(() => {
-        getyogaClasses()
-    }, [loading])
+        getyogaClasses();
+    }, [loading]);
 
     const calendarClasses = yogaClasses.length && yogaClasses.map((yogaClass) => {
         const result = {
@@ -29,9 +29,9 @@ const CalendarPage = () => {
             borderColor: "",
             textColor: "",
             description: yogaClass.teacher
-        }
-        return result
-    })
+        };
+        return result;
+    });
 
     return (
         <div>
@@ -48,7 +48,7 @@ const CalendarPage = () => {
                 </LinearContainer>
             </LowerContainer>
         </div>
-    )
-}
+    );
+};
 
-export default CalendarPage
+export default CalendarPage;

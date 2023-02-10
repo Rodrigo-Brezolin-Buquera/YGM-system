@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { primaryColor } from "../../constants/colors"
-import { cellMaxWidth } from "../../constants/responsiveness"
+import styled from "styled-components";
+import { primaryColor } from "../../constants/colors";
+import { cellMaxWidth } from "../../constants/responsiveness";
 
 export const CheckinsContainer = styled.div`
 grid-row:2/3;
@@ -16,4 +16,4 @@ align-items:center;
   padding-bottom: 1em;
   height:100%;
   }
-`
+`;

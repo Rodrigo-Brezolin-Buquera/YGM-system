@@ -1,24 +1,24 @@
-import { Button, CircularProgress, Text } from '@chakra-ui/react';
-import { useState } from 'react';
-import { goToAdmin } from '../../../../routes/coordinator';
-import { deleteContract } from '../../../../services/requests/contractRequests';
+import { Button, CircularProgress, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import { goToAdmin } from "../../../../routes/coordinator";
+import { deleteContract } from "../../../../services/requests/contractRequests";
 
 export const DeleteContractButton = ({ id, history }) => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     const excludeContract = async () => {
 
         if(window.confirm("Excluir este contrato?")) {
-            setLoading(true)
-            await deleteContract(id)
-            setLoading(false)
-            goToAdmin(history)
+            setLoading(true);
+            await deleteContract(id);
+            setLoading(false);
+            goToAdmin(history);
         }    
-    }
+    };
     
     return (
         <Button
-        colorScheme='teal'
+            colorScheme='teal'
             onClick={() => excludeContract()}
         >
             {loading ?
@@ -26,5 +26,5 @@ export const DeleteContractButton = ({ id, history }) => {
                 : <Text>Excluir contrato </Text>
             }
         </Button>
-    )
-}
+    );
+};

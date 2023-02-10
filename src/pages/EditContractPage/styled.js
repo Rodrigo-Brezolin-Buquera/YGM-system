@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { lightNeutralColor } from "../../constants/colors"
-import { cellMaxWidth } from "../../constants/responsiveness"
+import styled from "styled-components";
+import { lightNeutralColor } from "../../constants/colors";
+import { cellMaxWidth } from "../../constants/responsiveness";
 
 export const MainContainer = styled.div`
 display: flex;
@@ -13,7 +13,7 @@ background-color:${lightNeutralColor};
 gap: 0.3em;
 padding: 0.5em;
 padding-top: 1em;
-`
+`;
 
 export const ButtonContainer = styled.div`
 display: flex;
@@ -25,4 +25,4 @@ padding: 0.5em;
 @media (max-width: ${cellMaxWidth}) {
   flex-direction: column;
   }
-`
+`;

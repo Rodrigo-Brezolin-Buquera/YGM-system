@@ -1,6 +1,6 @@
-import React from 'react'
-import { Text } from '@chakra-ui/react'
-import StudentCheckinCard from "../studentCheckinCard/StudentCheckinCard"
+import { Text } from "@chakra-ui/react";
+import React from "react";
+import StudentCheckinCard from "../studentCheckinCard/StudentCheckinCard";
 
 const StudentList = ({ checkins, loading, setLoading }) => {
     const studentList = checkins?.length && checkins.map((checkin) => {
@@ -13,14 +13,14 @@ const StudentList = ({ checkins, loading, setLoading }) => {
                 loading={loading} 
                 setLoading={setLoading}
             />
-        )
-    })
+        );
+    });
     return (
         <>
             <Text fontSize='xl' > Lista de checkins: </Text>
             {checkins?.length ? studentList : <p> Não há check-ins até o momento </p>}
         </>
-    )
-}
+    );
+};
 
-export default StudentList
+export default StudentList;

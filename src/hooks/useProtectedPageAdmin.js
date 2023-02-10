@@ -1,27 +1,27 @@
-import { useLayoutEffect } from 'react';
-import { useHistory } from 'react-router';
-import { goToLogin } from '../routes/coordinator';
+import { useLayoutEffect } from "react";
 import { decodeToken, isExpired } from "react-jwt";
+import { useHistory } from "react-router";
+import { goToLogin } from "../routes/coordinator";
 
 export const useProtectedPageAdmin = () => {
-    const history = useHistory()
+    const history = useHistory();
 
     useLayoutEffect(() => {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem("token");
 
         if (!token) {
-            goToLogin(history)
+            goToLogin(history);
         }
 
         if (isExpired(token)) {
-            console.log("Sessão expirada, faça login novamente")
-            goToLogin(history)
+            console.log("Sessão expirada, faça login novamente");
+            goToLogin(history);
         }
-        const tokenData = decodeToken(token)
+        const tokenData = decodeToken(token);
         if (!tokenData?.admin) {
-            console.log("Ocorreu um problema, faça login novamente")
-            goToLogin(history)
+            console.log("Ocorreu um problema, faça login novamente");
+            goToLogin(history);
         }
-    })
-}
+    });
+};
 

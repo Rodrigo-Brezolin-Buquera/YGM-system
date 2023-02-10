@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { cellMaxWidth } from "../../../../constants/responsiveness"
+import styled from "styled-components";
+import { cellMaxWidth } from "../../../../constants/responsiveness";
 
 
 export const List = styled.div`
@@ -9,7 +9,7 @@ align-items: flex-start;
 gap: 0.5em;
 width: 100%;
 margin: 0.5em ;
-`
+`;
 
 export const FilterContainer = styled.div`
 display:flex;
@@ -20,4 +20,4 @@ gap: 1em;
     width: 90vw;
   }
 
-`
+`;

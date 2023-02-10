@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const ClosedPlansContainer = styled.div`
 grid-row:2/3;
@@ -9,7 +9,7 @@ flex-direction:column;
 gap:0.5em;
 border-radius:25px;
 align-items:center;
-`
+`;
 
 export const PlanCard = styled.div`
 display:flex;
@@ -18,4 +18,4 @@ align-items: center;
 border-radius:25px;
 
 
-`
+`;

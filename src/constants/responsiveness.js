@@ -1,1 +1,1 @@
-export const cellMaxWidth = "480px"
+export const cellMaxWidth = "480px";

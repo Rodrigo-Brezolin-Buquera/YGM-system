@@ -1,6 +1,3 @@
-import React from 'react'
-import { Form } from './styled'
-import { useForm } from "react-hook-form";
 import {
     FormErrorMessage,
     FormControl,
@@ -8,8 +5,11 @@ import {
     Button,
     Select, Text, CircularProgress
 } from "@chakra-ui/react";
-import { TypeOptions } from '../../../../constants/selectOptions'
-import { addNewContract } from '../../../../services/requests/contractRequests'
+import React from "react";
+import { useForm } from "react-hook-form";
+import { TypeOptions } from "../../../../constants/selectOptions";
+import { addNewContract } from "../../../../services/requests/contractRequests";
+import { Form } from "./styled";
 
 const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
     const {
@@ -21,11 +21,11 @@ const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
 
 
     const onSubmit = (values) => {
-        console.log(values)
-        setLoading(true)
-        addNewContract(values, id, setLoading, setAddPlan)
-        reset()
-    }
+        console.log(values);
+        setLoading(true);
+        addNewContract(values, id, setLoading, setAddPlan);
+        reset();
+    };
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} >
@@ -63,7 +63,7 @@ const PlanForm = ({ setAddPlan, id, setLoading, loading }) => {
             </Button>
 
         </Form>
-    )
-}
+    );
+};
 
-export default PlanForm
+export default PlanForm;

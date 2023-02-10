@@ -1,23 +1,23 @@
-import React from 'react'
-import white from "../../assets/logo/white.png"
-import { goToAdmin, goToCreateContract, goToCalendar, goToLogin } from '../../routes/coordinator'
-import { HeaderContainer, Logo, ButtonContainer, MenuContainer } from './styled'
-import { Button } from '@chakra-ui/react'
-import { logout } from '../../services/auth/auth'
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Button } from "@chakra-ui/react";
 import {
     Menu,
     MenuButton,
     MenuList,
     MenuItem
-} from '@chakra-ui/react'
-import { ChevronDownIcon } from "@chakra-ui/icons"
+} from "@chakra-ui/react";
+import React from "react";
+import white from "../../assets/logo/white.png";
+import { goToAdmin, goToCreateContract, goToCalendar, goToLogin } from "../../routes/coordinator";
+import { logout } from "../../services/auth/auth";
+import { HeaderContainer, Logo, ButtonContainer, MenuContainer } from "./styled";
 
 const Header = ({ history }) => {
     const exitApp = () => {
 
-        logout()
-        goToLogin(history)
-    }
+        logout();
+        goToLogin(history);
+    };
 
     return (
         <HeaderContainer>
@@ -61,7 +61,7 @@ const Header = ({ history }) => {
             </MenuContainer>
 
         </HeaderContainer>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

@@ -1,11 +1,11 @@
-import React from 'react'
-import { InfoContainer, LineContainer, ColumnContainer } from './styled'
-import { Text } from '@chakra-ui/react'
-import { goToViewContract } from '../../../../routes/coordinator';
+import { Text } from "@chakra-ui/react";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import { goToViewContract } from "../../../../routes/coordinator";
+import { InfoContainer, LineContainer, ColumnContainer } from "./styled";
 
 const UserInfoList = (props) => {
-    const history = useHistory()
+    const history = useHistory();
 
     return (
         <InfoContainer
@@ -46,7 +46,7 @@ const UserInfoList = (props) => {
             </ColumnContainer>
 
         </InfoContainer>
-    )
-}
+    );
+};
 
-export default UserInfoList
+export default UserInfoList;

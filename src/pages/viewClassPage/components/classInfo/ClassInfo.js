@@ -1,6 +1,6 @@
-import React from 'react'
-import { Text } from '@chakra-ui/react'
-import { TextContainer } from './styled';
+import { Text } from "@chakra-ui/react";
+import React from "react";
+import { TextContainer } from "./styled";
 
 const ClassInfo = (props) => {
     return (
@@ -10,7 +10,7 @@ const ClassInfo = (props) => {
             <Text fontSize="xl" > Prof.: {props.teacher} </Text>
             <Text fontSize="xl" > Estilo:  {props.name}  </Text>
         </TextContainer>
-    )
-}
+    );
+};
 
-export default ClassInfo
+export default ClassInfo;

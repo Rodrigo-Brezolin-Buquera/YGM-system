@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { lightNeutralColor, primaryColor,  } from "../../constants/colors"
-import { cellMaxWidth } from "../../constants/responsiveness"
+import styled from "styled-components";
+import { lightNeutralColor, primaryColor,  } from "../../constants/colors";
+import { cellMaxWidth } from "../../constants/responsiveness";
 
 export const MainContainer = styled.div`
 display: flex;
@@ -13,7 +13,7 @@ background-color: ${lightNeutralColor};
     flex-direction: column-reverse;
     justify-content:flex-end;
   }
-`
+`;
 
 export const SideContainer = styled.div`
 display: flex;
@@ -25,6 +25,6 @@ padding-top: 1em;
 @media (max-width: ${cellMaxWidth}) {
     padding-bottom: 1em;
   }
-`
+`;
 
 

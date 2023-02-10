@@ -1,6 +1,3 @@
-import React from 'react'
-import { FormLine, PlanForm, ButtonContainer } from './styled'
-import { useForm } from "react-hook-form";
 import {
     FormErrorMessage,
     FormControl,
@@ -9,10 +6,13 @@ import {
     Select,
     Text
 } from "@chakra-ui/react";
-import { TypeOptions } from '../../../../constants/selectOptions'
-import { editContract } from '../../../../services/requests/contractRequests'
-import { useParams } from 'react-router-dom'
-import moment from 'moment';
+import moment from "moment";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { TypeOptions } from "../../../../constants/selectOptions";
+import { editContract } from "../../../../services/requests/contractRequests";
+import { FormLine, PlanForm, ButtonContainer } from "./styled";
 
 const EditPlanForm = ({ contract, setPlan, name, setLoading, loading }) => {
     const { userId } = useParams();
@@ -36,11 +36,11 @@ const EditPlanForm = ({ contract, setPlan, name, setLoading, loading }) => {
     const onSubmit = (values) => {
      
         if (window.confirm("Você deseja alterar este plano?")) {
-            setLoading(true)
-            editContract(values, userId, setLoading, setPlan)
-            reset()
+            setLoading(true);
+            editContract(values, userId, setLoading, setPlan);
+            reset();
         }
-    }
+    };
 
     return (
         <PlanForm onSubmit={handleSubmit(onSubmit)}>
@@ -126,7 +126,7 @@ const EditPlanForm = ({ contract, setPlan, name, setLoading, loading }) => {
                 </Button>
             </ButtonContainer>
         </PlanForm>
-    )
-}
+    );
+};
 
-export default EditPlanForm
+export default EditPlanForm;

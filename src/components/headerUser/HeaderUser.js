@@ -1,15 +1,15 @@
-import React from 'react'
-import white from "../../assets/logo/white.png"
-import { goToLogin } from '../../routes/coordinator'
-import { HeaderContainer, Logo, ButtonContainer } from './styled'
-import { Button } from '@chakra-ui/react'
-import { logout } from '../../services/auth/auth'
+import { Button } from "@chakra-ui/react";
+import React from "react";
+import white from "../../assets/logo/white.png";
+import { goToLogin } from "../../routes/coordinator";
+import { logout } from "../../services/auth/auth";
+import { HeaderContainer, Logo, ButtonContainer } from "./styled";
 
 const Header = ({ history }) => {
     const exitApp = () => {
-        logout()
-        goToLogin(history)
-    }
+        logout();
+        goToLogin(history);
+    };
 
     return (
         <HeaderContainer>
@@ -23,7 +23,7 @@ const Header = ({ history }) => {
                 </Button>
             </ButtonContainer>
         </HeaderContainer>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
