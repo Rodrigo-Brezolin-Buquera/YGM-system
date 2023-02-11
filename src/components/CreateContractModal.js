@@ -2,60 +2,53 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text, Modal, ModalBody, ModalOverlay, ModalContent, 
+    Select, Text, Modal, ModalBody, ModalOverlay, ModalContent,
     ModalHeader, ModalCloseButton
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
 import { TypeOptions } from "./selectOptions";
 import { FormButton } from "../theme/FormButton";
 import { colors } from "../theme/colors";
-// import { formatDate } from "@fullcalendar/react";
-// import { singUp } from "../api/auth";
-// import { createItem } from "../api";
-// import { contractsCol } from "../api/config";
+import { formatDate } from "../services/moment";
+import { singUp } from "../api/auth";
+import { createItem } from "../api";
+import { contractsCol } from "../api/config";
+import { genPassword } from "../services/generatePassword"
 
-export const CreateContractModal = ({ isOpen, onClose}) => {
+export const CreateContractModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
         register,
-        // reset,
+        reset,
         formState: { errors, isSubmitting }
-       
+
     } = useForm();
 
     const onSubmit = (values) => {
         setLoading(true);
-        // const newValues ={
-        //     ...values,
-        //     date: formatDate(values.date, "DD/MM/YYYY" )
-        // }
-        
-        // 
+        const newValues = {
+            ...values,
+            date: formatDate(values.date, "DD/MM/YYYY")
+        }
 
-        console.log(values); // ver pq não aparece??
+        singUp({ email: newValues.email, password: genPassword() })
+            .then(id => createItem(contractsCol, values, id))
+            .catch((err) => console.log(err.message))
+            .finally(() => {
+                setLoading(false)
+                reset()
+                onClose() 
+            })
 
-        // singUp() primerio, ele retorna um ID depois fazer o de baixo
-
-        // createItem(contractsCol, values, "ID") // formatar a data!
-        //     .then(() => {
-        //         //signUp
-        //         reset()
-        //         onClose() 
-        //     })
-        //     .catch((err) => console.log(err.message))
-        //     .finally(() => {
-        //         setLoading(false)
-        //     })
     };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader textAlign={"center"}>Adicionar contrato</ModalHeader>
+                <ModalHeader textAlign={"center"}>Adicionar usuário</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -124,8 +117,8 @@ export const CreateContractModal = ({ isOpen, onClose}) => {
                 </ModalBody>
             </ModalContent>
         </Modal>
-                    
-          
+
+
     );
 };
 

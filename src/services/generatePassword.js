@@ -1,12 +1,7 @@
-import generator from 'generate-password';
 
 
-export const genPassword = () => generator.generate({
-    length: 8,
-    numbers: true,
-    uppercase: true,
-    symbols: true
-});
+export const genPassword = () =>  Math.random().toString(36).slice(2) + Math.random().toString(36).toUpperCase().slice(2)
+
 
 
 

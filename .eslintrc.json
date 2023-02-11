@@ -1,8 +1,8 @@
 {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "eslint:recommended"
+      "react-app/jest"
+      
     ],
     "rules": {
       "indent": ["warn", 4],

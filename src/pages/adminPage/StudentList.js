@@ -11,44 +11,44 @@ const StudentList = ({ contracts, navigate }) => {
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter(user => {
-            const contract = user.currentContract;
+            const contract = user?.currentContract;
             switch (status) {
             case "ativos":
-                return contract.active === true;
+                return contract?.active === true;
             case "inativos":
-                return contract.active === false;
+                return contract?.active === false;
             default:
-                return contract.active === true || contract.active === false;
+                return contract?.active === true || contract?.active === false;
 
             }
         })
         .filter((user) => {
-            const contract = user.currentContract;
+            const contract = user?.currentContract;
             switch (planType) {
             case "":
-                return contract.plan;
+                return contract?.plan;
             case "1x-Mensal":
-                return contract.plan === "1x-Mensal";
+                return contract?.plan === "1x-Mensal";
             case "2x-Mensal":
-                return contract.plan === "2x-Mensal";
+                return contract?.plan === "2x-Mensal";
             case "1x-Trimestral":
-                return contract.plan === "1x-Trimestral";
+                return contract?.plan === "1x-Trimestral";
             case "2x-Trimestral":
-                return contract.plan === "2x-Trimestral";
+                return contract?.plan === "2x-Trimestral";
             case "1x-Semestral":
-                return contract.plan === "1x-Semestral";
+                return contract?.plan === "1x-Semestral";
             case "2x-Semestral":
-                return contract.plan === "2x-Semestral";
+                return contract?.plan === "2x-Semestral";
             case "Avulsa":
-                return contract.plan === "---Avulsa";
+                return contract?.plan === "---Avulsa";
             case "Gympass":
-                return contract.plan === "---Gympass";
+                return contract?.plan === "---Gympass";
             default:
-                return contract.plan;
+                return contract?.plan;
             }
         })
         .map((user) => {
-            const contract = user.currentContract;
+            const contract = user?.currentContract;
             return (
                 <UserInfoList
                     key={user.id}

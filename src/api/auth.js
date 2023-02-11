@@ -1,7 +1,8 @@
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 import { auth, usersCol } from "./config";
-import { findItemById } from ".";
+import { createItem, findItemById } from ".";
+import { sendPasswordToEmail } from "../services/mailer";
 
 export const login = async (form, navigate) => {
     try {
@@ -12,14 +13,13 @@ export const login = async (form, navigate) => {
     } catch (err) {
         console.log(err.message);
         alert("Login error, try again later");
-
     }
 };
 
-export const singUp = async (values) => {
-    const { user } = await createUserWithEmailAndPassword(auth, values.email, values.password );
-    // nodeMailer
-
+export const singUp = async ({email, password}) => {
+    const { user } = await createUserWithEmailAndPassword(auth, email, password );
+    await createItem(usersCol, {email, admin:false}, user.uid); 
+    // sendPasswordToEmail(email, password)
     return user.uid
 };
 
