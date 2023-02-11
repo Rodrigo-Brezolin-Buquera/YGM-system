@@ -1,5 +1,5 @@
 import { Text, Box } from "@chakra-ui/react";
-import { goToViewContract } from "../../routes/coordinator";
+import { goToContract } from "../../routes/coordinator";
 
 const UserInfoList = (props) => {
 
@@ -41,7 +41,7 @@ const UserInfoList = (props) => {
             backgroundColor={"white"}
             _hover={{ cursor: "pointer" }}
             status={props.status}
-            onClick={() => goToViewContract(props.navigate, props.id)}
+            onClick={() => goToContract(props.navigate, props.id)}
         >
 
             <Column>

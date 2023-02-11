@@ -5,7 +5,6 @@ import { findItemById, findItemWhere } from "../../api";
 import { logout } from "../../api/auth";
 import { checkinsCol, contractsCol, yogaClassesCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
-import ClosedPlansInfo from "../../components/ClosedPlansInfo";
 import UserInfo from "../../components/UserInfo";
 import { getToday } from "../../services/moment";
 import Header from "../../theme/Header"
@@ -80,9 +79,7 @@ const UserPage = () => {
                             /> :
                             <CircularProgress isIndeterminate color={colors.secondary} size="70px" />
                     }
-                    <ClosedPlansInfo
-                        closedContracts={contract.closedContracts}
-                    />
+                   
                 </Box>
 
                 <SideContainer>

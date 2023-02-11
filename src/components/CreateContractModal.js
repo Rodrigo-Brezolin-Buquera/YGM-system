@@ -2,8 +2,7 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text, Modal, ModalBody, ModalOverlay, ModalContent,
-    ModalHeader, ModalCloseButton
+    Select, Text
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,6 +10,7 @@ import { singUp } from "../api/auth";
 import { createContract } from "../api/contracts";
 import { genPassword } from "../services/generatePassword"
 import { FormButton } from "../theme/FormButton";
+import { ModalComponent } from "../theme/ModalComponent";
 import { colors } from "../theme/colors";
 import { TypeOptions } from "./selectOptions";
 
@@ -39,78 +39,72 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent>
-                <ModalHeader textAlign={"center"}>Adicionar usuário</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <FormControl
-                            isInvalid={errors.name || errors.email || errors.plan || errors.date}
-                            display={"flex"}
-                            flexDirection={"column"}
-                            alignItems={"center"}
-                            justifyContent={"center"}
-                            gap={"1em"}
-                            minW={"300px"}
-                        >
-                            <Input
-                                variant={"outline"}
-                                id="name"
-                                placeholder="Nome completo"
-                                {...register("name", {
-                                    required: "Campo Obrigátorio",
-                                    minLength: { value: 3, message: "O nome precisa ter no mínimo 3 carateres" }
-                                })}
-                            />
+        <ModalComponent isOpen={isOpen} onClose={onClose} title={"Adicionar contrato"} >   
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <FormControl
+                    isInvalid={errors.name || errors.email || errors.plan || errors.date}
+                    display={"flex"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    gap={"1em"}
+                    minW={"300px"}
+                >
+                    <Input
+                        variant={"outline"}
+                        id="name"
+                        placeholder="Nome completo"
+                        {...register("name", {
+                            required: "Campo Obrigátorio",
+                            minLength: { value: 3, message: "O nome precisa ter no mínimo 3 carateres" }
+                        })}
+                    />
 
-                            <Input
-                                variant={"outline"}
-                                id="email"
-                                placeholder="email"
-                                {...register("email", {
-                                    required: "Campo Obrigátorio"
-                                })}
-                            />
-                            <Select
-                                variant={"outline"}
-                                id="plan"
-                                placeholder="Escolha um plano"
-                                {...register("plan", {
-                                    required: "Campo Obrigátorio"
-                                })}
-                            >
-                                <TypeOptions />
+                    <Input
+                        variant={"outline"}
+                        id="email"
+                        placeholder="email"
+                        {...register("email", {
+                            required: "Campo Obrigátorio"
+                        })}
+                    />
+                    <Select
+                        variant={"outline"}
+                        id="plan"
+                        placeholder="Escolha um plano"
+                        {...register("plan", {
+                            required: "Campo Obrigátorio"
+                        })}
+                    >
+                        <TypeOptions />
 
-                            </Select>
-                            <Input
-                                variant={"outline"}
-                                id="date"
-                                type="date"
-                                placeholder="Data"
-                                {...register("date", {
-                                    required: "This is required"
-                                })}
-                            />
-                            <FormErrorMessage>
-                                {errors.name && errors.name.message}
-                                <br />
-                                {errors.email && errors.email.message}
-                                <br />
-                                {errors.plan && errors.plan.message}
-                                <br />
-                                {errors.date && errors.date.message}
-                            </FormErrorMessage>
-                        </FormControl>
+                    </Select>
+                    <Input
+                        variant={"outline"}
+                        id="date"
+                        type="date"
+                        placeholder="Data"
+                        {...register("date", {
+                            required: "This is required"
+                        })}
+                    />
+                    <FormErrorMessage>
+                        {errors.name && errors.name.message}
+                        <br />
+                        {errors.email && errors.email.message}
+                        <br />
+                        {errors.plan && errors.plan.message}
+                        <br />
+                        {errors.date && errors.date.message}
+                    </FormErrorMessage>
+                </FormControl>
 
-                        <FormButton isSubmitting={isSubmitting} color={colors.secondary} loading={loading}>
-                            <Text>Criar</Text>
-                        </FormButton>
-                    </form>
-                </ModalBody>
-            </ModalContent>
-        </Modal>
+                <FormButton isSubmitting={isSubmitting} color={colors.secondary} loading={loading}>
+                    <Text>Criar</Text>
+                </FormButton>
+            </form>
+             
+        </ModalComponent>
 
 
     );

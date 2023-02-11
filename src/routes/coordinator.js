@@ -18,13 +18,11 @@ export const goToViewClass = (navigate, id) => {
     navigate(`/admin/class/${id}`);
 };
 
-export const goToViewContract = (navigate, id) => {
-    navigate(`/admin/user/${id}`);
+export const goToContract = (navigate, id) => {
+    navigate(`/admin/contract/${id}`);
 };
 
-export const goToEditContract = (navigate, id) => {
-    navigate(`/admin/user/${id}/edit`);
-};
+
 
 export const goBack = (navigate) => {
     navigate(-1);

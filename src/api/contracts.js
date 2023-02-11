@@ -1,12 +1,11 @@
 import { calculateEndDate, formatDate } from "../services/moment"
 import { contractsCol } from "./config"
-import { createItem } from "."
+import { createItem, updateItem } from "."
 
 export const createContract = async ({ name, plan, date }, id) => {
 
     const contract = {
         name,
-        closedContracts: [],
         currentContract: {
             active: true,
             plan,
@@ -18,6 +17,21 @@ export const createContract = async ({ name, plan, date }, id) => {
 
     await createItem(contractsCol, contract, id)
 }
+
+export const updateContract = async ({ plan, date }, id) => {
+    const contract = {
+        currentContract: {
+            active: true,
+            plan,
+            ends: calculateEndDate(date, table[plan].duration),
+            started: formatDate(date),
+            availableClasses: table[plan].quantity
+        }
+    }
+    await updateItem(contractsCol, contract, id)
+}
+
+
 
 const table = {
     "1x-Mensal": {duration:1 , quantity: 4},
