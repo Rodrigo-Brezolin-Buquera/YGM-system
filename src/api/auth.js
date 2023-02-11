@@ -1,8 +1,8 @@
 import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
+
 import { auth, usersCol } from "./config";
 import { createItem, findItemById } from ".";
-import { sendPasswordToEmail } from "../services/mailer";
 
 export const login = async (form, navigate) => {
     try {

@@ -4,7 +4,7 @@ import { database } from "./config";
 export const findAllItems = async (itemCol) => {
     const col = collection(database, itemCol);
     const snap = await getDocs(col);
-    const result = snap.docs.map(doc => doc.data());
+    const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}});
     return result;
 };
 
@@ -18,7 +18,7 @@ export const findItemWhere = async (itemCol, atribute, value) => {
     const col = collection(database, itemCol);
     const q = query(col, where(atribute, "==", value));
     const snap = await getDocs(q);
-    const result = snap.docs.map(doc => doc.data() )
+    const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
     return result;
 };
   

@@ -1,30 +1,34 @@
-import moment from "moment";
-import React, { useLayoutEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import Header from "../../components/headerAdmin/HeaderAdmin";
-import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
-import { useRequestData } from "../../hooks/useRequestData";
-import Calendar from "./components/calendar/Calendar";
-import CreateClassForm from "./components/createClassForm/CreateClassForm";
-import { LowerContainer, LinearContainer } from "./styled";
+import { Box, Button, useDisclosure} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
+import { findAllItems } from "../../api";
+import { yogaClassesCol } from "../../api/config";
+import  HeaderAdmin  from "../../components/HeaderAdmin"
+import { formatToCalendar } from "../../services/moment";
+import { colors } from "../../theme/colors";
+import Calendar from "./Calendar";
+import { CreateClassModal } from "./CreateClassModal";
 
 const CalendarPage = () => {
-    useProtectedPageAdmin();
-    const history = useHistory();
-    const [yogaClasses, getyogaClasses] = useRequestData([], "/calendar");
-    const [loading, setLoading] = useState(false);
-  
-    
-    useLayoutEffect(() => {
-        getyogaClasses();
-    }, [loading]);
+    // useProtectedPageAdmin();
+    const navigate = useNavigate();
+    const [yogaClasses, setyogaClasses] = useState([]);
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+
+    useEffect(() => {
+        findAllItems(yogaClassesCol)
+            .then(res => setyogaClasses(res))
+            .catch(err => console.log(err.message))
+    }, []);
 
     const calendarClasses = yogaClasses.length && yogaClasses.map((yogaClass) => {
         const result = {
             id: yogaClass.id,
             groupId: yogaClass.groupId,
             title: `${yogaClass.name} ${yogaClass.time}`,
-            date: moment(yogaClass.date, "DD/MM/YYYY").format("YYYY-MM-DD"),
+            date: formatToCalendar(yogaClass.date),
             backgroundColor: "",
             borderColor: "",
             textColor: "",
@@ -34,20 +38,26 @@ const CalendarPage = () => {
     });
 
     return (
-        <div>
-            <Header history={history} />
-
+        <>
+            <HeaderAdmin navigate={navigate} />
+            <Box
+                display={"flex"}
+                justifyContent={"center"}
+                backgroundColor={colors.lightNeutral}
+                w={"100%"}
+                p={"1em"}
+            >
+                <Button  onClick={onOpen} backgroundColor={colors.secondary}>
+                    Adicionar aula
+                </Button>
+            </Box>
             <Calendar
-                history={history}
+                navigate={navigate}
                 calendarClasses={calendarClasses}
             />
 
-            <LowerContainer>
-                <LinearContainer>
-                    <CreateClassForm loading={loading} setLoading={setLoading} />
-                </LinearContainer>
-            </LowerContainer>
-        </div>
+            <CreateClassModal isOpen={isOpen} onClose={onClose}/>
+        </>
     );
 };
 

@@ -9,7 +9,7 @@ export const TypeOptions = () => {
             <option value="1x-Semestral"> 1x Semestral </option>
             <option value="2x-Semestral"> 2x  Semestral </option>
             <option value="---Avulsa"> Avulsa </option>
-            <option value="---Gympass"> Gympass </option>
+            {/* <option value="---Gympass"> Gympass </option> */}
         </>
     );
 };

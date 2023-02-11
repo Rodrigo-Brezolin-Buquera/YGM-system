@@ -7,14 +7,12 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { TypeOptions } from "./selectOptions";
+import { singUp } from "../api/auth";
+import { createContract } from "../api/contracts";
+import { genPassword } from "../services/generatePassword"
 import { FormButton } from "../theme/FormButton";
 import { colors } from "../theme/colors";
-import { formatDate } from "../services/moment";
-import { singUp } from "../api/auth";
-import { createItem } from "../api";
-import { contractsCol } from "../api/config";
-import { genPassword } from "../services/generatePassword"
+import { TypeOptions } from "./selectOptions";
 
 export const CreateContractModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
@@ -28,13 +26,9 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
 
     const onSubmit = (values) => {
         setLoading(true);
-        const newValues = {
-            ...values,
-            date: formatDate(values.date, "DD/MM/YYYY")
-        }
-
-        singUp({ email: newValues.email, password: genPassword() })
-            .then(id => createItem(contractsCol, values, id))
+      
+        singUp({ email: values.email, password: genPassword() })
+            .then(id => createContract( values, id))
             .catch((err) => console.log(err.message))
             .finally(() => {
                 setLoading(false)
