@@ -12,7 +12,7 @@ import { FormButton } from "../../theme/FormButton";
 import { ModalComponent } from "../../theme/ModalComponent";
 import { colors } from "../../theme/colors";
 
-export const CreateClassModal = ({ isOpen, onClose }) => {
+export const CreateClassModal = ({ isOpen, onClose, header }) => {
     const [loading, setLoading] = useState(false);
 
     const {
@@ -31,7 +31,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} title={"Adicionar aulas"}>
+        <ModalComponent isOpen={isOpen} onClose={onClose} title={header}>
            
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl

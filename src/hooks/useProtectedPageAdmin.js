@@ -4,24 +4,24 @@ import { useHistory } from "react-router";
 import { goToLogin } from "../routes/coordinator";
 
 export const useProtectedPageAdmin = () => {
-    const history = useHistory();
+    // const history = useHistory();
 
-    useLayoutEffect(() => {
-        const token = localStorage.getItem("token");
+    // useLayoutEffect(() => {
+    //     const token = localStorage.getItem("token");
 
-        if (!token) {
-            goToLogin(history);
-        }
+    //     if (!token) {
+    //         goToLogin(history);
+    //     }
 
-        if (isExpired(token)) {
-            console.log("Sessão expirada, faça login novamente");
-            goToLogin(history);
-        }
-        const tokenData = decodeToken(token);
-        if (!tokenData?.admin) {
-            console.log("Ocorreu um problema, faça login novamente");
-            goToLogin(history);
-        }
-    });
+    //     if (isExpired(token)) {
+    //         console.log("Sessão expirada, faça login novamente");
+    //         goToLogin(history);
+    //     }
+    //     const tokenData = decodeToken(token);
+    //     if (!tokenData?.admin) {
+    //         console.log("Ocorreu um problema, faça login novamente");
+    //         goToLogin(history);
+    //     }
+    // });
 };
 

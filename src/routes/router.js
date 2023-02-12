@@ -7,7 +7,7 @@ const CalendarPage = lazy(() => import("../pages/calendarPage"))
 const ErrorPage = lazy(() => import("../pages/errorPage"))
 const LoginPage = lazy(() => import("../pages/loginPage"))
 const UserPage = lazy(() => import("../pages/userPage"))
-const ClassPage = lazy(() => import("../pages/ClassPage"))
+const ClassPage = lazy(() => import("../pages/classPage"))
 const ContractPage = lazy(() => import("../pages/contractPage"))
 
 const Router = () => {

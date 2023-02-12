@@ -4,21 +4,21 @@ import { useHistory } from "react-router";
 import { goToAdmin, goToUser } from "../routes/coordinator";
 
 function useUnprotectedPage() {
-    const history = useHistory();
+    // const history = useHistory();
 
-    useLayoutEffect(() => {
-        const token = localStorage.getItem("token");
+    // useLayoutEffect(() => {
+    //     const token = localStorage.getItem("token");
 
-        if (token && !isExpired(token)) {
-            const tokenData = decodeToken(token);
+    //     if (token && !isExpired(token)) {
+    //         const tokenData = decodeToken(token);
 
-            if (tokenData?.admin) {
-                goToAdmin(history);
-            } else if (tokenData?.id && !tokenData?.admin) {
-                goToUser(history, tokenData.id);
-            }
-        }
-    });
+    //         if (tokenData?.admin) {
+    //             goToAdmin(history);
+    //         } else if (tokenData?.id && !tokenData?.admin) {
+    //             goToUser(history, tokenData.id);
+    //         }
+    //     }
+    // });
 }
 
 export default useUnprotectedPage;

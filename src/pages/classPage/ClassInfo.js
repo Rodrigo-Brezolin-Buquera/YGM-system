@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 
-const ClassInfo = ({day, time, date, teacher, name}) => {
+export const ClassInfo = ({day, time, date, teacher, name}) => {
     return (
         <Box
             display={"flex"}
@@ -18,4 +18,3 @@ const ClassInfo = ({day, time, date, teacher, name}) => {
     );
 };
 
-export default ClassInfo;

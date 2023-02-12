@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useDisclosure, Button, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { findItemWhere, findAllItems } from "../../api";
@@ -6,16 +6,22 @@ import { contractsCol, yogaClassesCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 // import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import { getToday } from "../../services/moment";
-import { SideContainer  } from "../../theme/SideContainer"
+import { SideContainer } from "../../theme/SideContainer"
 import { colors } from "../../theme/colors";
 import AvailableClasses from "./AvailableClasses";
 import StudentList from "./StudentList";
+import { CreateContractModal } from "./CreateContractModal";
+import { CreateClassModal } from "./CreateClassModal";
+import { ButtonContainer } from "../../theme/ButtonContainer";
 
 const AdminPage = () => {
     // useProtectedPageAdmin();
     const navigate = useNavigate();
-    const [contracts, setContracts] = useState([], "/contracts/list");
-    const [yogaClasses, setyogaClasses] = useState([], "/calendar?today=true");
+    const [contracts, setContracts] = useState([]);
+    const [yogaClasses, setyogaClasses] = useState([]);
+    const { isOpen: isContractOpen, onOpen: onContractOpen, onClose: onContractClose } = useDisclosure()
+    const { isOpen: isClassOpen, onOpen: onClassOpen, onClose: onClassClose } = useDisclosure()
+
 
 
     useEffect(() => {
@@ -40,11 +46,29 @@ const AdminPage = () => {
                 flexDirection={["column-reverse", "row", "row"]}
                 justifyContent={["flex-end", "start", "start"]}
             >
-                <StudentList contracts={contracts} navigate={navigate}/>
+                <ButtonContainer>
+                    <Button
+                        backgroundColor={colors.secondary}
+                        onClick={onContractOpen}
+                    >
+                        <Text>Novo contrato</Text>
+                    </Button>
+
+                    <Button
+                        backgroundColor={colors.secondary}
+                        onClick={onClassOpen}
+                    >
+                        <Text> Nova Aula</Text>
+                    </Button>
+                </ButtonContainer>
+                <StudentList contracts={contracts} navigate={navigate} />
                 <SideContainer>
                     <AvailableClasses yogaClasses={yogaClasses} navigate={navigate} />
                 </SideContainer>
             </Box>
+
+            <CreateContractModal isOpen={isContractOpen} onClose={onContractClose} header={"Adicionar contrato"} />
+            <CreateClassModal isOpen={isClassOpen} onClose={onClassClose} header={"Adicionar aula"} />
 
         </>
     );

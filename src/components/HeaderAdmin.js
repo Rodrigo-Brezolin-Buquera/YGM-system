@@ -6,16 +6,13 @@ import {
     MenuList,
     MenuItem,
     Show,
-    Hide,
-    useDisclosure
+    Hide
 } from "@chakra-ui/react";
 import { logout } from "../api/auth";
 import { goToAdmin, goToCalendar } from "../routes/coordinator";
 import Header from "../theme/Header"
-import { CreateContractModal } from "./CreateContractModal";
 
 const HeaderAdmin = ({ navigate }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <Header>
@@ -25,10 +22,7 @@ const HeaderAdmin = ({ navigate }) => {
                         onClick={() => goToAdmin(navigate)}
                     >Home
                     </Button>
-                    <Button
-                        onClick={onOpen}
-                    >Criar Usuário
-                    </Button>
+                    
                     <Button
                         onClick={() => goToCalendar(navigate)}
                     >Agenda
@@ -49,7 +43,6 @@ const HeaderAdmin = ({ navigate }) => {
                         </MenuButton>
                         <MenuList>
                             <MenuItem onClick={() => goToAdmin(navigate)} >Home</MenuItem>
-                            <MenuItem onClick={onOpen} >Criar Usuário</MenuItem>
                             <MenuItem onClick={() => goToCalendar(navigate)} >Agenda</MenuItem>
                             <MenuItem onClick={() => logout(navigate)}>Sair</MenuItem>
                         </MenuList>
@@ -57,7 +50,6 @@ const HeaderAdmin = ({ navigate }) => {
                 </Hide>
             </Show>
 
-            <CreateContractModal isOpen={isOpen} onClose={onClose}  />
 
         </Header>
     );

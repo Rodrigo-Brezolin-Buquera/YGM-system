@@ -1,8 +1,8 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
-import StudentCheckinCard from "../studentCheckinCard/StudentCheckinCard";
+import StudentCheckinCard from "./StudentCheckinCard";
 
-const StudentList = ({ checkins, loading, setLoading }) => {
+export const StudentList = ({ checkins, loading, setLoading }) => {
     const studentList = checkins?.length && checkins.map((checkin) => {
         return (
             <StudentCheckinCard
@@ -23,4 +23,3 @@ const StudentList = ({ checkins, loading, setLoading }) => {
     );
 };
 
-export default StudentList;

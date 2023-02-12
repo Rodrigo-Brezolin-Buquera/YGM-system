@@ -1,4 +1,3 @@
-import {  Button, useDisclosure} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
@@ -6,17 +5,13 @@ import { findAllItems } from "../../api";
 import { yogaClassesCol } from "../../api/config";
 import  HeaderAdmin  from "../../components/HeaderAdmin"
 import { formatToCalendar } from "../../services/moment";
-import { ButtonContainer } from "../../theme/ButtonContainer";
-import { colors } from "../../theme/colors";
 
 import Calendar from "./Calendar";
-import { CreateClassModal } from "./CreateClassModal";
 
 const CalendarPage = () => {
     // useProtectedPageAdmin();
     const navigate = useNavigate();
     const [yogaClasses, setyogaClasses] = useState([]);
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
 
     useEffect(() => {
@@ -42,17 +37,12 @@ const CalendarPage = () => {
     return (
         <>
             <HeaderAdmin navigate={navigate} />
-            <ButtonContainer          >
-                <Button  onClick={onOpen} backgroundColor={colors.secondary}>
-                    Adicionar aula
-                </Button>
-            </ButtonContainer>
+          
             <Calendar
                 navigate={navigate}
                 calendarClasses={calendarClasses}
             />
 
-            <CreateClassModal isOpen={isOpen} onClose={onClose}/>
         </>
     );
 };

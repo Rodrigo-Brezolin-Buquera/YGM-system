@@ -1,19 +1,21 @@
-import { CircularProgress, Box } from "@chakra-ui/react";
+import { CircularProgress, Box, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import Header from "../../components/headerAdmin/HeaderAdmin";
+import { useNavigate, useParams } from "react-router-dom";
+import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
-import { useRequestData } from "../../hooks/useRequestData";
-import ClassInfo from "./ClassInfo";
-import DeleteClassButtons from "./components/deleteClassButtons/DeleteClassButtons";
-import StudentList from "./components/studentList/StudentList";
+import {ClassInfo} from "./ClassInfo";
+import {StudentList} from "./StudentList";
 import { SideContainer } from "../../theme/SideContainer";
-import { findItemById, findItemWhere } from "../../api";
+import { deleteItemById, deleteItemWhere, findItemById, findItemWhere } from "../../api";
 import { checkinsCol, yogaClassesCol } from "../../api/config";
+import { ButtonContainer } from "../../theme/ButtonContainer";
+import { LoadingButton } from "../../theme/LoadingButton";
+import { colors } from "../../theme/colors";
+import { goToAdmin } from "../../routes/coordinator";
 
 const ClassPage = () => {
     // useProtectedPageAdmin();
-    const history = useHistory();
+    const navigate = useNavigate();
     const { classId } = useParams();
     const [yogaClass, setYogaClass] = useState({});
     const [checkins, setCheckins] = useState([]);
@@ -21,33 +23,68 @@ const ClassPage = () => {
 
     useEffect(() => {
         findItemById(yogaClassesCol, classId)
-        .then(res => setYogaClass(res))
-        .catch(err => console.log(err.message))
+            .then(res => setYogaClass(res))
+            .catch(err => console.log(err.message))
+        findItemWhere(checkinsCol, "classId", classId)
+            .then(res => setCheckins(res))
+            .catch(err => console.log(err.message))
+    }, [loading, classId]);
 
-        findItemWhere(checkinsCol, "classId", classId)        
-        .then(res => setCheckins(res))
-        .catch(err => console.log(err.message))
-       
-    }, [loading]);
+    const deleteClass = () => {
+        if (window.confirm("Deletar aula?")) {
+            setLoading(true);
+            deleteItemById(yogaClassesCol, classId)
+                .then(goToAdmin(navigate))
+                .catch(err => console.log(err.message))
+                .finally(setLoading(false))
+        }
+    };
+
+    const deleteClasses = () => {
+        if (window.confirm("Deletar todas as aulas nesse horário?")) {
+            setLoading(true)
+            deleteItemWhere()
+                .then(goToAdmin(navigate))
+                .catch(err => console.log(err.message))
+                .finally(setLoading(false))
+        }
+    };
 
     return (
         <>
-            <Header history={history} />
-            <Box 
-              display={"flex"} 
-              flexDirection={["column-reverse","row" ,"row"]} 
-              justifyContent={["flex-end" ,"space-between","space-between"]}
-              width={"100%"}
-              minW={"100vh"} 
+            <HeaderAdmin navigate={navigate} />
+            <Box
+                display={"flex"}
+                flexDirection={["column-reverse", "row", "row"]}
+                justifyContent={["flex-end", "space-between", "space-between"]}
+                width={"100%"}
+                minH={"100vh"}
             >
                 <Box
-                display={"flex"} 
-                flexDirection={"column"}
-                justifyContent={"top"}
-                alignItems={"center"}
-                paddingTop={"1em"}
-                width={"100%"}
+                    display={"flex"}
+                    flexDirection={"column"}
+                    justifyContent={"top"}
+                    alignItems={"center"}
+                    paddingTop={"1em"}
+                    width={"100%"}
                 >
+                    <ButtonContainer>
+                        <LoadingButton
+                            color={colors.secondary}
+                            handler={deleteClass}
+                        >
+                            <Text> Excluir aula</Text>
+                        </LoadingButton>
+
+                        <LoadingButton
+                            color={colors.secondary}
+                            handler={deleteClasses}
+                        >
+                            <Text> Excluir horário</Text>
+                        </LoadingButton>
+
+                    </ButtonContainer>
+
                     {yogaClass.id ? <ClassInfo
                         key={yogaClass.id}
                         id={yogaClass.id}
@@ -59,12 +96,6 @@ const ClassPage = () => {
                     /> :
                         <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }
-
-                    <DeleteClassButtons
-                        id={yogaClass.id}
-                        groupId={yogaClass.groupId}
-                        history={history}
-                    />
                 </Box>
                 <SideContainer>
                     <StudentList

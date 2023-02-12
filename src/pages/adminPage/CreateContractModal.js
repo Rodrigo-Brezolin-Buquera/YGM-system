@@ -6,15 +6,15 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { singUp } from "../api/auth";
-import { createContract } from "../api/contracts";
-import { genPassword } from "../services/generatePassword"
-import { FormButton } from "../theme/FormButton";
-import { ModalComponent } from "../theme/ModalComponent";
-import { colors } from "../theme/colors";
-import { TypeOptions } from "./selectOptions";
+import { singUp } from "../../api/auth";
+import { createContract } from "../../api/contracts";
+import { genPassword } from "../../services/generatePassword"
+import { FormButton } from "../../theme/FormButton";
+import { ModalComponent } from "../../theme/ModalComponent";
+import { colors } from "../../theme/colors";
+import { TypeOptions } from "../../components/selectOptions";
 
-export const CreateContractModal = ({ isOpen, onClose }) => {
+export const CreateContractModal = ({ isOpen, onClose, header }) => {
     const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
@@ -39,7 +39,7 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} title={"Adicionar contrato"} >   
+        <ModalComponent isOpen={isOpen} onClose={onClose} title={header} >   
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
                     isInvalid={errors.name || errors.email || errors.plan || errors.date}
