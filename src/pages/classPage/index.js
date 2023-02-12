@@ -9,7 +9,7 @@ import DeleteClassButtons from "./components/deleteClassButtons/DeleteClassButto
 import StudentList from "./components/studentList/StudentList";
 import { MainContainer, SideContainer, CenterContainer } from "./styled";
 
-const ViewClassPage = () => {
+const ClassPage = () => {
     useProtectedPageAdmin();
     const history = useHistory();
     const { classId } = useParams();
@@ -57,4 +57,4 @@ const ViewClassPage = () => {
     );
 };
 
-export default ViewClassPage;
+export default ClassPage;

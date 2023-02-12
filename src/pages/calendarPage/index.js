@@ -6,8 +6,8 @@ import { findAllItems } from "../../api";
 import { yogaClassesCol } from "../../api/config";
 import  HeaderAdmin  from "../../components/HeaderAdmin"
 import { formatToCalendar } from "../../services/moment";
-import { colors } from "../../theme/colors";
 import { ButtonContainer } from "../../theme/ButtonContainer";
+import { colors } from "../../theme/colors";
 
 import Calendar from "./Calendar";
 import { CreateClassModal } from "./CreateClassModal";

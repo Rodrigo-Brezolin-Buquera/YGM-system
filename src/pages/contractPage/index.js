@@ -1,15 +1,18 @@
 import {Box, Button, CircularProgress, Text, useDisclosure} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { findItemById, findItemWhere } from "../../api";
+import { deleteItemById, findItemById, findItemWhere } from "../../api";
 import { checkinsCol, contractsCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import UserInfo from "../../components/UserInfo";
-import { colors } from "../../theme/colors";
+import { goToAdmin } from "../../routes/coordinator";
 import { ButtonContainer } from "../../theme/ButtonContainer";
+import { LoadingButton } from "../../theme/LoadingButton";
 import { SideContainer } from "../../theme/SideContainer";
-import AddContractModal from "./AddContractModal";
+import { colors } from "../../theme/colors";
+import {AddContractModal} from "./AddContractModal";
+import {EditContractModal} from "./EditContractModal"
 
 const ContractPage = () => {
     // useProtectedPageAdmin();
@@ -18,6 +21,8 @@ const ContractPage = () => {
     const [checkins, setCheckins] = useState([]);
     const navigate = useNavigate();
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
+    const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
+
 
     useEffect(() => {
         findItemById(contractsCol, userId)
@@ -28,6 +33,27 @@ const ContractPage = () => {
             .catch(err => console.log(err.message))
         
     }, [userId]);
+
+
+    const deleteContract = async () => {
+        try {
+            if(window.confirm("Excluir este contrato?")) {
+                await deleteItemById(contractsCol, userId);
+                goToAdmin(navigate);
+            }  
+        } catch (err) {
+            console.log(err.message);
+        }   
+    };
+
+    const sendPasswordLink = async () => {
+        if (window.confirm("Enviar email com link para gerar nova senha?")) {
+            
+            // await changePassword(id);
+         
+        }
+    };
+
    
     return (
         <>
@@ -51,6 +77,38 @@ const ContractPage = () => {
                     gap={"0.5em"}
                     minW={"300px"}
                 >
+
+                    <ButtonContainer>
+                        <Button
+                            backgroundColor={colors.secondary}
+                            onClick={onEditOpen}
+                        >
+                            <Text>Editar Contrato</Text> 
+                        </Button>
+
+                        <Button
+                            backgroundColor={colors.secondary}
+                            onClick={onAddOpen}
+                        >
+                            <Text> Novo Plano</Text>
+                        </Button>
+
+                        <LoadingButton
+                            color={colors.secondary}
+                            handler={deleteContract}
+                        >
+                            <Text>Excluir contrato</Text>
+                        </LoadingButton>
+
+                        <LoadingButton
+                            color={colors.secondary}
+                            handler={sendPasswordLink}
+                        >
+                            <Text>Enviar nova senha</Text>
+                        </LoadingButton>
+                       
+                    </ButtonContainer>
+
                     {
                         contracts.id ?
                             <UserInfo
@@ -64,36 +122,24 @@ const ContractPage = () => {
                             <CircularProgress isIndeterminate color="yellow.400" size="70px" />  
                     }
 
-                    <ButtonContainer>
-                        <Button
-                            backgroundColor={colors.secondary}
-                            onClick={""}
-                        >
-                            Editar Contrato
-                        </Button>
-
-                        <Button
-                            backgroundColor={colors.secondary}
-                            onClick={onAddOpen}
-                        >
-                            <Text> Novo Plano</Text>
-                        </Button>
-
-                        // botao de deletar contrato
-                        // botao de enviar nova ssenha?
-                        // loadingButton generico
-                    </ButtonContainer>
+                   
                 </Box>
             </Box>
 
             <AddContractModal
-                isAddOpen={isAddOpen} 
-                onAddClose={onAddClose} 
+                isOpen={isAddOpen} 
+                onClose={onAddClose} 
                 id={userId} 
 
             />
 
-           // EditContractModal         
+            <EditContractModal  
+                contract ={contracts?.currentContract}
+                name={contracts?.name}
+                isOpen={isEditOpen} 
+                onClose={onEditClose} 
+                id={userId} 
+            />        
         </>
     );
 };

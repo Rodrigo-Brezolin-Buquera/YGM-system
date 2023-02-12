@@ -18,7 +18,7 @@ export const createContract = async ({ name, plan, date }, id) => {
     await createItem(contractsCol, contract, id)
 }
 
-export const updateContract = async ({ plan, date }, id) => {
+export const newContract = async ({ plan, date }, id) => {
     const contract = {
         currentContract: {
             active: true,
@@ -26,6 +26,20 @@ export const updateContract = async ({ plan, date }, id) => {
             ends: calculateEndDate(date, table[plan].duration),
             started: formatDate(date),
             availableClasses: table[plan].quantity
+        }
+    }
+    await updateItem(contractsCol, contract, id)
+}
+
+export const updateContract = async (values, id) => {
+    const contract = {
+        currentContract: {
+            name: values.name,
+            active: values.active,
+            plan: values.plan,
+            ends: formatDate(values.ends),
+            started: formatDate(values),
+            availableClasses: values.availableClasses
         }
     }
     await updateItem(contractsCol, contract, id)

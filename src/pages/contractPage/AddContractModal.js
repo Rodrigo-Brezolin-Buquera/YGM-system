@@ -6,13 +6,13 @@ import {
 } from "@chakra-ui/react";
 import {useState} from "react";
 import { useForm } from "react-hook-form";
+import { newContract } from "../../api/contracts";
 import { TypeOptions } from "../../components/selectOptions";
 import { FormButton } from "../../theme/FormButton";
 import { ModalComponent } from "../../theme/ModalComponent";
 import { colors } from "../../theme/colors";
-import { updateContract } from "../../api/contracts";
 
-const AddContractModal = ({ id,  isAddOpen, onAddClose   }) => {
+export const AddContractModal = ({ id,  isOpen, onClose   }) => {
     const {
         handleSubmit,
         register,
@@ -24,14 +24,14 @@ const AddContractModal = ({ id,  isAddOpen, onAddClose   }) => {
 
     const onSubmit = (values) => {
         setLoading(true);
-        updateContract(values, id)        
+        newContract(values, id)        
             .then(reset())
             .catch(err => console.log(err.message))
             .finally(setLoading(false));
     };
 
     return (
-        <ModalComponent isOpen={isAddOpen} onClose={onAddClose} header={"Adicionar novo contrato"}>
+        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar novo contrato"}>
 
             <form onSubmit={handleSubmit(onSubmit)} >
                 <FormControl 
@@ -81,4 +81,3 @@ const AddContractModal = ({ id,  isAddOpen, onAddClose   }) => {
     );
 };
 
-export default AddContractModal;

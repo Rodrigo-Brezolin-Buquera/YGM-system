@@ -5,6 +5,7 @@ export const ButtonContainer = ({ children }) => {
     return (
         <Box
             display={"flex"}
+            flexWrap={"wrap"}
             justifyContent={"center"}
             backgroundColor={colors.lightNeutral}
             w={"100%"}
