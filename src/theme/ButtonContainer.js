@@ -1,7 +1,6 @@
 import { Card } from "@chakra-ui/react"
-import { colors } from "."
 
-export const ButtonContainer = ({ children }) => {
+const ButtonContainer = ({ children }) => {
     return (
         <Card
             display={"flex"}
@@ -17,3 +16,5 @@ export const ButtonContainer = ({ children }) => {
         </Card>
     )
 }
+
+export default ButtonContainer

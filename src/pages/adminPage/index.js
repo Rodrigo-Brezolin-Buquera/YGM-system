@@ -6,13 +6,11 @@ import { contractsCol, yogaClassesCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 // import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import { getToday } from "../../services/moment";
-import { SideContainer } from "../../theme/SideContainer"
 import AvailableClasses from "./AvailableClasses";
 import StudentList from "./StudentList";
 import { CreateContractModal } from "./CreateContractModal";
 import { CreateClassModal } from "./CreateClassModal";
-import { ButtonContainer } from "../../theme/ButtonContainer";
-import { MainContainer } from "../../theme/MainContainer";
+import { ButtonContainer,MainContainer, SideContainer } from "../../theme";
 
 const AdminPage = () => {
     // useProtectedPageAdmin();

@@ -1,6 +1,6 @@
 import { CheckIcon, DeleteIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 
 const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
     useEffect(() => { }, [verified, loading]);

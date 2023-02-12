@@ -1,5 +1,5 @@
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 
 const ClassesCard = (props) => {
     const { contractId, yogaClassId, checkins, day, time, teacher, name, capacity, loading, setLoading } = props;

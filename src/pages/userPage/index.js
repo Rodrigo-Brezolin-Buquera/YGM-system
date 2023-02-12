@@ -7,10 +7,7 @@ import { checkinsCol, contractsCol, yogaClassesCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { getToday } from "../../services/moment";
-import Header from "../../theme/Header"
-import { MainContainer } from "../../theme/MainContainer";
-import { SideContainer } from "../../theme/SideContainer";
-// import { useProtectedPageStudent } from "../../hooks/useProtectedPageStudent";
+import { MainContainer, SideContainer, Header } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
 const UserPage = () => {

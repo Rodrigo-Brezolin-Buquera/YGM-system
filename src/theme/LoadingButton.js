@@ -1,7 +1,7 @@
 import { CircularProgress, Button, Box } from "@chakra-ui/react"
 import { useState } from "react"
 
-export const LoadingButton = ({ handler, color, children }) => {
+const LoadingButton = ({ handler, color, children }) => {
     const [loading, setLoading] = useState(false)
 
     const onClick = async () => {
@@ -26,3 +26,5 @@ export const LoadingButton = ({ handler, color, children }) => {
         </Box>
     )
 }
+
+export default LoadingButton

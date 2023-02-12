@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import whiteLogo from "../assets/whiteLogo.png";
-import { LogoImg } from "./LogoImg";
+import { LogoImg } from ".";
 
 
 const Header = ({ children }) => {
@@ -18,7 +18,7 @@ const Header = ({ children }) => {
             <LogoImg height={"50px"} logo={whiteLogo} />
             <Box
                 display={"flex"}
-                gap={"0.2em"}
+                gap={"0.5em"}
                 marginRight={"0.2em"}
             >
 

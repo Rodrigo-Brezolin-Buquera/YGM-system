@@ -16,18 +16,23 @@ const HeaderAdmin = ({ navigate }) => {
 
     return (
         <Header>
-            <Show above='md'>
-                <Hide below="md">
-                    <Button
+            <Show above='md'
+>
+                <Hide below="md"   
+>
+                    <Button 
+                     
                         onClick={() => goToAdmin(navigate)}
                     >Home
                     </Button>
                     
                     <Button
+                     
                         onClick={() => goToCalendar(navigate)}
                     >Agenda
                     </Button>
                     <Button
+                     
                         onClick={() => logout(navigate)}
                     >Sair
                     </Button>

@@ -5,13 +5,10 @@ import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import {ClassInfo} from "./ClassInfo";
 import {StudentList} from "./StudentList";
-import { SideContainer } from "../../theme/SideContainer";
+import { SideContainer, ButtonContainer, LoadingButton, MainContainer } from "../../theme";
 import { deleteItemById, deleteItemWhere, findItemById, findItemWhere } from "../../api";
 import { checkinsCol, yogaClassesCol } from "../../api/config";
-import { ButtonContainer } from "../../theme/ButtonContainer";
-import { LoadingButton } from "../../theme/LoadingButton";
 import { goToAdmin } from "../../routes/coordinator";
-import { MainContainer } from "../../theme/MainContainer";
 
 const ClassPage = () => {
     // useProtectedPageAdmin();

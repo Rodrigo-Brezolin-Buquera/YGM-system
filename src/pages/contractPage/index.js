@@ -7,12 +7,9 @@ import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import UserInfo from "../../components/UserInfo";
 import { goToAdmin } from "../../routes/coordinator";
-import { ButtonContainer } from "../../theme/ButtonContainer";
-import { LoadingButton } from "../../theme/LoadingButton";
-import { SideContainer } from "../../theme/SideContainer";
+import { ButtonContainer, LoadingButton, SideContainer, MainContainer } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
-import { MainContainer } from "../../theme/MainContainer";
 
 const ContractPage = () => {
     // useProtectedPageAdmin();

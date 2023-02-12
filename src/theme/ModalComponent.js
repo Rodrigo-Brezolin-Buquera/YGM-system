@@ -1,10 +1,14 @@
 import {
-    Modal, ModalBody, ModalOverlay, ModalContent,
-    ModalHeader, ModalCloseButton
+    Modal, 
+    ModalBody,
+     ModalOverlay,
+     ModalContent,
+    ModalHeader,
+     ModalCloseButton
 } from "@chakra-ui/react";
 
 
-export const ModalComponent = ({ isOpen, onClose , header, children}) => {
+const ModalComponent = ({ isOpen, onClose , header, children}) => {
    
 
     return (
@@ -21,3 +25,4 @@ export const ModalComponent = ({ isOpen, onClose , header, children}) => {
     );
 };
 
+export default ModalComponent;

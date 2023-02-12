@@ -8,8 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createClasses } from "../../api/calendar";
 import { DayOptions, StyleOptions, TeacherOptions } from "../../components/selectOptions";
-import { FormButton } from "../../theme/FormButton";
-import { ModalComponent } from "../../theme/ModalComponent";
+import { ModalComponent, FormButton } from "../../theme";
 
 export const CreateClassModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);

@@ -8,8 +8,7 @@ import {useState} from "react";
 import { useForm } from "react-hook-form";
 import { newContract } from "../../api/contracts";
 import { TypeOptions } from "../../components/selectOptions";
-import { FormButton } from "../../theme/FormButton";
-import { ModalComponent } from "../../theme/ModalComponent";
+import { FormButton, ModalComponent } from "../../theme";
 
 export const AddContractModal = ({ id,  isOpen, onClose   }) => {
     const {

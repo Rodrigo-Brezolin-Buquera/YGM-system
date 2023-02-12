@@ -9,8 +9,7 @@ import { useForm } from "react-hook-form";
 import { singUp } from "../../api/auth";
 import { createContract } from "../../api/contracts";
 import { genPassword } from "../../services/generatePassword"
-import { FormButton } from "../../theme/FormButton";
-import { ModalComponent } from "../../theme/ModalComponent";
+import { ModalComponent, FormButton } from "../../theme";
 import { TypeOptions } from "../../components/selectOptions";
 
 export const CreateContractModal = ({ isOpen, onClose }) => {

@@ -12,8 +12,7 @@ import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
 import {formatToCalendar} from "../../services/moment"
-import { FormButton } from "../../theme/FormButton";
-import { ModalComponent } from "../../theme/ModalComponent";
+import { FormButton, ModalComponent } from "../../theme";
 
 export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);

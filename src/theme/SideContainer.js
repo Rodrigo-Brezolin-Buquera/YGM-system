@@ -1,6 +1,6 @@
 import { Card } from "@chakra-ui/react"
 
-export const SideContainer = ({ children }) => {
+const SideContainer = ({ children }) => {
     return (
         <Card
             display={"flex"}
@@ -20,3 +20,4 @@ export const SideContainer = ({ children }) => {
     )
 }
 
+export default SideContainer    

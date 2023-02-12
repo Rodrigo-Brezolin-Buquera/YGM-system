@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
-import { FormButton } from "../../theme/FormButton";
+import { FormButton } from "../../theme";
 
 export const LoginForm = ({ navigate }) => {
     const [loading, setLoading] = useState(false);

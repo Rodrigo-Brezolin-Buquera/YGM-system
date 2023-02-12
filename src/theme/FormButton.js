@@ -1,6 +1,6 @@
 import { CircularProgress, Button } from "@chakra-ui/react"
 
-export const FormButton = ({ isSubmitting, color, loading, children }) => {
+const FormButton = ({ isSubmitting, color, loading, children }) => {
 
     return (
         <Button
@@ -19,3 +19,5 @@ export const FormButton = ({ isSubmitting, color, loading, children }) => {
         </Button>
     )
 }
+
+export default FormButton
