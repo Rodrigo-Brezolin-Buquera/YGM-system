@@ -7,7 +7,7 @@ const CalendarPage = lazy(() => import("../pages/calendarPage"))
 const ErrorPage = lazy(() => import("../pages/errorPage"))
 const LoginPage = lazy(() => import("../pages/loginPage"))
 const UserPage = lazy(() => import("../pages/userPage"))
-// const ViewClassPage = lazy(() => import("../pages/viewClassPage"))
+const ClassPage = lazy(() => import("../pages/ClassPage"))
 const ContractPage = lazy(() => import("../pages/contractPage"))
 
 const Router = () => {
@@ -18,18 +18,13 @@ const Router = () => {
                     <CircularProgress alignSelf={"center"} size='120px' isIndeterminate color="gold" />
                 }>
                 <Routes>
-
                     <Route index element={<LoginPage />} />
                     <Route path="/user/:userId" element={<UserPage />} /> 
                     <Route path="/admin" element={<AdminPage />} />
                     <Route exact path="/admin/calendar" element={<CalendarPage />} />
-                    {/* <Route exact path="/admin/class/:classId" element={<ViewClassPage />} /> */}
+                    <Route exact path="/admin/class/:classId" element={<ClassPage />} />
                     <Route exact path="/admin/contract/:userId" element={<ContractPage />} />
-                    
-
                     <Route path='*' element={<ErrorPage />} />
-
-
                 </Routes>
             </Suspense>
         </BrowserRouter>

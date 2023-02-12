@@ -2,7 +2,7 @@ import React from "react";
 import "@fullcalendar/react/dist/vdom.js";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { goToViewClass } from "../../routes/coordinator";
+import { goToClass } from "../../routes/coordinator";
 
 export default class Calendar extends React.Component {
 
@@ -14,7 +14,7 @@ export default class Calendar extends React.Component {
                 plugins={[dayGridPlugin]}
                 initialView="dayGridMonth"
                 eventClick={function (info) {
-                    goToViewClass(navigate, info.event.id);
+                    goToClass(navigate, info.event.id);
                 }}
                 events={calendarClasses}
             />

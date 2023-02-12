@@ -14,15 +14,13 @@ export const goToCalendar = (navigate) => {
     navigate("/admin/calendar");
 };
 
-export const goToViewClass = (navigate, id) => {
+export const goToClass = (navigate, id) => {
     navigate(`/admin/class/${id}`);
 };
 
 export const goToContract = (navigate, id) => {
     navigate(`/admin/contract/${id}`);
 };
-
-
 
 export const goBack = (navigate) => {
     navigate(-1);

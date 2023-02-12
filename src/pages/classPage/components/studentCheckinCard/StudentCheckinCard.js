@@ -3,7 +3,7 @@ import { Text, CircularProgress } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { deleteCheckin, validateCheckin } from "../../../../services/requests/bookingRequests";
 import { StudentCard, IconCont, LineContainer } from "./styled";
-CheckIcon;
+
 
 const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
     useEffect(() => {
