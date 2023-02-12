@@ -14,7 +14,7 @@ import { ModalComponent } from "../../theme/ModalComponent";
 import { colors } from "../../theme/colors";
 import { TypeOptions } from "../../components/selectOptions";
 
-export const CreateContractModal = ({ isOpen, onClose, header }) => {
+export const CreateContractModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
@@ -39,7 +39,7 @@ export const CreateContractModal = ({ isOpen, onClose, header }) => {
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} title={header} >   
+        <ModalComponent isOpen={isOpen} onClose={onClose} title={"Adicionar contrato"} >   
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
                     isInvalid={errors.name || errors.email || errors.plan || errors.date}

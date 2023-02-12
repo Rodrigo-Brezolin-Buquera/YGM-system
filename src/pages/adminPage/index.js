@@ -13,6 +13,7 @@ import StudentList from "./StudentList";
 import { CreateContractModal } from "./CreateContractModal";
 import { CreateClassModal } from "./CreateClassModal";
 import { ButtonContainer } from "../../theme/ButtonContainer";
+import { MainContainer } from "../../theme/MainConainer";
 
 const AdminPage = () => {
     // useProtectedPageAdmin();
@@ -46,29 +47,32 @@ const AdminPage = () => {
                 flexDirection={["column-reverse", "row", "row"]}
                 justifyContent={["flex-end", "start", "start"]}
             >
-                <ButtonContainer>
-                    <Button
-                        backgroundColor={colors.secondary}
-                        onClick={onContractOpen}
-                    >
-                        <Text>Novo contrato</Text>
-                    </Button>
+                <MainContainer>
+                    <ButtonContainer>
+                        <Button
+                            backgroundColor={colors.secondary}
+                            onClick={onContractOpen}
+                        >
+                            <Text>Novo contrato</Text>
+                        </Button>
 
-                    <Button
-                        backgroundColor={colors.secondary}
-                        onClick={onClassOpen}
-                    >
-                        <Text> Nova Aula</Text>
-                    </Button>
-                </ButtonContainer>
-                <StudentList contracts={contracts} navigate={navigate} />
+                        <Button
+                            backgroundColor={colors.secondary}
+                            onClick={onClassOpen}
+                        >
+                            <Text> Nova Aula</Text>
+                        </Button>
+                    </ButtonContainer>
+                    <StudentList contracts={contracts} navigate={navigate} />
+                </MainContainer>
+
                 <SideContainer>
                     <AvailableClasses yogaClasses={yogaClasses} navigate={navigate} />
                 </SideContainer>
             </Box>
 
-            <CreateContractModal isOpen={isContractOpen} onClose={onContractClose} header={"Adicionar contrato"} />
-            <CreateClassModal isOpen={isClassOpen} onClose={onClassClose} header={"Adicionar aula"} />
+            <CreateContractModal isOpen={isContractOpen} onClose={onContractClose} />
+            <CreateClassModal isOpen={isClassOpen} onClose={onClassClose} />
 
         </>
     );
