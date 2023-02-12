@@ -2,7 +2,6 @@ import { Box } from "@chakra-ui/react";
 import React from "react";
 import whiteLogo from "../assets/whiteLogo.png";
 import { LogoImg } from "./LogoImg";
-import { colors } from "./colors";
 
 
 const Header = ({ children }) => {
@@ -10,7 +9,7 @@ const Header = ({ children }) => {
     return (
         <Box
             display={"flex"}
-            backgroundColor={colors.darkNeutral}
+            backgroundColor={"brand.300"}
             height={"60px"}
             alignItems={"center"}
             justifyContent={"space-between"}

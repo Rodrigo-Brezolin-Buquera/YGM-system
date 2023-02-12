@@ -1,6 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import { colors } from "../theme/colors"
 
 const CheckinCard = ({ checkin }) => {
 
@@ -12,7 +11,7 @@ const CheckinCard = ({ checkin }) => {
             borderRadius={"25px"}
             gap={"0.1em"}
             minW={"150px"}
-            backgroundColor={colors.secondary}
+            backgroundColor={"brand.200"}
             p={"0.3em"}
 
         >

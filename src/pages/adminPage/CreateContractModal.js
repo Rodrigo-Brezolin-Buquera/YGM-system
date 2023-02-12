@@ -11,7 +11,6 @@ import { createContract } from "../../api/contracts";
 import { genPassword } from "../../services/generatePassword"
 import { FormButton } from "../../theme/FormButton";
 import { ModalComponent } from "../../theme/ModalComponent";
-import { colors } from "../../theme/colors";
 import { TypeOptions } from "../../components/selectOptions";
 
 export const CreateContractModal = ({ isOpen, onClose }) => {
@@ -99,7 +98,7 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
                     </FormErrorMessage>
                 </FormControl>
 
-                <FormButton isSubmitting={isSubmitting} color={colors.secondary} loading={loading}>
+                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading}>
                     <Text>Criar</Text>
                 </FormButton>
             </form>

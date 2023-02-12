@@ -1,5 +1,4 @@
 import { Card } from "@chakra-ui/react"
-import { colors } from "./colors"
 
 export const MainContainer = ({ children }) => {
     return (
@@ -8,13 +7,13 @@ export const MainContainer = ({ children }) => {
             flexDirection={"column"}
             alignItems={"center"}
             justifyContent={"top"}
-            backgroundColor={colors.lightNeutral}
+            backgroundColor={"brand.400"}
             minW={"250px"}
             minH={"200px"}
             p={"1em"}
             gap={"0.5em"}
-            w={"100%"}
-            m={"1em"}
+            w={["90%","100%","100%"]}
+            m={"0.8em"}
         >
             {children}
 

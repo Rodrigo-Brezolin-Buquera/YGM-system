@@ -37,7 +37,7 @@ const UserInfoList = (props) => {
             borderRadius={"10px"}
             border={"1px solid black"}
             minW={"250px"}
-            width={["95%","90%","90%"]}
+            width={"100%"}
             backgroundColor={"white"}
             _hover={{ cursor: "pointer" }}
             status={props.status}

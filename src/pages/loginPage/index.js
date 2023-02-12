@@ -2,7 +2,6 @@ import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import defaultLogo from "../../assets/defaultLogo.png";
 import { LogoImg } from "../../theme/LogoImg";
-import { colors } from "../../theme/colors";
 import { LoginForm } from "./LoginForm";
 
 const LoginPage = () => {
@@ -15,7 +14,7 @@ const LoginPage = () => {
             flexDirection={"column"}
             alignItems={"center"}
             paddingTop={"1em"}
-            backgroundColor={colors.lightNeutral}
+            backgroundColor={"brand.400"}
             minH={"100vh"}
         >
             <LogoImg width={"300px"} logo={defaultLogo}/>

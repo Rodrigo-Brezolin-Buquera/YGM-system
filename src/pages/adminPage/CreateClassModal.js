@@ -10,7 +10,6 @@ import { createClasses } from "../../api/calendar";
 import { DayOptions, StyleOptions, TeacherOptions } from "../../components/selectOptions";
 import { FormButton } from "../../theme/FormButton";
 import { ModalComponent } from "../../theme/ModalComponent";
-import { colors } from "../../theme/colors";
 
 export const CreateClassModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
@@ -104,7 +103,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
                         {errors.date && errors.date.message}
                     </FormErrorMessage>
                 </FormControl>
-                <FormButton isSubmitting={isSubmitting} color={colors.secondary} loading={loading}>
+                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading}>
                     <Text>Criar aula</Text>
                 </FormButton>
 

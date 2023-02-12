@@ -1,7 +1,6 @@
 import { CheckIcon, DeleteIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { colors } from "../../theme/colors";
 
 const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
     useEffect(() => { }, [verified, loading]);
@@ -25,7 +24,7 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
             display={"flex"}
             justifyItems={"center"}
             alignItems={"center"}
-            backgroundColor={colors.lightNeutral}
+            backgroundColor={"brand.400"}
             borderRadius={"8px"}
             margin={"0.5em"}
             padding={"0.2em"}

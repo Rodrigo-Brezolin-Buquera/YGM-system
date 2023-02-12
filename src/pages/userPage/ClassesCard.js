@@ -1,6 +1,5 @@
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import { colors } from "../../theme/colors";
 
 const ClassesCard = (props) => {
     const { contractId, yogaClassId, checkins, day, time, teacher, name, capacity, loading, setLoading } = props;
@@ -44,10 +43,10 @@ const ClassesCard = (props) => {
             width={"180px"}
             minH={"60px"}
             _hover={{ cursor: "pointer" }}
-            backgroundColor={ checkin ? colors.secondary : colors.lightNeutral }
+            backgroundColor={ checkin ? "brand.200" : "brand.100" }
             onClick={handleCheckin}
         >
-            {loading ? <CircularProgress isIndeterminate color={colors.secondary} size="75px" /> :
+            {loading ? <CircularProgress isIndeterminate color={"brand.200"} size="75px" /> :
                 <Box
                     display={"flex"}
                     flexDirection={"column"}

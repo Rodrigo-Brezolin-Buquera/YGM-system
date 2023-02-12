@@ -2,7 +2,6 @@ import { Box, Text, Image, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import flower from "../../assets/flower.png";
 import { goBack } from "../../routes/coordinator";
-import { colors } from "../../theme/colors";
 
 const ErrorPage = () => {
     const navigate = useNavigate();
@@ -12,7 +11,7 @@ const ErrorPage = () => {
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
-            backgroundColor={colors.primary}
+            backgroundColor={"brand.400"}
             h="100vh"
             w={"100vw"}
         >

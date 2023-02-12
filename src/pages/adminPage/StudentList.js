@@ -76,7 +76,7 @@ const StudentList = ({ contracts, navigate }) => {
             <Box
                 display={"flex"}
                 gap={"1em"}
-                width={["90vw", "100%", "100%"]}
+                width={"100%"}
                 flexDirection={["column", "row", "row"]}
             >
                 <Input

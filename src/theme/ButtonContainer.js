@@ -1,19 +1,19 @@
-import { Box } from "@chakra-ui/react"
-import { colors } from "./colors"
+import { Card } from "@chakra-ui/react"
+import { colors } from "."
 
 export const ButtonContainer = ({ children }) => {
     return (
-        <Box
+        <Card
             display={"flex"}
+            flexDirection={"row"}
             flexWrap={"wrap"}
             justifyContent={"center"}
-            backgroundColor={colors.lightNeutral}
+            backgroundColor={"brand.400"}
             w={"100%"}
-            p={"1em"}
-            gap={"2em"}
+            p={"0.5em"}
+            gap={["1em","1em","2em"]}
         >
             {children}
-
-        </Box>
+        </Card>
     )
 }

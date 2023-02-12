@@ -7,13 +7,12 @@ import HeaderAdmin from "../../components/HeaderAdmin";
 // import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import { getToday } from "../../services/moment";
 import { SideContainer } from "../../theme/SideContainer"
-import { colors } from "../../theme/colors";
 import AvailableClasses from "./AvailableClasses";
 import StudentList from "./StudentList";
 import { CreateContractModal } from "./CreateContractModal";
 import { CreateClassModal } from "./CreateClassModal";
 import { ButtonContainer } from "../../theme/ButtonContainer";
-import { MainContainer } from "../../theme/MainConainer";
+import { MainContainer } from "../../theme/MainContainer";
 
 const AdminPage = () => {
     // useProtectedPageAdmin();
@@ -43,21 +42,21 @@ const AdminPage = () => {
                 w={"100%"}
                 h={"100%"}
                 minH={"100vh"}
-                backgroundColor={colors.lightNeutral}
+                backgroundColor={"brand.100"}
                 flexDirection={["column-reverse", "row", "row"]}
                 justifyContent={["flex-end", "start", "start"]}
             >
                 <MainContainer>
                     <ButtonContainer>
                         <Button
-                            backgroundColor={colors.secondary}
+                            backgroundColor={"brand.200"}
                             onClick={onContractOpen}
                         >
                             <Text>Novo contrato</Text>
                         </Button>
 
                         <Button
-                            backgroundColor={colors.secondary}
+                            backgroundColor={"brand.200"}
                             onClick={onClassOpen}
                         >
                             <Text> Nova Aula</Text>

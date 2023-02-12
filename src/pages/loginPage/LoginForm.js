@@ -9,7 +9,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
 import { FormButton } from "../../theme/FormButton";
-import { colors } from "../../theme/colors";
 
 export const LoginForm = ({ navigate }) => {
     const [loading, setLoading] = useState(false);
@@ -34,7 +33,7 @@ export const LoginForm = ({ navigate }) => {
             alignItems={"center"}
             p={"1em"}
             mt={"1em"}
-            backgroundColor={colors.primary}
+            backgroundColor={"brand.100"}
             borderRadius={"25px"}
             w={"300px"}
         >
@@ -72,7 +71,7 @@ export const LoginForm = ({ navigate }) => {
 
                         <FormButton
                             isSubmitting={isSubmitting}
-                            color={colors.secondary}
+                            color={"brand.200"}
                             loading={loading
                             }
                         >

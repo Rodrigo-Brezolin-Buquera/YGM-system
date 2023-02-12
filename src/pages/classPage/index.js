@@ -10,8 +10,8 @@ import { deleteItemById, deleteItemWhere, findItemById, findItemWhere } from "..
 import { checkinsCol, yogaClassesCol } from "../../api/config";
 import { ButtonContainer } from "../../theme/ButtonContainer";
 import { LoadingButton } from "../../theme/LoadingButton";
-import { colors } from "../../theme/colors";
 import { goToAdmin } from "../../routes/coordinator";
+import { MainContainer } from "../../theme/MainContainer";
 
 const ClassPage = () => {
     // useProtectedPageAdmin();
@@ -60,24 +60,17 @@ const ClassPage = () => {
                 width={"100%"}
                 minH={"100vh"}
             >
-                <Box
-                    display={"flex"}
-                    flexDirection={"column"}
-                    justifyContent={"top"}
-                    alignItems={"center"}
-                    paddingTop={"1em"}
-                    width={"100%"}
-                >
+                <MainContainer            >
                     <ButtonContainer>
                         <LoadingButton
-                            color={colors.secondary}
+                            color={"brand.200"}
                             handler={deleteClass}
                         >
                             <Text> Excluir aula</Text>
                         </LoadingButton>
 
                         <LoadingButton
-                            color={colors.secondary}
+                            color={"brand.200"}
                             handler={deleteClasses}
                         >
                             <Text> Excluir horário</Text>
@@ -96,7 +89,7 @@ const ClassPage = () => {
                     /> :
                         <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }
-                </Box>
+                </MainContainer>
                 <SideContainer>
                     <StudentList
                         checkins={checkins}

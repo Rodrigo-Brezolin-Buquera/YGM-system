@@ -10,7 +10,6 @@ import { newContract } from "../../api/contracts";
 import { TypeOptions } from "../../components/selectOptions";
 import { FormButton } from "../../theme/FormButton";
 import { ModalComponent } from "../../theme/ModalComponent";
-import { colors } from "../../theme/colors";
 
 export const AddContractModal = ({ id,  isOpen, onClose   }) => {
     const {
@@ -71,7 +70,7 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
                     </FormErrorMessage>
                 </FormControl>
            
-                <FormButton isSubmitting={isSubmitting} color={colors.secondary} loading={loading} >
+                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} >
                     <Text>Adicionar plano </Text>
                 </FormButton>
 

@@ -1,6 +1,5 @@
 import { Text, Box } from "@chakra-ui/react";
 import { goToClass } from "../../routes/coordinator";
-import { colors } from "../../theme/colors";
 
 const ClassesCard = (props) => {
     return (
@@ -9,7 +8,7 @@ const ClassesCard = (props) => {
             flexDirection={"column"}
             alignContent={"center"}
             justifyContent={"center"}
-            backgroundColor={colors.lightNeutral}
+            backgroundColor={"brand.400"}
             width={"180px"}
             gap={"0.5em"}
             borderRadius={"10px"}

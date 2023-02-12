@@ -1,4 +1,4 @@
-import {Box, Button, CircularProgress, Text, useDisclosure} from "@chakra-ui/react";
+import { Box, Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteItemById, findItemById, findItemWhere } from "../../api";
@@ -10,9 +10,9 @@ import { goToAdmin } from "../../routes/coordinator";
 import { ButtonContainer } from "../../theme/ButtonContainer";
 import { LoadingButton } from "../../theme/LoadingButton";
 import { SideContainer } from "../../theme/SideContainer";
-import { colors } from "../../theme/colors";
-import {AddContractModal} from "./AddContractModal";
-import {EditContractModal} from "./EditContractModal"
+import { AddContractModal } from "./AddContractModal";
+import { EditContractModal } from "./EditContractModal"
+import { MainContainer } from "../../theme/MainContainer";
 
 const ContractPage = () => {
     // useProtectedPageAdmin();
@@ -28,33 +28,33 @@ const ContractPage = () => {
         findItemById(contractsCol, userId)
             .then(res => setContracts(res))
             .catch(err => console.log(err.message))
-        findItemWhere (checkinsCol, "contractId", userId)
+        findItemWhere(checkinsCol, "contractId", userId)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
-        
+
     }, [userId]);
 
 
     const deleteContract = async () => {
         try {
-            if(window.confirm("Excluir este contrato?")) {
+            if (window.confirm("Excluir este contrato?")) {
                 await deleteItemById(contractsCol, userId);
                 goToAdmin(navigate);
-            }  
+            }
         } catch (err) {
             console.log(err.message);
-        }   
+        }
     };
 
     const sendPasswordLink = async () => {
         if (window.confirm("Enviar email com link para gerar nova senha?")) {
-            
+
             // await changePassword(id);
-         
+
         }
     };
 
-   
+
     return (
         <>
             <Header navigate={navigate} />
@@ -64,49 +64,44 @@ const ContractPage = () => {
                 w={"100%"}
                 h={"100%"}
                 minH={"100vh"}
-                backgroundColor={colors.lightNeutral}
+                backgroundColor={"brand.100"}
                 flexDirection={["column-reverse", "row", "row"]}
+                justifyContent={["flex-end", "start", "start"]}
             >
                 <SideContainer>
-                    <CheckinsDone checkins={checkins}/>
+                    <CheckinsDone checkins={checkins} />
                 </SideContainer>
-                <Box
-                    display={"flex"}
-                    flexDirection={"column"}
-                    alignItems={"center"}
-                    gap={"0.5em"}
-                    minW={"300px"}
-                >
+                <MainContainer          >
 
                     <ButtonContainer>
                         <Button
-                            backgroundColor={colors.secondary}
+                            backgroundColor={"brand.200"}
                             onClick={onEditOpen}
                         >
-                            <Text>Editar Contrato</Text> 
+                            <Text>Editar Contrato</Text>
                         </Button>
 
                         <Button
-                            backgroundColor={colors.secondary}
+                            backgroundColor={"brand.200"}
                             onClick={onAddOpen}
                         >
                             <Text> Novo Plano</Text>
                         </Button>
 
                         <LoadingButton
-                            color={colors.secondary}
+                            color={"brand.200"}
                             handler={deleteContract}
                         >
                             <Text>Excluir contrato</Text>
                         </LoadingButton>
 
                         <LoadingButton
-                            color={colors.secondary}
+                            color={"brand.200"}
                             handler={sendPasswordLink}
                         >
                             <Text>Enviar nova senha</Text>
                         </LoadingButton>
-                       
+
                     </ButtonContainer>
 
                     {
@@ -119,27 +114,27 @@ const ContractPage = () => {
                                 planEnds={contracts.currentContract.ends}
                                 availableClasses={contracts.currentContract.availableClasses}
                             /> :
-                            <CircularProgress isIndeterminate color="yellow.400" size="70px" />  
+                            <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }
 
-                   
-                </Box>
+
+                </MainContainer>
             </Box>
 
             <AddContractModal
-                isOpen={isAddOpen} 
-                onClose={onAddClose} 
-                id={userId} 
+                isOpen={isAddOpen}
+                onClose={onAddClose}
+                id={userId}
 
             />
 
-            <EditContractModal  
-                contract ={contracts?.currentContract}
+            <EditContractModal
+                contract={contracts?.currentContract}
                 name={contracts?.name}
-                isOpen={isEditOpen} 
-                onClose={onEditClose} 
-                id={userId} 
-            />        
+                isOpen={isEditOpen}
+                onClose={onEditClose}
+                id={userId}
+            />
         </>
     );
 };

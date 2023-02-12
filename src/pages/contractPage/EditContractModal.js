@@ -14,7 +14,6 @@ import { StatusOptions, TypeOptions } from "../../components/selectOptions";
 import {formatToCalendar} from "../../services/moment"
 import { FormButton } from "../../theme/FormButton";
 import { ModalComponent } from "../../theme/ModalComponent";
-import { colors } from "../../theme/colors";
 
 export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
@@ -182,7 +181,7 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                 <FormButton
                     isSubmitting={isSubmitting}
                     loading={loading}
-                    color={colors.secondary}
+                    color={"brand.200"}
                 >
                     <Text>Salvar</Text>
                 </FormButton>

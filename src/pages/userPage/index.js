@@ -8,8 +8,8 @@ import CheckinsDone from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { getToday } from "../../services/moment";
 import Header from "../../theme/Header"
+import { MainContainer } from "../../theme/MainContainer";
 import { SideContainer } from "../../theme/SideContainer";
-import { colors } from "../../theme/colors";
 // import { useProtectedPageStudent } from "../../hooks/useProtectedPageStudent";
 import AvailableClasses from "./AvailableClasses";
 
@@ -43,12 +43,7 @@ const UserPage = () => {
                     Sair
                 </Button>
             </Header>
-            <Box
-                display={"flex"}
-                flexDirection={["column", "row", "row"]}
-                minH={"100vh"}
-                backgroundColor={colors.lightNeutral}
-            >
+           <MainContainer>
 
                 <SideContainer>
                     <AvailableClasses
@@ -77,7 +72,7 @@ const UserPage = () => {
                                 planEnds={contract?.currentContract?.ends}
                                 availableClasses={contract?.currentContract?.availableClasses}
                             /> :
-                            <CircularProgress isIndeterminate color={colors.secondary} size="70px" />
+                            <CircularProgress isIndeterminate color={"brand.200"} size="70px" />
                     }
                    
                 </Box>
@@ -85,7 +80,7 @@ const UserPage = () => {
                 <SideContainer>
                     {<CheckinsDone checkins={checkins} />}
                 </SideContainer>
-            </Box>
+            </MainContainer>
         </>
     );
 };
