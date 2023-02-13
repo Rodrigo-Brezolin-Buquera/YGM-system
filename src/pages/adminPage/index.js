@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { findItemWhere, findAllItems } from "../../api";
 import { contractsCol, yogaClassesCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
-// import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import { getToday } from "../../services/moment";
 import AvailableClasses from "./AvailableClasses";
 import StudentList from "./StudentList";
 import { CreateContractModal } from "./CreateContractModal";
 import { CreateClassModal } from "./CreateClassModal";
 import { ButtonContainer,MainContainer, SideContainer } from "../../theme";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 const AdminPage = () => {
-    // useProtectedPageAdmin();
+    useProtectedPage("admin")
     const navigate = useNavigate();
     const [contracts, setContracts] = useState([]);
     const [yogaClasses, setyogaClasses] = useState([]);

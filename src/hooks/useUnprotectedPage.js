@@ -1,24 +1,18 @@
-import { useLayoutEffect } from "react";
-import { decodeToken, isExpired } from "react-jwt";
-import { useHistory } from "react-router";
+import { useLayoutEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { isLogged } from "../api/auth";
 import { goToAdmin, goToUser } from "../routes/coordinator";
 
-function useUnprotectedPage() {
-    // const history = useHistory();
+export const useUnprotectedPage = () =>  {
+    const [status, setStatus] = useState({ loggedIn: null })
+    const navigate = useNavigate()
 
-    // useLayoutEffect(() => {
-    //     const token = localStorage.getItem("token");
+    useLayoutEffect(() => {         
+        isLogged(setStatus);     
+    },[])
 
-    //     if (token && !isExpired(token)) {
-    //         const tokenData = decodeToken(token);
-
-    //         if (tokenData?.admin) {
-    //             goToAdmin(history);
-    //         } else if (tokenData?.id && !tokenData?.admin) {
-    //             goToUser(history, tokenData.id);
-    //         }
-    //     }
-    // });
+    if(status.loggedIn === true) {
+        status.role === "user" ? goToUser(navigate, status.userId) : goToAdmin(navigate)
+    }
 }
 
-export default useUnprotectedPage;

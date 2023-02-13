@@ -1,4 +1,4 @@
-import { Text, Box } from "@chakra-ui/react";
+import { Text, Box, Card } from "@chakra-ui/react";
 import { goToContract } from "../../routes/coordinator";
 
 const UserInfoList = (props) => {
@@ -30,15 +30,15 @@ const UserInfoList = (props) => {
     }
 
     return (
-        <Box
+        <Card
             display={"flex"}
             flexDirection={["column", "row", "row"]}
             padding={"0.5em"}
             borderRadius={"10px"}
-            border={"1px solid black"}
+            // border={"1px solid black"}
             minW={"250px"}
             width={"100%"}
-            backgroundColor={"white"}
+            backgroundColor={"brand.500"}
             _hover={{ cursor: "pointer" }}
             status={props.status}
             onClick={() => goToContract(props.navigate, props.id)}
@@ -75,7 +75,7 @@ const UserInfoList = (props) => {
                 </Line>
             </Column>
 
-        </Box>
+        </Card>
     );
 };
 

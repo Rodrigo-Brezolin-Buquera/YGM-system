@@ -7,7 +7,7 @@ const SideContainer = ({ children }) => {
             flexDirection={"column"}
             alignItems={"center"}
             backgroundColor={"brand.400"}
-            minW={["250px","300px","350px"]}
+            minW={["250px","280px","320px"]}
             minH={"200px"}
             paddingTop={"1em"}
             justify-content={"center"}

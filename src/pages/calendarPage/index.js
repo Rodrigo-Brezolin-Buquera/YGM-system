@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { findAllItems } from "../../api";
 import { yogaClassesCol } from "../../api/config";
 import  HeaderAdmin  from "../../components/HeaderAdmin"
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { formatToCalendar } from "../../services/moment";
 
 import Calendar from "./Calendar";
 
 const CalendarPage = () => {
-    // useProtectedPageAdmin();
+    useProtectedPage("admin")
     const navigate = useNavigate();
     const [yogaClasses, setyogaClasses] = useState([]);
 

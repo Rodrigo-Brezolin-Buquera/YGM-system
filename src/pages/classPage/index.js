@@ -2,16 +2,16 @@ import { CircularProgress, Box, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import HeaderAdmin from "../../components/HeaderAdmin";
-import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import {ClassInfo} from "./ClassInfo";
 import {StudentList} from "./StudentList";
 import { SideContainer, ButtonContainer, LoadingButton, MainContainer } from "../../theme";
 import { deleteItemById, deleteItemWhere, findItemById, findItemWhere } from "../../api";
 import { checkinsCol, yogaClassesCol } from "../../api/config";
 import { goToAdmin } from "../../routes/coordinator";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 const ClassPage = () => {
-    // useProtectedPageAdmin();
+    useProtectedPage("admin")
     const navigate = useNavigate();
     const { classId } = useParams();
     const [yogaClass, setYogaClass] = useState({});

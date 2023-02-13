@@ -1,17 +1,18 @@
 import { Box, CircularProgress, Button } from "@chakra-ui/react";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById, findItemWhere } from "../../api";
 import { logout } from "../../api/auth";
 import { checkinsCol, contractsCol, yogaClassesCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { getToday } from "../../services/moment";
 import { MainContainer, SideContainer, Header } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
 const UserPage = () => {
-    // useProtectedPageStudent();
+    useProtectedPage("user")
     const { userId } = useParams();
     const navigate = useNavigate()
     const [contract, setContract] = useState({});
@@ -20,13 +21,13 @@ const UserPage = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        findItemById(contractsCol, userId) 
+        findItemById(contractsCol, userId)
             .then(res => setContract(res))
             .catch(err => console.log(err.message))
-        findItemWhere(yogaClassesCol, "date", getToday()) 
+        findItemWhere(yogaClassesCol, "date", getToday())
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
-        findItemWhere(checkinsCol, "contractId", userId) 
+        findItemWhere(checkinsCol, "contractId", userId)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
     }, [loading, userId]);
@@ -35,12 +36,23 @@ const UserPage = () => {
         <>
             <Header>
                 <Button
-                    onClick={()=>logout(navigate)}
+                    onClick={() => logout(navigate)}
                 >
                     Sair
                 </Button>
             </Header>
-           <MainContainer>
+            <Box
+                display={"flex"}
+                w={"100%"}
+                h={"100%"}
+                minH={"100vh"}
+                backgroundColor={"brand.100"}
+                flexDirection={["column", "row", "row"]}
+                justifyContent={["flex-end", "start", "start"]}
+            >
+
+
+
 
                 <SideContainer>
                     <AvailableClasses
@@ -52,7 +64,7 @@ const UserPage = () => {
                     />
                 </SideContainer>
 
-                <Box
+                <MainContainer
                     display={"flex"}
                     flexDirection={"column"}
                     alignItems={"center"}
@@ -71,13 +83,14 @@ const UserPage = () => {
                             /> :
                             <CircularProgress isIndeterminate color={"brand.200"} size="70px" />
                     }
-                   
-                </Box>
+
+                </MainContainer>
 
                 <SideContainer>
                     {<CheckinsDone checkins={checkins} />}
                 </SideContainer>
-            </MainContainer>
+
+            </Box>
         </>
     );
 };

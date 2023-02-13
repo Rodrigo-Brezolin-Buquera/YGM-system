@@ -6,13 +6,14 @@ import { checkinsCol, contractsCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import UserInfo from "../../components/UserInfo";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
 import { ButtonContainer, LoadingButton, SideContainer, MainContainer } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
 const ContractPage = () => {
-    // useProtectedPageAdmin();
+    useProtectedPage("admin")
     const { userId } = useParams();
     const [contracts, setContracts] = useState({});
     const [checkins, setCheckins] = useState([]);

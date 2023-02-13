@@ -16,9 +16,9 @@ export const login = async (form, navigate) => {
     }
 };
 
-export const singUp = async ({email, password}) => {
-    const { user } = await createUserWithEmailAndPassword(auth, email, password );
-    await createItem(usersCol, {email, admin:false}, user.uid); 
+export const singUp = async ({ email, password }) => {
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    await createItem(usersCol, { email, admin: false }, user.uid);
     // sendPasswordToEmail(email, password)
     return user.uid
 };
@@ -35,11 +35,15 @@ export const logout = async (navigate) => {
 };
 
 export const isLogged = async (setStatus) => {
-    return onAuthStateChanged(auth, (user) => {
+
+    onAuthStateChanged(auth, async (user) => {
         if (user) {
-            setStatus({ loggedIn: true, userId: user.uid });
+            const userDoc = await findItemById(usersCol, user.uid)
+            setStatus( { loggedIn: true, userId: user.uid, role: userDoc.admin? "admin" : "user" });
         } else {
-            setStatus({ loggedIn: false, userId: null });
+            setStatus({ loggedIn: false, userId: null, role: null })
+
         }
     });
+
 };
