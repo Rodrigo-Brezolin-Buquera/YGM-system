@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
+import { emailPattern } from "../../api/patterns";
 import { FormButton } from "../../theme";
 
 export const LoginForm = ({ navigate }) => {
@@ -62,6 +63,7 @@ export const LoginForm = ({ navigate }) => {
                             placeholder="Senha"
                             {...register("password", {
                                 required: "Campo obrigatório",
+                                pattern: emailPattern
                             })}
                             variant="filled"
                             type='password'

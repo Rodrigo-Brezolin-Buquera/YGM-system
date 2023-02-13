@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
+import { numberPattern, stringPattern } from "../../api/patterns";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
 import {formatToCalendar} from "../../services/moment"
 import { FormButton, ModalComponent } from "../../theme";
@@ -51,8 +52,6 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
 
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Editar contrato"}>
-
-
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl 
                     display={"flex"}
@@ -76,8 +75,8 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             id="name"
                             placeholder="name"
                             {...register("name", {
-
-                                minLength: { value: 3, message: "O nome precisa de no mínimo 3 caracteres" }
+                                required: "Campo Obrigátorio",
+                                pattern: stringPattern
                             })}
                         />
                     </FormLabel>
@@ -93,6 +92,7 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             id="plan"
                             placeholder="Escolha um plano"
                             {...register("plan", {
+                                required: "Campo Obrigátorio",
                             })}
                         >
                             <TypeOptions />
@@ -110,6 +110,7 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             id="active"
                             placeholder="Status do plano"
                             {...register("active", {
+                                required: "Campo Obrigátorio",
                             })}
                         >
                             <option value="" > Status </option>
@@ -128,6 +129,7 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             id="started"
                             type="date"
                             {...register("started", {
+                                required: "Campo Obrigátorio",
                             })}
                         />
                     </FormLabel>
@@ -143,6 +145,8 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             id="ends"
                             type="date"
                             {...register("ends", {
+                                required: "Campo Obrigátorio",
+
                             })}
                         />
                     </FormLabel>
@@ -158,6 +162,8 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             name="availableClasses"
                             type="number"
                             {...register("availableClasses", {
+                                required: "Campo Obrigátorio",
+                                pattern: numberPattern
                             })}
                         />
                     </FormLabel>
@@ -171,8 +177,7 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                         {errors.started && errors.started.message}
                         <br/>
                         {errors.ends && errors.ends.message}
-                        <br/>
-                    
+                        <br/>                  
                         {errors.availableClasses && errors.availableClasses.message}
                     </FormErrorMessage>
                 </FormControl>

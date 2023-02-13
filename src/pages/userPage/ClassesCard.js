@@ -1,4 +1,4 @@
-import { Text, CircularProgress, Box } from "@chakra-ui/react";
+import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import  { useState, useEffect } from "react";
 
 const ClassesCard = (props) => {
@@ -33,17 +33,18 @@ const ClassesCard = (props) => {
     }, [handleCheckin, checkins, checkin]);
 
     return (
-        <Box
+        <Card
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
             gap={"1em"}
             borderRadius={"10px"}
             padding={"0.5em"}
-            width={"180px"}
+            minW={"180px"}
+            w={"70%"}
             minH={"60px"}
             _hover={{ cursor: "pointer" }}
-            backgroundColor={ checkin ? "brand.200" : "brand.100" }
+            backgroundColor={ checkin ? "brand.200" : "brand.500" }
             onClick={handleCheckin}
         >
             {loading ? <CircularProgress isIndeterminate color={"brand.200"} size="75px" /> :
@@ -65,7 +66,7 @@ const ClassesCard = (props) => {
                     }
                 </Box>
             }
-        </Box>
+        </Card>
     );
 };
 

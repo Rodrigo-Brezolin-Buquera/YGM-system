@@ -7,6 +7,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createClasses } from "../../api/calendar";
+import { timePattern } from "../../api/patterns";
 import { DayOptions, StyleOptions, TeacherOptions } from "../../components/selectOptions";
 import { ModalComponent, FormButton } from "../../theme";
 
@@ -79,6 +80,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
                         type="time"
                         {...register("time", {
                             required: "Campo Obrigatório",
+                            pattern: timePattern
                         })}
                     />
                     <Input

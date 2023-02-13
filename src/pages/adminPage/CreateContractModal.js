@@ -11,6 +11,7 @@ import { createContract } from "../../api/contracts";
 import { genPassword } from "../../services/generatePassword"
 import { ModalComponent, FormButton } from "../../theme";
 import { TypeOptions } from "../../components/selectOptions";
+import { emailPattern, stringPattern } from "../../api/patterns";
 
 export const CreateContractModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
@@ -54,7 +55,7 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
                         placeholder="Nome completo"
                         {...register("name", {
                             required: "Campo Obrigátorio",
-                            minLength: { value: 3, message: "O nome precisa ter no mínimo 3 carateres" }
+                            pattern: stringPattern
                         })}
                     />
 
@@ -63,7 +64,8 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
                         id="email"
                         placeholder="email"
                         {...register("email", {
-                            required: "Campo Obrigátorio"
+                            required: "Campo Obrigátorio",
+                            pattern: emailPattern
                         })}
                     />
                     <Select
