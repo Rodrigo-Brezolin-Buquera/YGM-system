@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import ClassesCard from "./ClassesCard";
 
-const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoading }) => {
+const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoading, contractLimit }) => {
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard
@@ -14,6 +14,7 @@ const AvailableClasses = ({ yogaClasses, checkins, contractId, loading, setLoadi
                 capacity={yogaClass.capacity}
                 checkins={checkins}
                 contractId={contractId}
+                contractLimit={contractLimit}
                 loading={loading}
                 setLoading={setLoading}
             />

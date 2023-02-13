@@ -54,6 +54,7 @@ const ClassPage = () => {
                 display={"flex"}
                 flexDirection={["column-reverse", "row", "row"]}
                 justifyContent={["flex-end", "space-between", "space-between"]}
+                backgroundColor={"brand.100"}
                 width={"100%"}
                 minH={"100vh"}
             >
@@ -90,6 +91,7 @@ const ClassPage = () => {
                 <SideContainer>
                     <StudentList
                         checkins={checkins}
+                        capacity={yogaClass?.capacity}
                         loading={loading}
                         setLoading={setLoading}
                     />

@@ -1,21 +1,26 @@
 import { CheckIcon, DeleteIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
-import  { useEffect } from "react";
+import { useEffect } from "react";
+import { validateCheckin, cancelCheckin } from "../../api/checkins";
 
-const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
+const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading }) => {
     useEffect(() => { }, [verified, loading]);
 
-    const confirmCheckin = async () => {
+    const confirm = () => {
         setLoading(true);
-        // await validateCheckin(id, !verified);
-        setLoading(false);
+        validateCheckin(id, !verified)
+            .then()
+            .catch((err) => { console.log(err.message) })
+            .finally(() => setLoading(false));
     };
 
-    const cancelCheckin = async () => {
+    const cancel = async () => {
         if (window.confirm("Cancelar este checkin?")) {
             setLoading(true);
-            // await deleteCheckin(id);
-            setLoading(false);
+            cancelCheckin(id, capacity)
+                .then()
+                .catch((err) => { console.log(err.message) })
+                .finally(() => setLoading(false));
         }
     };
 
@@ -44,7 +49,7 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
                 >
                     <Box
                         _hover={{ cursor: "pointer" }}
-                        onClick={() => confirmCheckin()}
+                        onClick={confirm}
                         color={verified ? "green.500" : "red.500"}
                     >
                         {verified ? <CheckIcon /> : <QuestionOutlineIcon />}
@@ -54,7 +59,7 @@ const StudentCheckinCard = ({ id, name, verified, loading, setLoading }) => {
 
                     <Box
                         _hover={{ cursor: "pointer" }}
-                        onClick={() => cancelCheckin()}  >
+                        onClick={cancel}  >
                         <DeleteIcon />
                     </Box>
                 </Box>

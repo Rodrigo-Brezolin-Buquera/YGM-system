@@ -2,7 +2,7 @@ import { Text } from "@chakra-ui/react";
 import React from "react";
 import StudentCheckinCard from "./StudentCheckinCard";
 
-export const StudentList = ({ checkins, loading, setLoading }) => {
+export const StudentList = ({ checkins,capacity, loading, setLoading }) => {
     const studentList = checkins?.length && checkins.map((checkin) => {
         return (
             <StudentCheckinCard
@@ -10,6 +10,7 @@ export const StudentList = ({ checkins, loading, setLoading }) => {
                 id={checkin.id}
                 verified={checkin.verified}
                 name={checkin.name}
+                capacity={capacity}
                 loading={loading} 
                 setLoading={setLoading}
             />

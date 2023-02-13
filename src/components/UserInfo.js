@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import { memo } from "react";
 
 const Line = ({children}) => {
     return (
@@ -52,4 +53,4 @@ const UserInfo = (props) => {
     );
 };
 
-export default UserInfo;
+export default memo(UserInfo) ;

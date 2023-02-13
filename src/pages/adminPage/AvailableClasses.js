@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import ClassesCard from "./ClassesCard";
 
-const AvailableClasses = ({ yogaClasses, history }) => {
+const AvailableClasses = ({ yogaClasses, navigate }) => {
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard
@@ -11,7 +11,7 @@ const AvailableClasses = ({ yogaClasses, history }) => {
                 time={yogaClass.time}
                 teacher={yogaClass.teacher}
                 name={yogaClass.name}
-                history={history}
+                navigate={navigate}
             />
         );
     });

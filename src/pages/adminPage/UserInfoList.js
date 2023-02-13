@@ -7,7 +7,7 @@ const UserInfoList = (props) => {
         return (
             <Box
                 display={"flex"}
-                justifyContent={["center", "center", "flex-start"]}
+                justifyContent={["center", "center", "center", "flex-start"]}
                 gap={"0.3em"}
                 m={"0.1em"}
             >
@@ -32,10 +32,9 @@ const UserInfoList = (props) => {
     return (
         <Card
             display={"flex"}
-            flexDirection={["column", "row", "row"]}
+            flexDirection={["column", "column", "column", "row"]}
             padding={"0.5em"}
             borderRadius={"10px"}
-            // border={"1px solid black"}
             minW={"250px"}
             width={"100%"}
             backgroundColor={"brand.500"}

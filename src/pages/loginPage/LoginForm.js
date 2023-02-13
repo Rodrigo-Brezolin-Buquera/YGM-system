@@ -62,8 +62,8 @@ export const LoginForm = ({ navigate }) => {
                             id="password"
                             placeholder="Senha"
                             {...register("password", {
-                                required: "Campo obrigatório",
-                                pattern: emailPattern
+                                required: "Campo obrigatório"
+                            
                             })}
                             variant="filled"
                             type='password'

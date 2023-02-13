@@ -10,12 +10,12 @@ const Header = ({ children }) => {
         <Box
             display={"flex"}
             backgroundColor={"brand.300"}
-            height={"60px"}
+            height={"70px"}
             alignItems={"center"}
             justifyContent={"space-between"}
             p={"0.3em"}
         >
-            <LogoImg height={"50px"} logo={whiteLogo} />
+            <LogoImg height={"60px"} logo={whiteLogo} />
             <Box
                 display={"flex"}
                 gap={"0.5em"}

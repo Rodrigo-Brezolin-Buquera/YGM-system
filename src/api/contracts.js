@@ -1,6 +1,7 @@
 import { calculateEndDate, formatDate } from "../services/moment"
-import { contractsCol } from "./config"
+import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItem, updateItem } from "."
+import { collection, doc, runTransaction, query, where } from "firebase/firestore/lite"
 
 export const createContract = async ({ name, plan, date }, id) => {
 
@@ -45,15 +46,25 @@ export const updateContract = async (values, id) => {
     await updateItem(contractsCol, contract, id)
 }
 
+export const deleteContract = async (userId) => {
 
+    await runTransaction(database, async (transaction) => {
+        const contractDoc = doc(collection(database, contractsCol), userId)
+        transaction.delete(contractDoc)
+        const userDoc = doc(collection(database, usersCol), userId)
+        transaction.delete(userDoc)
+        const q = query(checkinsCol, where("contractId", "==", userId));
+        transaction.delete(q)
+    })
+}
 
 const table = {
-    "1x-Mensal": {duration:1 , quantity: 4},
-    "2x-Mensal": {duration:1 , quantity: 8},
-    "1x-Trimestral": {duration:3 , quantity: 12},
-    "2x-Trimestral": {duration:3 , quantity: 24},
-    "1x-Semestral": {duration:6 , quantity: 24},
-    "2x-Semestral": {duration:6 , quantity: 48},
-    "---Gympass":{duration: 0, quantity: 0},
+    "1x-Mensal": { duration: 1, quantity: 4 },
+    "2x-Mensal": { duration: 1, quantity: 8 },
+    "1x-Trimestral": { duration: 3, quantity: 12 },
+    "2x-Trimestral": { duration: 3, quantity: 24 },
+    "1x-Semestral": { duration: 6, quantity: 24 },
+    "2x-Semestral": { duration: 6, quantity: 48 },
+    "---Gympass": { duration: 0, quantity: 0 },
 }
 

@@ -15,7 +15,7 @@ const ClassesCard = (props) => {
             borderRadius={"10px"}
             p={"0.5em"}
             _hover={{ cursor: "pointer" }}
-            onClick={() => goToClass(props.history, props.id)}
+            onClick={() => goToClass(props.navigate, props.id)}
         >
             <Text fontSize='lg' as="b" textAlign={"center"} > {props.day} - {props.time}</Text>
             <Text textAlign={"center"} > {props.teacher} - {props.name}  </Text>

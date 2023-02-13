@@ -1,36 +1,42 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+// eslint-disable autofix/no-unused-vars
+// eslint-disable no-unused-vars
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
-import  { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
+import { createCheckin, deleteCheckin } from "../../api/checkins";
 
-const ClassesCard = (props) => {
-    const { contractId, yogaClassId, checkins, day, time, teacher, name, capacity, loading, setLoading } = props;
+const ClassesCard = (
+    { contractId, yogaClassId, checkins, day, time, teacher, name, capacity, contractLimit, loading, setLoading }
+) => {
     const checkinId = `${contractId}+${yogaClassId}`;
     const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
-    // eslint-disable-next-line autofix/no-unused-vars
-    // eslint-disable-next-line no-unused-vars
-    const [checkin, ] = useState(checkinDone);
+    const [checkin, setCheckin] = useState(checkinDone || false);
+    const limits = { yogaClassId, capacity, contractId, contractLimit }
 
-    const handleCheckin = async () => {
+    const handleCheckin = () => {
         if (checkin && capacity === 0) {
             if (window.confirm("Cancelar este checkin?")) {
                 setLoading(true);
-                // await deleteCheckin(checkinId, setCheckin);
-                setLoading(false);
+                deleteCheckin(checkinId, limits)
+                    .then(setCheckin(!checkin))
+                    .catch((err) => { console.log(err.message) })
+                    .finally(() => setLoading(false));
+
             }
         } else if (!checkin && capacity > 0) {
             if (window.confirm("Agendar o checkin neste horário?")) {
                 setLoading(true);
-                // await createCheckin(contractId, yogaClassId, setCheckin);
-                setLoading(false);
-
+                createCheckin(checkinId, limits)
+                    .then(setCheckin(!checkin))
+                    .catch((err) => { console.log(err.message) })
+                    .finally(() => setLoading(false));
             }
         } else if (!checkin && capacity === 0) {
             alert("Não há mais vagas nesse horário");
         }
     };
 
-    useEffect(() => {
-
-    }, [handleCheckin, checkins, checkin]);
+    useEffect(() => { }, [handleCheckin, checkins, checkin]);
 
     return (
         <Card
@@ -44,7 +50,7 @@ const ClassesCard = (props) => {
             w={"70%"}
             minH={"60px"}
             _hover={{ cursor: "pointer" }}
-            backgroundColor={ checkin ? "brand.200" : "brand.500" }
+            backgroundColor={checkin ? "brand.200" : "brand.500"}
             onClick={handleCheckin}
         >
             {loading ? <CircularProgress isIndeterminate color={"brand.200"} size="75px" /> :
@@ -70,4 +76,4 @@ const ClassesCard = (props) => {
     );
 };
 
-export default ClassesCard;
+export default memo(ClassesCard) ;

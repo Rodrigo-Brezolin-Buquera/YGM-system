@@ -1,4 +1,4 @@
-import { doc, setDoc,getDoc, collection, updateDoc, getDocs, deleteDoc, where, query } from "firebase/firestore/lite";
+import { doc, setDoc,getDoc, collection, updateDoc, getDocs, deleteDoc, where, query, limit } from "firebase/firestore/lite";
 import { database } from "./config";
 
 export const findAllItems = async (itemCol) => {
@@ -17,6 +17,14 @@ export const findItemById = async (itemCol, id) => {
 export const findItemWhere = async (itemCol, atribute, value) => {
     const col = collection(database, itemCol);
     const q = query(col, where(atribute, "==", value));
+    const snap = await getDocs(q);
+    const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
+    return result;
+};
+
+export const findItemsLimit = async (itemCol, n) => {
+    const col = collection(database, itemCol);
+    const q = query(col, limit(n));
     const snap = await getDocs(q);
     const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
     return result;

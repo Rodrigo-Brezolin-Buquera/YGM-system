@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteItemById, findItemById, findItemWhere } from "../../api";
+import { findItemById, findItemsLimit } from "../../api";
 import { checkinsCol, contractsCol } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
@@ -26,7 +26,7 @@ const ContractPage = () => {
         findItemById(contractsCol, userId)
             .then(res => setContracts(res))
             .catch(err => console.log(err.message))
-        findItemWhere(checkinsCol, "contractId", userId)
+        findItemsLimit(checkinsCol, 5)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
 
@@ -36,7 +36,7 @@ const ContractPage = () => {
     const deleteContract = async () => {
         try {
             if (window.confirm("Excluir este contrato?")) {
-                await deleteItemById(contractsCol, userId);
+                await deleteContract(userId);
                 goToAdmin(navigate);
             }
         } catch (err) {
