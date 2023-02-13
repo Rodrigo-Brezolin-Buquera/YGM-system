@@ -1,13 +1,12 @@
 import { Box, CircularProgress, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { findItemById, findItemsLimit, findItemWhere } from "../../api";
+import { findItemById, findItemsLimit } from "../../api";
 import { logout } from "../../api/auth";
-import { checkinsCol, contractsCol, yogaClassesCol } from "../../api/config";
+import { checkinsCol, contractsCol,  } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { getToday } from "../../services/moment";
 import { MainContainer, SideContainer, Header } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
@@ -16,21 +15,17 @@ const UserPage = () => {
     const { userId } = useParams();
     const navigate = useNavigate()
     const [contract, setContract] = useState({});
-    const [yogaClasses, setyogaClasses] = useState([]);
     const [checkins, setCheckins] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContract(res))
             .catch(err => console.log(err.message))
-        findItemWhere(yogaClassesCol, "date", getToday())
-            .then(res => setyogaClasses(res))
-            .catch(err => console.log(err.message))
+    
         findItemsLimit(checkinsCol, 5)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
-    }, [loading, userId]);
+    }, [ userId]);
 
     return (
         <>
@@ -52,12 +47,9 @@ const UserPage = () => {
             >
                 <SideContainer>
                     <AvailableClasses
-                        yogaClasses={yogaClasses}
                         contractId={contract.id}
                         contractLimit={contract?.currentContract?.availableClasses}
-                        checkins={checkins}
-                        loading={loading}
-                        setLoading={setLoading}
+                        checkins={checkins}                  
                     />
                 </SideContainer>
 

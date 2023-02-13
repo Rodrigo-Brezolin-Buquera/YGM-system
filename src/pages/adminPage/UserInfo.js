@@ -1,7 +1,8 @@
 import { Text, Box, Card } from "@chakra-ui/react";
+import { memo } from "react";
 import { goToContract } from "../../routes/coordinator";
 
-const UserInfoList = (props) => {
+const UserInfo = (props) => {
 
     const Line = ({ children }) => {
         return (
@@ -40,6 +41,7 @@ const UserInfoList = (props) => {
             backgroundColor={"brand.500"}
             _hover={{ cursor: "pointer" }}
             status={props.status}
+            overflow={"auto"}
             onClick={() => goToContract(props.navigate, props.id)}
         >
 
@@ -78,4 +80,4 @@ const UserInfoList = (props) => {
     );
 };
 
-export default UserInfoList;
+export default memo(UserInfo);

@@ -9,7 +9,7 @@ const SideContainer = ({ children }) => {
             backgroundColor={"brand.400"}
             minW={["250px","280px","320px"]}
             minH={"200px"}
-            paddingTop={"1em"}
+            padding={"1em 0"}
             justify-content={"center"}
             gap={"0.5em"}
             m={"0.8em"}

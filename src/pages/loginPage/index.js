@@ -15,7 +15,8 @@ const LoginPage = () => {
             display={"flex"}
             flexDirection={"column"}
             alignItems={"center"}
-            paddingTop={"1em"}
+            paddingBottom={"10em"}
+            justifyContent={"center"}
             backgroundColor={"brand.400"}
             minH={"100vh"}
         >

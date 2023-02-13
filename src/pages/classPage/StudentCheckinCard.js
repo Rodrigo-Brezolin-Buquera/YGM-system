@@ -1,6 +1,6 @@
 import { CheckIcon, DeleteIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { validateCheckin, cancelCheckin } from "../../api/checkins";
 
 const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading }) => {
@@ -68,4 +68,4 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading 
     );
 };
 
-export default StudentCheckinCard;
+export default  memo(StudentCheckinCard);

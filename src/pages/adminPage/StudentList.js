@@ -1,7 +1,7 @@
 import { Box, Input, Select } from "@chakra-ui/react";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
 import useInput from "../../hooks/useInput";
-import UserInfoList from "./UserInfoList";
+import UserInfo from "./UserInfo";
 
 const StudentList = ({ contracts, navigate }) => {
     const [nameFilter, handleNameFilter] = useInput("");
@@ -50,7 +50,7 @@ const StudentList = ({ contracts, navigate }) => {
         .map((user) => {
             const contract = user?.currentContract;
             return (
-                <UserInfoList
+                <UserInfo
                     key={user.id}
                     id={user.id}
                     name={user.name}

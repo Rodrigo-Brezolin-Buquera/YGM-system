@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById, findItemsLimit } from "../../api";
 import { checkinsCol, contractsCol } from "../../api/config";
+import { deleteContract } from "../../api/contracts";
 import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import UserInfo from "../../components/UserInfo";
@@ -33,11 +34,12 @@ const ContractPage = () => {
     }, [userId]);
 
 
-    const deleteContract = async () => {
+    const onDelete = () => {
         try {
             if (window.confirm("Excluir este contrato?")) {
-                await deleteContract(userId);
-                goToAdmin(navigate);
+                deleteContract(userId)
+                    .then(goToAdmin(navigate))
+                    .catch(err => console.log(err.message))
             }
         } catch (err) {
             console.log(err.message);
@@ -88,7 +90,7 @@ const ContractPage = () => {
 
                         <LoadingButton
                             color={"brand.200"}
-                            handler={deleteContract}
+                            handler={onDelete}
                         >
                             <Text>Excluir contrato</Text>
                         </LoadingButton>
