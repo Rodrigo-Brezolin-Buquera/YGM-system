@@ -2,7 +2,8 @@ import { Box, Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/r
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById, findItemsLimit } from "../../api";
-import { checkinsCol, contractsCol } from "../../api/config";
+import { resetPassword } from "../../api/auth";
+import { checkinsCol, contractsCol, usersCol } from "../../api/config";
 import { deleteContract } from "../../api/contracts";
 import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
@@ -46,11 +47,11 @@ const ContractPage = () => {
         }
     };
 
-    const sendPasswordLink = async () => {
-        if (window.confirm("Enviar email com link para gerar nova senha?")) {
-
-            // await changePassword(id);
-
+    const sendPasswordLink = () => {
+        if (window.confirm("Enviar email de redefinição de senha?")) {
+            findItemById(usersCol, userId)
+                .then(user => resetPassword(user.email))
+                .catch(err => console.log(err.message))
         }
     };
 

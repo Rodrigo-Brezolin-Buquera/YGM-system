@@ -6,9 +6,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { singUp } from "../../api/auth";
+import { singUp, genPassword } from "../../api/auth";
 import { createContract } from "../../api/contracts";
-import { genPassword } from "../../services/generatePassword"
 import { ModalComponent, FormButton } from "../../theme";
 import { TypeOptions } from "../../components/selectOptions";
 import { emailPattern, stringPattern } from "../../api/patterns";

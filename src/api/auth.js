@@ -1,8 +1,8 @@
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 
 import { auth, usersCol } from "./config";
-import { createItem, findItemById } from ".";
+import { findItemById } from ".";
 
 export const login = async (form, navigate) => {
     try {
@@ -18,8 +18,7 @@ export const login = async (form, navigate) => {
 
 export const singUp = async ({ email, password }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
-    await createItem(usersCol, { email, admin: false }, user.uid);
-    // sendPasswordToEmail(email, password)
+    await resetPassword(email)
     return user.uid
 };
 
@@ -47,3 +46,9 @@ export const isLogged = async (setStatus) => {
     });
 
 };
+
+export const resetPassword = async (email) => { 
+    await sendPasswordResetEmail(auth, email);
+}
+
+export const genPassword = () =>  Math.random().toString(36).slice(2) + Math.random().toString(36).toUpperCase().slice(2)
