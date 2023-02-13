@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useProtectedPageAdmin } from "../../hooks/useProtectedPageAdmin";
 import { findAllItems } from "../../api";
-import { yogaClassesCol } from "../../api/config";
+import { calendarCol } from "../../api/config";
 import  HeaderAdmin  from "../../components/HeaderAdmin"
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { formatToCalendar } from "../../services/moment";
@@ -16,7 +15,7 @@ const CalendarPage = () => {
 
 
     useEffect(() => {
-        findAllItems(yogaClassesCol)
+        findAllItems(calendarCol)
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
     }, []);

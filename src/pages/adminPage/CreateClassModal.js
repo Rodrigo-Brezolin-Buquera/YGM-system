@@ -21,17 +21,20 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
         reset
     } = useForm();
 
-    const onSubmit = (values) => {
+    const onSubmit = async (values) => {
         setLoading(true);
-        createClasses(values)
-            .then(reset())
+        await createClasses(values)
+            .then(() => {
+                reset()
+                onClose()
+            })
             .catch(err => console.log(err.message))
             .finally(setLoading(false));
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} title={"Adicionar Aula"}>
-           
+        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar Aula"}>
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
                     isInvalid={errors.name || errors.day || errors.teacher || errors.time || errors.date}
@@ -109,7 +112,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
                 </FormButton>
 
             </form>
-        
+
         </ModalComponent>
     );
 };

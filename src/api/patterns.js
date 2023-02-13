@@ -4,7 +4,7 @@ export const numberPattern = {
 }
 
 export const stringPattern = {
-    value: /^[a-zA-Z]{3,30}$/u,
+    value: /^[a-zA-Z ]{3,30}$/u,
     message: "Os textos devem ter entre 3 e 30 caracteres sem caracteres especiais"
 }
 

@@ -8,9 +8,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { singUp, genPassword } from "../../api/auth";
 import { createContract } from "../../api/contracts";
-import { ModalComponent, FormButton } from "../../theme";
-import { TypeOptions } from "../../components/selectOptions";
 import { emailPattern, stringPattern } from "../../api/patterns";
+import { TypeOptions } from "../../components/selectOptions";
+import { ModalComponent, FormButton } from "../../theme";
 
 export const CreateContractModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);

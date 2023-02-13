@@ -1,7 +1,7 @@
 import { runTransaction, doc, collection, updateDoc } from "firebase/firestore/lite"
-import { findItemById } from "."
-import { contractsCol, yogaClassesCol, checkinsCol } from "./config"
+import { contractsCol, calendarCol, checkinsCol } from "./config"
 import { database } from "./config"
+import { findItemById } from "."
 
 export const createCheckin = async (checkinId, limits) => {
     const { yogaClassId, capacity, contractId, contractLimit } = limits
@@ -13,7 +13,7 @@ export const createCheckin = async (checkinId, limits) => {
         const contractDoc = doc(collection(database, contractsCol), contractId)
         transaction.update(contractDoc, { "currentContract.availableClasses": contractLimit - 1 })
 
-        const classDoc = doc(collection(database, yogaClassesCol), yogaClassId)
+        const classDoc = doc(collection(database, calendarCol), yogaClassId)
         transaction.update(classDoc, { capacity: capacity - 1 })
     })
 }
@@ -28,7 +28,7 @@ export const deleteCheckin = async (checkinId, limits) => {
         const contractDoc = doc(collection(database, contractsCol), contractId)
         transaction.update(contractDoc, { "currentContract.availableClasses": contractLimit + 1 })
 
-        const classDoc = doc(collection(database, yogaClassesCol), yogaClassId)
+        const classDoc = doc(collection(database, calendarCol), yogaClassId)
         transaction.update(classDoc, { capacity: capacity + 1 })
     })
 }

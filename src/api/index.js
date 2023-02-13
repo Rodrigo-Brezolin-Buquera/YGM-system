@@ -1,4 +1,4 @@
-import { doc, setDoc,getDoc, collection, updateDoc, getDocs, deleteDoc, where, query, limit } from "firebase/firestore/lite";
+import { doc, setDoc,getDoc, collection, updateDoc, getDocs, deleteDoc, where, query, limit, writeBatch,  } from "firebase/firestore/lite";
 import { database } from "./config";
 
 export const findAllItems = async (itemCol) => {
@@ -11,7 +11,7 @@ export const findAllItems = async (itemCol) => {
 export const findItemById = async (itemCol, id) => {
     const docRef = doc(collection(database, itemCol), id);
     const snap = await getDoc(docRef);
-    return snap.data();
+    return {...snap.data(), id};
 };
 
 export const findItemWhere = async (itemCol, atribute, value) => {
@@ -29,9 +29,10 @@ export const findItemsLimit = async (itemCol, n) => {
     const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
     return result;
 };
+
   
 export const createItem = async (itemCol, object, id) => {
-    const docRef = doc(collection(database, itemCol), id);
+    const docRef = doc(collection(database, itemCol) ) ;
     await setDoc(docRef, object);
 };
 
@@ -42,7 +43,8 @@ export const updateItem = async (itemCol, object, id) => {
 
 export const updateItemWhere = async (itemCol, object, atribute, value) => {
     const docRef = doc(collection(database, itemCol)); 
-    await updateDoc(docRef, object).where({ [atribute]: value });
+    const q = query(docRef, where([atribute], "==", value));
+    await updateDoc(q)
 };
 
 export const deleteItemById = async (itemCol, id) => {
@@ -51,6 +53,13 @@ export const deleteItemById = async (itemCol, id) => {
 };
 
 export const deleteItemWhere = async (itemCol, atribute, value) => {
-    const docRef = doc(collection(database, itemCol));
-    await deleteDoc(docRef).where({ [atribute]: value });
+    const list = await findItemWhere(itemCol, atribute, value)
+    const batch = writeBatch(database)
+
+    list.forEach(item => {
+        const docRef = doc(collection(database, itemCol), item.id);
+        batch.delete(docRef )
+    })
+
+    await batch.commit();
 };

@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { findItemWhere } from "../../api";
-import { yogaClassesCol } from "../../api/config";
+import { calendarCol } from "../../api/config";
 import { getToday } from "../../services/moment";
 import ClassesCard from "./ClassesCard";
 
@@ -10,7 +10,7 @@ const AvailableClasses = ({ checkins, contractId, contractLimit }) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        findItemWhere(yogaClassesCol, "date", getToday())
+        findItemWhere(calendarCol, "date", getToday())
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
     }, [loading, contractId]);

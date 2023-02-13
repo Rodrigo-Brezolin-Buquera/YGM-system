@@ -17,7 +17,7 @@ export const database = getFirestore(app);
 export const usersCol =  "users"
 export const contractsCol =  "contracts"
 export const plansCol =  "plans"
-export const yogaClassesCol =  "yogaClasses"
+export const calendarCol =  "calendar"
 export const checkinsCol =  "checkins"
 
 

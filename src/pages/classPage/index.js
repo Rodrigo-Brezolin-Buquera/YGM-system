@@ -1,14 +1,14 @@
 import { CircularProgress, Box, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import HeaderAdmin from "../../components/HeaderAdmin";
-import {ClassInfo} from "./ClassInfo";
-import {StudentList} from "./StudentList";
-import { SideContainer, ButtonContainer, LoadingButton, MainContainer } from "../../theme";
 import { deleteItemById, deleteItemWhere, findItemById, findItemWhere } from "../../api";
-import { checkinsCol, yogaClassesCol } from "../../api/config";
-import { goToAdmin } from "../../routes/coordinator";
+import { checkinsCol, calendarCol } from "../../api/config";
+import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
+import { goToAdmin } from "../../routes/coordinator";
+import { SideContainer, ButtonContainer, LoadingButton, MainContainer } from "../../theme";
+import { ClassInfo } from "./ClassInfo";
+import { StudentList } from "./StudentList";
 
 const ClassPage = () => {
     useProtectedPage("admin")
@@ -19,7 +19,7 @@ const ClassPage = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        findItemById(yogaClassesCol, classId)
+        findItemById(calendarCol, classId)
             .then(res => setYogaClass(res))
             .catch(err => console.log(err.message))
         findItemWhere(checkinsCol, "classId", classId)
@@ -27,20 +27,20 @@ const ClassPage = () => {
             .catch(err => console.log(err.message))
     }, [loading, classId]);
 
-    const deleteClass = () => {
+    const deleteClass = async () => {
         if (window.confirm("Deletar aula?")) {
             setLoading(true);
-            deleteItemById(yogaClassesCol, classId)
+            await deleteItemById(calendarCol, classId)
                 .then(goToAdmin(navigate))
                 .catch(err => console.log(err.message))
                 .finally(setLoading(false))
         }
     };
 
-    const deleteClasses = () => {
+    const deleteClasses = async () => {
         if (window.confirm("Deletar todas as aulas nesse horário?")) {
             setLoading(true)
-            deleteItemWhere()
+            await deleteItemWhere(calendarCol, "groupId", yogaClass.groupId)
                 .then(goToAdmin(navigate))
                 .catch(err => console.log(err.message))
                 .finally(setLoading(false))

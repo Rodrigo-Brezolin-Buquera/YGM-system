@@ -1,7 +1,7 @@
+import { collection, doc, runTransaction, query, where } from "firebase/firestore/lite"
 import { calculateEndDate, formatDate } from "../services/moment"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItem, updateItem } from "."
-import { collection, doc, runTransaction, query, where } from "firebase/firestore/lite"
 
 export const createContract = async ({ name, plan, date }, id) => {
 

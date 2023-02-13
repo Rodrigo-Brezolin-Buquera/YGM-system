@@ -17,9 +17,9 @@ const HeaderAdmin = ({ navigate }) => {
     return (
         <Header>
             <Show above='md'
->
+            >
                 <Hide below="md"   
->
+                >
                     <Button 
                      
                         onClick={() => goToAdmin(navigate)}
