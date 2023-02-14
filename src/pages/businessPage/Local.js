@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Line, MainContainer, TextContainer, WrapContainer } from "../../theme";
-import { Text, Heading, Card } from "@chakra-ui/react";
+import { Text, Heading } from "@chakra-ui/react";
 import { DoubleClickText } from "../../components/DoubleClickText";
 import { RequestInput } from '../../components/RequestInput';
 import { DeleteIcon } from "@chakra-ui/icons";
+import { TextCard } from './TextCard';
 
 
 export const Local = () => {
@@ -29,22 +30,15 @@ export const Local = () => {
     }
 
     const list = (atribute) => mockSpace[atribute]?.map(item => (
-        <Card
-            minW={"120"}
-            minH={"2em"}
+        <TextCard
+            width={"120px"}
             key={item}
-            display={"flex"}
-            flexDirection={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-            backgroundColor={"brand.200"}
-            padding={"1em"}
-            borderRadius={"20px"}
+           
         >
             <Text>{item}</Text>
 
             <DeleteIcon onClick={()=>onDelete(item, atribute)} /> 
-        </Card>))
+        </TextCard>))
 
 
     return (

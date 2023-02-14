@@ -32,6 +32,7 @@ export const contractsCol =  "contracts"
 export const plansCol =  "plans"
 export const calendarCol =  "calendar"
 export const checkinsCol =  "checkins"
+export const businessCol =  "business"
 
 
 export const auth = getAuth(app);

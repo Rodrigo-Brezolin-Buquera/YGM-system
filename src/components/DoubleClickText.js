@@ -25,6 +25,7 @@ export const DoubleClickText = (props) => {
                 showInput ?
                     (
                         <input
+                            size={props.size || "auto"}
                             type={"text"}
                             value={text}
                             onChange={onChange}
