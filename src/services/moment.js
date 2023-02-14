@@ -14,5 +14,5 @@ export const addOneWeek = (date) => {
 
 export const calculateEndDate = (date, durationInMonths) => {
     const momentResult = moment(date, "YYYY-MM-DD").add(durationInMonths, "months").calendar();
-    return formatDate(momentResult, "DD/MM/YYYY")
+    return moment(momentResult, "MM/DD/YYYY").format("DD/MM/YYYY")
 }

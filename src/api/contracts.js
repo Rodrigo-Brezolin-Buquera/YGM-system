@@ -4,9 +4,8 @@ import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, updateItem } from "."
 
 export const createContract = async ({ name, plan, date }, id) => {
-
     const contract = {
-        name,
+        name,   
         currentContract: {
             active: true,
             plan,
@@ -15,7 +14,7 @@ export const createContract = async ({ name, plan, date }, id) => {
             availableClasses: table[plan].quantity
         }
     }
-
+    console.log("dur", table[plan].duration)
     await createItemWithId(contractsCol, contract, id)
 }
 

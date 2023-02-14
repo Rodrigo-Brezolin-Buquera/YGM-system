@@ -19,9 +19,11 @@ export const singUp = async ({ email, password }) => {
     let id
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
     id = user.uid
-    await resetPassword(email)
+    await resetPassword(email) 
+    
     await signOut(auth)
     await signInWithEmailAndPassword(auth, process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASSWORD)
+    // fazer transaction?
     await createItemWithId(usersCol, { email, admin: false }, id)
     return id
 };
