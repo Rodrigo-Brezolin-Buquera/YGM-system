@@ -5,19 +5,19 @@ import { goToLogin } from "../routes/coordinator";
 
 export const useProtectedPage = (role) => {
   
-    const [status, setStatus] = useState({ loggedIn: null })
-    const navigate = useNavigate()
+    // const [status, setStatus] = useState({ loggedIn: null })
+    // const navigate = useNavigate()
 
-    useLayoutEffect(() => {  
-        isLogged(setStatus);   
-    },[])
+    // useLayoutEffect(() => {  
+    //     isLogged(setStatus);   
+    // },[])
 
-    if(status.loggedIn === false) {
-        goToLogin(navigate)
-    }
+    // if(status.loggedIn === false) {
+    //     goToLogin(navigate)
+    // }
 
-    if(status.loggedIn === true && status.role!== role) { 
-        goToLogin(navigate)
-    }
+    // if(status.loggedIn === true && status.role!== role) { 
+    //     goToLogin(navigate)
+    // }
 };
 

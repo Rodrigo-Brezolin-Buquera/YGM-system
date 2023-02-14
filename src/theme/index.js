@@ -7,7 +7,7 @@ export {default as LogoImg} from "./LogoImg";
 export {default as ModalComponent} from "./ModalComponent";
 export {default as SideContainer} from "./SideContainer";
 export {default as MainContainer} from "./MainContainer";
-
+export {default as Background} from "./Background";
 
 const theme = extendTheme({
     fonts: {

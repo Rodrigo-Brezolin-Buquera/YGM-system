@@ -1,16 +1,17 @@
-import { Box, Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import {  Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { findItemById, findItemsLimit } from "../../api";
+import { findItemById } from "../../api";
 import { resetPassword } from "../../api/auth";
-import { checkinsCol, contractsCol, usersCol } from "../../api/config";
+import { findCheckinsLimit } from "../../api/checkins";
+import {  contractsCol, usersCol } from "../../api/config";
 import { deleteContract } from "../../api/contracts";
 import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
-import { ButtonContainer, LoadingButton, SideContainer, MainContainer } from "../../theme";
+import { ButtonContainer,Background, LoadingButton, SideContainer, MainContainer } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
@@ -24,21 +25,10 @@ const ContractPage = () => {
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
 
 
-    useEffect(() => {
-        findItemById(contractsCol, userId)
-            .then(res => setContracts(res))
-            .catch(err => console.log(err.message))
-        findItemsLimit(checkinsCol, 5)
-            .then(res => setCheckins(res))
-            .catch(err => console.log(err.message))
-
-    }, [userId]);
-
-
-    const onDelete = () => {
+    const onDelete = async () => {
         try {
             if (window.confirm("Excluir este contrato?")) {
-                deleteContract(userId)
+                await deleteContract(userId)
                     .then(goToAdmin(navigate))
                     .catch(err => console.log(err.message))
             }
@@ -47,33 +37,41 @@ const ContractPage = () => {
         }
     };
 
-    const sendPasswordLink = () => {
+    const sendPasswordLink = async () => {
         if (window.confirm("Enviar email de redefinição de senha?")) {
-            findItemById(usersCol, userId)
+            await findItemById(usersCol, userId)
                 .then(user => resetPassword(user.email))
                 .catch(err => console.log(err.message))
         }
     };
+
+    const changeStatus = useCallback(async() => {
+        if (window.confirm("Alterar status no plano?")) {
+            await changeStatus(userId, contracts?.currentContract?.status)
+                .catch(err => console.log(err.message))
+        }
+    },[userId, contracts?.currentContract?.status])
+
+    useEffect(() => {
+        findItemById(contractsCol, userId)
+            .then(res => setContracts(res))
+            .catch(err => console.log(err.message))
+        findCheckinsLimit(userId, 5)
+            .then(res => setCheckins(res))
+            .catch(err => console.log(err.message))
+
+    }, [userId]);
 
 
     return (
         <>
             <Header navigate={navigate} />
 
-            <Box
-                display={"flex"}
-                w={"100%"}
-                h={"100%"}
-                minH={"100vh"}
-                backgroundColor={"brand.100"}
-                flexDirection={["column-reverse", "row", "row"]}
-                justifyContent={["flex-end", "start", "start"]}
-            >
+            <Background >
                 <SideContainer>
                     <CheckinsDone checkins={checkins} />
                 </SideContainer>
-                <MainContainer          >
-
+                <MainContainer >
                     <ButtonContainer>
                         <Button
                             backgroundColor={"brand.200"}
@@ -88,21 +86,32 @@ const ContractPage = () => {
                         >
                             <Text> Novo Plano</Text>
                         </Button>
-
-                        <LoadingButton
-                            color={"brand.200"}
-                            handler={onDelete}
-                        >
-                            <Text>Excluir contrato</Text>
-                        </LoadingButton>
-
                         <LoadingButton
                             color={"brand.200"}
                             handler={sendPasswordLink}
                         >
-                            <Text>Enviar nova senha</Text>
+                            <Text>Nova senha</Text>
                         </LoadingButton>
 
+                        <LoadingButton
+                            color={contracts?.currentContract?.active ? "brand.200" : "brand.100"}
+                            handler={changeStatus}
+                        >
+                            <Text
+                             color={contracts?.currentContract?.active? "brand.300" : "brand.400"}
+                            > 
+                            {contracts?.currentContract?.active ? "Pausar contrato" : "Ativar contrato"}
+                            </Text>
+                        </LoadingButton>
+
+                        <LoadingButton
+                            color={"brand.300"}
+                            handler={onDelete}
+                        >
+                            <Text color={"brand.400"}>
+                                Excluir contrato
+                            </Text>
+                        </LoadingButton>
                     </ButtonContainer>
 
                     {
@@ -118,9 +127,8 @@ const ContractPage = () => {
                             <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }
 
-
                 </MainContainer>
-            </Box>
+            </Background>
 
             <AddContractModal
                 isOpen={isAddOpen}

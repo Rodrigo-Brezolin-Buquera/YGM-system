@@ -6,7 +6,7 @@ import { contractsCol, calendarCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { getToday } from "../../services/moment";
-import { ButtonContainer,MainContainer, SideContainer } from "../../theme";
+import { Background, ButtonContainer,MainContainer, SideContainer } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 import { CreateClassModal } from "./CreateClassModal";
 import { CreateContractModal } from "./CreateContractModal";
@@ -33,14 +33,8 @@ const AdminPage = () => {
     return (
         <>
             <HeaderAdmin navigate={navigate} />
-            <Box
-                display={"flex"}
-                w={"100%"}
-                h={"100%"}
-                minH={"100vh"}
-                backgroundColor={"brand.100"}
-                flexDirection={["column-reverse", "row", "row"]}
-                justifyContent={["flex-end", "start", "start"]}
+            <Background
+            
             >
                 <MainContainer>
                     <ButtonContainer>
@@ -64,7 +58,7 @@ const AdminPage = () => {
                 <SideContainer>
                     <AvailableClasses yogaClasses={yogaClasses} navigate={navigate} />
                 </SideContainer>
-            </Box>
+            </Background>
 
             <CreateContractModal isOpen={isContractOpen} onClose={onContractClose} />
             <CreateClassModal isOpen={isClassOpen} onClose={onClassClose} />

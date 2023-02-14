@@ -1,4 +1,4 @@
-import { collection, doc, runTransaction, query, where } from "firebase/firestore/lite"
+import { collection, doc, runTransaction, query, where, updateDoc } from "firebase/firestore/lite"
 import { calculateEndDate, formatDate } from "../services/moment"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, updateItem } from "."
@@ -14,7 +14,6 @@ export const createContract = async ({ name, plan, date }, id) => {
             availableClasses: table[plan].quantity
         }
     }
-    console.log("dur", table[plan].duration)
     await createItemWithId(contractsCol, contract, id)
 }
 
@@ -44,6 +43,14 @@ export const updateContract = async (values, id) => {
     }
     await updateItem(contractsCol, contract, id)
 }
+
+export const changeStatus = async (id, status) => {
+    
+    const docRef = doc(collection(database, contractsCol), id);
+    await updateDoc (docRef, {"currentContract.active": status});
+
+}
+
 
 export const deleteContract = async (userId) => {
 

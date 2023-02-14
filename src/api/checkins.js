@@ -1,7 +1,16 @@
-import { runTransaction, doc, collection, updateDoc } from "firebase/firestore/lite"
-import { contractsCol, calendarCol, checkinsCol } from "./config"
+import { runTransaction, doc, collection, updateDoc, query, getDocs, where, limit  } from "firebase/firestore/lite"
+import { contractsCol, calendarCol, checkinsCol, } from "./config"
 import { database } from "./config"
 import { findItemById } from "."
+
+export const findCheckinsLimit = async (userId, n) => {
+    const col = collection(database, checkinsCol);
+    const q = query(col, limit(n), where("userId", "==", userId));
+    const snap = await getDocs(q);
+    const result = snap.docs.map(doc => { return { ...doc.data(), id: doc.id } })
+    return result;
+};
+
 
 export const createCheckin = async (checkinId, limits) => {
     const { yogaClassId, capacity, contractId, contractLimit } = limits

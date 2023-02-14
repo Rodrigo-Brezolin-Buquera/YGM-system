@@ -6,7 +6,7 @@ import { checkinsCol, calendarCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
-import { SideContainer, ButtonContainer, LoadingButton, MainContainer } from "../../theme";
+import { SideContainer, ButtonContainer, LoadingButton, MainContainer, Background } from "../../theme";
 import { ClassInfo } from "./ClassInfo";
 import { StudentList } from "./StudentList";
 
@@ -50,14 +50,7 @@ const ClassPage = () => {
     return (
         <>
             <HeaderAdmin navigate={navigate} />
-            <Box
-                display={"flex"}
-                flexDirection={["column-reverse", "row", "row"]}
-                justifyContent={["flex-end", "space-between", "space-between"]}
-                backgroundColor={"brand.100"}
-                width={"100%"}
-                minH={"100vh"}
-            >
+            <Background  >
                 <MainContainer            >
                     <ButtonContainer>
                         <LoadingButton
@@ -96,7 +89,7 @@ const ClassPage = () => {
                         setLoading={setLoading}
                     />
                 </SideContainer>
-            </Box>
+            </Background>
         </>
     );
 };

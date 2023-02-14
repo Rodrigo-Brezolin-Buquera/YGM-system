@@ -7,7 +7,7 @@ import { checkinsCol, contractsCol,  } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { MainContainer, SideContainer, Header } from "../../theme";
+import { MainContainer, SideContainer, Header, Background } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
 const UserPage = () => {
@@ -36,14 +36,9 @@ const UserPage = () => {
                     Sair
                 </Button>
             </Header>
-            <Box
-                display={"flex"}
-                w={"100%"}
-                h={"100%"}
-                minH={"100vh"}
-                backgroundColor={"brand.100"}
-                flexDirection={["column", "row", "row"]}
-                justifyContent={["flex-end", "start", "start"]}
+            <Background
+                column={"column"}
+                justifyContent={"start"}
             >
                 <SideContainer>
                     <AvailableClasses
@@ -79,7 +74,7 @@ const UserPage = () => {
                     {<CheckinsDone checkins={checkins} />}
                 </SideContainer>
 
-            </Box>
+            </Background>
         </>
     );
 };

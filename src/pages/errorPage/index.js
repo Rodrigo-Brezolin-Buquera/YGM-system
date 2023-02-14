@@ -9,6 +9,7 @@ const ErrorPage = () => {
     return (
         <Box
             display={"flex"}
+            flexDirection={["column", "row", "row"]}
             justifyContent={"center"}
             alignItems={"center"}
             backgroundColor={"brand.400"}
@@ -21,12 +22,13 @@ const ErrorPage = () => {
                 flexDirection={"column"}
                 justifyContent={"center"}
                 alignItems={"center"}
+                gap={"0.5em"}
             >
                 <Text fontSize='2xl'> Erro 404: Página não encontrada </Text>
                 <Text > Verifique a URL ou clique em voltar </Text>
 
                 <Button
-                    colorScheme='yellow'
+                    backgroundColor={"brand.200"}
                     onClick={() => goBack(navigate)}
                 >Voltar
                 </Button>

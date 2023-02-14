@@ -10,6 +10,7 @@ const FormButton = ({ isSubmitting, color, loading, children }) => {
             type="submit"
             borderRadius={"10px"}
             w={"100%"}
+          
         >
             {loading ?
                 <CircularProgress isIndeterminate color={color} size="30px" />
