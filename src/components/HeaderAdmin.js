@@ -9,35 +9,32 @@ import {
     Hide
 } from "@chakra-ui/react";
 import { logout } from "../api/auth";
-import { goToAdmin, goToCalendar } from "../routes/coordinator";
+import { goToAdmin, goToBusiness, goToCalendar } from "../routes/coordinator";
 import Header from "../theme/Header"
 
 const HeaderAdmin = ({ navigate }) => {
 
     return (
         <Header>
-            <Show above='md'
-            >
-                <Hide below="md"   
-                >
+            <Show above='md' >
+                <Hide below="md"    >
                     <Button 
-                     
                         onClick={() => goToAdmin(navigate)}
                     >Home
                     </Button>
-                    
+                    <Button                  
+                        onClick={() => goToBusiness(navigate)}
+                    >Negócio
+                    </Button>                              
                     <Button
-                     
                         onClick={() => goToCalendar(navigate)}
                     >Agenda
                     </Button>
-                    <Button
-                     
+                    <Button               
                         onClick={() => logout(navigate)}
                     >Sair
                     </Button>
                 </Hide>
-
             </Show>
 
             <Show below='md'>
@@ -48,6 +45,7 @@ const HeaderAdmin = ({ navigate }) => {
                         </MenuButton>
                         <MenuList>
                             <MenuItem onClick={() => goToAdmin(navigate)} >Home</MenuItem>
+                            <MenuItem onClick={() => goToBusiness(navigate)} >Negócio</MenuItem>
                             <MenuItem onClick={() => goToCalendar(navigate)} >Agenda</MenuItem>
                             <MenuItem onClick={() => logout(navigate)}>Sair</MenuItem>
                         </MenuList>

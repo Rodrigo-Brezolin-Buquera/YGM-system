@@ -9,6 +9,7 @@ const LoginPage = lazy(() => import("../pages/loginPage"))
 const UserPage = lazy(() => import("../pages/userPage"))
 const ClassPage = lazy(() => import("../pages/classPage"))
 const ContractPage = lazy(() => import("../pages/contractPage"))
+const BusinessPage = lazy(() => import("../pages/businessPage"))
 
 const Router = () => {
     return (
@@ -21,6 +22,7 @@ const Router = () => {
                     <Route index element={<LoginPage />} />
                     <Route path="/user/:userId" element={<UserPage />} /> 
                     <Route path="/admin" element={<AdminPage />} />
+                    <Route path="/admin/business" element={<BusinessPage />} />
                     <Route exact path="/admin/calendar" element={<CalendarPage />} />
                     <Route exact path="/admin/class/:classId" element={<ClassPage />} />
                     <Route exact path="/admin/contract/:userId" element={<ContractPage />} />

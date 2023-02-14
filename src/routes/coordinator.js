@@ -9,6 +9,9 @@ export const goToUser = (navigate, id) => {
 export const goToAdmin = (navigate) => {
     navigate("/admin");
 };
+export const goToBusiness = (navigate) => {
+    navigate("/admin/business");
+};
 
 export const goToCalendar = (navigate) => {
     navigate("/admin/calendar");

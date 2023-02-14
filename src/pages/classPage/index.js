@@ -6,7 +6,7 @@ import { checkinsCol, calendarCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
-import { SideContainer, ButtonContainer, LoadingButton, MainContainer, Background } from "../../theme";
+import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background } from "../../theme";
 import { ClassInfo } from "./ClassInfo";
 import { StudentList } from "./StudentList";
 
@@ -52,7 +52,7 @@ const ClassPage = () => {
             <HeaderAdmin navigate={navigate} />
             <Background  >
                 <MainContainer            >
-                    <ButtonContainer>
+                    <WrapContainer>
                         <LoadingButton
                             color={"brand.200"}
                             handler={deleteClass}
@@ -67,7 +67,7 @@ const ClassPage = () => {
                             <Text> Excluir horário</Text>
                         </LoadingButton>
 
-                    </ButtonContainer>
+                    </WrapContainer>
 
                     {yogaClass.id ? <ClassInfo
                         key={yogaClass.id}

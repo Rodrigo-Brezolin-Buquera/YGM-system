@@ -1,35 +1,9 @@
 import { Text, Box, Card } from "@chakra-ui/react";
 import { memo } from "react";
 import { goToContract } from "../../routes/coordinator";
+import { Column, Line } from "../../theme";
 
 const UserInfo = (props) => {
-
-    const Line = ({ children }) => {
-        return (
-            <Box
-                display={"flex"}
-                justifyContent={["center", "center", "center", "flex-start"]}
-                gap={"0.3em"}
-                m={"0.1em"}
-            >
-                {children}
-            </Box>
-        );
-    }
-
-    const Column = ({ children }) => {
-        return (
-            <Box
-                display={"flex"}
-                flexDirection={"column"}
-                justifyContent={"center"}
-                minW={["100px", "150px", "250px"]}
-            >
-                {children}
-            </Box>
-        );
-    }
-
     return (
         <Card
             display={"flex"}
@@ -46,36 +20,35 @@ const UserInfo = (props) => {
         >
 
             <Column>
-                <Line>
+                <Line  justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b">Nome:</Text>
                     <Text >{props.name}</Text>
                 </Line>
 
-                <Line>
+                <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b" >Plano: </Text>
                     <Text >{props.plan}</Text>
                 </Line>
             </Column>
 
             <Column>
-                <Line>
+                <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b" >Início do plano: </Text>
                     <Text >{props.started}</Text>
                 </Line>
 
-                <Line>
+                <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b"  >Fim previsto: </Text>
                     <Text > {props.ends}</Text>
                 </Line>
             </Column>
 
             <Column>
-                <Line>
+                <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b" >Aulas disponíveis:</Text>
                     <Text >{props.availableClasses}</Text>
                 </Line>
             </Column>
-
         </Card>
     );
 };

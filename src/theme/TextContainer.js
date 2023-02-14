@@ -1,20 +1,23 @@
 import { Card } from "@chakra-ui/react"
 
-const ButtonContainer = ({ children }) => {
+const TextContainer = ({ children }) => {
     return (
         <Card
             display={"flex"}
-            flexDirection={"row"}
+            flexDirection={"column"}
             flexWrap={"wrap"}
             justifyContent={"center"}
+            alignItems={"start"}
             backgroundColor={"brand.400"}
             w={"100%"}
             p={"0.5em"}
-            gap={["1em","1em","2em"]}
+            gap={"0.5em"}
+            fontSize={"lg"}
         >
             {children}
-        </Card>
-    )
+        </Card>)
 }
 
-export default ButtonContainer
+export default TextContainer
+
+

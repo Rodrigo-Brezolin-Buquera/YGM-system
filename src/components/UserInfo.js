@@ -1,18 +1,8 @@
 import { Box, Text } from "@chakra-ui/react";
 import { memo } from "react";
+import { Line } from "../theme";
 
-const Line = ({children}) => {
-    return (
-        <Box
-            display={"flex"}
-            justifyContent={"center"}
-            gap={"0.5em"}
-            m={"0.5em"}
-        >
-            {children}
-        </Box>
-    );
-}
+
 
 const UserInfo = (props) => {
     return (

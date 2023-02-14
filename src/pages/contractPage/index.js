@@ -11,7 +11,7 @@ import Header from "../../components/HeaderAdmin";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
-import { ButtonContainer,Background, LoadingButton, SideContainer, MainContainer } from "../../theme";
+import { WrapContainer,Background, LoadingButton, SideContainer, MainContainer } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
@@ -72,7 +72,7 @@ const ContractPage = () => {
                     <CheckinsDone checkins={checkins} />
                 </SideContainer>
                 <MainContainer >
-                    <ButtonContainer>
+                    <WrapContainer>
                         <Button
                             backgroundColor={"brand.200"}
                             onClick={onEditOpen}
@@ -112,7 +112,7 @@ const ContractPage = () => {
                                 Excluir contrato
                             </Text>
                         </LoadingButton>
-                    </ButtonContainer>
+                    </WrapContainer>
 
                     {
                         contracts.id ?

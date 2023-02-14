@@ -6,7 +6,7 @@ import { contractsCol, calendarCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { getToday } from "../../services/moment";
-import { Background, ButtonContainer,MainContainer, SideContainer } from "../../theme";
+import { Background, WrapContainer,MainContainer, SideContainer } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 import { CreateClassModal } from "./CreateClassModal";
 import { CreateContractModal } from "./CreateContractModal";
@@ -37,7 +37,7 @@ const AdminPage = () => {
             
             >
                 <MainContainer>
-                    <ButtonContainer>
+                    <WrapContainer>
                         <Button
                             backgroundColor={"brand.200"}
                             onClick={onContractOpen}
@@ -51,7 +51,7 @@ const AdminPage = () => {
                         >
                             <Text> Nova Aula</Text>
                         </Button>
-                    </ButtonContainer>
+                    </WrapContainer>
                     <StudentList contracts={contracts} navigate={navigate} />
                 </MainContainer>
 

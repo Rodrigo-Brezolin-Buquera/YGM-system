@@ -11,7 +11,7 @@ const MainContainer = ({ children }) => {
             minW={"250px"}
             minH={"200px"}
             p={"1em"}
-            gap={"0.5em"}
+            gap={"1em"}
             w={["auto","100%","100%"]}
             m={"0.8em"}
         >
