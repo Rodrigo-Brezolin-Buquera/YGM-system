@@ -20,8 +20,6 @@ const AdminPage = () => {
     const { isOpen: isContractOpen, onOpen: onContractOpen, onClose: onContractClose } = useDisclosure()
     const { isOpen: isClassOpen, onOpen: onClassOpen, onClose: onClassClose } = useDisclosure()
 
-
-
     useEffect(() => {
         findAllItems(contractsCol)
             .then(res => setContracts(res))
@@ -50,7 +48,7 @@ const AdminPage = () => {
                             backgroundColor={"brand.200"}
                             onClick={onContractOpen}
                         >
-                            <Text>Novo contrato</Text>
+                            <Text>Novo usuário</Text>
                         </Button>
 
                         <Button

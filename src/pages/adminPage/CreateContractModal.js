@@ -24,7 +24,6 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
 
     const onSubmit = (values) => {
         setLoading(true);
-      
         singUp({ email: values.email, password: genPassword() })
             .then(id => createContract( values, id))
             .catch((err) => console.log(err.message))
@@ -37,7 +36,7 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} title={"Adicionar contrato"} >   
+        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar usuário"} >   
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
                     isInvalid={errors.name || errors.email || errors.plan || errors.date}

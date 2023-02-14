@@ -31,8 +31,13 @@ export const findItemsLimit = async (itemCol, n) => {
 };
 
   
-export const createItem = async (itemCol, object, id) => {
+export const createItem = async (itemCol, object) => {
     const docRef = doc(collection(database, itemCol) ) ;
+    await setDoc(docRef, object);
+};
+
+export const createItemWithId = async (itemCol, object, id) => {
+    const docRef = doc(collection(database, itemCol), id ) ;
     await setDoc(docRef, object);
 };
 
