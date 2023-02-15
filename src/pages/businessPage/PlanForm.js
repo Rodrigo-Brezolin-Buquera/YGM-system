@@ -4,9 +4,10 @@ import {
     Input,
     Select, Text
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { numberPattern } from "../../api/patterns";
+import { createItemWithId } from "../../api";
+import { plansCol } from "../../api/config";
+import { pricePattern } from "../../api/patterns";
 import { DurationOptions, FrequencyOptions } from "../../components/selectOptions";
 import { FormButton } from "../../theme"
 
@@ -16,27 +17,37 @@ export const PlanForm = ({ loading, setLoading }) => {
         register,
         reset,
         formState: { errors, isSubmitting }
-
     } = useForm();
 
     const onSubmit = (values) => {
         setLoading(true);
-        // singUp({ email: values.email, password: genPassword() })
-        //     .then(id => createContract( values, id))
-        //     .catch((err) => console.log(err.message))
-        //     .finally(() => {
-        //         setLoading(false)
-        //         reset()
-        //         onClose() 
-        //     })
-
+        const durationTable = {
+            Mensal: 1,
+            Trimestral: 3,
+            Semestral: 6,
+            Anual: 12,
+            Contínuo: 0,
+        }
+        const freq = values.frequency?.charAt(0)
+        const plan = {
+            id: `${values.frequency}-${values.duration}`,
+            price: `R$ ${values.price}`,
+            type: values.frequency,
+            duration: values.duration,
+            availableClasses: durationTable[values.duration] * Number(freq) * 4,
+            durationInMonths: durationTable[values.duration]
+        }
+        createItemWithId(plansCol, plan, plan.id)
+            .then(reset())
+            .catch((err) => console.log(err.message))
+            .finally(setLoading(false))
     };
 
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl
-                isInvalid={errors.value || errors.frequency || errors.duration}
+                isInvalid={errors.price || errors.frequency || errors.duration}
                 display={"flex"}
                 flexDirection={"row"}
                 flexWrap={["wrap", "wrap", "nowrap"]}
@@ -49,11 +60,11 @@ export const PlanForm = ({ loading, setLoading }) => {
                 <Input
                     w={"100px"}
                     variant={"outline"}
-                    id="value"
+                    id="price"
                     placeholder="Valor "
-                    {...register("value", {
+                    {...register("price", {
                         required: "Campo Obrigátorio",
-                        pattern: numberPattern
+                        pattern: pricePattern
                     })}
                 />
 
@@ -81,9 +92,8 @@ export const PlanForm = ({ loading, setLoading }) => {
                     <DurationOptions />
                 </Select>
 
-
                 <FormErrorMessage>
-                    {errors.value && errors.value.message}
+                    {errors.price && errors.price.message}
                     <br />
                     {errors.frequency && errors.frequency.message}
                     <br />

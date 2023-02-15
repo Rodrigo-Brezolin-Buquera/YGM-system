@@ -4,7 +4,7 @@ import { Text, Heading } from "@chakra-ui/react";
 import { DoubleClickText } from "../../components/DoubleClickText";
 import { RequestInput } from '../../components/RequestInput';
 import { DeleteIcon } from "@chakra-ui/icons";
-import { TextCard } from './TextCard';
+import TextCard  from './TextCard';
 
 
 export const Local = () => {
@@ -25,15 +25,16 @@ export const Local = () => {
     }
 
     const onDelete = (item, atribute ) => { 
+        if (window.confirm(`Remover ${item} da lista?`)) { 
         const filteredList = mockSpace[atribute].filter( i => i !== item );
-        //request
+        // request
+        }
     }
 
     const list = (atribute) => mockSpace[atribute]?.map(item => (
         <TextCard
             width={"120px"}
-            key={item}
-           
+            key={item}        
         >
             <Text>{item}</Text>
 

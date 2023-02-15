@@ -1,7 +1,8 @@
 import { Card } from "@chakra-ui/react"
+import { memo } from "react"
 
 
-export const TextCard = ({ children, width }) => {
+const TextCard = ({ children, width }) => {
     return (
         <Card
             minW={width}
@@ -18,3 +19,5 @@ export const TextCard = ({ children, width }) => {
         </Card>
     )
 }
+
+export default memo(TextCard)

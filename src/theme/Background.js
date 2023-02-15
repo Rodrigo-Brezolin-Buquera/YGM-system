@@ -7,7 +7,7 @@ const Background = ({children, column, justifyContent}) => {
             display={"flex"}
             w={"100%"}
             h={"100%"}
-            minH={"100vh"}
+            flexGrow={1}
             backgroundColor={"brand.100"}
             flexDirection={[column || "column-reverse", "row", "row"]}
             justifyContent={[justifyContent || "flex-end", "start", "start"]}

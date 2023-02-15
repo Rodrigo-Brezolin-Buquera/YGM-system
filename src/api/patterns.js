@@ -1,3 +1,8 @@
+export const pricePattern = {
+    value: /^[0-9]{1,3}$/,
+    message: "Entre com valores possitivos entre 0 e 999"
+}
+
 export const numberPattern = {
     value: /^[0-9]{1,2}$/,
     message: "Entre com valores possitivos entre 0 e 99"
