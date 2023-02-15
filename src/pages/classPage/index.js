@@ -77,6 +77,8 @@ const ClassPage = () => {
                         date={yogaClass.date}
                         teacher={yogaClass.teacher}
                         name={yogaClass.name}
+                        capacity={yogaClass.capacity}
+
                     /> :
                         <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }

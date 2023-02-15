@@ -35,7 +35,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading 
             margin={"0.5em"}
             padding={"0.2em"}
             minH={"50px"}
-            width={["75%", "90%", "90%"]}
+            width={"90%"}
 
         >
             {(loading) ?
