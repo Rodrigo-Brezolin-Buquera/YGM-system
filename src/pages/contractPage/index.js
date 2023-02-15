@@ -1,29 +1,29 @@
-import {  Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
+import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById } from "../../api";
 import { resetPassword } from "../../api/auth";
 import { findCheckinsLimit } from "../../api/checkins";
-import {  contractsCol, usersCol } from "../../api/config";
-import { deleteContract } from "../../api/contracts";
+import { contractsCol, usersCol } from "../../api/config";
+import { changeStatus, deleteContract } from "../../api/contracts";
 import CheckinsDone from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
-import { WrapContainer,Background, LoadingButton, SideContainer, MainContainer } from "../../theme";
+import { WrapContainer, Background, LoadingButton, SideContainer, MainContainer } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
-import { EditContractModal } from "./EditContractModal"
+import EditContractModal from "./EditContractModal"
 
 const ContractPage = () => {
     useProtectedPage("admin")
     const { userId } = useParams();
     const [contracts, setContracts] = useState({});
     const [checkins, setCheckins] = useState([]);
+    const [loading, setloading] = useState(false)
     const navigate = useNavigate();
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
-
 
     const onDelete = async () => {
         try {
@@ -44,13 +44,14 @@ const ContractPage = () => {
                 .catch(err => console.log(err.message))
         }
     };
-
-    const changeStatus = useCallback(async() => {
+    
+    const onChangeStatus = useCallback(async () => {
         if (window.confirm("Alterar status no plano?")) {
-            await changeStatus(userId, contracts?.currentContract?.status)
+            await changeStatus(userId, !contracts?.currentContract?.active)
                 .catch(err => console.log(err.message))
+                .finally(setloading(!loading))
         }
-    },[userId, contracts?.currentContract?.status])
+    }, [userId, loading, contracts?.currentContract?.active])
 
     useEffect(() => {
         findItemById(contractsCol, userId)
@@ -60,8 +61,7 @@ const ContractPage = () => {
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
 
-    }, [userId]);
-
+    }, [userId, loading, isAddOpen, isEditOpen]);
 
     return (
         <>
@@ -94,13 +94,13 @@ const ContractPage = () => {
                         </LoadingButton>
 
                         <LoadingButton
-                            color={contracts?.currentContract?.active ? "brand.200" : "brand.100"}
-                            handler={changeStatus}
+                            color={!contracts?.currentContract?.active ? "brand.100" : "brand.200"}
+                            handler={onChangeStatus}
                         >
                             <Text
-                             color={contracts?.currentContract?.active? "brand.300" : "brand.400"}
-                            > 
-                            {contracts?.currentContract?.active ? "Pausar contrato" : "Ativar contrato"}
+                                color={!contracts?.currentContract?.active ? "brand.400" : "brand.300"}
+                            >
+                                {contracts?.currentContract?.active ? "Pausar contrato" : "Ativar contrato"}
                             </Text>
                         </LoadingButton>
 

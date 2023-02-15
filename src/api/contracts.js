@@ -1,11 +1,11 @@
 import { collection, doc, runTransaction, query, where, updateDoc } from "firebase/firestore/lite"
 import { calculateEndDate, formatDate } from "../services/moment"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
-import { createItemWithId, updateItem } from "."
+import { createItemWithId, findItemWhere, updateItem } from "."
 
 export const createContract = async ({ name, plan, date }, id) => {
     const contract = {
-        name,   
+        name,
         currentContract: {
             active: true,
             plan,
@@ -23,7 +23,7 @@ export const newContract = async ({ plan, date }, id) => {
             active: true,
             plan,
             ends: calculateEndDate(date, table[plan].duration),
-            started: formatDate(date),
+            started: formatDate(date, "DD/MM/YYYY"),
             availableClasses: table[plan].quantity
         }
     }
@@ -36,8 +36,8 @@ export const updateContract = async (values, id) => {
             name: values.name,
             active: values.active,
             plan: values.plan,
-            ends: formatDate(values.ends),
-            started: formatDate(values),
+            ends: formatDate(values.ends, "DD/MM/YYYY"),
+            started: formatDate(values.started, "DD/MM/YYYY"),
             availableClasses: values.availableClasses
         }
     }
@@ -45,24 +45,27 @@ export const updateContract = async (values, id) => {
 }
 
 export const changeStatus = async (id, status) => {
-    
     const docRef = doc(collection(database, contractsCol), id);
-    await updateDoc (docRef, {"currentContract.active": status});
-
+    await updateDoc(docRef, { "currentContract.active": status });
 }
 
 
 export const deleteContract = async (userId) => {
+    const checkins = await findItemWhere(checkinsCol, "contractId", userId)
 
     await runTransaction(database, async (transaction) => {
         const contractDoc = doc(collection(database, contractsCol), userId)
         transaction.delete(contractDoc)
         const userDoc = doc(collection(database, usersCol), userId)
         transaction.delete(userDoc)
-        const q = query(checkinsCol, where("contractId", "==", userId));
-        transaction.delete(q)
+        checkins.forEach(checkin => {
+            const docRef = doc(collection(database, checkinsCol), checkin.id);
+            transaction.delete(docRef)
+        })
     })
 }
+
+
 
 const table = {
     "1x-Mensal": { duration: 1, quantity: 4 },

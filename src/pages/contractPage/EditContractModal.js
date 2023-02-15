@@ -2,21 +2,21 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    
     Select,
     Text,
     FormLabel
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import {  useState, memo } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, stringPattern } from "../../api/patterns";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
-import {formatToCalendar} from "../../services/moment"
+import { formatToCalendar } from "../../services/moment"
 import { FormButton, ModalComponent } from "../../theme";
 
-export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
+const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
+
     const {
         handleSubmit,
         register,
@@ -28,32 +28,29 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
             name: name,
             plan: contract?.plan,
             status: contract?.status,
-            started:  formatToCalendar(contract?.started),
+            started: formatToCalendar(contract?.started),
             ends: formatToCalendar(contract?.ends),
             availableClasses: contract?.availableClasses
         }
     });
 
-    // eslint-disable-next-line no-empty-function
-    useEffect(()=>{}, [contract, name])
-
     const onSubmit = (values) => {
-     
+
         setLoading(true);
-        updateContract( values, id)
-            .then(()=> {
+        updateContract(values, id)
+            .then(() => {
                 reset()
                 onClose()
             })
             .catch(err => console.log(err.message))
-            .finally(()=> setLoading(false));    
+            .finally(() => setLoading(false));
     };
 
 
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Editar contrato"}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl 
+                <FormControl
                     display={"flex"}
                     flexDirection={"column"}
                     alignItems={"center"}
@@ -61,15 +58,15 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                     gap={"1em"}
                     minW={"300px"}
                     isInvalid={errors.name || errors.plan || errors.active ||
-                errors.started || errors.ends || errors.availableClasses}
+                        errors.started || errors.ends || errors.availableClasses}
                 >
-                
+
                     <FormLabel
-                         
+
                         display={"flex"}
                         alignItems={"center"}
                         gap={"1em"}
-                    > Nome: 
+                    > Nome:
                         <Input
                             w="250px"
                             id="name"
@@ -80,13 +77,13 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             })}
                         />
                     </FormLabel>
-                
+
                     <FormLabel
-                        
+
                         display={"flex"}
                         alignItems={"center"}
                         gap={"1em"}
-                    > Plano: 
+                    > Plano:
                         <Select
                             w={"250px"}
                             id="plan"
@@ -97,14 +94,14 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                         >
                             <TypeOptions />
                         </Select>
-                
+
                     </FormLabel>
                     <FormLabel
-                        
+
                         display={"flex"}
                         alignItems={"center"}
                         gap={"1em"}
-                    > Status: 
+                    > Status:
                         <Select
                             w={"250px"}
                             id="active"
@@ -113,17 +110,16 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                                 required: "Campo Obrigátorio",
                             })}
                         >
-                            <option value="" > Status </option>
-                            <StatusOptions/>
+                            <StatusOptions />
                         </Select>
                     </FormLabel>
-                
+
                     <FormLabel
-                        
+
                         display={"flex"}
                         alignItems={"center"}
                         gap={"1em"}
-                    > Início: 
+                    > Início:
                         <Input
                             w="250px"
                             id="started"
@@ -133,13 +129,13 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             })}
                         />
                     </FormLabel>
-                
+
                     <FormLabel
-                        
+
                         display={"flex"}
                         alignItems={"center"}
                         gap={"1em"}
-                    > Fim: 
+                    > Fim:
                         <Input
                             w="250px"
                             id="ends"
@@ -150,9 +146,9 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                             })}
                         />
                     </FormLabel>
-                
+
                     <FormLabel
-                        
+
                         display={"flex"}
                         alignItems={"center"}
                         gap={"1em"}
@@ -169,15 +165,15 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
                     </FormLabel>
                     <FormErrorMessage>
                         {errors.plan && errors.plan.message}
-                        <br/>
+                        <br />
                         {errors.name && errors.name.message}
-                        <br/>
+                        <br />
                         {errors.active && errors.active.message}
-                        <br/>
+                        <br />
                         {errors.started && errors.started.message}
-                        <br/>
+                        <br />
                         {errors.ends && errors.ends.message}
-                        <br/>                  
+                        <br />
                         {errors.availableClasses && errors.availableClasses.message}
                     </FormErrorMessage>
                 </FormControl>
@@ -194,3 +190,5 @@ export const EditContractModal = ({ contract,name, id, isOpen, onClose }) => {
     );
 };
 ;
+
+export default memo(EditContractModal);

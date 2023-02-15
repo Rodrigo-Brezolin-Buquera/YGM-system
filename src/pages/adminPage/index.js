@@ -28,7 +28,7 @@ const AdminPage = () => {
         findItemWhere(calendarCol, "date", getToday())
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
-    }, []);
+    }, [isContractOpen, isClassOpen]);
 
     return (
         <>

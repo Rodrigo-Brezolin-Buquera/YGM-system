@@ -25,7 +25,10 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
         newContract(values, id)        
             .then(reset())
             .catch(err => console.log(err.message))
-            .finally(setLoading(false));
+            .finally(()=>{
+                setLoading(false)
+                onClose()
+            });
     };
 
     return (

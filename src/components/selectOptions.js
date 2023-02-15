@@ -1,7 +1,7 @@
 export const TypeOptions = () => {
     return (
         <>
-            <option value="1x" > 1x Mensal </option>
+            <option value="1x-Mensal" > 1x Mensal </option>
             <option value="2x-Mensal" > 2x Mensal </option>
             <option value="1x-Trimestral" > 1x Trimestral </option>
             <option value="2x-Trimestral" > 2x  Trimestral </option>
