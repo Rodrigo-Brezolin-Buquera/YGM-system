@@ -1,14 +1,16 @@
-import { Text, Box } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
+import { simplifyDate } from "../services/moment";
 import { CircularCard } from "../theme";
 
 const CheckinsDone = ({ checkins }) => {
     const checkinsList = checkins?.length && checkins.map((checkin) => {
         return (
-            <CircularCard   
+            <CircularCard 
+                key={checkin.id}  
                 color={"brand.200"}
                 hover={"simple"}
             >
-                <Text as="b" > "checkin.date"</Text>
+                <Text as="b" > {simplifyDate(checkin.date)} -{checkin.time} </Text>
             </CircularCard>
         );
     });

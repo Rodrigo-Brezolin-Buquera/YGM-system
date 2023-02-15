@@ -5,9 +5,8 @@ import { calendarCol } from "../../api/config";
 import { getToday } from "../../services/moment";
 import ClassesCard from "./ClassesCard";
 
-const AvailableClasses = ({ checkins, contractId, contractLimit, userName }) => {
+const AvailableClasses = ({ checkins, contractId, contractLimit, userName, loading, setLoading }) => {
     const [yogaClasses, setyogaClasses] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         findItemWhere(calendarCol, "date", getToday())

@@ -27,14 +27,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const database = getFirestore(app);
 
+export const auth = getAuth(app);
+
+
+
 export const usersCol =  "users"
 export const contractsCol =  "contracts"
 export const plansCol =  "plans"
 export const calendarCol =  "calendar"
 export const checkinsCol =  "checkins"
 export const businessCol =  "business"
+export const stylesCol =  "styles"
+export const teachersCol =  "teachers"
 
 
-export const auth = getAuth(app);
 
 

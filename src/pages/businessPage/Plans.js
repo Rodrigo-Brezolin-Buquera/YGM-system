@@ -42,10 +42,16 @@ export const Plans = () => {
                     marginLeft={"0.5em"}
                 >
                     <Text fontWeight={"bold"}>{plan.id}</Text>
-                    <DoubleClickText text={plan.price} size={"10"} />
+                    <DoubleClickText
+                        itemCol={plansCol}
+                        id={plan.id}
+                        atribute={"price"}
+                        text={plan.price} size={"10"}
+                    />
                 </Box>
 
                 <DeleteIcon
+                    _hover={{ cursor: "pointer" }}
                     boxSize={"22px"}
                     onClick={() => onDelete(plan.id)}
                 />
@@ -60,7 +66,7 @@ export const Plans = () => {
             <PlanForm loading={loading} setLoading={setLoading} />
             <br />
             <WrapContainer>
-                {list}
+                {list?.length ? list : null}
             </WrapContainer>
         </MainContainer>
     )

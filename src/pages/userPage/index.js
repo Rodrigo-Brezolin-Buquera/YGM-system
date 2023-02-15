@@ -17,6 +17,8 @@ const UserPage = () => {
     const navigate = useNavigate()
     const [contract, setContract] = useState({});
     const [checkins, setCheckins] = useState([]);
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(() => {
         findItemById(contractsCol, userId)
@@ -26,7 +28,7 @@ const UserPage = () => {
         findCheckinsLimit(userId, 5)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
-    }, [ userId]);
+    }, [ userId, loading]);
 
     return (
         <>
@@ -46,17 +48,13 @@ const UserPage = () => {
                         contractId={contract.id}
                         userName={contract.name}
                         contractLimit={contract?.currentContract?.availableClasses}
-                        checkins={checkins}                  
+                        checkins={checkins}      
+                        loading={loading}
+                        setLoading={setLoading}            
                     />
                 </SideContainer>
 
-                <MainContainer
-                    display={"flex"}
-                    flexDirection={"column"}
-                    alignItems={"center"}
-                    width={"100%"}
-                    gap={"1em"}
-                >
+                <MainContainer>
                     {
                         contract.id ?
                             <UserInfo

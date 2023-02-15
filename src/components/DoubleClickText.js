@@ -1,23 +1,24 @@
-import {  Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { updateItem } from "../api";
 
 export const DoubleClickText = (props) => {
-    const [text, setText] = useState(props.text);
+    const [text, setText] = useState("");
     const [showInput, setShowInput] = useState(false);
+
+    useEffect(() => {
+        setText(props.text)
+    }, [props.text])
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
-            // props.handler()
+            updateItem(props.itemCol, { [props.atribute]: text }, props.id)
+                .catch((err) => console.log(err));
             setShowInput(false)
         }
     };
 
     const onChange = (e) => setText(e.target.value)
-
-    const onBlur = () => {
-        // props.handler()
-        setShowInput(false)
-    } 
 
     return (
         <>
@@ -29,14 +30,16 @@ export const DoubleClickText = (props) => {
                             type={"text"}
                             value={text}
                             onChange={onChange}
-                            onBlur={onBlur}
+                            onBlur={() => setShowInput(false)}
                             onKeyPress={handleKeyPress}
-                            autoFocus         
+                            autoFocus
                         />
                     )
                     :
                     (
                         <Text
+                            whiteSpace="wrap"
+
                             onDoubleClick={() => setShowInput(true)}
                         >
                             {text}

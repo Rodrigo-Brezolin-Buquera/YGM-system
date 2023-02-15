@@ -6,7 +6,7 @@ export const getToday = () => moment().format("DD/MM/YYYY")
 
 export const formatToCalendar = (date) => moment(date, "DD/MM/YYYY").format("YYYY-MM-DD")
 
-export const simplifyDate = (date) => moment(date, "DD/MM/YYYY").format("DD / MM")
+export const simplifyDate = (date) => moment(date, "DD/MM/YYYY").format("DD/MM")
 
 export const addOneWeek = (date) => {
     const momentResult = moment(date, "DD/MM/YYYY").add(1, "weeks");

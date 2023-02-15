@@ -7,15 +7,15 @@ import { createCheckin, deleteCheckin } from "../../api/checkins";
 const ClassesCard = (
     { contractId, yogaClassId, checkins, day, userName, time, date, teacher, name, capacity, contractLimit, loading, setLoading }
 ) => {
-    const checkinId = `${contractId}+${yogaClassId}`;
-    const checkinData = {checkinId, date, userName};
-    const limits = { yogaClassId, capacity, contractId, contractLimit }
-    const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
-    const [checkin, setCheckin] = useState(checkinDone || false);
-   
+  
+    const [checkin, setCheckin] = useState( null);
 
+    const checkinId = `${contractId}+${yogaClassId}`;
+    const checkinData = {checkinId, date, userName, time};
+    const limits = { yogaClassId, capacity, contractId, contractLimit }
+   
     const handleCheckin = () => {
-        if (checkin && capacity === 0) {
+        if (checkin) {
             if (window.confirm("Cancelar este checkin?")) {
                 setLoading(true);
                 deleteCheckin(checkinId, limits)
@@ -37,7 +37,11 @@ const ClassesCard = (
         }
     };
 
-    useEffect(() => { }, [handleCheckin, checkins, checkin]);
+    useEffect(() => { 
+        const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
+        setCheckin(checkinDone);
+
+    }, [ checkins, checkin]);
 
     return (
         <Card
@@ -65,8 +69,8 @@ const ClassesCard = (
                     <Text fontSize='lg' as="b" > {day} - {time}</Text>
                     {capacity > 0 ?
                         <>
-                            <Text>  {name}  </Text>
-                            <Text> {teacher}   </Text>
+                            <Text>  {name}   </Text>
+                            <Text> Prof. {teacher}   </Text>
                         </>
                         :
                         <Text  > Não há mais vagas </Text>

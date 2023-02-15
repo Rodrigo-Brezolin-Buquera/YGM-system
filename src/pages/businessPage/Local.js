@@ -1,90 +1,124 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { Line, MainContainer, TextContainer, WrapContainer } from "../../theme";
-import { Text, Heading } from "@chakra-ui/react";
+import { Text, Heading, CircularProgress } from "@chakra-ui/react";
 import { DoubleClickText } from "../../components/DoubleClickText";
 import { RequestInput } from '../../components/RequestInput';
 import { DeleteIcon } from "@chakra-ui/icons";
-import TextCard  from './TextCard';
-
+import TextCard from './TextCard';
+import { deleteItemById, findAllItems, findItemById } from '../../api';
+import { businessCol, stylesCol, teachersCol } from '../../api/config';
 
 export const Local = () => {
-    const [space, setSpace] = useState([]);
+    const [business, setBusiness] = useState([]);
+    const [styles, setStyles] = useState([]);
+    const [teachers, setTeachers] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        //buscar espaço
-    }, []);
+        findItemById(businessCol, "main")
+            .then(res => setBusiness(res))
+            .catch(err => console.log(err));
 
-    const mockSpace = {
-        local: "testers",
-        maxCapacity: 8,
-        phone: "11-1111-1111",
-        email: "anpch@example.com",
-        site: "www.test.com",
-        styles: ["test", "test2"],
-        teachers: ["Rodrigo", "Louize"]
-    }
+        findAllItems(stylesCol)
+            .then(res => setStyles(res))
+            .catch(err => console.log(err));
 
-    const onDelete = (item, atribute ) => { 
-        if (window.confirm(`Remover ${item} da lista?`)) { 
-        const filteredList = mockSpace[atribute].filter( i => i !== item );
-        // request
+        findAllItems(teachersCol)
+            .then(res => setTeachers(res))
+            .catch(err => console.log(err));
+    }, [loading]);
+
+    const onDelete = (itemCol, id, name) => {
+        if (window.confirm(`Remover ${name} da lista?`)) {
+            deleteItemById(itemCol, id)
+                .then(setLoading(!loading))
+                .catch(err => console.log(err));
         }
     }
 
-    const list = (atribute) => mockSpace[atribute]?.map(item => (
+    const list = (state, itemCol) => state?.length && state.map(item => (
         <TextCard
             width={"120px"}
-            key={item}        
+            key={item.id}
         >
-            <Text>{item}</Text>
+            <Text>{item.name} </Text>
 
-            <DeleteIcon onClick={()=>onDelete(item, atribute)} /> 
+            <DeleteIcon _hover={{ cursor: "pointer" }} onClick={() => onDelete(itemCol, item.id, item.name)} />
         </TextCard>))
 
 
     return (
         <MainContainer>
             <Heading size={"md"}>Espaço</Heading>
-            <TextContainer>
+
+
+            {business ? <TextContainer>
                 <Line>
                     <Text > Endereço:</Text>
-                    <DoubleClickText text={mockSpace.local} />
+                    <DoubleClickText text={business.address} atribute={"address"} itemCol={businessCol} id={"main"} />
                 </Line>
                 <Line>
                     <Text > Capacidade:</Text>
-                    <DoubleClickText text={Number(mockSpace.maxCapacity)} />
+                    <DoubleClickText text={business.maxCapacity} atribute={"maxCapacity"} itemCol={businessCol} id={"main"} />
                 </Line>
             </TextContainer>
+                : <CircularProgress />
+            }
             <Heading alignSelf={"center"} size={"md"}>Contato</Heading>
             <TextContainer>
                 <Line>
-                    <Text > Telefone:</Text>
-                    <DoubleClickText text={mockSpace.phone} />
+                    <Text > Telefone: </Text>
+                    <DoubleClickText text={business.phone} atribute={"phone"} itemCol={businessCol} id={"main"} />
                 </Line>
 
                 <Line>
                     <Text > Email:</Text>
-                    <DoubleClickText text={mockSpace.email} />
+                    <DoubleClickText text={business.email} atribute={"email"} itemCol={businessCol} id={"main"} />
                 </Line>
 
                 <Line>
                     <Text > Site:</Text>
-                    <DoubleClickText text={mockSpace.site} />
+                    <DoubleClickText text={business.website} atribute={"website"} itemCol={businessCol} id={"main"} />
+                </Line>
+
+                <Line>
+                    <Text > Facebook:</Text>
+                    <DoubleClickText text={business.facebook} atribute={"facebook"} itemCol={businessCol} id={"main"} />
+                </Line>
+
+                <Line>
+                    <Text > Instagram:</Text>
+                    <DoubleClickText text={business.instagram} atribute={"instagram"} itemCol={businessCol} id={"main"} />
                 </Line>
 
 
             </TextContainer>
             <Heading alignSelf={"center"} size={"md"}>Professores</Heading>
 
-            <RequestInput placeholder={"Adicione uma pessoa instrutora"} />
-            <WrapContainer> {list("teachers")}</WrapContainer>
+            <RequestInput
+                itemCol={teachersCol}
+                setLoading={setLoading}
+                loading={loading}
+                placeholder={"Adicione uma pessoa instrutora"}
+            />
+            <WrapContainer>
+                {teachers?.length ? list(teachers, teachersCol) : null}
+            </WrapContainer>
             <Heading alignSelf={"center"} size={"md"}>Estilos</Heading>
 
-            <RequestInput placeholder={"Adicione um estilo de aula"} />
+            <RequestInput
+                itemCol={stylesCol}
+                setLoading={setLoading}
+                placeholder={"Adicione um estilo de aula"}
+            />
 
-            <WrapContainer> {list("styles")}</WrapContainer>
+            <WrapContainer>
+                {styles?.length ? list(styles, stylesCol) : null}
+            </WrapContainer>
 
         </MainContainer>
     )
 }
+
+
 

@@ -5,7 +5,7 @@ import { findItemById } from "."
 
 export const findCheckinsLimit = async (userId, n) => {
     const col = collection(database, checkinsCol);
-    const q = query(col, limit(n), where("userId", "==", userId));
+    const q = query(col, limit(n), where("contractId", "==", userId));
     const snap = await getDocs(q);
     const result = snap.docs.map(doc => { return { ...doc.data(), id: doc.id } })
     return result;
@@ -14,11 +14,12 @@ export const findCheckinsLimit = async (userId, n) => {
 
 export const createCheckin = async (checkinData, limits) => {
     const { yogaClassId, capacity, contractId, contractLimit } = limits
-    const { checkinId, date, userName } = checkinData
+    const { checkinId, date, userName, time } = checkinData
     const checkin = {
         yogaClassId,
         contractId,
         date,
+        time,
         name: userName,
         verified: false,
     }
