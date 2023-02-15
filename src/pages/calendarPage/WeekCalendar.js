@@ -3,9 +3,10 @@ import { Heading, Box, Text, Button } from "@chakra-ui/react"
 import { WrapContainer } from "../../theme";
 import { DayColumn } from "./DayColumn";
 
-export const WeekCalendar = () => {
+export const WeekCalendar = ({ navigate, setSelected }) => {
     const [sunday, setSunday] = useState(getSundayOfCurrentWeek());
     const [datesOfWeek, setDatesOfWeek] = useState(getDatesOfWeek(sunday));
+
 
     const handleNextWeekClick = () => {
         const nextSunday = new Date(sunday.getTime() + 7 * 24 * 3600 * 1000);
@@ -20,11 +21,17 @@ export const WeekCalendar = () => {
     }
 
     const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-    
-    const list = datesOfWeek.map((date, i) => (
-        <DayColumn key={date} date={date} day={daysOfWeek[i]}/>
-    ))
 
+    const list = datesOfWeek.map((date, i) => (
+        <DayColumn
+            key={date}
+            date={date}
+            day={daysOfWeek[i]}
+            navigate={navigate}
+            setSelected={setSelected}
+
+        />
+    ))
     return (
         <>
             <WrapContainer>

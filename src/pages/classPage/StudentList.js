@@ -1,5 +1,4 @@
 import { Text } from "@chakra-ui/react";
-import React from "react";
 import StudentCheckinCard from "./StudentCheckinCard";
 
 export const StudentList = ({ checkins,capacity, loading, setLoading }) => {
@@ -18,8 +17,8 @@ export const StudentList = ({ checkins,capacity, loading, setLoading }) => {
     });
     return (
         <>
-            <Text fontSize='xl' > Lista de checkins: </Text>
-            {checkins?.length ? studentList : <p> Não há check-ins até o momento </p>}
+            <Text fontSize='xl' > Lista de checkins </Text>
+            {checkins?.length ? studentList : <p> Sem check-ins até o momento </p>}
         </>
     );
 };

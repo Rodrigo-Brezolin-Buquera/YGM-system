@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// eslint-disable autofix/no-unused-vars
-// eslint-disable no-unused-vars
+
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useState, useEffect, memo } from "react";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
 
 const ClassesCard = (
-    { contractId, yogaClassId, checkins, day, time, teacher, name, capacity, contractLimit, loading, setLoading }
+    { contractId, yogaClassId, checkins, day, userName, time, date, teacher, name, capacity, contractLimit, loading, setLoading }
 ) => {
     const checkinId = `${contractId}+${yogaClassId}`;
+    const checkinData = {checkinId, date, userName};
+    const limits = { yogaClassId, capacity, contractId, contractLimit }
     const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
     const [checkin, setCheckin] = useState(checkinDone || false);
-    const limits = { yogaClassId, capacity, contractId, contractLimit }
+   
 
     const handleCheckin = () => {
         if (checkin && capacity === 0) {
@@ -26,7 +27,7 @@ const ClassesCard = (
         } else if (!checkin && capacity > 0) {
             if (window.confirm("Agendar o checkin neste horário?")) {
                 setLoading(true);
-                createCheckin(checkinId, limits)
+                createCheckin(checkinData, limits)
                     .then(setCheckin(!checkin))
                     .catch((err) => { console.log(err.message) })
                     .finally(() => setLoading(false));

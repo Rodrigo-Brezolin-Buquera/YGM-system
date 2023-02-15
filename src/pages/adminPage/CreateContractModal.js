@@ -19,14 +19,13 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
         register,
         reset,
         formState: { errors, isSubmitting }
-
     } = useForm();
 
     const onSubmit = (values) => {
         setLoading(true);
         singUp({ email: values.email, password: genPassword() })
             .then(id => createContract( values, id))
-            .catch((err) => console.log(err.message))
+            .catch((err) => alert(err.message))
             .finally(() => {
                 setLoading(false)
                 reset()

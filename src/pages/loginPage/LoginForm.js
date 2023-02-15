@@ -45,7 +45,7 @@ export const LoginForm = ({ navigate }) => {
                         flexDirection={"column"}
                         alignItems={"center"}
                         gap={"1em"}
-                        w={"276px"} 
+                        w={"276px"}
                     >
                         <Input
                             id="email"
@@ -55,7 +55,7 @@ export const LoginForm = ({ navigate }) => {
                             })}
                             variant="filled"
                             borderRadius={"10px"}
-                            
+
                         />
 
                         <Input
@@ -63,12 +63,11 @@ export const LoginForm = ({ navigate }) => {
                             placeholder="Senha"
                             {...register("password", {
                                 required: "Campo obrigatório"
-                            
+
                             })}
                             variant="filled"
                             type='password'
                             borderRadius={"10px"}
-
                         />
 
                         <FormButton

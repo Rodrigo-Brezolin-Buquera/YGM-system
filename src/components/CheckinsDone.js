@@ -1,29 +1,22 @@
 import { Text, Box } from "@chakra-ui/react";
+import { CircularCard } from "../theme";
 
 const CheckinsDone = ({ checkins }) => {
     const checkinsList = checkins?.length && checkins.map((checkin) => {
         return (
-            <Box
-                key={checkin.id}
-                display={"flex"}
-                flexDirection={"column"}
-                alignItems={"center"}
-                borderRadius={"25px"}
-                gap={"0.1em"}
-                minW={"150px"}
-                backgroundColor={"brand.200"}
-                p={"0.3em"}
-
+            <CircularCard   
+                color={"brand.200"}
+                hover={"simple"}
             >
-                <Text as="b" > {checkin}</Text>
-            </Box>
+                <Text as="b" > "checkin.date"</Text>
+            </CircularCard>
         );
     });
 
     return (
         <>
             <Text fontSize='lg' as="b" > Checkins realizados: </Text>
-            {checkins?.length ? checkinsList : <p> Não há check-ins no momento </p>}
+            {checkins?.length ? checkinsList : <Text> Não há check-ins</Text>}
         </>
     );
 };

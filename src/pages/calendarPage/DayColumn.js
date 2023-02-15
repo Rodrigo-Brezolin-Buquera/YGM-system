@@ -4,27 +4,30 @@ import { findItemWhere } from "../../api";
 import { calendarCol } from "../../api/config";
 import { simplifyDate } from "../../services/moment";
 import { CircularCard } from "../../theme";
+import { goToClass } from "../../routes/coordinator"
 
-// adapatar
-export const DayColumn = ({ day, date }) => {
+export const DayColumn = ({ day, date, navigate, setSelected }) => {
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
-        // findItemWhere(calendarCol, "date", date)
-        //     .then(res => setClasses(res))
-        //     .catch(err => console.log(err.message))
-
+        findItemWhere(calendarCol, "date", date)
+            .then(res => setClasses(res))
+            .catch(err => console.log(err.message))
     }, [date])
 
-    // ver o memo faz sentido
-    const ClassCard = useMemo(yogaClass => {
+    // memo?
+    const list = classes?.map((yogaClass) => {
         return (
-            <CircularCard color={"brand.200"} >
-                <Text fontSize="3xl" >{yogaClass.time}</Text>
-                <Text fontSize="3xl" >{yogaClass.capacity}</Text>
-            </CircularCard>
-        );
-    }, [])
+            <CircularCard
+                key={yogaClass.id}
+                color={"brand.200"}
+                onClick={() => setSelected(yogaClass)}
+                onDoubleClick={() => goToClass(navigate, yogaClass.id)}
+            >
+                <Text fontSize="xl" >{yogaClass?.time}</Text>
+                <Text fontSize="sm" >Vagas:  {yogaClass?.capacity}</Text>
+            </CircularCard>)
+    })
 
     return (
         <Box
@@ -32,15 +35,15 @@ export const DayColumn = ({ day, date }) => {
             flexDirection={"column"}
             justifyContent={"flex-start"}
             alignItems={"center"}
-            gap={"1em"}
+            gap={"0.5em"}
         >
-            <Text fontWeight={"bold"}> {simplifyDate(date)} </Text>
+            <Text fontWeight={"bold"} fontSize="xl"> {simplifyDate(date)} </Text>
             <CircularCard
                 color={"brand.100"}
             >
                 <Text color={"white"} fontSize="xl">{day}</Text>
             </CircularCard>
-            {classes?.map((i) => <ClassCard key={i.time} yogaClass={i} />)}
+            {list}
         </Box>
     );
 };

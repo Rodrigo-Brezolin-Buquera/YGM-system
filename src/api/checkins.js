@@ -1,4 +1,4 @@
-import { runTransaction, doc, collection, updateDoc, query, getDocs, where, limit  } from "firebase/firestore/lite"
+import { runTransaction, doc, collection, updateDoc, query, getDocs, where, limit } from "firebase/firestore/lite"
 import { contractsCol, calendarCol, checkinsCol, } from "./config"
 import { database } from "./config"
 import { findItemById } from "."
@@ -12,12 +12,20 @@ export const findCheckinsLimit = async (userId, n) => {
 };
 
 
-export const createCheckin = async (checkinId, limits) => {
+export const createCheckin = async (checkinData, limits) => {
     const { yogaClassId, capacity, contractId, contractLimit } = limits
+    const { checkinId, date, userName } = checkinData
+    const checkin = {
+        yogaClassId,
+        contractId,
+        date,
+        name: userName,
+        verified: false,
+    }
 
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)
-        transaction.set(checkinDoc)
+        transaction.set(checkinDoc, checkin)
 
         const contractDoc = doc(collection(database, contractsCol), contractId)
         transaction.update(contractDoc, { "currentContract.availableClasses": contractLimit - 1 })

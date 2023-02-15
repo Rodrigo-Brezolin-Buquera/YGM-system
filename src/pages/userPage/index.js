@@ -1,9 +1,10 @@
-import { Box, CircularProgress, Button } from "@chakra-ui/react";
+import {  CircularProgress, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { findItemById, findItemsLimit } from "../../api";
+import { findItemById } from "../../api";
 import { logout } from "../../api/auth";
-import { checkinsCol, contractsCol,  } from "../../api/config";
+import { findCheckinsLimit } from "../../api/checkins";
+import {  contractsCol,  } from "../../api/config";
 import CheckinsDone from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
@@ -22,7 +23,7 @@ const UserPage = () => {
             .then(res => setContract(res))
             .catch(err => console.log(err.message))
     
-        findItemsLimit(checkinsCol, 5)
+        findCheckinsLimit(userId, 5)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
     }, [ userId]);
@@ -43,6 +44,7 @@ const UserPage = () => {
                 <SideContainer>
                     <AvailableClasses
                         contractId={contract.id}
+                        userName={contract.name}
                         contractLimit={contract?.currentContract?.availableClasses}
                         checkins={checkins}                  
                     />

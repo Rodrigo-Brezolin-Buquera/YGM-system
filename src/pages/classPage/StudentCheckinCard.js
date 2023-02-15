@@ -1,5 +1,5 @@
-import { CheckIcon, DeleteIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
-import { Text, CircularProgress, Box } from "@chakra-ui/react";
+import {  DeleteIcon } from "@chakra-ui/icons";
+import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useEffect, memo } from "react";
 import { validateCheckin, cancelCheckin } from "../../api/checkins";
 
@@ -25,17 +25,17 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading 
     };
 
     return (
-        <Box
+        <Card
             display={"flex"}
-            justifyItems={"center"}
+            flexDirection={"row"}
+            justifyContent={"center"}
             alignItems={"center"}
-            backgroundColor={"brand.400"}
+            backgroundColor={verified ? "brand.200" : "brand.400"}
             borderRadius={"8px"}
             margin={"0.5em"}
             padding={"0.2em"}
-            h={"60px"}
+            minH={"50px"}
             width={["75%", "90%", "90%"]}
-            _hover={{ cursor: "pointer" }}
 
         >
             {(loading) ?
@@ -43,29 +43,22 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading 
                 :
                 <Box
                     display={"flex"}
-                    justifyItems={"center"}
-                    alignItems={"center"}
+                    justifyContent={"space-around"}
                     _hover={{ cursor: "pointer" }}
+                    w={"100%"}
                 >
-                    <Box
-                        _hover={{ cursor: "pointer" }}
-                        onClick={confirm}
-                        color={verified ? "green.500" : "red.500"}
-                    >
-                        {verified ? <CheckIcon /> : <QuestionOutlineIcon />}
-                    </Box>
 
-                    <Text >  {name}  </Text>
+                    <Text onClick={confirm} fontSize={"mds"} >  {name}  </Text>
 
-                    <Box
+                    <DeleteIcon
                         _hover={{ cursor: "pointer" }}
-                        onClick={cancel}  >
-                        <DeleteIcon />
-                    </Box>
+                        onClick={cancel}
+                        boxSize={"5"}
+                    />
                 </Box>
             }
-        </Box>
+        </Card>
     );
 };
 
-export default  memo(StudentCheckinCard);
+export default memo(StudentCheckinCard);

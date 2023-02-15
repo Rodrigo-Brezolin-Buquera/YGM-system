@@ -5,7 +5,7 @@ import { calendarCol } from "../../api/config";
 import { getToday } from "../../services/moment";
 import ClassesCard from "./ClassesCard";
 
-const AvailableClasses = ({ checkins, contractId, contractLimit }) => {
+const AvailableClasses = ({ checkins, contractId, contractLimit, userName }) => {
     const [yogaClasses, setyogaClasses] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -21,8 +21,10 @@ const AvailableClasses = ({ checkins, contractId, contractLimit }) => {
                 key={yogaClass.id}
                 yogaClassId={yogaClass.id}
                 day={yogaClass.day}
+                date={yogaClass.date}
                 time={yogaClass.time}
                 teacher={yogaClass.teacher}
+                userName={userName}
                 name={yogaClass.name}
                 capacity={yogaClass.capacity}
                 checkins={checkins}

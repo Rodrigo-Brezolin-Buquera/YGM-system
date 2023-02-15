@@ -22,7 +22,7 @@ const ClassPage = () => {
         findItemById(calendarCol, classId)
             .then(res => setYogaClass(res))
             .catch(err => console.log(err.message))
-        findItemWhere(checkinsCol, "classId", classId)
+        findItemWhere(checkinsCol, "yogaClassId", classId)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
     }, [loading, classId]);
