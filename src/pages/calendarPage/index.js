@@ -13,7 +13,8 @@ const CalendarPage = () => {
     const [loading, setLoading] = useState(false)
 
     // não está funcionando
-    useEffect(()=>{}, [loading])
+    useEffect(()=>{
+    }, [loading])
 
     return (
         <>

@@ -1,5 +1,6 @@
 import { Card, Heading, Text, Input } from "@chakra-ui/react"
 import { createContractlessCheckin } from "../api/checkins"
+import { stringPattern } from "../api/patterns"
 import { useInput } from "../hooks/useInput"
 import { simplifyDate } from "../services/moment"
 import { LoadingButton, MainContainer } from "../theme"
@@ -23,7 +24,7 @@ export const Booking = ({ selected, loading, setLoading }) => {
                 selected ?
                     <Card
                         display={"flex"}
-                        flexDirection={["column","row","row"]}
+                        flexDirection={["column", "row", "row"]}
                         minWidth={"auto"}
                         p={"1em  3em"}
                         justifyContent={"center"}
@@ -49,7 +50,13 @@ export const Booking = ({ selected, loading, setLoading }) => {
                                         Vagas: {selected?.capacity}
                                     </Text>
 
-                                    <Input maxW={"300px"} placeholder={"Nome "} onChange={handleName} />
+                                    <Input
+                                        maxW={"300px"}
+                                        placeholder={"Nome "}
+                                        onChange={handleName}
+                                        pattern={stringPattern
+                                        }
+                                    />
                                     <LoadingButton color={"brand.200"} handler={addStudent} >
                                         <Text>Adicionar</Text>
                                     </LoadingButton>

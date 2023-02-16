@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { Heading, Box, Text, Button } from "@chakra-ui/react"
+import { useEffect, useState } from "react";
+import { Heading, Button } from "@chakra-ui/react"
 import { WrapContainer } from "../../theme";
 import { DayColumn } from "./DayColumn";
+import { findClassesByPeriod } from "../../api/calendar";
 
 export const WeekCalendar = ({ navigate, setSelected }) => {
     const [sunday, setSunday] = useState(getSundayOfCurrentWeek());
     const [datesOfWeek, setDatesOfWeek] = useState(getDatesOfWeek(sunday));
+    const [yogaClass, setYogaClass] = useState([]);
 
 
     const handleNextWeekClick = () => {
@@ -22,15 +24,27 @@ export const WeekCalendar = ({ navigate, setSelected }) => {
 
     const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
-    const list = datesOfWeek.map((date, i) => (
-        <DayColumn
-            key={date}
-            date={date}
-            day={daysOfWeek[i]}
-            navigate={navigate}
-            setSelected={setSelected}
-        />
-    ))
+    useEffect(() => {
+        findClassesByPeriod(datesOfWeek)
+            .then(res => setYogaClass(res))
+            .catch(err => console.log(err))
+    }, [sunday, datesOfWeek])
+
+    const list = daysOfWeek.map((day, i) => {
+        const yogaClasses = yogaClass.filter(a => a.day === day)
+
+        return (
+            <DayColumn
+                key={day}
+                date={datesOfWeek[i]}
+                yogaClasses={yogaClasses}
+                day={day}
+                navigate={navigate}
+                setSelected={setSelected}
+            />
+        )
+    })
+
     return (
         <>
             <WrapContainer>

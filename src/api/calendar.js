@@ -1,7 +1,8 @@
 import { generateId } from "../services/generateId"
 import { addOneWeek, formatDate } from "../services/moment"
-import { calendarCol } from "./config"
+import { calendarCol, database } from "./config"
 import { createItem } from "."
+import { collection, getDocs, query, where } from "firebase/firestore/lite"
 
 export const createClasses = async (values) => {
     try {
@@ -27,7 +28,13 @@ export const createClasses = async (values) => {
         console.log(err.message)
     }
    
-
-
- 
 }
+
+
+export const findClassesByPeriod = async (dates) => {
+    const col = collection (database, calendarCol);
+    const q = query(col, where("date", "in", dates));
+    const snap = await getDocs(q);
+    const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
+    return result;
+};

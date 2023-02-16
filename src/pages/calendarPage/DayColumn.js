@@ -1,19 +1,15 @@
 import { Text, Box } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
-import { findItemWhere } from "../../api";
-import { calendarCol } from "../../api/config";
 import { simplifyDate } from "../../services/moment";
 import { CircularCard } from "../../theme";
 import { goToClass } from "../../routes/coordinator"
 
-export const DayColumn = ({ day, date, navigate, setSelected }) => {
+export const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
-        findItemWhere(calendarCol, "date", date)
-            .then(res => setClasses(res))
-            .catch(err => console.log(err.message))
-    }, [date])
+        setClasses(yogaClasses)
+    }, [date, yogaClasses])
 
     // memo?
     const list = classes?.map((yogaClass) => {
