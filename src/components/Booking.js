@@ -24,7 +24,7 @@ export const Booking = ({ selected, loading, setLoading }) => {
                 selected ?
                     <Card
                         display={"flex"}
-                        flexDirection={["column", "row", "row"]}
+                        flexDirection={["column","column", "row", "row"]}
                         minWidth={"auto"}
                         p={"1em  3em"}
                         justifyContent={"center"}

@@ -4,7 +4,7 @@ import { WrapContainer } from "../../theme";
 import { DayColumn } from "./DayColumn";
 import { findClassesByPeriod } from "../../api/calendar";
 
-export const WeekCalendar = ({ navigate, setSelected }) => {
+export const WeekCalendar = ({ navigate, setSelected, loading }) => {
     const [sunday, setSunday] = useState(getSundayOfCurrentWeek());
     const [datesOfWeek, setDatesOfWeek] = useState(getDatesOfWeek(sunday));
     const [yogaClass, setYogaClass] = useState([]);
@@ -28,7 +28,10 @@ export const WeekCalendar = ({ navigate, setSelected }) => {
         findClassesByPeriod(datesOfWeek)
             .then(res => setYogaClass(res))
             .catch(err => console.log(err))
-    }, [sunday, datesOfWeek])
+    }, [sunday, datesOfWeek, loading])
+
+    console.log("load",loading)
+
 
     const list = daysOfWeek.map((day, i) => {
         const yogaClasses = yogaClass.filter(a => a.day === day)

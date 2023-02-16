@@ -16,7 +16,7 @@ const Router = () => {
         <BrowserRouter>
             <Suspense
                 fallback={
-                    <CircularProgress alignSelf={"center"} size='120px' isIndeterminate color="gold" />
+                    <CircularProgress alignSelf={"center"} marginTop={"2em"} size='120px' isIndeterminate color="brand.200" />
                 }>
                 <Routes>
                     <Route index element={<LoginPage />} />
