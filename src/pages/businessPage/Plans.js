@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
-import { MainContainer, WrapContainer } from "../../theme";
-import { Text, Heading, Box, } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import {TextCard} from '../../theme';
-import { deleteItemById, findAllItems } from '../../api';
-import { plansCol } from '../../api/config';
-import { PlanForm } from './PlanForm';
-import { DoubleClickText } from '../../components/DoubleClickText';
+import { Text, Heading, Box, } from "@chakra-ui/react";
+import { useState, useEffect } from "react"
+import { deleteItemById, findAllItems } from "../../api";
+import { plansCol } from "../../api/config";
+import { DoubleClickText } from "../../components/DoubleClickText";
+import { MainContainer, WrapContainer } from "../../theme";
+import {TextCard} from "../../theme";
+import { PlanForm } from "./PlanForm";
 
 
 export const Plans = () => {

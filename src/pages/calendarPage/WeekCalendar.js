@@ -1,9 +1,9 @@
 import { Heading, Button } from "@chakra-ui/react"
+import { useEffect, useState } from "react";
+import { findClassesByPeriod } from "../../api/calendar";
+import { getSundayOfCurrentWeek, getDatesOfWeek } from "../../utils/dates"
 import { WrapContainer } from "../../theme";
 import { DayColumn } from "./DayColumn";
-import { getSundayOfCurrentWeek, getDatesOfWeek } from "../../services/moment"
-import { findClassesByPeriod } from "../../api/calendar";
-import { useEffect, useState } from "react";
 
 
 export const WeekCalendar = ( { navigate, setSelected, loading }) => {

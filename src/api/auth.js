@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail, signInWithCustomToken } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 import { auth, usersCol } from "./config";
 import { createItemWithId, findItemById } from ".";
@@ -20,10 +20,8 @@ export const singUp = async ({ email, password }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
     id = user.uid
     await resetPassword(email) 
-    
     await signOut(auth)
     await signInWithEmailAndPassword(auth, process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASSWORD)
-    // fazer transaction?
     await createItemWithId(usersCol, { email, admin: false }, id)
     return id
 };

@@ -2,7 +2,7 @@ import { Box, Text, Image, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import flower from "../../assets/flower.png";
 import { goBack } from "../../routes/coordinator";
-import { Background, MainContainer, TextContainer } from "../../theme"
+import { Background, MainContainer } from "../../theme"
 
 const ErrorPage = () => {
     const navigate = useNavigate();

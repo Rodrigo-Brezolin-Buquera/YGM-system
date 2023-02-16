@@ -1,9 +1,9 @@
 import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin"
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer } from "../../theme";
-import { Booking } from "../../components/Booking";
 import { WeekCalendar } from "./WeekCalendar";
 
 

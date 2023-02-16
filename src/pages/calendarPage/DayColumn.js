@@ -1,8 +1,8 @@
 import { Text, Box } from "@chakra-ui/react";
-import { useEffect, useMemo, useState } from "react";
-import { simplifyDate } from "../../services/moment";
-import { CircularCard } from "../../theme";
+import { useEffect,  useState } from "react";
 import { goToClass } from "../../routes/coordinator"
+import { simplifyDate } from "../../utils/dates";
+import { CircularCard } from "../../theme";
 
 export const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
     const [classes, setClasses] = useState([])

@@ -1,4 +1,4 @@
-import { Text, Box, Card } from "@chakra-ui/react";
+import { Text,  Card } from "@chakra-ui/react";
 import { memo } from "react";
 import { goToContract } from "../../routes/coordinator";
 import { Column, Line } from "../../theme";

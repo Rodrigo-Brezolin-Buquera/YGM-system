@@ -1,7 +1,7 @@
-import { useLayoutEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { isLogged } from "../api/auth";
-import { goToAdmin, goToUser } from "../routes/coordinator";
+
+
+
+
 
 export const useUnprotectedPage = () =>  {
     // const [status, setStatus] = useState({ loggedIn: null })

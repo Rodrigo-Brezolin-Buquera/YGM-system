@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useState, useEffect, memo } from "react";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
@@ -40,7 +38,7 @@ const ClassesCard = (
         const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
         setCheckin(checkinDone);
 
-    }, [checkins, checkin]);
+    }, [checkins, checkin, checkinId]);
 
     return (
         <Card

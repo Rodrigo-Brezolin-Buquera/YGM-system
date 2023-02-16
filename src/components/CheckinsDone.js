@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import { simplifyDate } from "../services/moment";
+import { simplifyDate } from "../utils/dates";
 import { CircularCard } from "../theme";
 
 const CheckinsDone = ({ checkins }) => {

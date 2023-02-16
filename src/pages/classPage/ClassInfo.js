@@ -1,8 +1,8 @@
-import { Box, Text } from "@chakra-ui/react";
-import { simplifyDate } from "../../services/moment";
+import {  Text } from "@chakra-ui/react";
+import { simplifyDate } from "../../utils/dates";
 import { TextContainer } from "../../theme";
 
-export const ClassInfo = ({ day, time, date, teacher, name, capacity }) => {
+export const ClassInfo = ({ day, time, date, teacher, name  }) => {
     return (
         <TextContainer
             alignItems={"center"}

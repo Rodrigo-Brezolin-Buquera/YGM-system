@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, stringPattern } from "../../api/patterns";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
-import { formatToCalendar } from "../../services/moment"
+import { formatToCalendar } from "../../utils/dates"
 import { FormButton, ModalComponent } from "../../theme";
 
 const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
@@ -30,8 +30,8 @@ const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
         setValue("name", name);
         setValue("plan", contract?.plan);
         setValue("status", contract?.status);
-        setValue("started",  formatToCalendar(contract?.started));
-        setValue("ends", formatToCalendar(contract?.ends));
+        setValue("started",  contract?.started && formatToCalendar(contract?.started));
+        setValue("ends",contract?.ends && formatToCalendar(contract?.ends));
         setValue("availableClasses", contract?.availableClasses);
     }, [name, contract])
 

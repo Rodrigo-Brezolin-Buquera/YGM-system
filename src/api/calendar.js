@@ -1,7 +1,7 @@
-import { addOneWeek, formatDate } from "../services/moment"
+import { collection, getDocs, query, where } from "firebase/firestore/lite"
+import { addOneWeek, formatDate } from "../utils/dates"
 import { calendarCol, database } from "./config"
 import { createItem } from "."
-import { collection, getDocs, query, where } from "firebase/firestore/lite"
 
 export const createClasses = async (values) => {
     try {
@@ -9,7 +9,7 @@ export const createClasses = async (values) => {
         let list = []
         const groupId = `${values.date}-${values.time}-${values.name}`
     
-        for (let weeks = 0; weeks < 3; weeks++) {
+        for (let weeks = 0; weeks < 50; weeks++) {
             const yogaClass = {
                 ...values,
                 date: crescentDate,

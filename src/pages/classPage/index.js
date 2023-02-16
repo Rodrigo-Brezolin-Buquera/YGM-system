@@ -1,13 +1,13 @@
-import { CircularProgress, Box, Text } from "@chakra-ui/react";
+import { CircularProgress,  Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteItemById, deleteItemWhere, findItemById, findItemWhere } from "../../api";
 import { checkinsCol, calendarCol } from "../../api/config";
+import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
 import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background } from "../../theme";
-import { Booking } from "../../components/Booking";
 import { ClassInfo } from "./ClassInfo";
 import { StudentList } from "./StudentList";
 

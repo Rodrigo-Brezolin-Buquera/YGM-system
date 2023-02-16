@@ -19,7 +19,3 @@ export const emailPattern = {
     message: "Entre com um email válido"
 }
 
-export const timePattern = {
-    value:/^([01]\d|2[0-3]):([0-5]\d)$/,
-    message: "Entre com um horário no formato HH:MM"
-}

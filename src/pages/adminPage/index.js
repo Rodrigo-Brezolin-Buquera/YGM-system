@@ -1,11 +1,11 @@
-import { Box, useDisclosure, Button, Text } from "@chakra-ui/react";
+import {  useDisclosure, Button, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { findItemWhere, findAllItems } from "../../api";
 import { contractsCol, calendarCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { getToday } from "../../services/moment";
+import { getToday } from "../../utils/dates";
 import { Background, WrapContainer,MainContainer, SideContainer } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 import { CreateClassModal } from "./CreateClassModal";

@@ -1,5 +1,5 @@
-import { collection, doc, runTransaction, query, where, updateDoc } from "firebase/firestore/lite"
-import { calculateEndDate, formatDate } from "../services/moment"
+import { collection, doc, runTransaction,   updateDoc } from "firebase/firestore/lite"
+import { calculateEndDate, formatDate } from "../utils/dates"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, findItemWhere, updateItem } from "."
 
@@ -18,12 +18,14 @@ export const createContract = async ({ name, plan, date }, id) => {
 }
 
 export const newContract = async ({ plan, date }, id) => {
+    console.log("yyyy-mm-dd",date)
+
     const contract = {
         currentContract: {
             active: true,
             plan,
-            ends: calculateEndDate(date, table[plan].duration),
-            started: formatDate(date, "DD/MM/YYYY"),
+            ends: date && calculateEndDate(date, table[plan].duration),
+            started:  date && formatDate(date, "DD/MM/YYYY"),
             availableClasses: table[plan].quantity
         }
     }

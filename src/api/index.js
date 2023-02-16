@@ -22,15 +22,7 @@ export const findItemWhere = async (itemCol, atribute, value) => {
     return result;
 };
 
-export const findItemsLimit = async (itemCol, n) => {
-    const col = collection(database, itemCol);
-    const q = query(col, limit(n));
-    const snap = await getDocs(q);
-    const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
-    return result;
-};
 
-  
 export const createItem = async (itemCol, object) => {
     const docRef = doc(collection(database, itemCol) ) ;
     await setDoc(docRef, object);
@@ -44,12 +36,6 @@ export const createItemWithId = async (itemCol, object, id) => {
 export const updateItem = async (itemCol, object, id) => {
     const docRef = doc(collection(database, itemCol), id);
     await updateDoc(docRef, object);
-};
-
-export const updateItemWhere = async (itemCol, object, atribute, value) => {
-    const docRef = doc(collection(database, itemCol)); 
-    const q = query(docRef, where([atribute], "==", value));
-    await updateDoc(q)
 };
 
 export const deleteItemById = async (itemCol, id) => {

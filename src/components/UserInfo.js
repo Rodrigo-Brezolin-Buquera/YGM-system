@@ -1,20 +1,13 @@
-import { Box, Text } from "@chakra-ui/react";
+import {  Heading, Text } from "@chakra-ui/react";
 import { memo } from "react";
-import { Line } from "../theme";
-
-
+import { Line, TextContainer } from "../theme";
 
 const UserInfo = (props) => {
     return (
-        <Box
-            display={"flex"}
-            flexDirection={"column"}
+        < TextContainer
             alignItems={"center"}
-            p={"1m"}
-            borderRadius={"25px"}
-            minW={"250px"}
-            onClick={props.handler}
         >
+            <Heading size={"md"}>Informações do plano</Heading>
             <Line>
                 <Text as='b' fontSize='lg' >Nome:</Text>
                 <Text fontSize='lg' >{props.name}</Text>
@@ -39,8 +32,8 @@ const UserInfo = (props) => {
                 <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
                 <Text fontSize='lg' >{props.availableClasses}</Text>
             </Line>
-        </Box>
+        </TextContainer>
     );
 };
 
-export default memo(UserInfo) ;
+export default memo(UserInfo);

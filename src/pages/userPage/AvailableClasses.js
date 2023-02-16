@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { findClassesByPeriod } from "../../api/calendar";
-import { getNextNDays } from "../../services/moment";
+import { getNextNDays } from "../../utils/dates";
 import ClassesCard from "./ClassesCard";
 
 const AvailableClasses = ({ checkins, contractId, contractLimit, userName, loading, setLoading }) => {
