@@ -1,4 +1,3 @@
-import { generateId } from "../services/generateId"
 import { addOneWeek, formatDate } from "../services/moment"
 import { calendarCol, database } from "./config"
 import { createItem } from "."
@@ -8,7 +7,7 @@ export const createClasses = async (values) => {
     try {
         let crescentDate = formatDate(values.date, "DD/MM/YYYY")
         let list = []
-        const groupId = generateId()
+        const groupId = `${values.date}-${values.time}-${values.name}`
     
         for (let weeks = 0; weeks < 3; weeks++) {
             const yogaClass = {

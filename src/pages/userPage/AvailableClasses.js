@@ -1,15 +1,17 @@
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { findItemWhere } from "../../api";
+import { findClassesByPeriod } from "../../api/calendar";
 import { calendarCol } from "../../api/config";
-import { getToday } from "../../services/moment";
+import { getNextNDays, getToday } from "../../services/moment";
 import ClassesCard from "./ClassesCard";
 
 const AvailableClasses = ({ checkins, contractId, contractLimit, userName, loading, setLoading }) => {
     const [yogaClasses, setyogaClasses] = useState([]);
 
     useEffect(() => {
-        findItemWhere(calendarCol, "date", getToday())
+
+        findClassesByPeriod(getNextNDays(5))
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
     }, [loading, contractId]);

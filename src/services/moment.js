@@ -34,3 +34,20 @@ export const getCurrentWeek = () => {
     }
     return datesOfWeek
 }
+
+
+export const getNextNDays = (n) => {
+    const today = new Date();
+    const result = [];
+
+    for (let i = 0; i < n; i++) {
+        const nextDay = new Date(today.getTime() + 24 * 60 * 60 * 1000 * i);
+        const day = nextDay.getDate().toString().padStart(2, "0");
+        const month = (nextDay.getMonth() + 1).toString().padStart(2, "0");
+        const year = nextDay.getFullYear().toString();
+        const formattedDate = `${day}/${month}/${year}`;
+        result.push(formattedDate);
+    }
+
+    return result;
+}

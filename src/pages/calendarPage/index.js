@@ -13,8 +13,7 @@ const CalendarPage = () => {
     const [loading, setLoading] = useState(false)
 
     // não está funcionando
-    useEffect(()=>{
-    }, [loading])
+    useEffect(() => {}, [loading])
 
     return (
         <>
@@ -23,8 +22,8 @@ const CalendarPage = () => {
             <Background>
 
                 <MainContainer>
-                    <WeekCalendar navigate={navigate} setSelected={setSelected}/>
-                    <Booking selected={selected}  loading={loading} setLoading={setLoading}  />
+                    <WeekCalendar navigate={navigate} setSelected={setSelected} />
+                    <Booking selected={selected} loading={loading} setLoading={setLoading} />
 
 
                 </MainContainer>
