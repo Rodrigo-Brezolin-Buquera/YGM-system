@@ -9,7 +9,7 @@ const MainContainer = ({ children }) => {
             justifyContent={"top"}
             backgroundColor={"brand.400"}
             minW={"250px"}
-            minH={"200px"}
+            minH={"150px"}
             p={"1em"}
             gap={"1em"}
             w={["auto","100%","100%"]}

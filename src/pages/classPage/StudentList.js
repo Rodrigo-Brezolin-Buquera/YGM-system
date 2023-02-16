@@ -9,6 +9,7 @@ export const StudentList = ({ checkins,capacity, loading, setLoading }) => {
                 id={checkin.id}
                 verified={checkin.verified}
                 name={checkin.name}
+                contractless={checkin.contractless}
                 capacity={capacity}
                 loading={loading} 
                 setLoading={setLoading}

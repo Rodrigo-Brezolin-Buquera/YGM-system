@@ -29,7 +29,6 @@ export const WeekCalendar = ({ navigate, setSelected }) => {
             day={daysOfWeek[i]}
             navigate={navigate}
             setSelected={setSelected}
-
         />
     ))
     return (

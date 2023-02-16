@@ -7,13 +7,12 @@ import { createCheckin, deleteCheckin } from "../../api/checkins";
 const ClassesCard = (
     { contractId, yogaClassId, checkins, day, userName, time, date, teacher, name, capacity, contractLimit, loading, setLoading }
 ) => {
-  
-    const [checkin, setCheckin] = useState( null);
 
+    const [checkin, setCheckin] = useState(null);
     const checkinId = `${contractId}+${yogaClassId}`;
-    const checkinData = {checkinId, date, userName, time};
+    const checkinData = { checkinId, date, userName, time };
     const limits = { yogaClassId, capacity, contractId, contractLimit }
-   
+
     const handleCheckin = () => {
         if (checkin) {
             if (window.confirm("Cancelar este checkin?")) {
@@ -37,11 +36,11 @@ const ClassesCard = (
         }
     };
 
-    useEffect(() => { 
+    useEffect(() => {
         const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
         setCheckin(checkinDone);
 
-    }, [ checkins, checkin]);
+    }, [checkins, checkin]);
 
     return (
         <Card
@@ -81,4 +80,4 @@ const ClassesCard = (
     );
 };
 
-export default memo(ClassesCard) ;
+export default memo(ClassesCard);

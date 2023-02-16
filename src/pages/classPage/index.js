@@ -7,6 +7,7 @@ import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
 import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background } from "../../theme";
+import { Booking } from "../../components/Booking";
 import { ClassInfo } from "./ClassInfo";
 import { StudentList } from "./StudentList";
 
@@ -82,6 +83,8 @@ const ClassPage = () => {
                     /> :
                         <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }
+
+                    <Booking selected={yogaClass}  loading={loading} setLoading={setLoading}  />
                 </MainContainer>
                 <SideContainer>
                     <StudentList

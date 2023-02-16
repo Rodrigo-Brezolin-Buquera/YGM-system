@@ -1,6 +1,6 @@
 import { Box, Input, Select } from "@chakra-ui/react";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
-import useInput from "../../hooks/useInput";
+import {useInput} from "../../hooks/useInput";
 import UserInfo from "./UserInfo";
 
 const StudentList = ({ contracts, navigate }) => {

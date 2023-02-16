@@ -36,6 +36,7 @@ export const DayColumn = ({ day, date, navigate, setSelected }) => {
             justifyContent={"flex-start"}
             alignItems={"center"}
             gap={"0.5em"}
+            minH={"250px"}
         >
             <Text fontWeight={"bold"} fontSize="xl"> {simplifyDate(date)} </Text>
             <CircularCard

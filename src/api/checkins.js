@@ -68,3 +68,38 @@ export const cancelCheckin = async (checkinId, capacity) => {
 
     await deleteCheckin(checkinId, limits)
 }
+
+
+export const createContractlessCheckin = async (checkinData, limits) => {
+    const { date, name, time } = checkinData
+    const { yogaClassId, capacity} = limits
+    const checkinId = `${yogaClassId}+${name}`
+    const checkin = {
+        yogaClassId,
+        date,
+        time,
+        name,
+        contractless:true,
+        verified: false,
+    }
+
+    await runTransaction(database, async (transaction) => {
+        const checkinDoc = doc(collection(database, checkinsCol), checkinId)
+        transaction.set(checkinDoc, checkin)
+
+        const classDoc = doc(collection(database, calendarCol), yogaClassId)
+        transaction.update(classDoc, { capacity: capacity - 1 })
+    })
+}
+
+export const cancelContractlessCheckin = async (checkinId, capacity) => {
+    const [yogaClassId] = checkinId.split("+")
+   
+    await runTransaction(database, async (transaction) => {
+        const checkinDoc = doc(collection(database, checkinsCol), checkinId)
+        transaction.delete(checkinDoc)
+
+        const classDoc = doc(collection(database, calendarCol), yogaClassId)
+        transaction.update(classDoc, { capacity: capacity + 1 })
+    })
+}

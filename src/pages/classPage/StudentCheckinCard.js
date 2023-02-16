@@ -1,9 +1,9 @@
 import {  DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useEffect, memo } from "react";
-import { validateCheckin, cancelCheckin } from "../../api/checkins";
+import { validateCheckin, cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
 
-const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading }) => {
+const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading, contractless }) => {
     useEffect(() => { }, [verified, loading]);
 
     const confirm = () => {
@@ -17,7 +17,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading 
     const cancel = async () => {
         if (window.confirm("Cancelar este checkin?")) {
             setLoading(true);
-            cancelCheckin(id, capacity)
+            (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
                 .then()
                 .catch((err) => { console.log(err.message) })
                 .finally(() => setLoading(false));
@@ -35,7 +35,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading 
             margin={"0.5em"}
             padding={"0.2em"}
             minH={"50px"}
-            width={"90%"}
+            w={"75%"}
 
         >
             {(loading) ?
