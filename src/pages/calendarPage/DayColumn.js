@@ -12,7 +12,7 @@ export const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => 
     }, [date, yogaClasses])
 
     // memo?
-    const list = classes?.map((yogaClass) => {
+    const list =  classes?.length && classes?.map((yogaClass) => {
         return (
             <CircularCard
                 key={yogaClass.id}
@@ -40,7 +40,7 @@ export const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => 
             >
                 <Text color={"white"} fontSize="xl">{day}</Text>
             </CircularCard>
-            {list}
+            {list || null}
         </Box>
     );
 };

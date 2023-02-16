@@ -1,46 +1,44 @@
-import { useEffect, useState } from "react";
 import { Heading, Button } from "@chakra-ui/react"
 import { WrapContainer } from "../../theme";
 import { DayColumn } from "./DayColumn";
+import { getSundayOfCurrentWeek, getDatesOfWeek } from "../../services/moment"
 import { findClassesByPeriod } from "../../api/calendar";
+import { useEffect, useState } from "react";
 
-export const WeekCalendar = ({ navigate, setSelected, loading }) => {
+
+export const WeekCalendar = ( { navigate, setSelected, loading }) => {
     const [sunday, setSunday] = useState(getSundayOfCurrentWeek());
     const [datesOfWeek, setDatesOfWeek] = useState(getDatesOfWeek(sunday));
-    const [yogaClass, setYogaClass] = useState([]);
-
+    const [yogaClasses, setYogaClasses] = useState([]);
 
     const handleNextWeekClick = () => {
-        const nextSunday = new Date(sunday.getTime() + 7 * 24 * 3600 * 1000);
+        const nextSunday = new Date(sunday?.getTime() + 7 * 24 * 3600 * 1000);
         setSunday(nextSunday);
         setDatesOfWeek(getDatesOfWeek(nextSunday));
     }
 
     const handlePreviousWeekClick = () => {
-        const previousSunday = new Date(sunday.getTime() - 7 * 24 * 3600 * 1000);
+        const previousSunday = new Date(sunday?.getTime() - 7 * 24 * 3600 * 1000);
         setSunday(previousSunday);
         setDatesOfWeek(getDatesOfWeek(previousSunday));
     }
 
-    const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-
     useEffect(() => {
         findClassesByPeriod(datesOfWeek)
-            .then(res => setYogaClass(res))
+            .then(res => setYogaClasses(res))
             .catch(err => console.log(err))
-    }, [sunday, datesOfWeek, loading])
+    }, [sunday, datesOfWeek,  loading])
 
-    console.log("load",loading)
-
+    const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
     const list = daysOfWeek.map((day, i) => {
-        const yogaClasses = yogaClass.filter(a => a.day === day)
+        const classes = yogaClasses?.length && yogaClasses.filter(a => a.day === day)
 
         return (
             <DayColumn
                 key={day}
                 date={datesOfWeek[i]}
-                yogaClasses={yogaClasses}
+                yogaClasses={classes}
                 day={day}
                 navigate={navigate}
                 setSelected={setSelected}
@@ -63,23 +61,5 @@ export const WeekCalendar = ({ navigate, setSelected, loading }) => {
     );
 }
 
-function getSundayOfCurrentWeek() {
-    const currentDate = new Date();
-    const dayOfWeek = currentDate.getDay();
-    return new Date(currentDate.getTime() - dayOfWeek * 24 * 3600 * 1000);
-}
-
-function getDatesOfWeek(sunday) {
-    const dates = [];
-    for (let i = 0; i < 7; i++) {
-        const date = new Date(sunday.getTime() + i * 24 * 3600 * 1000);
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        const fullDate = `${day < 10 ? "0" : ""}${day}/${month < 10 ? "0" : ""}${month}/${year}`;
-        dates.push(fullDate);
-    }
-    return dates;
-}
 
 

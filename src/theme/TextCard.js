@@ -1,5 +1,4 @@
 import { Card } from "@chakra-ui/react"
-import { memo } from "react"
 
 
 const TextCard = ({ children, width }) => {
@@ -20,4 +19,4 @@ const TextCard = ({ children, width }) => {
     )
 }
 
-export default memo(TextCard)
+export default TextCard

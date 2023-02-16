@@ -4,7 +4,7 @@ import { Text, Heading, CircularProgress } from "@chakra-ui/react";
 import { DoubleClickText } from "../../components/DoubleClickText";
 import { RequestInput } from '../../components/RequestInput';
 import { DeleteIcon } from "@chakra-ui/icons";
-import TextCard from './TextCard';
+import {TextCard} from '../../theme';
 import { deleteItemById, findAllItems, findItemById } from '../../api';
 import { businessCol, stylesCol, teachersCol } from '../../api/config';
 
@@ -98,7 +98,6 @@ export const Local = () => {
             <RequestInput
                 itemCol={teachersCol}
                 setLoading={setLoading}
-                loading={loading}
                 placeholder={"Adicione uma pessoa instrutora"}
             />
             <WrapContainer>

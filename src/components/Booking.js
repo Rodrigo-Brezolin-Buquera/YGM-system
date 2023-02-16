@@ -5,15 +5,15 @@ import { useInput } from "../hooks/useInput"
 import { simplifyDate } from "../services/moment"
 import { LoadingButton, MainContainer } from "../theme"
 
-export const Booking = ({ selected, loading, setLoading }) => {
+export const Booking = ({ selected,setSelected, setLoading }) => {
     const [name, handleName] = useInput("")
 
     const addStudent = async () => {
         const { date, time, capacity, id } = selected
         await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
+            .then(setSelected(null))
             .catch(err => console.log(err.message))
-            .finally(setLoading(!loading))
-
+        setTimeout(setLoading((prevState)=> !prevState), 1000)
     }
 
     return (

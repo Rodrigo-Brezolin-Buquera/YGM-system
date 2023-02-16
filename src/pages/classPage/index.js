@@ -84,7 +84,7 @@ const ClassPage = () => {
                         <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }
 
-                    <Booking selected={yogaClass}  loading={loading} setLoading={setLoading}  />
+                    <Booking selected={yogaClass}  setLoading={setLoading}  />
                 </MainContainer>
                 <SideContainer>
                     <StudentList

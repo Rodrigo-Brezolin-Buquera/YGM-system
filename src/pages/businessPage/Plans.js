@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { MainContainer, WrapContainer } from "../../theme";
 import { Text, Heading, Box, } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import TextCard from './TextCard';
+import {TextCard} from '../../theme';
 import { deleteItemById, findAllItems } from '../../api';
 import { plansCol } from '../../api/config';
 import { PlanForm } from './PlanForm';

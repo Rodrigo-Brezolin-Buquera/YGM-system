@@ -2,17 +2,19 @@ import { Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { createItem } from "../api";
 
-export const RequestInput = ({ placeholder, itemCol, setLoading, loading }) => {
+export const RequestInput = ({ placeholder, itemCol, setLoading }) => {
     const [text, setText] = useState("");
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             createItem(itemCol, { name: text })
                 .then(()=>{
-                    setText("")
-                    setLoading(!loading)
+                    setText("")  
+                    setLoading((prevState)=> !prevState)         
                 })
                 .catch(err => console.log(err));
+
+            // setTimeout(setLoading((prevState)=> !prevState), 500)
         }
     }
 
