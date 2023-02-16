@@ -1,16 +1,7 @@
-export const TypeOptions = () => {
-    return (
-        <>
-            <option value="1x-Mensal" > 1x Mensal </option>
-            <option value="2x-Mensal" > 2x Mensal </option>
-            <option value="1x-Trimestral" > 1x Trimestral </option>
-            <option value="2x-Trimestral" > 2x  Trimestral </option>
-            <option value="1x-Semestral"> 1x Semestral </option>
-            <option value="2x-Semestral"> 2x  Semestral </option>
-            <option value="---Gympass"> Gympass </option>
-        </>
-    );
-};
+import { useEffect, useState } from "react";
+import { findAllItems } from "../api";
+import { plansCol, stylesCol, teachersCol } from "../api/config";
+
 
 export const FrequencyOptions = () => {
     return (
@@ -20,7 +11,7 @@ export const FrequencyOptions = () => {
             <option value="3x" > 3x </option>
             <option value="4x" > 4x </option>
             <option value="5x" > 5x </option>
-            <option value="0x" > -- </option>            
+            <option value="0x" > -- </option>
         </>
     );
 };
@@ -32,12 +23,13 @@ export const DurationOptions = () => {
             <option value="Trimestral" > Trimestral </option>
             <option value="Semestral" > Semestral </option>
             <option value="Anual" > Anual </option>
-            <option value="Contínuo" > Contínuo </option>           
+            <option value="Contínuo" > Contínuo </option>
         </>
     );
 };
 
 export const StatusOptions = () => {
+
     return (
         <>
             <option value="ativos" > Ativos </option>
@@ -47,10 +39,18 @@ export const StatusOptions = () => {
 };
 
 export const TeacherOptions = () => {
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        findAllItems(teachersCol)
+            .then(((res) => setOptions(res)))
+            .catch((err) => console.log(err));
+    }, [])
+    const list = options?.length && options.map((i) => <option value={i.name} > {i.name} </option>)
+
     return (
         <>
-            <option value="Louize" > Louize </option>
-            <option value="Rodrigo" > Rodrigo </option>
+            {list}
         </>
     );
 };
@@ -69,11 +69,36 @@ export const DayOptions = () => {
 };
 
 export const StyleOptions = () => {
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        findAllItems(stylesCol)
+            .then(((res) => setOptions(res)))
+            .catch((err) => console.log(err));
+    }, [])
+    const list = options?.length && options.map((i) => <option value={i.name} > {i.name} </option>)
+
     return (
         <>
-            <option value="Yoga Restaurativo" > Restaurativo </option>
-            <option value="Hatha Yoga" > Hatha </option>
-            <option value="Vinyasa Flow" > Vinyasa </option>
+            {list}
+        </>
+    );
+};
+
+
+export const TypeOptions = () => {
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        findAllItems(plansCol)
+            .then(((res) => setOptions(res)))
+            .catch((err) => console.log(err));
+    }, [])
+    const list = options?.length && options.map((i) => <option value={i.id} > {i.id} </option>)
+
+    return (
+        <>
+            {list}
         </>
     );
 };

@@ -50,7 +50,7 @@ export const PlanForm = ({ loading, setLoading }) => {
                 isInvalid={errors.price || errors.frequency || errors.duration}
                 display={"flex"}
                 flexDirection={"row"}
-                flexWrap={["wrap", "wrap", "nowrap"]}
+                flexWrap={["wrap", "wrap", "wrap", "nowrap"]}
                 alignItems={"center"}
                 justifyContent={"center"}
                 gap={"1em"}
