@@ -6,7 +6,7 @@ import {
     Text,
     FormLabel
 } from "@chakra-ui/react";
-import {  useState, memo } from "react";
+import {  useState, memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, stringPattern } from "../../api/patterns";
@@ -16,26 +16,27 @@ import { FormButton, ModalComponent } from "../../theme";
 
 const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
-
     const {
         handleSubmit,
         register,
+        setValue,
         formState: { errors, isSubmitting },
         reset
     } = useForm({
-        shouldUnregister: true,
-        defaultValues: {
-            name: name,
-            plan: contract?.plan,
-            status: contract?.status,
-            started: formatToCalendar(contract?.started),
-            ends: formatToCalendar(contract?.ends),
-            availableClasses: contract?.availableClasses
-        }
+        shouldUnregister: true
     });
 
-    const onSubmit = (values) => {
+    useEffect(()=>{
+        setValue("name", name);
+        setValue("plan", contract?.plan);
+        setValue("status", contract?.status);
+        setValue("started",  formatToCalendar(contract?.started));
+        setValue("ends", formatToCalendar(contract?.ends));
+        setValue("availableClasses", contract?.availableClasses);
+    }, [name, contract])
 
+
+    const onSubmit = (values) => {
         setLoading(true);
         updateContract(values, id)
             .then(() => {

@@ -46,7 +46,7 @@ export const TeacherOptions = () => {
             .then(((res) => setOptions(res)))
             .catch((err) => console.log(err));
     }, [])
-    const list = options?.length && options.map((i) => <option value={i.name} > {i.name} </option>)
+    const list = options?.length && options.map((i) => <option key={i.name} value={i.name} > {i.name} </option>)
 
     return (
         <>
@@ -76,7 +76,7 @@ export const StyleOptions = () => {
             .then(((res) => setOptions(res)))
             .catch((err) => console.log(err));
     }, [])
-    const list = options?.length && options.map((i) => <option value={i.name} > {i.name} </option>)
+    const list = options?.length && options.map((i) => <option key={i.name} value={i.name} > {i.name} </option>)
 
     return (
         <>
@@ -94,7 +94,7 @@ export const TypeOptions = () => {
             .then(((res) => setOptions(res)))
             .catch((err) => console.log(err));
     }, [])
-    const list = options?.length && options.map((i) => <option value={i.id} > {i.id} </option>)
+    const list = options?.length && options.map((i) => <option key={i.id} value={i.id} > {i.id} </option>)
 
     return (
         <>
