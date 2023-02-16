@@ -1,27 +1,27 @@
 import { Heading, Button } from "@chakra-ui/react"
-import { useEffect, useState } from "react";
+import {  useCallback, useEffect, useState } from "react";
 import { findClassesByPeriod } from "../../api/calendar";
-import { getSundayOfCurrentWeek, getDatesOfWeek } from "../../utils/dates"
 import { WrapContainer } from "../../theme";
-import { DayColumn } from "./DayColumn";
+import { getSundayOfCurrentWeek, getDatesOfWeek } from "../../utils/dates"
+import  DayColumn  from "./DayColumn";
 
 
 export const WeekCalendar = ( { navigate, setSelected, loading }) => {
-    const [sunday, setSunday] = useState(getSundayOfCurrentWeek());
+    const [sunday, setSunday] = useState((getSundayOfCurrentWeek()));
     const [datesOfWeek, setDatesOfWeek] = useState(getDatesOfWeek(sunday));
     const [yogaClasses, setYogaClasses] = useState([]);
 
-    const handleNextWeekClick = () => {
+    const handleNextWeekClick = useCallback(() => {
         const nextSunday = new Date(sunday?.getTime() + 7 * 24 * 3600 * 1000);
         setSunday(nextSunday);
         setDatesOfWeek(getDatesOfWeek(nextSunday));
-    }
+    },[sunday])
 
-    const handlePreviousWeekClick = () => {
+    const handlePreviousWeekClick = useCallback(() => {
         const previousSunday = new Date(sunday?.getTime() - 7 * 24 * 3600 * 1000);
         setSunday(previousSunday);
         setDatesOfWeek(getDatesOfWeek(previousSunday));
-    }
+    },[sunday])
 
     useEffect(() => {
         findClassesByPeriod(datesOfWeek)
@@ -30,10 +30,8 @@ export const WeekCalendar = ( { navigate, setSelected, loading }) => {
     }, [sunday, datesOfWeek,  loading])
 
     const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-
     const list = daysOfWeek.map((day, i) => {
         const classes = yogaClasses?.length && yogaClasses.filter(a => a.day === day)
-
         return (
             <DayColumn
                 key={day}

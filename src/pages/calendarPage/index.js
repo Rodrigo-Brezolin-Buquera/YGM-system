@@ -4,7 +4,7 @@ import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin"
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer } from "../../theme";
-import { WeekCalendar } from "./WeekCalendar";
+import  {WeekCalendar}  from "./WeekCalendar";
 
 
 const CalendarPage = () => {

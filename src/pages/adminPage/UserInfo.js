@@ -4,6 +4,7 @@ import { goToContract } from "../../routes/coordinator";
 import { Column, Line } from "../../theme";
 
 const UserInfo = (props) => {
+
     return (
         <Card
             display={"flex"}
@@ -18,7 +19,6 @@ const UserInfo = (props) => {
             overflow={"auto"}
             onClick={() => goToContract(props.navigate, props.id)}
         >
-
             <Column>
                 <Line  justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b">Nome:</Text>

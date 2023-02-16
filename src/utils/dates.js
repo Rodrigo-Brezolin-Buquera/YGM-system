@@ -15,7 +15,7 @@ export const formatToCalendar = (dateString) => {
     return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 };
 
-export const simplifyDate = (dateString) => dateString.slice(0, -5);
+export const simplifyDate = (dateString) => dateString?.slice(0, -5);
 
 export const addOneWeek = (dateString) => {
     const [day, month, year] = dateString.split("/");

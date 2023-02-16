@@ -8,7 +8,7 @@ export const ClassInfo = ({ day, time, date, teacher, name  }) => {
             alignItems={"center"}
         >
             <Text fontWeight={"bold"}>  {day} - {time} </Text>
-            <Text  > Data: {simplifyDate(date)} </Text>
+            <Text  > Data: { simplifyDate(date)} </Text>
             <Text  > Prof.: {teacher} </Text>
             <Text  > Estilo:  {name}  </Text>
 
