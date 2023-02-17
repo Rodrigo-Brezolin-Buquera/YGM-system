@@ -25,6 +25,7 @@ export const useProtectedPage = (role) => {
 
         if(role === "admin" && admin === "false") {
             goToLogin(navigate)
+
         }
     }
 };

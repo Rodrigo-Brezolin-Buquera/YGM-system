@@ -20,7 +20,6 @@ export const singUp = async ({ email, password }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
     id = user.uid
     await resetPassword(email) 
-    await signOut(auth)
     await signInWithEmailAndPassword(auth, process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASSWORD)
     await createItemWithId(usersCol, { email, admin: false }, id)
     return id
@@ -30,9 +29,7 @@ export const logout = async (navigate) => {
     try {
         await signOut(auth);
         localStorage.setItem("admin", "")
-
         goToLogin(navigate);
-
     } catch (err) {
         console.log(err.message);
 
