@@ -17,8 +17,6 @@ const AvailableClasses = ({ navigate }) => {
             .catch(err => console.log(err.message))
     }, [ ]);
 
-
-
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard

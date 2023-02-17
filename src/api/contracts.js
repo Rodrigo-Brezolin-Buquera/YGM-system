@@ -4,29 +4,31 @@ import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, findItemWhere, updateItem } from "."
 
 export const createContract = async ({ name, plan, date }, id) => {
+    const [frequency, dur] = plan.split("-")
+    const [duration, quantity] = calculatePlanNumbers(frequency, dur)
     const contract = {
         name,
         currentContract: {
             active: true,
             plan,
-            ends: calculateEndDate(date, table[plan].duration),
+            ends: calculateEndDate(date, duration),
             started: formatDate(date, "DD/MM/YYYY"),
-            availableClasses: table[plan].quantity
+            availableClasses: quantity
         }
     }
     await createItemWithId(contractsCol, contract, id)
 }
 
 export const newContract = async ({ plan, date }, id) => {
-    console.log("yyyy-mm-dd",date)
-
+    const [frequency, dur] = plan.split("-")
+    const [duration, quantity] = calculatePlanNumbers(frequency, dur)    
     const contract = {
         currentContract: {
             active: true,
             plan,
-            ends: date && calculateEndDate(date, table[plan].duration),
+            ends: date && calculateEndDate(date, duration),
             started:  date && formatDate(date, "DD/MM/YYYY"),
-            availableClasses: table[plan].quantity
+            availableClasses: quantity
         }
     }
     await updateItem(contractsCol, contract, id)
@@ -67,15 +69,21 @@ export const deleteContract = async (userId) => {
     })
 }
 
+export const calculatePlanNumbers = (frequency, duration) => {
+    const durationTable = {
+        Mensal: 1,
+        Trimestral: 3,
+        Semestral: 6,
+        Anual: 12,
+        Contínuo: 0
+    };
+    const freq = frequency.charAt(0);
+
+    const quantity = durationTable[duration] * Number(freq) * 4;
+    return [durationTable[duration], quantity];
+};
 
 
-const table = {
-    "1x-Mensal": { duration: 1, quantity: 4 },
-    "2x-Mensal": { duration: 1, quantity: 8 },
-    "1x-Trimestral": { duration: 3, quantity: 12 },
-    "2x-Trimestral": { duration: 3, quantity: 24 },
-    "1x-Semestral": { duration: 6, quantity: 24 },
-    "2x-Semestral": { duration: 6, quantity: 48 },
-    "---Gympass": { duration: 0, quantity: 0 },
-}
+
+
 

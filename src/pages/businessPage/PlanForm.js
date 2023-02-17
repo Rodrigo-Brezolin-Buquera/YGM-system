@@ -7,6 +7,7 @@ import {
 import { useForm } from "react-hook-form";
 import { createItemWithId } from "../../api";
 import { plansCol } from "../../api/config";
+import { calculatePlanNumbers } from "../../api/contracts";
 import { pricePattern } from "../../api/patterns";
 import { DurationOptions, FrequencyOptions } from "../../components/selectOptions";
 import { FormButton } from "../../theme"
@@ -20,22 +21,15 @@ export const PlanForm = ({ loading, setLoading }) => {
     } = useForm();
 
     const onSubmit = (values) => {
+        const [duration, quantity] = calculatePlanNumbers(values.frequency, values.duration)
         setLoading(true);
-        const durationTable = {
-            Mensal: 1,
-            Trimestral: 3,
-            Semestral: 6,
-            Anual: 12,
-            Contínuo: 0,
-        }
-        const freq = values.frequency?.charAt(0)
         const plan = {
             id: `${values.frequency}-${values.duration}`,
             price: `R$ ${values.price}`,
-            type: values.frequency,
-            duration: values.duration,
-            availableClasses: durationTable[values.duration] * Number(freq) * 4,
-            durationInMonths: durationTable[values.duration]
+            frequency: values.frequency,
+            type: values.duration,
+            availableClasses: quantity,
+            durationInMonths: duration
         }
         createItemWithId(plansCol, plan, plan.id)
             .then(reset())
