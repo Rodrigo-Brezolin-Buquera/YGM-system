@@ -13,7 +13,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
 import { WrapContainer, Background, LoadingButton, SideContainer, MainContainer } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
-import EditContractModal from "./EditContractModal"
+import {EditContractModal} from "./EditContractModal"
 
 const ContractPage = () => {
     useProtectedPage("admin")
@@ -43,16 +43,17 @@ const ContractPage = () => {
                 .then(user => resetPassword(user.email))
                 .catch(err => console.log(err.message))
         }
-    };
+    }
     
-    const onChangeStatus = useCallback(async () => {
+    const onChangeStatus = async () => {
         if (window.confirm("Alterar status no plano?")) {
             await changeStatus(userId, !contracts?.currentContract?.active)
                 .catch(err => console.log(err.message))
                 .finally(setloading(!loading))
         }
-    }, [userId, loading, contracts?.currentContract?.active])
+    }
 
+   
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContracts(res))

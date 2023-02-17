@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
 import whiteLogo from "../assets/whiteLogo.png";
 import { LogoImg } from ".";
 

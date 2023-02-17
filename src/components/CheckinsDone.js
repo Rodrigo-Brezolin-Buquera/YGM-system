@@ -1,6 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import { simplifyDate } from "../utils/dates";
 import { CircularCard } from "../theme";
+import { memo } from "react";
 
 const CheckinsDone = ({ checkins }) => {
     const checkinsList = checkins?.length && checkins.map((checkin) => {
@@ -23,4 +24,4 @@ const CheckinsDone = ({ checkins }) => {
     );
 };
 
-export default CheckinsDone;
+export default memo(CheckinsDone) ;

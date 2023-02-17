@@ -6,15 +6,15 @@ import {
     Text,
     FormLabel
 } from "@chakra-ui/react";
-import {  useState, memo, useEffect } from "react";
+import {  useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, stringPattern } from "../../api/patterns";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
-import { formatToCalendar } from "../../utils/dates"
 import { FormButton, ModalComponent } from "../../theme";
+import { formatToCalendar } from "../../utils/dates"
 
-const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
+export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
@@ -33,7 +33,7 @@ const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
         setValue("started",  contract?.started && formatToCalendar(contract?.started));
         setValue("ends",contract?.ends && formatToCalendar(contract?.ends));
         setValue("availableClasses", contract?.availableClasses);
-    }, [name, contract])
+    }, [name, contract, setValue])
 
 
     const onSubmit = (values) => {
@@ -181,7 +181,7 @@ const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
 
                 <FormButton
                     isSubmitting={isSubmitting}
-                    loading={loading}
+                    oading={loading}
                     color={"brand.200"}
                 >
                     <Text>Salvar</Text>
@@ -192,4 +192,3 @@ const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
 };
 ;
 
-export default memo(EditContractModal);

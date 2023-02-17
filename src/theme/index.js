@@ -1,21 +1,4 @@
 import { extendTheme } from "@chakra-ui/react";
-export {default as WrapContainer} from "./WrapContainer";
-export {default as FormButton} from "./FormButton";
-export {default as Header} from "./Header";
-export {default as LoadingButton} from "./LoadingButton";
-export {default as LogoImg} from "./LogoImg";
-export {default as ModalComponent} from "./ModalComponent";
-export {default as SideContainer} from "./SideContainer";
-export {default as MainContainer} from "./MainContainer";
-export {default as Background} from "./Background";
-export {default as TextContainer} from "./TextContainer";
-export {default as Line} from "./Line";
-export {default as Column} from "./Column";
-export {default as CircularCard} from "./CircularCard";
-export {default as TextCard} from "./TextCard";
-
-
-
 
 const theme = extendTheme({
     fonts: {
@@ -36,5 +19,18 @@ const theme = extendTheme({
 
 export default theme;
 
-
+export {default as WrapContainer} from "./WrapContainer";
+export {default as FormButton} from "./FormButton";
+export {default as Header} from "./Header";
+export {default as LoadingButton} from "./LoadingButton";
+export {default as LogoImg} from "./LogoImg";
+export {default as ModalComponent} from "./ModalComponent";
+export {default as SideContainer} from "./SideContainer";
+export {default as MainContainer} from "./MainContainer";
+export {default as Background} from "./Background";
+export {default as TextContainer} from "./TextContainer";
+export {default as Line} from "./Line";
+export {default as Column} from "./Column";
+export {default as CircularCard} from "./CircularCard";
+export {default as TextCard} from "./TextCard";
 

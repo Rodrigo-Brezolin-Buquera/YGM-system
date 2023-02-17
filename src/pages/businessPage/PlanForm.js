@@ -55,7 +55,7 @@ export const PlanForm = ({ loading, setLoading }) => {
                 justifyContent={"center"}
                 gap={"1em"}
                 overflow={"auto"}
-                minW={"300px"}
+                minW={"250px"}
             >
                 <Input
                     w={"100px"}

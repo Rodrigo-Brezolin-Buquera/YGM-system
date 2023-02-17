@@ -8,7 +8,6 @@ import { MainContainer, WrapContainer } from "../../theme";
 import {TextCard} from "../../theme";
 import { PlanForm } from "./PlanForm";
 
-
 export const Plans = () => {
     const [plans, setPlans] = useState([]);
     const [loading, setLoading] = useState(false);

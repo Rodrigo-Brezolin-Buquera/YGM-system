@@ -1,26 +1,18 @@
-import { Text, Card } from "@chakra-ui/react";
+import { Text  } from "@chakra-ui/react";
+import { memo } from "react";
 import { goToClass } from "../../routes/coordinator";
+import SquareCard from "../../theme/SquareCard";
 
 const ClassesCard = (props) => {
     return (
-        <Card
-            display={"flex"}
-            flexDirection={"column"}
-            alignContent={"center"}
-            justifyContent={"center"}
-            backgroundColor={"brand.500"}
-            minW={"180px"}
-            w={"70%"}
-            gap={"0.5em"}
-            borderRadius={"10px"}
-            p={"0.5em"}
-            _hover={{ cursor: "pointer" }}
+        <SquareCard
+         
             onClick={() => goToClass(props.navigate, props.id)}
         >
             <Text fontSize='lg' as="b" textAlign={"center"} > {props.day} - {props.time}</Text>
             <Text textAlign={"center"} > {props.teacher} - {props.name}  </Text>
-        </Card>
+        </SquareCard>
     );
 };
 
-export default ClassesCard;
+export default memo(ClassesCard);

@@ -39,7 +39,7 @@ export const DoubleClickText = (props) => {
                     (
                         <Text
                             whiteSpace="wrap"
-
+                            wordBreak="break-all"
                             onDoubleClick={() => setShowInput(true)}
                         >
                             {text}

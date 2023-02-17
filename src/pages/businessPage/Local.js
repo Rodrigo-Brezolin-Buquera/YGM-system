@@ -1,4 +1,3 @@
-import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, Heading, CircularProgress } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems, findItemById } from "../../api";
@@ -6,7 +5,7 @@ import { businessCol, stylesCol, teachersCol } from "../../api/config";
 import { DoubleClickText } from "../../components/DoubleClickText";
 import { RequestInput } from "../../components/RequestInput";
 import { Line, MainContainer, TextContainer, WrapContainer } from "../../theme";
-import {TextCard} from "../../theme";
+import ItemCard from "./ItemCard";
 
 export const Local = () => {
     const [business, setBusiness] = useState([]);
@@ -36,15 +35,17 @@ export const Local = () => {
         }
     }
 
-    const list = (state, itemCol) => state?.length && state.map(item => (
-        <TextCard
-            width={"120px"}
-            key={item.id}
-        >
-            <Text>{item.name} </Text>
-
-            <DeleteIcon _hover={{ cursor: "pointer" }} onClick={() => onDelete(itemCol, item.id, item.name)} />
-        </TextCard>))
+    const list = (state, itemCol) => state?.length && state.map(item => {
+        return (
+            <ItemCard
+                key={item.id}
+                item={item}
+                itemCol={itemCol}
+                onDelete={onDelete}
+            />
+        )
+    }
+    )
 
 
     return (
@@ -98,7 +99,7 @@ export const Local = () => {
             <RequestInput
                 itemCol={teachersCol}
                 setLoading={setLoading}
-                placeholder={"Adicione uma pessoa instrutora"}
+                placeholder={"Adicione uma pessoa"}
             />
             <WrapContainer>
                 {teachers?.length ? list(teachers, teachersCol) : null}
@@ -108,7 +109,7 @@ export const Local = () => {
             <RequestInput
                 itemCol={stylesCol}
                 setLoading={setLoading}
-                placeholder={"Adicione um estilo de aula"}
+                placeholder={"Adicione um estilo "}
             />
 
             <WrapContainer>
