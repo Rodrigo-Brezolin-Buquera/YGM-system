@@ -5,7 +5,7 @@ import { findItemById } from "../../api";
 import { logout } from "../../api/auth";
 import { findCheckinsLimit } from "../../api/checkins";
 import {  contractsCol,  } from "../../api/config";
-import CheckinsDone from "../../components/CheckinsDone";
+import {CheckinsDone} from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { MainContainer, SideContainer, Header, Background } from "../../theme";
@@ -71,7 +71,7 @@ const UserPage = () => {
                 </MainContainer>
 
                 <SideContainer>
-                    {<CheckinsDone checkins={checkins} />}
+                    {<CheckinsDone checkins={checkins} userId={userId} />}
                 </SideContainer>
 
             </Background>
