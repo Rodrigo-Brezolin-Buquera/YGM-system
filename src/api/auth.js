@@ -7,7 +7,7 @@ export const login = async (form, navigate) => {
     try {
         const { user } = await signInWithEmailAndPassword(auth, form.email, form.password);
         const userDoc = await findItemById(usersCol, user.uid)
-
+        localStorage.setItem("admin", userDoc.admin)
         userDoc.admin ? goToAdmin(navigate) : goToUser(navigate, user.uid)
     } catch (err) {
         console.log(err.message);
@@ -29,6 +29,8 @@ export const singUp = async ({ email, password }) => {
 export const logout = async (navigate) => {
     try {
         await signOut(auth);
+        localStorage.setItem("admin", "")
+
         goToLogin(navigate);
 
     } catch (err) {
@@ -41,10 +43,9 @@ export const isLogged = async (setStatus) => {
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            const userDoc = await findItemById(usersCol, user.uid)
-            setStatus({ loggedIn: true, userId: user.uid, role: userDoc.admin ? "admin" : "user" });
+            setStatus({ loggedIn: true, userId: user.uid });
         } else {
-            setStatus({ loggedIn: false, userId: null, role: null })
+            setStatus({ loggedIn: false, userId: null })
 
         }
     });
