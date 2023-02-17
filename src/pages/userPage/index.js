@@ -71,7 +71,7 @@ const UserPage = () => {
                 </MainContainer>
 
                 <SideContainer>
-                    {<CheckinsDone checkins={checkins} userId={userId} />}
+                    {<CheckinsDone userId={userId} />}
                 </SideContainer>
 
             </Background>
