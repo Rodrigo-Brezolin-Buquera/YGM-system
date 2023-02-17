@@ -1,17 +1,14 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { validateCheckin, cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
 
 const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless }) => {
     const [cardLoading, setCardLoading] = useState(false);
 
-    useEffect(() => { }, [verified]);
-
     const confirm = () => {
         setCardLoading(true);
         validateCheckin(id, !verified)
-            .then()
             .catch((err) => { console.log(err.message) })
             .finally(() => {
                 setCardLoading(false)
@@ -23,7 +20,6 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
         if (window.confirm("Cancelar este checkin?")) {
             setCardLoading(true);
             (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
-                .then()
                 .catch((err) => { console.log(err.message) })
                 .finally(() => {
                     setCardLoading(false)

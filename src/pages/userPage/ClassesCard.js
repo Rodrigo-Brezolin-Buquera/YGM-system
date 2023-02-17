@@ -23,13 +23,13 @@ export const ClassesCard = (
 
     }, [checkinId, contractId]);
 
-
+   
     const handleCheckin = () => {
         if (checkin) {
             if (window.confirm("Cancelar este checkin?")) {
                 setLoading(true);
-                deleteCheckin(checkinId, limits)
-                    .then(setCheckin(!checkin))
+                deleteCheckin(checkin.id, limits)
+                    .then(setCheckin(null))
                     .catch((err) => { console.log(err.message) })
                     .finally(() => setLoading(false));
 

@@ -13,10 +13,10 @@ export const findCheckinsLimit = async (userId, n) => {
 
 
 export const createCheckin = async (checkinData, limits) => {
-    const { yogaClassId, capacity, contractId, contractLimit } = limits
+    const { id, capacity, contractId, contractLimit } = limits
     const { checkinId, date, userName, time } = checkinData
     const checkin = {
-        yogaClassId,
+        yogaClassId : id,
         contractId,
         date,
         time,
@@ -31,13 +31,13 @@ export const createCheckin = async (checkinData, limits) => {
         const contractDoc = doc(collection(database, contractsCol), contractId)
         transaction.update(contractDoc, { "currentContract.availableClasses": contractLimit - 1 })
 
-        const classDoc = doc(collection(database, calendarCol), yogaClassId)
+        const classDoc = doc(collection(database, calendarCol), id)
         transaction.update(classDoc, { capacity: capacity - 1 })
     })
 }
 
 export const deleteCheckin = async (checkinId, limits) => {
-    const { yogaClassId, capacity, contractId, contractLimit } = limits
+    const { id, capacity, contractId, contractLimit } = limits
 
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)
@@ -46,7 +46,7 @@ export const deleteCheckin = async (checkinId, limits) => {
         const contractDoc = doc(collection(database, contractsCol), contractId)
         transaction.update(contractDoc, { "currentContract.availableClasses": contractLimit + 1 })
 
-        const classDoc = doc(collection(database, calendarCol), yogaClassId)
+        const classDoc = doc(collection(database, calendarCol), id)
         transaction.update(classDoc, { capacity: capacity + 1 })
     })
 }
