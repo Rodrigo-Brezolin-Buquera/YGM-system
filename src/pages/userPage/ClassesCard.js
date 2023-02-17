@@ -1,16 +1,28 @@
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import { findItemById } from "../../api";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
+import { checkinsCol } from "../../api/config";
 import SquareCard from "../../theme/SquareCard";
 
-const ClassesCard = (
-    { contractId, yogaClassId, checkins, day, userName, time, date, teacher, name, capacity, contractLimit, loading, setLoading }
+export const ClassesCard = (
+    { contractId, userName, yogaClass, contractLimit  }
 ) => {
-
     const [checkin, setCheckin] = useState(null);
-    const checkinId = `${contractId}+${yogaClassId}`;
+    const [loading, setLoading] = useState(false);
+    const {id, day, time, date, teacher, name, capacity} = yogaClass
+
+    const checkinId = `${contractId}+${id}`;
     const checkinData = { checkinId, date, userName, time };
-    const limits = { yogaClassId, capacity, contractId, contractLimit }
+    const limits = { id, capacity, contractId, contractLimit }
+
+    useEffect(() => {
+        findItemById(checkinsCol, checkinId)
+            .then((res) => setCheckin(res))
+            .catch(err => console.log(err.message))
+
+    }, [checkinId, contractId]);
+
 
     const handleCheckin = () => {
         if (checkin) {
@@ -35,11 +47,7 @@ const ClassesCard = (
         }
     };
 
-    useEffect(() => {
-        const checkinDone = checkins?.length && checkins.find((checkin) => checkin.id === checkinId);
-        setCheckin(checkinDone);
-
-    }, [checkins, checkin, checkinId]);
+  
 
     return (
         <SquareCard
@@ -68,4 +76,4 @@ const ClassesCard = (
     );
 };
 
-export default ClassesCard;
+

@@ -2,41 +2,32 @@ import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { findClassesByPeriod } from "../../api/calendar";
 import { getNextNDays } from "../../utils/dates";
-import ClassesCard from "./ClassesCard";
+import {ClassesCard} from "./ClassesCard";
 
-const AvailableClasses = ({ checkins, contractId, contractLimit, userName, loading, setLoading }) => {
+const AvailableClasses = ({ contractId, contractLimit, userName  }) => {
     const [yogaClasses, setyogaClasses] = useState([]);
 
     useEffect(() => {
         findClassesByPeriod(getNextNDays(5))
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
-    }, [loading, contractId]);
+    }, [ contractId]);
 
-    const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
+    const classesList = yogaClasses?.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard
-                key={yogaClass.id}
-                yogaClassId={yogaClass.id}
-                day={yogaClass.day}
-                date={yogaClass.date}
-                time={yogaClass.time}
-                teacher={yogaClass.teacher}
+                key={yogaClass.id}               
                 userName={userName}
-                name={yogaClass.name}
-                capacity={yogaClass.capacity}
-                checkins={checkins}
                 contractId={contractId}
                 contractLimit={contractLimit}
-                loading={loading}
-                setLoading={setLoading}
+                yogaClass={yogaClass}
             />
         );
     });
 
     return (
         <>
-            <Text fontSize='lg' as="b" > Faça seu check-in:</Text>
+            <Text fontSize='lg' as="b" > Faça seu check-in</Text>
             {classesList.length ? classesList : <Text fontSize='lg' > Não há aulas disponíveis </Text>}
         </>
     );

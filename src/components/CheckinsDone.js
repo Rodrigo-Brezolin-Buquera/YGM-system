@@ -9,7 +9,6 @@ export const CheckinsDone = ({ userId }) => {
     const [checkins, setCheckins] = useState([]);
 
     useEffect(() => {
-
         findCheckinsLimit(userId, 5)
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById } from "../../api";
 import { logout } from "../../api/auth";
-import { findCheckinsLimit } from "../../api/checkins";
 import {  contractsCol,  } from "../../api/config";
 import {CheckinsDone} from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
@@ -16,19 +15,12 @@ const UserPage = () => {
     const { userId } = useParams();
     const navigate = useNavigate()
     const [contract, setContract] = useState({});
-    const [checkins, setCheckins] = useState([]);
-    const [loading, setLoading] = useState(false);
-
 
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContract(res))
             .catch(err => console.log(err.message))
-    
-        findCheckinsLimit(userId, 5)
-            .then(res => setCheckins(res))
-            .catch(err => console.log(err.message))
-    }, [ userId, loading]);
+    }, [ userId]);
 
     return (
         <>
@@ -48,9 +40,7 @@ const UserPage = () => {
                         contractId={contract.id}
                         userName={contract.name}
                         contractLimit={contract?.currentContract?.availableClasses}
-                        checkins={checkins}      
-                        loading={loading}
-                        setLoading={setLoading}            
+                              
                     />
                 </SideContainer>
 
