@@ -31,7 +31,6 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
                 reset()
                 onClose() 
             })
-
     };
 
     return (

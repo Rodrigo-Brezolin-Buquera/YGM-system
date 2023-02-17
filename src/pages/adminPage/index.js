@@ -1,12 +1,8 @@
-import {  useDisclosure, Button, Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useDisclosure, Button, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { findItemWhere, findAllItems } from "../../api";
-import { contractsCol, calendarCol } from "../../api/config";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { getToday } from "../../utils/dates";
-import { Background, WrapContainer,MainContainer, SideContainer } from "../../theme";
+import { Background, WrapContainer, MainContainer, SideContainer } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 import { CreateClassModal } from "./CreateClassModal";
 import { CreateContractModal } from "./CreateContractModal";
@@ -15,27 +11,13 @@ import StudentList from "./StudentList";
 const AdminPage = () => {
     useProtectedPage("admin")
     const navigate = useNavigate();
-    const [contracts, setContracts] = useState([]);
-    const [yogaClasses, setyogaClasses] = useState([]);
     const { isOpen: isContractOpen, onOpen: onContractOpen, onClose: onContractClose } = useDisclosure()
     const { isOpen: isClassOpen, onOpen: onClassOpen, onClose: onClassClose } = useDisclosure()
-
-    useEffect(() => {
-        findAllItems(contractsCol)
-            .then(res => setContracts(res))
-            .catch(err => console.log(err.message))
-        setContracts()
-        findItemWhere(calendarCol, "date", getToday())
-            .then(res => setyogaClasses(res))
-            .catch(err => console.log(err.message))
-    }, [isContractOpen, isClassOpen]);
 
     return (
         <>
             <HeaderAdmin navigate={navigate} />
-            <Background
-            
-            >
+            <Background >
                 <MainContainer>
                     <WrapContainer>
                         <Button
@@ -52,11 +34,11 @@ const AdminPage = () => {
                             <Text> Nova Aula</Text>
                         </Button>
                     </WrapContainer>
-                    <StudentList contracts={contracts} navigate={navigate} />
+                    <StudentList  navigate={navigate} />
                 </MainContainer>
 
                 <SideContainer>
-                    <AvailableClasses yogaClasses={yogaClasses} navigate={navigate} />
+                    <AvailableClasses navigate={navigate} />
                 </SideContainer>
             </Background>
 

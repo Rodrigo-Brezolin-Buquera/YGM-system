@@ -1,7 +1,24 @@
 import { Box, Text } from "@chakra-ui/react";
 import ClassesCard from "./ClassesCard";
+import { useState, useEffect } from "react";
+import { getToday } from "../../utils/dates";
+import { findItemWhere,  } from "../../api";
+import {  calendarCol } from "../../api/config";
 
-const AvailableClasses = ({ yogaClasses, navigate }) => {
+
+const AvailableClasses = ({ navigate }) => {
+    const [yogaClasses, setyogaClasses] = useState([]);
+    
+
+    useEffect(() => {
+      
+        findItemWhere(calendarCol, "date", getToday())
+            .then(res => setyogaClasses(res))
+            .catch(err => console.log(err.message))
+    }, [, ]);
+
+
+
     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard

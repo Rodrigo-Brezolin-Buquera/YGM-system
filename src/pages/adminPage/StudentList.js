@@ -2,11 +2,26 @@ import { Box, Input, Select } from "@chakra-ui/react";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
 import {useInput} from "../../hooks/useInput";
 import UserInfo from "./UserInfo";
+import { findAllItems } from "../../api";
+import { contractsCol } from "../../api/config";
+import { useState, useEffect } from "react";
 
-const StudentList = ({ contracts, navigate }) => {
+
+const StudentList = ({  navigate }) => {
+    const [contracts, setContracts] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
     const [status, handleStatus] = useInput("");
     const [planType, handlePlanType] = useInput("");
+
+
+    useEffect(() => {
+        findAllItems(contractsCol)
+            .then(res => setContracts(res))
+            .catch(err => console.log(err.message))
+
+    }, [ ]);
+
+
 
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
