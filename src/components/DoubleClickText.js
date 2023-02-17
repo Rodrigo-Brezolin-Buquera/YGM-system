@@ -13,7 +13,7 @@ export const DoubleClickText = (props) => {
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             updateItem(props.itemCol, { [props.atribute]: text }, props.id)
-                .catch((err) => console.log(err));
+                .catch((err) => console.log(err.message));
             setShowInput(false)
         }
     };

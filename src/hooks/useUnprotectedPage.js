@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {goToUser, goToAdmin} from "../routes/coordinator"
 import {isLogged} from "../api/auth";
+import {goToUser, goToAdmin} from "../routes/coordinator"
 
 
 export const useUnprotectedPage = () =>  {

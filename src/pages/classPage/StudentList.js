@@ -1,8 +1,8 @@
 import { Text } from "@chakra-ui/react";
-import StudentCheckinCard from "./StudentCheckinCard";
 import { useEffect, useState } from "react";
-import { checkinsCol } from "../../api/config";
 import { findItemWhere } from "../../api";
+import { checkinsCol } from "../../api/config";
+import StudentCheckinCard from "./StudentCheckinCard";
 
 export const StudentList = ({ capacity, classId }) => {
     const [checkins, setCheckins] = useState([]);

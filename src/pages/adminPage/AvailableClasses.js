@@ -1,9 +1,9 @@
 import { Box, Text } from "@chakra-ui/react";
-import ClassesCard from "./ClassesCard";
 import { useState, useEffect } from "react";
-import { getToday } from "../../utils/dates";
 import { findItemWhere,  } from "../../api";
 import {  calendarCol } from "../../api/config";
+import { getToday } from "../../utils/dates";
+import ClassesCard from "./ClassesCard";
 
 
 const AvailableClasses = ({ navigate }) => {
@@ -15,7 +15,7 @@ const AvailableClasses = ({ navigate }) => {
         findItemWhere(calendarCol, "date", getToday())
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
-    }, [, ]);
+    }, [ ]);
 
 
 

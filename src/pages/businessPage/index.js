@@ -1,18 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import HeaderAdmin from "../../components/HeaderAdmin";
-import { Background } from "../../theme";
-import {Local}  from "./Local";
-import {Plans} from "./Plans";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
+import { Background, MainContainer } from "../../theme";
+import { Local } from "./Local";
+import { Plans } from "./Plans";
+import { TeachersAndStyles } from "./TeachersAndStyles";
 
 const BusinessPage = () => {
+    useProtectedPage("admin")
     const navigate = useNavigate();
-   
+
     return (
         <>
             <HeaderAdmin navigate={navigate} />
             <Background>
-                <Local/>
-                <Plans/>
+                <MainContainer>
+                    <Local />
+                    <TeachersAndStyles />
+                </MainContainer>
+                <MainContainer>
+                    <Plans />
+                </MainContainer>
             </Background>
         </>
     )

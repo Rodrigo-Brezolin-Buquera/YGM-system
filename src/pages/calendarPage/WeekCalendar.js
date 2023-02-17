@@ -26,7 +26,7 @@ export const WeekCalendar = ( { navigate, setSelected, loading }) => {
     useEffect(() => {
         findClassesByPeriod(datesOfWeek)
             .then(res => setYogaClasses(res))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.message))
     }, [sunday, datesOfWeek,  loading])
 
     const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];

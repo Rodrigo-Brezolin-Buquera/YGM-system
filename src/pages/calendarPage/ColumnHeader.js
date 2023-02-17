@@ -1,7 +1,7 @@
-import { Text } from '@chakra-ui/react'
-import React, { memo } from 'react'
-import { CircularCard } from '../../theme'
-import { simplifyDate } from '../../utils/dates'
+import { Text } from "@chakra-ui/react"
+import React, { memo } from "react"
+import { CircularCard } from "../../theme"
+import { simplifyDate } from "../../utils/dates"
 
 const ColumnHeader = ({ date, day }) => {
     return (

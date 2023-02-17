@@ -1,6 +1,6 @@
 import {  Text } from "@chakra-ui/react";
-import { simplifyDate } from "../../utils/dates";
 import { TextContainer } from "../../theme";
+import { simplifyDate } from "../../utils/dates";
 
 export const ClassInfo = ({ day, time, date, teacher, name  }) => {
     return (

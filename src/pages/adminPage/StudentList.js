@@ -1,10 +1,10 @@
 import { Box, Input, Select } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { findAllItems } from "../../api";
+import { contractsCol } from "../../api/config";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
 import {useInput} from "../../hooks/useInput";
 import UserInfo from "./UserInfo";
-import { findAllItems } from "../../api";
-import { contractsCol } from "../../api/config";
-import { useState, useEffect } from "react";
 
 
 const StudentList = ({  navigate }) => {

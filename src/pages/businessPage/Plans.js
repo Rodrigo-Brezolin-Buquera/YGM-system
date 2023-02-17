@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems } from "../../api";
 import { plansCol } from "../../api/config";
 import { DoubleClickText } from "../../components/DoubleClickText";
-import { MainContainer, WrapContainer } from "../../theme";
+import { WrapContainer } from "../../theme";
 import {TextCard} from "../../theme";
 import { PlanForm } from "./PlanForm";
 
@@ -15,14 +15,14 @@ export const Plans = () => {
     useEffect(() => {
         findAllItems(plansCol)
             .then(res => setPlans(res))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.message))
     }, []);
 
     const onDelete = (id) => {
         if (window.confirm("Deletar este plano?")) {
             setLoading(true)
             deleteItemById(plansCol, id)
-                .catch(err => console.log(err))
+                .catch(err => console.log(err.message))
                 .finally(setLoading(false))
         }
     }
@@ -60,14 +60,14 @@ export const Plans = () => {
 
 
     return (
-        <MainContainer>
+        <>
             <Heading size={"md"}>Planos</Heading>
             <PlanForm loading={loading} setLoading={setLoading} />
             <br />
             <WrapContainer>
                 {list?.length ? list : null}
             </WrapContainer>
-        </MainContainer>
+        </>
     )
 }
 

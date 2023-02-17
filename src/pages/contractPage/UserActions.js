@@ -6,7 +6,7 @@ import { contractsCol, usersCol } from "../../api/config";
 import { changeStatus, deleteContract } from "../../api/contracts";
 import UserInfo from "../../components/UserInfo";
 import { goToAdmin } from "../../routes/coordinator";
-import { WrapContainer, LoadingButton, MainContainer } from "../../theme";
+import { WrapContainer, LoadingButton } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 

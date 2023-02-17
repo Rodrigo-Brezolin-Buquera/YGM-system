@@ -44,7 +44,7 @@ export const TeacherOptions = () => {
     useEffect(() => {
         findAllItems(teachersCol)
             .then(((res) => setOptions(res)))
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.message));
     }, [])
     const list = options?.length && options.map((i) => <option key={i.name} value={i.name} > {i.name} </option>)
 
@@ -74,7 +74,7 @@ export const StyleOptions = () => {
     useEffect(() => {
         findAllItems(stylesCol)
             .then(((res) => setOptions(res)))
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.message));
     }, [])
     const list = options?.length && options.map((i) => <option key={i.name} value={i.name} > {i.name} </option>)
 
@@ -92,7 +92,7 @@ export const TypeOptions = () => {
     useEffect(() => {
         findAllItems(plansCol)
             .then(((res) => setOptions(res)))
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.message));
     }, [])
     const list = options?.length && options.map((i) => <option key={i.id} value={i.id} > {i.id} </option>)
 

@@ -1,8 +1,8 @@
 import { Text } from "@chakra-ui/react";
-import { simplifyDate } from "../utils/dates";
-import { CircularCard } from "../theme";
-import { findCheckinsLimit } from "../api/checkins";
 import { useState, useEffect } from "react";
+import { findCheckinsLimit } from "../api/checkins";
+import { CircularCard } from "../theme";
+import { simplifyDate } from "../utils/dates";
 
 
 export const CheckinsDone = ({ userId }) => {

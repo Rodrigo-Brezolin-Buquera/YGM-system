@@ -12,7 +12,7 @@ export const RequestInput = ({ placeholder, itemCol, setLoading }) => {
                     setText("")  
                     setLoading((prevState)=> !prevState)         
                 })
-                .catch(err => console.log(err));
+                .catch(err => console.log(err.message));
 
             // setTimeout(setLoading((prevState)=> !prevState), 500)
         }

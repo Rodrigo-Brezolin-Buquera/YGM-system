@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { goToLogin } from "../routes/coordinator"
 import { isLogged } from "../api/auth";
+import { goToLogin } from "../routes/coordinator"
 
 
 export const useProtectedPage = (role) => {
