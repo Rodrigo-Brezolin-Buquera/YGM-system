@@ -1,28 +1,36 @@
-import {  DeleteIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
-import { useEffect, memo } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { validateCheckin, cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
 
-const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading, contractless }) => {
-    useEffect(() => { }, [verified, loading]);
+const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless }) => {
+    const [cardLoading, setCardLoading] = useState(false);
 
-    const confirm = () => {
-        setLoading(true);
+    useEffect(() => { }, [verified]);
+
+    const confirm = useCallback(() => {
+        setCardLoading(true);
         validateCheckin(id, !verified)
             .then()
             .catch((err) => { console.log(err.message) })
-            .finally(() => setLoading(false));
-    };
+            .finally(() => {
+                setCardLoading(false)
+                setLoading((prevState => !prevState));
+            });
+    },[id, setLoading, verified]) 
 
-    const cancel = async () => {
+    const cancel = useCallback(() => {
         if (window.confirm("Cancelar este checkin?")) {
-            setLoading(true);
+            setCardLoading(true);
             (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
                 .then()
                 .catch((err) => { console.log(err.message) })
-                .finally(() => setLoading(false));
+                .finally(() => {
+                    setCardLoading(false)
+                    setLoading((prevState => !prevState))
+                });
         }
-    };
+    },[capacity, contractless, id, setLoading]) 
 
     return (
         <Card
@@ -38,7 +46,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading,
             w={"75%"}
 
         >
-            {(loading) ?
+            {(cardLoading) ?
                 <CircularProgress isIndeterminate color="yellow.400" size="50px" />
                 :
                 <Box
@@ -61,4 +69,4 @@ const StudentCheckinCard = ({ id, name, verified, capacity, loading, setLoading,
     );
 };
 
-export default memo(StudentCheckinCard);
+export default StudentCheckinCard;

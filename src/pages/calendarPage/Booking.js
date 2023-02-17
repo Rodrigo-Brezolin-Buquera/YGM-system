@@ -1,9 +1,9 @@
 import { Card, Heading, Text, Input } from "@chakra-ui/react"
-import { createContractlessCheckin } from "../api/checkins"
-import { stringPattern } from "../api/patterns"
-import { useInput } from "../hooks/useInput"
-import { simplifyDate } from "../utils/dates"
-import { LoadingButton, MainContainer } from "../theme"
+import { createContractlessCheckin } from "../../api/checkins"
+import { stringPattern } from "../../api/patterns"
+import { useInput } from "../../hooks/useInput"
+import { simplifyDate } from "../../utils/dates"
+import { LoadingButton, MainContainer } from "../../theme"
 
 export const Booking = ({ selected,setSelected, setLoading }) => {
     const [name, handleName] = useInput("")

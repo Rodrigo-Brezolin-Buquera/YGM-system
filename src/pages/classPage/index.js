@@ -1,14 +1,13 @@
 import { CircularProgress,  Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteItemById, deleteItemWhere, findItemById, findItemWhere } from "../../api";
 import { checkinsCol, calendarCol } from "../../api/config";
-import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
 import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background } from "../../theme";
-import { ClassInfo } from "./ClassInfo";
+import  ClassInfo  from "./ClassInfo";
 import { StudentList } from "./StudentList";
 
 const ClassPage = () => {
@@ -28,7 +27,7 @@ const ClassPage = () => {
             .catch(err => console.log(err.message))
     }, [loading, classId]);
 
-    const deleteClass = async () => {
+    const deleteClass = useCallback( async() => {
         if (window.confirm("Deletar aula?")) {
             setLoading(true);
             await deleteItemById(calendarCol, classId)
@@ -36,9 +35,9 @@ const ClassPage = () => {
                 .catch(err => console.log(err.message))
                 .finally(setLoading(false))
         }
-    };
+    }, [navigate, classId])
 
-    const deleteClasses = async () => {
+    const deleteClasses = useCallback( async() => {
         if (window.confirm("Deletar todas as aulas nesse horário?")) {
             setLoading(true)
             await deleteItemWhere(calendarCol, "groupId", yogaClass.groupId)
@@ -46,7 +45,7 @@ const ClassPage = () => {
                 .catch(err => console.log(err.message))
                 .finally(setLoading(false))
         }
-    };
+    }, [navigate, yogaClass.groupId])
 
     return (
         <>
@@ -84,7 +83,6 @@ const ClassPage = () => {
                         <CircularProgress isIndeterminate color="yellow.400" size="70px" />
                     }
 
-                    <Booking selected={yogaClass}  setLoading={setLoading}  />
                 </MainContainer>
                 <SideContainer>
                     <StudentList
