@@ -17,19 +17,16 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
             });
     }
 
-    const onCancel = () => {
-        setCardLoading(true);
-        (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
-            .catch((err) => { console.log(err.message) })
-            .finally(() => {
-                setCardLoading(false)
-                setLoading((prevState => !prevState))
-            });
-    }
-
     const onDelete = () => {
-        confirmDialog("Cancelar este checkin?", onCancel)
-
+        confirmDialog("Cancelar este checkin?", () => {
+            setCardLoading(true);
+            (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
+                .catch((err) => { console.log(err.message) })
+                .finally(() => {
+                    setCardLoading(false)
+                    setLoading((prevState => !prevState))
+                });
+        })
     }
 
     return (

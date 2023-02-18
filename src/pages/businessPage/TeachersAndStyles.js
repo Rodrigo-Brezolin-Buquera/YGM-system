@@ -21,14 +21,13 @@ export const TeachersAndStyles = () => {
             .catch(err => console.log(err.message));
     }, [loading]);
 
-    const deleteItem = (itemCol, id) => {
-        deleteItemById(itemCol, id)
-            .then(setLoading(!loading))
-            .catch(err => console.log(err.message));
-    }
 
-    const onDelete = (itemCol, id,) => {
-        confirmDialog("Remover da lista?", () => deleteItem(itemCol, id))
+    const onDelete = (itemCol, id, name) => {
+        confirmDialog(`Remover ${name} da lista?`, () => {
+            deleteItemById(itemCol, id)
+                .then(setLoading(!loading))
+                .catch(err => console.log(err.message));
+        })
     }
 
     const list = (state, itemCol) => state?.length ? state.map(item => {
@@ -54,7 +53,7 @@ export const TeachersAndStyles = () => {
                 placeholder={"Adicione uma pessoa"}
             />
             <WrapContainer>
-                {list(teachers, teachersCol) }
+                {list(teachers, teachersCol)}
             </WrapContainer>
             <Heading alignSelf={"center"} size={"md"}>Estilos</Heading>
 
@@ -66,7 +65,7 @@ export const TeachersAndStyles = () => {
 
             <WrapContainer>
                 {list(styles, stylesCol)}
-                    
+
             </WrapContainer>
 
         </>

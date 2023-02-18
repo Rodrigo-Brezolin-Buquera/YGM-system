@@ -2,7 +2,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 
-const confirmDialog = (text, handler) => {
+const confirmDialog = async (text, handler) => {
 
     confirmAlert({
         title: text,

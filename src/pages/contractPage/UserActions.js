@@ -6,7 +6,7 @@ import { contractsCol, usersCol } from "../../api/config";
 import { changeStatus, deleteContract } from "../../api/contracts";
 import UserInfo from "../../components/UserInfo";
 import { goToAdmin } from "../../routes/coordinator";
-import { WrapContainer, LoadingButton } from "../../theme";
+import { WrapContainer, LoadingButton, confirmDialog } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
@@ -16,28 +16,19 @@ export const UserActions = ({ userId, navigate }) => {
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
 
-    const onDelete = async () => {
-        if (window.confirm("Excluir este contrato?")) {
-            await deleteContract(userId)
-                .then(goToAdmin(navigate))
+    const onDelete = () => {
+        confirmDialog("Excluir contrato?", () => {
+            deleteContract(userId)
+                .then(setTimeout(() => { goToAdmin(navigate) }, 500))
                 .catch(err => console.log(err.message))
-        }
+        })
     };
 
-    const sendPasswordLink = async () => {
-        if (window.confirm("Enviar email de redefinição de senha?")) {
-            await findItemById(usersCol, userId)
-                .then(user => resetPassword(user.email))
-                .catch(err => console.log(err.message))
-        }
-    }
-
     const onChangeStatus = async () => {
-        if (window.confirm("Alterar status no plano?")) {
-            await changeStatus(userId, !contracts?.currentContract?.active)
-                .catch(err => console.log(err.message))
-                .finally(setloading(!loading))
-        }
+        await changeStatus(userId, !contracts?.currentContract?.active)
+            .catch(err => console.log(err.message))
+            .finally(setloading(!loading))
+
     }
 
     useEffect(() => {
@@ -62,12 +53,6 @@ export const UserActions = ({ userId, navigate }) => {
                 >
                     <Text> Novo Plano</Text>
                 </Button>
-                <LoadingButton
-                    color={"brand.200"}
-                    handler={sendPasswordLink}
-                >
-                    <Text>Nova senha</Text>
-                </LoadingButton>
 
                 <LoadingButton
                     color={!contracts?.currentContract?.active ? "brand.100" : "brand.200"}
@@ -80,14 +65,14 @@ export const UserActions = ({ userId, navigate }) => {
                     </Text>
                 </LoadingButton>
 
-                <LoadingButton
-                    color={"brand.300"}
-                    handler={onDelete}
+                <Button
+                    bg={"brand.300"}
+                    onClick={onDelete}
                 >
                     <Text color={"brand.400"}>
                         Excluir contrato
                     </Text>
-                </LoadingButton>
+                </Button>
             </WrapContainer>
 
             {

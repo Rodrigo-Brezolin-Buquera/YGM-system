@@ -10,7 +10,6 @@ const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
         setClasses(yogaClasses)
     }, [date, yogaClasses])
 
-
     const list = classes?.length ? classes?.map((yogaClass) => {
 
         return (
@@ -35,7 +34,7 @@ const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
             <ColumnHeader date={date} day={day}/>
 
 
-            { classes ? list : <CircularProgress color="brand.200" isIndeterminate/>}
+            {  list }
         </Box>
     );
 };

@@ -5,7 +5,7 @@ import { deleteItemById, findAllItems } from "../../api";
 import { plansCol } from "../../api/config";
 import { DoubleClickText } from "../../components/DoubleClickText";
 import { confirmDialog, WrapContainer } from "../../theme";
-import {TextCard} from "../../theme";
+import { TextCard } from "../../theme";
 import { PlanForm } from "./PlanForm";
 
 export const Plans = () => {
@@ -18,15 +18,13 @@ export const Plans = () => {
             .catch(err => console.log(err.message))
     }, []);
 
-    const deletePlan = (id) => {
-        setLoading(true)
-        deleteItemById(plansCol, id)
-            .catch(err => console.log(err.message))
-            .finally(setLoading(false))
-    }
-    
     const onDelete = (id) => {
-        confirmDialog("Deletar plano?", ()=>deletePlan(id))
+        confirmDialog("Deletar plano?", () => {
+            setLoading(true)
+            deleteItemById(plansCol, id)
+                .catch(err => console.log(err.message))
+                .finally(setLoading(false))
+        })
     }
 
     const list = plans?.length ? plans.map(plan => {
@@ -67,7 +65,7 @@ export const Plans = () => {
             <PlanForm loading={loading} setLoading={setLoading} />
             <br />
             <WrapContainer>
-                { list }
+                {list}
             </WrapContainer>
         </>
     )
