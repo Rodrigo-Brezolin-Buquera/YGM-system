@@ -14,7 +14,9 @@ export const useUnprotectedPage = () =>  {
 
     if(status.loggedIn === true) {
         const admin = localStorage.getItem("admin")
-        admin === "true" ? goToAdmin(navigate) : goToUser(navigate, status.userId)
+        setTimeout(() => {
+            admin === "true" ? goToAdmin(navigate) : goToUser(navigate, status.userId)
+        }, 10)
     }
 }
 

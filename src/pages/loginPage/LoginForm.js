@@ -14,7 +14,6 @@ export const LoginForm = ({ navigate }) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null);
 
-    console.log(error)
     const {
         handleSubmit,
         register,
