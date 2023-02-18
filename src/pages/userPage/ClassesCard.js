@@ -4,13 +4,15 @@ import { findItemById } from "../../api";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
 import { checkinsCol } from "../../api/config";
 import SquareCard from "../../theme/SquareCard";
+import { confirmDialog } from "../../theme";
+
 
 export const ClassesCard = (
-    { contractId, userName, yogaClass, contractLimit  }
+    { contractId, userName, yogaClass, contractLimit }
 ) => {
     const [checkin, setCheckin] = useState(null);
     const [loading, setLoading] = useState(false);
-    const {id, day, time, date, teacher, name, capacity} = yogaClass
+    const { id, day, time, date, teacher, name, capacity } = yogaClass
 
     const checkinId = `${contractId}+${id}`;
     const checkinData = { checkinId, date, userName, time };
@@ -21,40 +23,41 @@ export const ClassesCard = (
             .then((res) => setCheckin(res))
             .catch(err => console.log(err.message))
 
-    }, [checkinId, contractId]);
+    }, [checkinId, contractId, loading]);
 
-   
+
+    const onDelete = () => {
+        setLoading(true);
+        deleteCheckin(checkin.id, limits)
+            .then(setCheckin(null))
+            .catch((err) => { console.log(err.message) })
+            .finally(() => setLoading(false));
+    }
+
+    const onCreate = () => {
+        setLoading(true);
+        createCheckin(checkinData, limits)
+            .catch((err) => { console.log(err.message) })
+            .finally(() => setLoading(false));
+    }
     const handleCheckin = () => {
-        if (checkin) {
-            if (window.confirm("Cancelar este checkin?")) {
-                setLoading(true);
-                deleteCheckin(checkin.id, limits)
-                    .then(setCheckin(null))
-                    .catch((err) => { console.log(err.message) })
-                    .finally(() => setLoading(false));
+        if (capacity === 0) return null
 
-            }
-        } else if (!checkin && capacity > 0) {
-            if (window.confirm("Agendar o checkin neste horário?")) {
-                setLoading(true);
-                createCheckin(checkinData, limits)
-                    .then(setCheckin(!checkin))
-                    .catch((err) => { console.log(err.message) })
-                    .finally(() => setLoading(false));
-            }
-        } else if (!checkin && capacity === 0) {
-            alert("Não há mais vagas nesse horário");
+        if (checkin) {
+            confirmDialog("Cancelar check-in?", onDelete)
+        } else {
+            confirmDialog("Fazer check-in?", onCreate)
         }
     };
 
-  
+
 
     return (
         <SquareCard
             color={checkin ? "brand.200" : "brand.500"}
             onClick={handleCheckin}
         >
-            {loading ? <CircularProgress isIndeterminate color={"brand.200"} size="75px" /> :
+            {loading ? <CircularProgress isIndeterminate color={"brand.200"} alignSelf={"center"} size="75px" /> :
                 <Box
                     display={"flex"}
                     flexDirection={"column"}

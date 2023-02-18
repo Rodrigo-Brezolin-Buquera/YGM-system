@@ -10,6 +10,7 @@ import { createClasses } from "../../api/calendar";
 import { DayOptions, StyleOptions, TeacherOptions } from "../../components/selectOptions";
 import { ModalComponent, FormButton } from "../../theme";
 
+
 export const CreateClassModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
 
@@ -25,7 +26,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
         await createClasses(values)
             .then(() => {
                 reset()
-                onClose()
+                onClose()              
             })
             .catch(err => console.log(err.message))
             .finally(setLoading(false));
