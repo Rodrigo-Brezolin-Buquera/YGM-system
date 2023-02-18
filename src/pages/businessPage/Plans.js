@@ -25,12 +25,11 @@ export const Plans = () => {
             .finally(setLoading(false))
     }
     
-
     const onDelete = (id) => {
         confirmDialog("Deletar plano?", ()=>deletePlan(id))
     }
 
-    const list = plans?.length && plans.map(plan => {
+    const list = plans?.length ? plans.map(plan => {
         return (
             <TextCard
                 width={"180px"}
@@ -59,7 +58,7 @@ export const Plans = () => {
                 />
             </TextCard>
         )
-    })
+    }) : null
 
 
     return (
@@ -68,7 +67,7 @@ export const Plans = () => {
             <PlanForm loading={loading} setLoading={setLoading} />
             <br />
             <WrapContainer>
-                {list?.length ? list : null}
+                { list }
             </WrapContainer>
         </>
     )

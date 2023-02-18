@@ -1,4 +1,4 @@
-import { Heading, } from "@chakra-ui/react";
+import { CircularProgress, Heading, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems, } from "../../api";
 import { stylesCol, teachersCol } from "../../api/config";
@@ -28,10 +28,10 @@ export const TeachersAndStyles = () => {
     }
 
     const onDelete = (itemCol, id,) => {
-        confirmDialog("Remover da lista?", ()=>deleteItem(itemCol, id))
+        confirmDialog("Remover da lista?", () => deleteItem(itemCol, id))
     }
 
-    const list = (state, itemCol) => state?.length && state.map(item => {
+    const list = (state, itemCol) => state?.length ? state.map(item => {
         return (
             <ItemCard
                 key={item.id}
@@ -41,7 +41,7 @@ export const TeachersAndStyles = () => {
             />
         )
     }
-    )
+    ) : null
 
 
     return (
@@ -54,7 +54,7 @@ export const TeachersAndStyles = () => {
                 placeholder={"Adicione uma pessoa"}
             />
             <WrapContainer>
-                {teachers?.length ? list(teachers, teachersCol) : null}
+                {list(teachers, teachersCol) }
             </WrapContainer>
             <Heading alignSelf={"center"} size={"md"}>Estilos</Heading>
 
@@ -65,7 +65,8 @@ export const TeachersAndStyles = () => {
             />
 
             <WrapContainer>
-                {styles?.length ? list(styles, stylesCol) : null}
+                {list(styles, stylesCol)}
+                    
             </WrapContainer>
 
         </>
