@@ -2,11 +2,12 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useState } from "react";
 import { validateCheckin, cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
+import { confirmDialog } from "../../theme";
 
 const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless }) => {
     const [cardLoading, setCardLoading] = useState(false);
 
-    const confirm = () => {
+    const onConfirm = () => {
         setCardLoading(true);
         validateCheckin(id, !verified)
             .catch((err) => { console.log(err.message) })
@@ -16,16 +17,19 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
             });
     }
 
-    const cancel = () => {
-        if (window.confirm("Cancelar este checkin?")) {
-            setCardLoading(true);
-            (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
-                .catch((err) => { console.log(err.message) })
-                .finally(() => {
-                    setCardLoading(false)
-                    setLoading((prevState => !prevState))
-                });
-        }
+    const onCancel = () => {
+        setCardLoading(true);
+        (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
+            .catch((err) => { console.log(err.message) })
+            .finally(() => {
+                setCardLoading(false)
+                setLoading((prevState => !prevState))
+            });
+    }
+
+    const onDelete = () => {
+        confirmDialog("Cancelar este checkin?", onCancel)
+
     }
 
     return (
@@ -52,11 +56,11 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
                     w={"100%"}
                 >
 
-                    <Text onClick={confirm} fontSize={"mds"} >  {name}  </Text>
+                    <Text onClick={onConfirm} fontSize={"mds"} >  {name}  </Text>
 
                     <DeleteIcon
                         _hover={{ cursor: "pointer" }}
-                        onClick={cancel}
+                        onClick={onDelete}
                         boxSize={"5"}
                     />
                 </Box>

@@ -1,9 +1,9 @@
-import {  Heading,  } from "@chakra-ui/react";
+import { Heading, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
-import { deleteItemById, findAllItems,  } from "../../api";
+import { deleteItemById, findAllItems, } from "../../api";
 import { stylesCol, teachersCol } from "../../api/config";
 import { RequestInput } from "../../components/RequestInput";
-import {  WrapContainer } from "../../theme";
+import { confirmDialog, WrapContainer } from "../../theme";
 import ItemCard from "./ItemCard";
 
 export const TeachersAndStyles = () => {
@@ -21,12 +21,14 @@ export const TeachersAndStyles = () => {
             .catch(err => console.log(err.message));
     }, [loading]);
 
-    const onDelete = (itemCol, id, name) => {
-        if (window.confirm(`Remover ${name} da lista?`)) {
-            deleteItemById(itemCol, id)
-                .then(setLoading(!loading))
-                .catch(err => console.log(err.message));
-        }
+    const deleteItem = (itemCol, id) => {
+        deleteItemById(itemCol, id)
+            .then(setLoading(!loading))
+            .catch(err => console.log(err.message));
+    }
+
+    const onDelete = (itemCol, id,) => {
+        confirmDialog("Remover da lista?", ()=>deleteItem(itemCol, id))
     }
 
     const list = (state, itemCol) => state?.length && state.map(item => {

@@ -50,8 +50,6 @@ export const ClassesCard = (
         }
     };
 
-
-
     return (
         <SquareCard
             color={checkin ? "brand.200" : "brand.500"}
