@@ -13,7 +13,7 @@ const confirmDialog = async (text, handler) => {
                 style: {
                     backgroundColor: "gold",
                     color: "black",
-                    fontSize: "1em",
+                    fontSize: "1.5em",
                     marginLeft: "70%"
                 },
             }
