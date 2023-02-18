@@ -43,7 +43,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
 
         >
             {(cardLoading) ?
-                <CircularProgress isIndeterminate color="yellow.400" size="50px" />
+                <CircularProgress isIndeterminate color="brand.200" size="50px" />
                 :
                 <Box
                     display={"flex"}

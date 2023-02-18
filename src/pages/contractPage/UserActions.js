@@ -100,7 +100,7 @@ export const UserActions = ({ userId, navigate }) => {
                         planEnds={contracts.currentContract.ends}
                         availableClasses={contracts.currentContract.availableClasses}
                     /> :
-                    <CircularProgress isIndeterminate color="yellow.400" size="70px" />
+                    <CircularProgress isIndeterminate color="brand.200" size="70px" />
             }
 
             <AddContractModal

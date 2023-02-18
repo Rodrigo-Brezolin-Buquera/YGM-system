@@ -69,7 +69,7 @@ const ClassPage = () => {
                         teacher={yogaClass.teacher}
                         name={yogaClass.name}
                     /> :
-                        <CircularProgress isIndeterminate color="yellow.400" size="70px" />
+                        <CircularProgress isIndeterminate color="brand.200" size="70px" />
                     }
 
                 </MainContainer>

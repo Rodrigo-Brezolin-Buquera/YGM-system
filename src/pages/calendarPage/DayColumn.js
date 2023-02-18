@@ -1,17 +1,17 @@
-import { Box } from "@chakra-ui/react";
+import { Box, CircularProgress } from "@chakra-ui/react";
 import {  useEffect,  useState } from "react";
 import ClassCard from "./ClassCard";
 import ColumnHeader from "./ColumnHeader";
 
 const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
-    const [classes, setClasses] = useState([])
+    const [classes, setClasses] = useState(null)
 
     useEffect(() => {
         setClasses(yogaClasses)
     }, [date, yogaClasses])
 
 
-    const list = classes?.length && classes?.map((yogaClass) => {
+    const list = classes?.length ? classes?.map((yogaClass) => {
 
         return (
             <ClassCard
@@ -21,7 +21,7 @@ const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
                 navigate={navigate}
 
             />)
-    })
+    }) : null
 
     return (
         <Box
@@ -33,7 +33,9 @@ const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
             minH={"250px"}
         >
             <ColumnHeader date={date} day={day}/>
-            {list || null}
+
+
+            { classes ? list : <CircularProgress color="brand.200" isIndeterminate/>}
         </Box>
     );
 };

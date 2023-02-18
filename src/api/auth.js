@@ -10,8 +10,8 @@ export const login = async (form, navigate) => {
         localStorage.setItem("admin", userDoc.admin)
         userDoc.admin ? goToAdmin(navigate) : goToUser(navigate, user.uid)
     } catch (err) {
+        err.message.includes("auth/wrong-password")? alert("Email e/ou senha inválidos") :  alert("Erro no login, tente novamente")
         console.log(err.message);
-        alert("Login error, try again later");
     }
 };
 
