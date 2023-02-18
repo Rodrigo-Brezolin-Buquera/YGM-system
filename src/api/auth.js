@@ -19,7 +19,7 @@ export const singUp = async ({ email, password }) => {
     let id
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
     id = user.uid
-    await resetPassword(email) 
+    await sendPasswordResetEmail(auth, email);
     await signInWithEmailAndPassword(auth, process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASSWORD)
     await createItemWithId(usersCol, { email, admin: false }, id)
     return id
@@ -49,8 +49,5 @@ export const isLogged = async (setStatus) => {
 
 };
 
-export const resetPassword = async (email) => {
-    await sendPasswordResetEmail(auth, email);
-}
 
 export const genPassword = () => Math.random().toString(36).slice(2) + Math.random().toString(36).toUpperCase().slice(2)
