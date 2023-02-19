@@ -5,7 +5,7 @@
 
 ##  Sobre
 
-O espaço Yoga Mangala é um studio de Yoga. Dessa forma, a aplicação permite aos alunos verem as informações de seus contratos como aulas disponíveis e data de encerramento, permitindo também fazer checkin nos horários de aula disponíveis, controlando quantidade de aulas restantes e faltas. Para os administradores, é possível, criar usuários, visualizar e editar os contratos de todos os alunos, visualizar os planos disponíveis, criar e editar horários de aulas disponíveis e criar e editar novos contratos.
+O espaço Yoga Mangala é um studio de Yoga. Dessa forma, a aplicação permite aos alunos verem as informações de seus contratos como aulas disponíveis e data de encerramento, permitindo também fazer checkin nos horários de aula disponíveis, controlando quantidade de aulas restantes e faltas. Para os administradores, é possível, criar usuários, visualizar e editar os contratos de todos os alunos, visualizar os planos disponíveis, criar e editar horários de aulas disponíveis e criar e editar contratos.
 
 ---
 ##  Status do Projeto
@@ -49,3 +49,8 @@ Para Rodar o projeto, siga as seguintes etapas :
 - Após finalizar rode: npm run start
 
 ---
+
+## Funcionalidades
+
+# LoginPage 
+
