@@ -20,7 +20,7 @@ Aplicação feita usando React.
 
 As relações entre as páginas pode ser vista na imagem:
 
-![image](https://user-images.githubusercontent.com/81428197/183218762-627d3618-fc11-4fa3-91a3-8a369b3fc9b1.png)
+![image](https://user-images.githubusercontent.com/81428197/219972489-9b0c65a4-3e08-45b2-88ec-385cfbf8619b.png)
 
 ---
 
@@ -52,5 +52,5 @@ Para Rodar o projeto, siga as seguintes etapas :
 
 ## Funcionalidades
 
-# LoginPage 
+### LoginPage 
 
