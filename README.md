@@ -75,6 +75,7 @@ Para Rodar o projeto, siga as seguintes etapas :
     Visualização do atual plano, check-ins realizados, editar contrato atual, adicionar novo, ativar/desativar e deletar contrato 
 
 - CalendarPage
+
      Visualização semanal do calendário de aulas, ir para aula (duplo clique) e adicionar check-ins a aulas 
 
 - ClassPage
