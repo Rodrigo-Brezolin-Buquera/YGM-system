@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import defaultLogo from "../../assets/defaultLogo.png";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage";
@@ -20,7 +20,7 @@ const LoginPage = () => {
             backgroundColor={"brand.400"}
             minH={"100vh"}
         >
-            <LogoImg width={"300px"} logo={defaultLogo}/>
+            <Image maxW={"300px"} src={defaultLogo} alt="logo" />
             <LoginForm navigate={navigate} />
         </Box>
     );
