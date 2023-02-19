@@ -30,12 +30,14 @@ Link: https://yoga-mangala.web.app
 
 ---
 
-## Usuários teste
+## Usuários de teste
 Estudante:
+
 email: rodrigobbuquera@gmail.com
 senha: 123456
 
 Admin:
+
 email: admintest@email.com
 senha: 123456
 
@@ -59,20 +61,25 @@ Para Rodar o projeto, siga as seguintes etapas :
 
  
 - UserPage
+
      Visualização do atual plano, check-ins realizados e fazer/cancelar check-ins nas próximas aulas
 
 - AdminPage
+
      Listagem com todos contratos, visualização das aulas do dia e criação de novas aulas e contratos
 
 - ContractPage
+
     Visualização do atual plano, check-ins realizados, editar contrato atual, adicionar novo, ativar/desativar e deletar contrato 
 
 - CalendarPage
      Visualização semanal do calendário de aulas, ir para aula (duplo clique) e adicionar check-ins a aulas 
 
 - ClassPage
+
      Visualição das informações da aula e lista de alunos; validação checkins, deletar checkins, deletar aula e horário no calendário 
 
 - BusinessPage
+
      Visualição e edição das informações do espaço como: local, contatos, professores, estilos e planos
 
