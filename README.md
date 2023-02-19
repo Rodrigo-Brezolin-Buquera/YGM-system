@@ -20,12 +20,13 @@ Aplicação feita usando React.
 
 As relações entre as páginas pode ser vista na imagem:
 
-![image](https://user-images.githubusercontent.com/81428197/219972489-9b0c65a4-3e08-45b2-88ec-385cfbf8619b.png)
+<img width="609" alt="Captura de Tela 2023-02-19 às 17 10 40" src="https://user-images.githubusercontent.com/81428197/219972665-e37a4752-f4fa-444d-b37a-cb0ae0358233.png">
+
 
 ---
 
 ## Surge
-Link: https://yogamangala-test.surge.sh/
+Link: 
 
 ---
 
@@ -52,5 +53,25 @@ Para Rodar o projeto, siga as seguintes etapas :
 
 ## Funcionalidades
 
-### LoginPage 
+- LoginPage
+     Login de usuário e direcionamento para página de usuários ou administrador 
+
+ 
+- UserPage
+     Visualização do atual plano, check-ins realizados e fazer/cancelar check-ins nas próximas aulas
+
+- AdminPage
+     Listagem com todos contratos, visualização das aulas do dia e criação de novas aulas e contratos
+
+- ContractPage
+    Visualização do atual plano, check-ins realizados, editar contrato atual, adicionar novo, ativar/desativar e deletar contrato 
+
+- CalendarPage
+     Visualização semanal do calendário de aulas, ir para aula (duplo clique) e adicionar check-ins a aulas 
+
+- ClassPage
+     Visualição das informações da aula e lista de alunos; validação checkins, deletar checkins, deletar aula e horário no calendário 
+
+- BusinessPage
+     Visualição e edição das informações do espaço como: local, contatos, professores, estilos e planos
 
