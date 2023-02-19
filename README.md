@@ -34,11 +34,13 @@ Link: https://yoga-mangala.web.app
 Estudante:
 
 email: rodrigobbuquera@gmail.com
+
 senha: 123456
 
 Admin:
 
 email: admintest@email.com
+
 senha: 123456
 
 ---
