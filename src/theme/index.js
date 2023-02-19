@@ -29,7 +29,6 @@ export {default as MainContainer} from "./MainContainer";
 export {default as Background} from "./Background";
 export {default as TextContainer} from "./TextContainer";
 export {default as Line} from "./Line";
-export {default as Column} from "./Column";
 export {default as CircularCard} from "./CircularCard";
 export {default as TextCard} from "./TextCard";
 export {default as confirmDialog} from "./confirmDialog";

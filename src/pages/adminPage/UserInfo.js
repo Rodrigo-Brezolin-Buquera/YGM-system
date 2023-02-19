@@ -1,9 +1,22 @@
-import { Text,  Card } from "@chakra-ui/react";
+import { Text,  Card, Box } from "@chakra-ui/react";
 import { memo } from "react";
 import { goToContract } from "../../routes/coordinator";
-import { Column, Line } from "../../theme";
+import { Line } from "../../theme";
 
 const UserInfo = (props) => {
+
+    const Column = ({ children }) => {
+        return (
+            <Box
+                display={"flex"}
+                flexDirection={"column"}
+                justifyContent={"center"}
+                minW={["100px", "150px", "250px"]}
+            >
+                {children}
+            </Box>
+        )
+    }
 
     return (
         <Card
