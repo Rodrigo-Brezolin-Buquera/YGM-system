@@ -1,37 +1,31 @@
-export const goToLogin = (history) => {
-    history.push('/')
-}
+export const goToLogin = (navigate) => {
+    navigate("/");
+};
 
-export const goToUser = (history, id) => {
-    history.push(`/user/${id}`)
-}
+export const goToUser = (navigate, id) => {
+    navigate(`/user/${id}`);
+};
 
+export const goToAdmin = (navigate) => {
+    navigate("/admin");
+};
+export const goToBusiness = (navigate) => {
+    navigate("/admin/business");
+};
 
-export const goToAdmin = (history) => {
-    history.push('/admin')
-}
+export const goToCalendar = (navigate) => {
+    navigate("/admin/calendar");
+};
 
-export const goToCreateContract = (history) => {
-    history.push('/admin/addUser')
-}
+export const goToClass = (navigate, id) => {
+    navigate(`/admin/class/${id}`);
+};
 
-export const goToCalendar = (history) => {
-    history.push('/admin/calendar')
-}
+export const goToContract = (navigate, id) => {
+    navigate(`/admin/contract/${id}`);
+};
 
-export const goToViewClass = (history, id) => {
-    history.push(`/admin/class/${id}`)
-}
-
-export const goToViewContract = (history, id) => {
-    history.push(`/admin/user/${id}`)
-}
-
-export const goToEditContract = (history, id) => {
-    history.push(`/admin/user/${id}/edit`)
-}
-
-export const goBack = (history) => {
-    history.goBack()
-}
+export const goBack = (navigate) => {
+    navigate(-1);
+};
 

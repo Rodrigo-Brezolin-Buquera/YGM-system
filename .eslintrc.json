@@ -1,0 +1,96 @@
+{
+    "extends": [
+      "react-app",
+      "react-app/jest"
+      
+    ],
+    "rules": {
+      "indent": ["warn", 4],
+      "linebreak-style": ["warn", "unix"],
+      "quotes":["warn", "double"],
+      "semi":[0, "always"],
+      "no-duplicate-case": "error",
+      "no-unreachable": "warn",
+      "no-inline-comments": "warn",
+      "for-direction": "error",
+      "no-control-regex": "error",
+      "no-dupe-else-if": "error",
+      "no-empty-pattern": "error",
+      "no-invalid-regexp": "error",
+      "no-self-compare": "error",
+      "no-empty-function": "warn",
+      "no-empty": "warn",
+      "no-nested-ternary": "warn",
+      "max-params": ["warn", 3],
+      "no-new-wrappers": "warn",
+      "react/self-closing-comp": [
+        "warn",
+        {
+          "component": true,
+          "html": true
+        }
+      ],
+      "autofix/no-unused-vars": [
+        "warn",
+        {
+          "argsIgnorePattern": "^_",
+          "ignoreRestSiblings": true,
+          "destructuredArrayIgnorePattern": "^_"
+        }
+      ],
+      "import/order": [
+        "warn",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "parent",
+            "sibling",
+            "index",
+            "object",
+            "type"
+          ],
+      "pathGroups": [
+            {
+              "pattern": "@/**/**",
+              "group": "parent",
+              "position": "before"
+            }
+          ],
+      "alphabetize": {
+            "order": "asc"
+          }
+        }
+      ],
+
+      "react/button-has-type": ["warn", {
+        "button": true,
+        "submit": true,
+        "reset": true
+      }],
+      "react/require-default-props": ["warn", {
+        "forbidDefaultForRequired": false,
+        "classes": "defaultProps",
+        "functions": "defaultProps",
+        "ignoreFunctionalComponents": false
+      }],
+      "react/no-array-index-key": ["warn"],
+      "react/jsx-uses-react": ["warn"],
+      "react/no-children-prop": ["warn", {
+        "allowFunctions":  false
+      }],
+      "react/jsx-no-bind": ["warn", {
+        "ignoreDOMComponents": false,
+        "ignoreRefs":  false,
+        "allowArrowFunctions": true,
+        "allowFunctions": false,
+        "allowBind":  false
+      }]
+    },
+    "plugins": [
+      "react",
+      "autofix",
+      "react-hooks"
+    ]
+    
+  }

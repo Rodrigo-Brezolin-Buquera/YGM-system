@@ -1,1 +1,0 @@
-export const cellMaxWidth = "480px"
