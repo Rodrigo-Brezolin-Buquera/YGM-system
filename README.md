@@ -54,6 +54,7 @@ Para Rodar o projeto, siga as seguintes etapas :
 ## Funcionalidades
 
 - LoginPage
+
      Login de usuário e direcionamento para página de usuários ou administrador 
 
  
