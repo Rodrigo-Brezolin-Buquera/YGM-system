@@ -1,8 +1,8 @@
 import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
-import { resetPassword } from "../../api/auth";
-import { contractsCol, usersCol } from "../../api/config";
+
+import { contractsCol } from "../../api/config";
 import { changeStatus, deleteContract } from "../../api/contracts";
 import UserInfo from "../../components/UserInfo";
 import { goToAdmin } from "../../routes/coordinator";

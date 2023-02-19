@@ -1,4 +1,4 @@
-import { CircularProgress, Heading, } from "@chakra-ui/react";
+import {  Heading, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems, } from "../../api";
 import { stylesCol, teachersCol } from "../../api/config";

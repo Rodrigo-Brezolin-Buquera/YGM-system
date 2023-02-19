@@ -21,8 +21,6 @@ const StudentList = ({  navigate }) => {
 
     }, [ ]);
 
-
-
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter(user => {
@@ -40,8 +38,6 @@ const StudentList = ({  navigate }) => {
         .filter((user) => {
             const contract = user?.currentContract;
             switch (planType) {
-            case "":
-                return contract?.plan;
             case "1x-Mensal":
                 return contract?.plan === "1x-Mensal";
             case "2x-Mensal":

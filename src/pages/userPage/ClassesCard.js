@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
 import { checkinsCol } from "../../api/config";
-import SquareCard from "../../theme/SquareCard";
 import { confirmDialog } from "../../theme";
+import SquareCard from "../../theme/SquareCard";
 
 
 export const ClassesCard = (

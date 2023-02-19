@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import {  useEffect,  useState } from "react";
 import ClassCard from "./ClassCard";
 import ColumnHeader from "./ColumnHeader";

@@ -13,7 +13,6 @@ export const stringPattern = {
     message: "Os textos devem ter entre 3 e 30 caracteres sem caracteres especiais"
 }
 
-// não está funcionando no login
 export const emailPattern = {
     value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
     message: "Entre com um email válido"
