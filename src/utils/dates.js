@@ -1,11 +1,11 @@
 export const formatDate = (date, format = "DD/MM/YYYY") => {
-    const options = { day: "numeric", month: "numeric", year: "numeric" };
+    const [year, month, day] = date.split("-");
 
     if (format === "DD/MM") {
-        options.year = undefined;
+        return `${day.padStart(2, "0")}/${month.padStart(2, "0")}`
     }
 
-    return new Date(date).toLocaleDateString("pt-br", options);
+    return `${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year}`
 };
 
 export const getToday = () => new Date().toLocaleDateString("pt-br");
@@ -70,4 +70,35 @@ export const getNextNDays = (n) => {
     }
 
     return result;
+}
+
+export const sortByTime = (list) => {
+    return list.sort((a, b) => {
+        if (a.time < b.time) return -1;
+        if (a.time > b.time) return 1;
+        return 0;
+    });
+}
+
+export const sortByDayAndTime = (list) => {
+    const map = {
+        Domingo: 1,
+        Segunda: 2,
+        Terça: 3,
+        Quarta: 4,
+        Quinta: 5,
+        Sexta: 6,
+        Sábado: 7
+    };
+    list.sort((a, b) => {
+        if (map[a.day] < map[b.day]) return -1;
+        if (map[a.day] > map[b.day]) return 1;
+
+        if (a.time < b.time) return -1;
+        if (a.time > b.time) return 1;
+
+        return 0;
+    });
+
+    return list;
 }

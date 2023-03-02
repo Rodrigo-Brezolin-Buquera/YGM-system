@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { findClassesByPeriod } from "../../api/calendar";
-import { getNextNDays } from "../../utils/dates";
+import { getNextNDays, sortByDayAndTime } from "../../utils/dates";
 import {ClassesCard} from "./ClassesCard";
 
 const AvailableClasses = ({ contractId, contractLimit, userName  }) => {
@@ -13,7 +13,7 @@ const AvailableClasses = ({ contractId, contractLimit, userName  }) => {
             .catch(err => console.log(err.message))
     }, [ contractId]);
 
-    const classesList = yogaClasses?.length && yogaClasses.map((yogaClass) => {
+    const classesList = yogaClasses?.length && sortByDayAndTime(yogaClasses).map((yogaClass) => {
         return (
             <ClassesCard
                 key={yogaClass.id}               

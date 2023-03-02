@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import {  useEffect,  useState } from "react";
+import { sortByTime } from "../../utils/dates";
 import ClassCard from "./ClassCard";
 import ColumnHeader from "./ColumnHeader";
 
@@ -10,11 +11,11 @@ const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
         setClasses(yogaClasses)
     }, [date, yogaClasses])
 
-    const list = classes?.length ? classes?.map((yogaClass) => {
+    const list = classes?.length ? sortByTime(classes).map((yogaClass) => {
 
         return (
             <ClassCard
-                key={day}
+                key={yogaClass.id}
                 yogaClass={yogaClass}
                 setSelected={setSelected}
                 navigate={navigate}

@@ -8,7 +8,7 @@ export const createClasses = async (values) => {
         let crescentDate = formatDate(values.date, "DD/MM/YYYY")
         let list = []
         const groupId = `${values.date}-${values.time}-${values.name}`
-    
+      
         for (let weeks = 0; weeks < 50; weeks++) {
             const yogaClass = {
                 ...values,

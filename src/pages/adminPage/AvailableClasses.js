@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemWhere,  } from "../../api";
 import {  calendarCol } from "../../api/config";
-import { getToday } from "../../utils/dates";
+import { getToday, sortByTime } from "../../utils/dates";
 import ClassesCard from "./ClassesCard";
 
 
@@ -13,7 +13,7 @@ const AvailableClasses = ({ navigate }) => {
     useEffect(() => {
       
         findItemWhere(calendarCol, "date", getToday())
-            .then(res => setyogaClasses(res))
+            .then(res => setyogaClasses(sortByTime(res)))
             .catch(err => console.log(err.message))
     }, [ ]);
 
