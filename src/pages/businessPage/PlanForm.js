@@ -25,7 +25,7 @@ export const PlanForm = ({ loading, setLoading }) => {
         setLoading(true);
         const plan = {
             id: `${values.frequency}-${values.duration}`,
-            price: `R$ ${values.price}`,
+            price: `R$ ${values.price},00`,
             frequency: values.frequency,
             type: values.duration,
             availableClasses: quantity,
