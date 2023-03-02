@@ -44,7 +44,7 @@ export const PlanForm = ({ loading, setLoading }) => {
                 isInvalid={errors.price || errors.frequency || errors.duration}
                 display={"flex"}
                 flexDirection={"row"}
-                flexWrap={["wrap", "wrap", "wrap", "nowrap"]}
+                flexWrap={"wrap"}
                 alignItems={"center"}
                 justifyContent={"center"}
                 gap={"1em"}
@@ -52,6 +52,7 @@ export const PlanForm = ({ loading, setLoading }) => {
                 minW={"250px"}
             >
                 <Input
+
                     w={"100px"}
                     variant={"outline"}
                     id="price"
@@ -75,6 +76,7 @@ export const PlanForm = ({ loading, setLoading }) => {
                 </Select>
 
                 <Select
+
                     w={"130px"}
                     variant={"outline"}
                     id="duration"
@@ -86,7 +88,7 @@ export const PlanForm = ({ loading, setLoading }) => {
                     <DurationOptions />
                 </Select>
 
-                <FormErrorMessage>
+                <FormErrorMessage alignItems={"center"}                >
                     {errors.price && errors.price.message}
                     <br />
                     {errors.frequency && errors.frequency.message}
