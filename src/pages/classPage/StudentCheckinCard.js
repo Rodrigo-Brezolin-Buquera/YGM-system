@@ -48,14 +48,15 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
                 :
                 <Box
                     display={"flex"}
-                    justifyContent={"space-around"}
+                    justifyContent={"space-between"}
                     _hover={{ cursor: "pointer" }}
+                    p={"0 0.5em"}
                     w={"100%"}
                 >
 
                     <Text onClick={onConfirm} fontSize={"mds"} >  {name}  </Text>
 
-                    <DeleteIcon
+                    <DeleteIcon     
                         _hover={{ cursor: "pointer" }}
                         onClick={onDelete}
                         boxSize={"5"}
