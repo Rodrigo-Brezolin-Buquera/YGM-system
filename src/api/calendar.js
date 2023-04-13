@@ -13,7 +13,7 @@ export const createClasses = async (values) => {
             const yogaClass = {
                 ...values,
                 date: crescentDate,
-                capacity: 8,
+                capacity: 16,
                 groupId
             }
             crescentDate = addOneWeek(crescentDate)
