@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteItemById, deleteItemWhere, findItemById } from "../../api";
 import { calendarCol } from "../../api/config";
+import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
@@ -15,12 +16,13 @@ const ClassPage = () => {
     const navigate = useNavigate();
     const { classId } = useParams();
     const [yogaClass, setYogaClass] = useState({});
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         findItemById(calendarCol, classId)
             .then(res => setYogaClass(res))
             .catch(err => console.log(err.message))
-    }, [classId]);
+    }, [classId, loading]);
 
     const deleteClass = () => {
         confirmDialog("Deletar aula?", () => {
@@ -71,11 +73,20 @@ const ClassPage = () => {
                         <CircularProgress isIndeterminate color="brand.200" size="70px" />
                     }
 
+                    <Booking
+                        setSelected={null}
+                        selected={yogaClass}
+                        setLoading={setLoading}
+                    />
+
                 </MainContainer>
                 <SideContainer>
                     <StudentList
                         capacity={yogaClass?.capacity}
                         classId={classId}
+                        loading={loading}
+                        setLoading={setLoading}
+
                     />
                 </SideContainer>
             </Background>

@@ -1,19 +1,21 @@
 import { Card, Heading, Text, Input } from "@chakra-ui/react"
-import { createContractlessCheckin } from "../../api/checkins"
-import { stringPattern } from "../../api/patterns"
-import { useInput } from "../../hooks/useInput"
-import { LoadingButton, MainContainer } from "../../theme"
-import { simplifyDate } from "../../utils/dates"
+import { useLocation } from "react-router-dom"
+import { createContractlessCheckin } from "../api/checkins"
+import { stringPattern } from "../api/patterns"
+import { useInput } from "../hooks/useInput"
+import { LoadingButton, MainContainer } from "../theme"
+import { simplifyDate } from "../utils/dates"
 
-export const Booking = ({ selected,setSelected, setLoading }) => {
+export const Booking = ({ selected, setSelected, setLoading }) => {
     const [name, handleName] = useInput("")
+    const { pathname } = useLocation();
 
     const addStudent = async () => {
         const { date, time, capacity, id } = selected
         await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
-            .then(setSelected(null))
+            .then(setSelected && setSelected(null))
             .catch(err => console.log(err.message))
-        setTimeout(setLoading((prevState)=> !prevState), 1000)
+        setTimeout(setLoading((prevState) => !prevState), 1000)
     }
 
     return (
@@ -24,7 +26,7 @@ export const Booking = ({ selected,setSelected, setLoading }) => {
                 selected ?
                     <Card
                         display={"flex"}
-                        flexDirection={["column","column", "row", "row"]}
+                        flexDirection={["column", "column", "row", "row"]}
                         minWidth={"auto"}
                         p={"1em  3em"}
                         justifyContent={"center"}
@@ -33,13 +35,16 @@ export const Booking = ({ selected,setSelected, setLoading }) => {
                         backgroundColor={"brand.500"}
                     >
 
-                        <Text minW={"110px"}
-                            fontWeight={"bold"}
-                        >
-                            {simplifyDate(selected?.date)} - {selected?.time}
-                        </Text>
-
-
+                        {
+                            pathname === "/admin/calendar" ?
+                                <Text minW={"110px"}
+                                    fontWeight={"bold"}
+                                >
+                                    {simplifyDate(selected?.date)} - {selected?.time}
+                                </Text>
+                                :
+                                null
+                        }
                         {
                             selected?.capacity <= 0
                                 ?

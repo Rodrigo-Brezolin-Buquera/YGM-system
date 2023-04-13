@@ -4,9 +4,8 @@ import { findItemWhere } from "../../api";
 import { checkinsCol } from "../../api/config";
 import StudentCheckinCard from "./StudentCheckinCard";
 
-export const StudentList = ({ capacity, classId }) => {
+export const StudentList = ({ capacity, classId,loading, setLoading }) => {
     const [checkins, setCheckins] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         findItemWhere(checkinsCol, "yogaClassId", classId)

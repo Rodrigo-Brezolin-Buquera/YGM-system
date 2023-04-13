@@ -4,8 +4,9 @@ import { useState } from "react";
 import { validateCheckin, cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
 import { confirmDialog } from "../../theme";
 
-const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless }) => {
+const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless, }) => {
     const [cardLoading, setCardLoading] = useState(false);
+
 
     const onConfirm = () => {
         setCardLoading(true);
@@ -24,7 +25,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
                 .catch((err) => { console.log(err.message) })
                 .finally(() => {
                     setCardLoading(false)
-                    setLoading((prevState => !prevState))
+                    setLoading((prevState => !prevState))                
                 });
         })
     }
