@@ -14,11 +14,10 @@ export const Plans = () => {
   
     const onDelete = (id) => {
         confirmDialog("Deletar plano?", () => {
-            setLoading(!loading)
+            setLoading(true)
             deleteItemById(plansCol, id)
-                .then()
                 .catch(err => console.log(err.message))
-                .finally(setLoading(!loading))
+                .finally(()=>setLoading(false))
         })
     }
 

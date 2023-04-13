@@ -34,7 +34,7 @@ export const PlanForm = ({ loading, setLoading }) => {
         createItemWithId(plansCol, plan, plan.id)
             .then(reset())
             .catch((err) => console.log(err.message))
-            .finally(setLoading(false))
+            .finally(()=>setLoading(false))
     };
 
 
