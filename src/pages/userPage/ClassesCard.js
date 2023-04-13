@@ -8,10 +8,9 @@ import SquareCard from "../../theme/SquareCard";
 
 
 export const ClassesCard = (
-    { contractId, userName, yogaClass, contractLimit }
+    { contractId, userName, yogaClass, contractLimit, loading, setLoading }
 ) => {
     const [checkin, setCheckin] = useState(null);
-    const [loading, setLoading] = useState(false);
     const { id, day, time, date, teacher, name, capacity } = yogaClass
 
     const checkinId = `${contractId}+${id}`;

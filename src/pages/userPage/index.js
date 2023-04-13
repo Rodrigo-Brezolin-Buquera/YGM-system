@@ -1,10 +1,10 @@
-import {  CircularProgress, Button } from "@chakra-ui/react";
+import { CircularProgress, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById } from "../../api";
 import { logout } from "../../api/auth";
-import {  contractsCol,  } from "../../api/config";
-import {CheckinsDone} from "../../components/CheckinsDone";
+import { contractsCol, } from "../../api/config";
+import { CheckinsDone } from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { MainContainer, SideContainer, Header, Background } from "../../theme";
@@ -15,12 +15,13 @@ const UserPage = () => {
     const { userId } = useParams();
     const navigate = useNavigate()
     const [contract, setContract] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContract(res))
             .catch(err => console.log(err.message))
-    }, [ userId]);
+    }, [userId, loading]);
 
     return (
         <>
@@ -40,7 +41,9 @@ const UserPage = () => {
                         contractId={contract?.id}
                         userName={contract?.name}
                         contractLimit={contract?.currentContract?.availableClasses}
-                              
+                        loading={loading}
+                        setLoading={setLoading}
+
                     />
                 </SideContainer>
 
@@ -61,7 +64,10 @@ const UserPage = () => {
                 </MainContainer>
 
                 <SideContainer>
-                    {<CheckinsDone userId={userId} />}
+                    {<CheckinsDone
+                        userId={userId}
+                        loading={loading}
+                    />}
                 </SideContainer>
 
             </Background>
