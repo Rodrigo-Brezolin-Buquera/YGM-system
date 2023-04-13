@@ -36,9 +36,9 @@ export const newContract = async ({ plan, date }, id) => {
 
 export const updateContract = async (values, id) => {
     const contract = {
+        name: values.name,
         currentContract: {
-            name: values.name,
-            active: values.active,
+            active: Boolean(values.active),
             plan: values.plan,
             ends: formatDate(values.ends, "DD/MM/YYYY"),
             started: formatDate(values.started, "DD/MM/YYYY"),
