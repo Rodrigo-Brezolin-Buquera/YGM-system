@@ -11,21 +11,22 @@ import { PlanForm } from "./PlanForm";
 export const Plans = () => {
     const [plans, setPlans] = useState([]);
     const [loading, setLoading] = useState(false);
+  
+    const onDelete = (id) => {
+        confirmDialog("Deletar plano?", () => {
+            setLoading(!loading)
+            deleteItemById(plansCol, id)
+                .then()
+                .catch(err => console.log(err.message))
+                .finally(setLoading(!loading))
+        })
+    }
 
     useEffect(() => {
         findAllItems(plansCol)
             .then(res => setPlans(res))
             .catch(err => console.log(err.message))
-    }, []);
-
-    const onDelete = (id) => {
-        confirmDialog("Deletar plano?", () => {
-            setLoading(true)
-            deleteItemById(plansCol, id)
-                .catch(err => console.log(err.message))
-                .finally(setLoading(false))
-        })
-    }
+    }, [loading]);
 
     const list = plans?.length ? plans.map(plan => {
         return (

@@ -87,8 +87,8 @@ export const PlanForm = ({ loading, setLoading }) => {
                 >
                     <DurationOptions />
                 </Select>
-
-                <FormErrorMessage alignItems={"center"}                >
+                
+                <FormErrorMessage alignItems={"center"}   w={"100%"}  display={"flex"} justifyContent={"center"}   >
                     {errors.price && errors.price.message}
                     <br />
                     {errors.frequency && errors.frequency.message}
