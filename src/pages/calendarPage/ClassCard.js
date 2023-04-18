@@ -8,7 +8,7 @@ const ClassCard = ({ yogaClass, navigate, setSelected }) => {
 
     const bookingHandler = () => {
         setSelected(yogaClass)
-        document.body.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        document.body.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }
 
     return (

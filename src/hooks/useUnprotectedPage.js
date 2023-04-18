@@ -13,13 +13,13 @@ export const useUnprotectedPage = () => {
     }, [])
 
     if (status.loggedIn === true) {
-            const admin = localStorage.getItem("admin")
-            if (admin === "true") {
-                goToAdmin(navigate)
-            }
-            if (admin === "false") {
-                goToUser(navigate, status.userId)
-            }
+        const admin = localStorage.getItem("admin")
+        if (admin === "true") {
+            goToAdmin(navigate)
+        }
+        if (admin === "false") {
+            goToUser(navigate, status.userId)
+        }
     }
 }
 
