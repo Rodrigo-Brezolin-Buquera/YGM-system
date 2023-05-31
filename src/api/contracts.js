@@ -17,6 +17,7 @@ export const createContract = async ({ name, plan, date , id}) => {
         }
     }
     await createItemWithId(contractsCol, contract, id)
+    await updateItem(usersCol, {active:true}, id)
 }
 
 export const newContract = async ({ plan, date }, id) => {
