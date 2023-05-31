@@ -7,7 +7,7 @@ import {useInput} from "../../hooks/useInput";
 import UserInfo from "./UserInfo";
 
 
-const StudentList = ({  navigate }) => {
+const ContractList = ({  navigate }) => {
     const [contracts, setContracts] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
     const [status, handleStatus] = useInput("");
@@ -26,9 +26,9 @@ const StudentList = ({  navigate }) => {
         .filter(user => {
             const contract = user?.currentContract;
             switch (status) {
-            case "ativos":
+            case "Ativos":
                 return contract?.active === true;
-            case "inativos":
+            case "Inativos":
                 return contract?.active === false;
             default:
                 return contract?.active === true || contract?.active === false;
@@ -118,4 +118,4 @@ const StudentList = ({  navigate }) => {
     );
 };
 
-export default StudentList;
+export default ContractList;

@@ -19,7 +19,7 @@ export const login = async (form, navigate) => {
 export const singUp = async ({ email, password, name }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
     const id = user.uid
-    await createItemWithId(usersCol, { email, name }, id) // isso pode ser bem problematico
+    await createItemWithId(usersCol, { email, name, admin: false, active: false }, id) // isso pode ser bem problematico
     return id
 };
 

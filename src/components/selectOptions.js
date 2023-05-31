@@ -32,8 +32,8 @@ export const StatusOptions = () => {
 
     return (
         <>
-            <option value={true} > Ativos </option>
-            <option value={false} > Inativos </option>
+            <option > Ativos </option>
+            <option > Inativos </option>
         </>
     );
 };
