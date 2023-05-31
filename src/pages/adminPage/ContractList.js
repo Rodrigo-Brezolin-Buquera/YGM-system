@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { findAllItems } from "../../api";
 import { contractsCol } from "../../api/config";
 import { StatusOptions, TypeOptions } from "../../components/selectOptions";
-import {useInput} from "../../hooks/useInput";
+import { useInput } from "../../hooks/useInput";
+import { InputContainer } from "../../theme";
 import UserInfo from "./UserInfo";
 
 
-const ContractList = ({  navigate }) => {
+const ContractList = ({ navigate }) => {
     const [contracts, setContracts] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
     const [status, handleStatus] = useInput("");
@@ -19,43 +20,43 @@ const ContractList = ({  navigate }) => {
             .then(res => setContracts(res))
             .catch(err => console.log(err.message))
 
-    }, [ ]);
+    }, []);
 
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter(user => {
             const contract = user?.currentContract;
             switch (status) {
-            case "Ativos":
-                return contract?.active === true;
-            case "Inativos":
-                return contract?.active === false;
-            default:
-                return contract?.active === true || contract?.active === false;
+                case "Ativos":
+                    return contract?.active === true;
+                case "Inativos":
+                    return contract?.active === false;
+                default:
+                    return contract?.active === true || contract?.active === false;
 
             }
         })
         .filter((user) => {
             const contract = user?.currentContract;
             switch (planType) {
-            case "1x-Mensal":
-                return contract?.plan === "1x-Mensal";
-            case "2x-Mensal":
-                return contract?.plan === "2x-Mensal";
-            case "1x-Trimestral":
-                return contract?.plan === "1x-Trimestral";
-            case "2x-Trimestral":
-                return contract?.plan === "2x-Trimestral";
-            case "1x-Semestral":
-                return contract?.plan === "1x-Semestral";
-            case "2x-Semestral":
-                return contract?.plan === "2x-Semestral";
-            case "Avulsa":
-                return contract?.plan === "---Avulsa";
-            case "Gympass":
-                return contract?.plan === "---Gympass";
-            default:
-                return contract?.plan;
+                case "1x-Mensal":
+                    return contract?.plan === "1x-Mensal";
+                case "2x-Mensal":
+                    return contract?.plan === "2x-Mensal";
+                case "1x-Trimestral":
+                    return contract?.plan === "1x-Trimestral";
+                case "2x-Trimestral":
+                    return contract?.plan === "2x-Trimestral";
+                case "1x-Semestral":
+                    return contract?.plan === "1x-Semestral";
+                case "2x-Semestral":
+                    return contract?.plan === "2x-Semestral";
+                case "Avulsa":
+                    return contract?.plan === "---Avulsa";
+                case "Gympass":
+                    return contract?.plan === "---Gympass";
+                default:
+                    return contract?.plan;
             }
         })
         .map((user) => {
@@ -76,14 +77,7 @@ const ContractList = ({  navigate }) => {
         });
 
     return (
-        <Box
-            display={"flex"}
-            flexDirection={"column"}
-            alignItems={"flex-start"}
-            gap={"0.5em"}
-            width={"100%"}
-            margin={"0.5em"}
-        >
+        <InputContainer>
             <Box
                 display={"flex"}
                 gap={"1em"}
@@ -114,7 +108,7 @@ const ContractList = ({  navigate }) => {
             {userList?.length ? userList : <p> Nenhum contrato encontrado </p>}
 
 
-        </Box>
+        </InputContainer>
     );
 };
 

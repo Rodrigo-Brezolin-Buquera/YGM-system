@@ -4,19 +4,19 @@ import { findAllItems } from "../../api";
 import { usersCol } from "../../api/config";
 import { StatusOptions } from "../../components/selectOptions";
 import { useInput } from "../../hooks/useInput";
-import { Line } from "../../theme";
+import { InputContainer, Line } from "../../theme";
 import { goToContract } from "../../routes/coordinator";
 
 const UserList = ({ navigate }) => {
     const [users, setUsers] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
     const [status, handleStatus] = useInput("");
+    
     useEffect(() => {
         findAllItems(usersCol)
             .then(res => setUsers(res))
             .catch(err => console.log(err.message))
     }, []);
-    console.log("estado", status)
 
     const userList = users?.length && users
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
@@ -58,14 +58,7 @@ const UserList = ({ navigate }) => {
         });
 
     return (
-        <Box
-            display={"flex"}
-            flexDirection={"column"}
-            alignItems={"flex-start"}
-            gap={"0.5em"}
-            width={"100%"}
-            margin={"0.5em"}
-        >
+        <InputContainer>
             <Box
                 display={"flex"}
                 gap={"1em"}
@@ -86,7 +79,7 @@ const UserList = ({ navigate }) => {
                 </Select>
             </Box>
             {userList?.length ? userList : <p> Nenhum usuário encontrado </p>}
-        </Box>
+        </InputContainer>
     );
 };
 
