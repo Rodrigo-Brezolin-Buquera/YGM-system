@@ -17,7 +17,7 @@ const UserList = ({ navigate }) => {
             .then(res => setUsers(res))
             .catch(err => console.log(err.message))
     }, []);
-
+    
     const userList = users?.length && users
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter(user => {

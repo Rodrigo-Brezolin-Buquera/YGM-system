@@ -2,7 +2,7 @@ import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react"
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 
-import { contractsCol } from "../../api/config";
+import { contractsCol, usersCol } from "../../api/config";
 import { changeStatus, deleteContract } from "../../api/contracts";
 import UserInfo from "../../components/UserInfo";
 import { goToAdmin } from "../../routes/coordinator";
@@ -12,6 +12,7 @@ import { EditContractModal } from "./EditContractModal"
 
 export const UserActions = ({ userId, navigate }) => {
     const [contracts, setContracts] = useState({});
+    const [user, setUser] = useState({})
     const [loading, setloading] = useState(false)
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
@@ -28,13 +29,16 @@ export const UserActions = ({ userId, navigate }) => {
         await changeStatus(userId, !contracts?.currentContract?.active)
             .catch(err => console.log(err.message))
             .finally(setloading(!loading))
-
     }
 
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContracts(res))
             .catch(err => console.log(err.message))
+        findItemById(usersCol, userId)
+            .then(res => setUser(res))
+            .catch(err => console.log(err.message))
+
     }, [userId, loading, isAddOpen, isEditOpen]);
 
     return (
@@ -76,7 +80,7 @@ export const UserActions = ({ userId, navigate }) => {
             </WrapContainer>
 
             {
-                contracts.id ?
+                contracts?.id ?
                     <UserInfo
                         id={contracts.id}
                         name={contracts.name}
@@ -85,13 +89,16 @@ export const UserActions = ({ userId, navigate }) => {
                         planEnds={contracts.currentContract.ends}
                         availableClasses={contracts.currentContract.availableClasses}
                     /> :
-                    <CircularProgress isIndeterminate color="brand.200" size="70px" />
+                    <Text> Ainda não contrato para este usuário</Text>
+                // <CircularProgress isIndeterminate color="brand.200" size="70px" />
             }
 
             <AddContractModal
                 isOpen={isAddOpen}
                 onClose={onAddClose}
+                name={user.name}
                 id={userId}
+                userIsActive={contracts?.name}
 
             />
 

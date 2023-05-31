@@ -4,13 +4,13 @@ import {
     Input,
     Select, Text
 } from "@chakra-ui/react";
-import {useState} from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { newContract } from "../../api/contracts";
+import { createContract, newContract } from "../../api/contracts";
 import { TypeOptions } from "../../components/selectOptions";
 import { FormButton, ModalComponent } from "../../theme";
 
-export const AddContractModal = ({ id,  isOpen, onClose   }) => {
+export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) => {
     const {
         handleSubmit,
         register,
@@ -22,10 +22,20 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
 
     const onSubmit = (values) => {
         setLoading(true);
-        newContract(values, id)        
+        (
+            userIsActive ?
+                newContract(values, id)
+                :
+                createContract({
+                    id,
+                    name,
+                    plan: values.plan,
+                    date: values.date
+                })
+        )
             .then(reset())
             .catch(err => console.log(err.message))
-            .finally(()=>{
+            .finally(() => {
                 setLoading(false)
                 onClose()
             });
@@ -35,7 +45,7 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar novo contrato"}>
 
             <form onSubmit={handleSubmit(onSubmit)} >
-                <FormControl 
+                <FormControl
                     isInvalid={errors.plan || errors.date}
                     display={"flex"}
                     flexDirection={"column"}
@@ -43,7 +53,7 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
                     justifyContent={"center"}
                     gap={"1em"}
                     minW={"300px"}
-            
+
                 >
                     <Select
                         id="plan"
@@ -67,11 +77,11 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
                     />
                     <FormErrorMessage>
                         {errors.plan && errors.plan.message}
-                        <br/>
+                        <br />
                         {errors.date && errors.date.message}
                     </FormErrorMessage>
                 </FormControl>
-           
+
                 <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} >
                     <Text>Adicionar plano </Text>
                 </FormButton>

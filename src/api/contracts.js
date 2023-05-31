@@ -3,7 +3,7 @@ import { calculateEndDate, formatDate } from "../utils/dates"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, findItemWhere, updateItem } from "."
 
-export const createContract = async ({ name, plan, date }, id) => {
+export const createContract = async ({ name, plan, date , id}) => {
     const [frequency, dur] = plan.split("-")
     const [duration, quantity] = calculatePlanNumbers(frequency, dur)
     const contract = {
