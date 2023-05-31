@@ -2,17 +2,15 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text
+     Text
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { singUp, genPassword } from "../../api/auth";
-import { createContract } from "../../api/contracts";
-import { emailPattern, stringPattern } from "../../api/patterns";
-import { TypeOptions } from "../../components/selectOptions";
+import { emailPattern, passwordPattern, stringPattern } from "../../api/patterns";
 import { ModalComponent, FormButton } from "../../theme";
 
-export const CreateContractModal = ({ isOpen, onClose }) => {
+export const SignupModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
@@ -22,22 +20,23 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
     } = useForm();
 
     const onSubmit = (values) => {
-        setLoading(true);
-        singUp({ email: values.email, password: genPassword() })
-            .then(id => createContract( values, id))
-            .catch((err) => alert(err.message))
-            .finally(() => {
-                setLoading(false)
-                reset()
-                onClose() 
-            })
+        console.log(values)
+        // setLoading(true);
+        // singUp({ email: values.email, password: genPassword() })
+        //     .then(id => createContract( values, id))
+        //     .catch((err) => alert(err.message))
+        //     .finally(() => {
+        //         setLoading(false)
+        //         reset()
+        //         onClose() 
+        //     })
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar usuário"} >   
+        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Preencha seus dados"} >
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
-                    isInvalid={errors.name || errors.email || errors.plan || errors.date}
+                    isInvalid={errors.name || errors.email || errors.password || errors.repetPassword}
                     display={"flex"}
                     flexDirection={"column"}
                     alignItems={"center"}
@@ -64,34 +63,34 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
                             pattern: emailPattern
                         })}
                     />
-                    <Select
-                        variant={"outline"}
-                        id="plan"
-                        placeholder="Escolha um plano"
-                        {...register("plan", {
-                            required: "Campo Obrigátorio"
-                        })}
-                    >
-                        <TypeOptions />
 
-                    </Select>
                     <Input
                         variant={"outline"}
-                        id="date"
-                        type="date"
-                        placeholder="Data"
-                        {...register("date", {
-                            required: "This is required"
+                        id="password"
+                        placeholder="senha"
+                        {...register("password", {
+                            required: "Campo Obrigátorio",
+                            pattern: passwordPattern
                         })}
                     />
+
+                    <Input
+                        variant={"outline"}
+                        id="repetPassword"
+                        placeholder="Repita sua senha"
+                        {...register("repetPassword", {
+                            required: "Campo Obrigátorio",
+                            pattern: passwordPattern
+                        })}
+                    />
+
                     <FormErrorMessage>
                         {errors.name && errors.name.message}
                         <br />
                         {errors.email && errors.email.message}
                         <br />
-                        {errors.plan && errors.plan.message}
-                        <br />
-                        {errors.date && errors.date.message}
+                        {errors.password && errors.password.message}
+                      
                     </FormErrorMessage>
                 </FormControl>
 
@@ -99,7 +98,7 @@ export const CreateContractModal = ({ isOpen, onClose }) => {
                     <Text>Criar</Text>
                 </FormButton>
             </form>
-             
+
         </ModalComponent>
 
 
