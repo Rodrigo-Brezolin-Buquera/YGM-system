@@ -6,11 +6,13 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 import { singUp, genPassword } from "../../api/auth";
 import { emailPattern, passwordPattern, stringPattern } from "../../api/patterns";
+import { goToUser } from "../../routes/coordinator";
 import { ModalComponent, FormButton } from "../../theme";
 
-export const SignupModal = ({ isOpen, onClose }) => {
+export const SignupModal = ({ isOpen, onClose, navigate }) => {
     const [loading, setLoading] = useState(false);
     const {
         handleSubmit,
@@ -19,17 +21,16 @@ export const SignupModal = ({ isOpen, onClose }) => {
         formState: { errors, isSubmitting }
     } = useForm();
 
-    const onSubmit = (values) => {
-        console.log(values)
-        // setLoading(true);
-        // singUp({ email: values.email, password: genPassword() })
-        //     .then(id => createContract( values, id))
-        //     .catch((err) => alert(err.message))
-        //     .finally(() => {
-        //         setLoading(false)
-        //         reset()
-        //         onClose() 
-        //     })
+    const onSubmit = ({email, name, password}) => {
+        setLoading(true);
+        singUp({ email, password, name })
+            .then((res)=> goToUser(navigate, res.id))
+            .catch((err) => alert(err.message))
+            .finally(() => {
+                setLoading(false)
+                reset()
+                onClose() 
+            })
     };
 
     return (

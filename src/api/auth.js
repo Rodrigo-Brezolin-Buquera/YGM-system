@@ -16,13 +16,10 @@ export const login = async (form, navigate) => {
     }
 };
 
-export const singUp = async ({ email, password }) => {
-    let id
+export const singUp = async ({ email, password, name }) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
-    id = user.uid
-    await sendPasswordResetEmail(auth, email);
-    await signInWithEmailAndPassword(auth, process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASSWORD)
-    await createItemWithId(usersCol, { email, admin: false }, id)
+    const id = user.uid
+    await createItemWithId(usersCol, { email, name }, id) // isso pode ser bem problematico
     return id
 };
 
