@@ -82,10 +82,10 @@ export const LoginForm = ({ navigate }) => {
                             <FormButton
                                 isSubmitting={isSubmitting}
                                 color={"brand.200"}
-                                loading={loading
-                                }
+                                loading={loading}
+                                width={"120px"}
                             >
-                                <Text>Login</Text>
+                                <Text>Acessar</Text>
                             </FormButton>
 
                         </Box>

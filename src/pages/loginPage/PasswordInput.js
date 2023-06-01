@@ -17,6 +17,7 @@ export const PasswordInput = ({ children, setShowPassword, showPassword }) => {
             {children}
             <InputRightElement>
                 <IconButton
+                    variant='none'
                     aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
                     icon={showPassword ? <Icon img={ClosedEye} /> :<Icon img={Eye} /> }
                     onClick={() => setShowPassword(!showPassword)}

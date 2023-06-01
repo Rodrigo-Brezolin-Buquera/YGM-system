@@ -8,7 +8,6 @@ import { LoginForm } from "./LoginForm";
 const LoginPage = () => {
     useUnprotectedPage();
     const { isOpen: isOpen, onOpen: onOpen, onClose: onClose } = useDisclosure()
-
     const navigate = useNavigate();
 
     return (
@@ -23,7 +22,7 @@ const LoginPage = () => {
         >
             <Image maxW={"300px"} src={defaultLogo} alt="logo" />
             <LoginForm navigate={navigate} />
-            <Text _hover={{ cursor: "pointer" }} onClick={onOpen} >Não possui conta? Crie uma aqui</Text>
+            <Text _hover={{ cursor: "pointer" }} fontSize={"sm"}  onClick={onOpen} >Não possui conta? Crie uma aqui</Text>
             <SignupModal isOpen={isOpen} onClose={onClose} navigate={navigate} />
 
         </Box>

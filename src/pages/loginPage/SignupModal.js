@@ -12,7 +12,6 @@ import { goToUser } from "../../routes/coordinator";
 import { ModalComponent, FormButton } from "../../theme";
 import { PasswordInput } from "./PasswordInput";
 
-
 export const SignupModal = ({ isOpen, onClose, navigate }) => {
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +39,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
     const password = watch("password")
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Preencha seu cadastro"} >
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} >
                 <FormControl
                     isInvalid={errors.name || errors.email || errors.password || errors.repetPassword}
                     display={"flex"}
@@ -93,7 +92,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                             variant={"outline"}
                             id="repetPassword"
                             placeholder="Repita sua senha"
-                            type={"password"}
+                            type={showRepetPassword ? "text" : "password"}
 
                             {...register("repetPassword", {
                                 required: "Campo Obrigátorio",
@@ -112,16 +111,13 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                         <br />
                         {errors.repetPassword && errors.repetPassword.message}
                     </FormErrorMessage>
+
+                    <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"160px"}>
+                        <Text>Criar</Text>
+                    </FormButton>
                 </FormControl>
-
-                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading}>
-                    <Text>Criar</Text>
-                </FormButton>
             </form>
-
         </ModalComponent>
-
-
     );
 };
 
