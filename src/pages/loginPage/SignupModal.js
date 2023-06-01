@@ -24,7 +24,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
     const onSubmit = ({email, name, password}) => {
         setLoading(true);
         singUp({ email, password, name })
-            .then((res)=> goToUser(navigate, res.id))
+            .then((id)=> goToUser(navigate, id))
             .catch((err) => alert(err.message))
             .finally(() => {
                 setLoading(false)
