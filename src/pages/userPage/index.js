@@ -1,5 +1,5 @@
-import { CircularProgress, Button, Text, Heading } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { CircularProgress, Button, Text } from "@chakra-ui/react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById } from "../../api";
 import { logout, resetPassword } from "../../api/auth";
@@ -7,7 +7,7 @@ import { contractsCol, usersCol, } from "../../api/config";
 import { CheckinsDone } from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { MainContainer, SideContainer, Header, Background, WrapContainer } from "../../theme";
+import { MainContainer, SideContainer, Header, Background, WrapContainer, confirmDialog } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
 const UserPage = () => {
@@ -27,7 +27,9 @@ const UserPage = () => {
             .catch(err => console.log(err.message))
     }, [userId, loading]);
 
-    const changePassword = async () => await resetPassword(user?.email)
+    const changePassword = useCallback(() => {
+        confirmDialog("Enviar email de redefinição de senha?", ()=> resetPassword(user?.email)) 
+    },[user])
 
     return (
         <>
