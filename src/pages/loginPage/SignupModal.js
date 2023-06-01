@@ -18,7 +18,8 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
         handleSubmit,
         register,
         reset,
-        formState: { errors, isSubmitting }
+        formState: { errors, isSubmitting },
+        watch
     } = useForm();
 
     const onSubmit = ({email, name, password}) => {
@@ -32,7 +33,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                 onClose() 
             })
     };
-
+    const password = watch("password")
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Preencha seus dados"} >
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,6 +70,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                         variant={"outline"}
                         id="password"
                         placeholder="senha"
+                        type={"password"}
                         {...register("password", {
                             required: "Campo Obrigátorio",
                             pattern: passwordPattern
@@ -79,9 +81,12 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                         variant={"outline"}
                         id="repetPassword"
                         placeholder="Repita sua senha"
+                        type={"password"}
+
                         {...register("repetPassword", {
                             required: "Campo Obrigátorio",
-                            pattern: passwordPattern
+                            pattern: passwordPattern,
+                            validate: (value) => value === password || "As senhas não coincidem"
                         })}
                     />
 
@@ -91,7 +96,8 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                         {errors.email && errors.email.message}
                         <br />
                         {errors.password && errors.password.message}
-                      
+                        <br />
+                         {errors.repetPassword && errors.repetPassword.message}
                     </FormErrorMessage>
                 </FormControl>
 
