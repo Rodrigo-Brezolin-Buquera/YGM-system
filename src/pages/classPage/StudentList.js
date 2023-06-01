@@ -13,7 +13,6 @@ export const StudentList = ({ capacity, classId,loading, setLoading }) => {
             .catch(err => console.log(err.message))
     }, [loading, classId]);
 
-
     const studentList = checkins?.length && checkins.map((checkin) => {
         return (
             <StudentCheckinCard

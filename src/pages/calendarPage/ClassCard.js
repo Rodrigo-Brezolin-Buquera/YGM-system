@@ -21,7 +21,6 @@ const ClassCard = ({ yogaClass, navigate, setSelected }) => {
             <Text fontSize="xl" >{yogaClass?.time}</Text>
             <Text fontSize="sm" >Vagas:  {yogaClass?.capacity}</Text>
         </CircularCard>)
-
 }
 
 export default memo(ClassCard)

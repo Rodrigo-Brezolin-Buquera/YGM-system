@@ -12,7 +12,6 @@ const DayColumn = ({ day, date, navigate, setSelected, yogaClasses }) => {
     }, [date, yogaClasses])
 
     const list = classes?.length ? sortByTime(classes).map((yogaClass) => {
-
         return (
             <ClassCard
                 key={yogaClass.id}

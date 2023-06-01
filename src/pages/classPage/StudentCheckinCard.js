@@ -7,7 +7,6 @@ import { confirmDialog } from "../../theme";
 const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless, }) => {
     const [cardLoading, setCardLoading] = useState(false);
 
-
     const onConfirm = () => {
         setCardLoading(true);
         validateCheckin(id, !verified)
@@ -42,7 +41,6 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
             padding={"0.2em"}
             minH={"50px"}
             w={"75%"}
-
         >
             {(cardLoading) ?
                 <CircularProgress isIndeterminate color="brand.200" size="50px" />
