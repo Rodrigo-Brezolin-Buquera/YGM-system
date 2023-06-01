@@ -28,7 +28,7 @@ const UserPage = () => {
     }, [userId, loading]);
 
     const changePassword = async () => await resetPassword(user?.email)
-    
+
     return (
         <>
             <Header>
@@ -55,14 +55,6 @@ const UserPage = () => {
                         </SideContainer>
 
                         <MainContainer>
-                            <WrapContainer>
-                                <Button
-                                    backgroundColor={"brand.200"}
-                                    onClick={changePassword}
-                                >
-                                    <Text> Redefinir senha</Text>
-                                </Button>
-                            </WrapContainer>
 
                             {
                                 contract?.id ?
@@ -76,6 +68,16 @@ const UserPage = () => {
                                     /> :
                                     <CircularProgress isIndeterminate color={"brand.200"} size="70px" />
                             }
+
+                            <WrapContainer>
+                                <Button
+                                    backgroundColor={"brand.200"}
+                                    onClick={changePassword}
+                                >
+                                    <Text> Redefinir senha</Text>
+                                </Button>
+                            </WrapContainer>
+
                         </MainContainer>
 
                         <SideContainer>
