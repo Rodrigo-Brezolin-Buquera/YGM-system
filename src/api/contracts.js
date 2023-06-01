@@ -39,7 +39,6 @@ export const updateContract = async (values, id) => {
     const contract = {
         name: values.name,
         currentContract: {
-            active: Boolean(values.active),
             plan: values.plan,
             ends: formatDate(values.ends, "DD/MM/YYYY"),
             started: formatDate(values.started, "DD/MM/YYYY"),
@@ -47,11 +46,6 @@ export const updateContract = async (values, id) => {
         }
     }
     await updateItem(contractsCol, contract, id)
-}
-
-export const changeStatus = async (id, status) => {
-    const docRef = doc(collection(database, contractsCol), id);
-    await updateDoc(docRef, { "currentContract.active": status });
 }
 
 

@@ -1,19 +1,17 @@
 import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
-
 import { contractsCol, usersCol } from "../../api/config";
-import { changeStatus, deleteContract } from "../../api/contracts";
+import { deleteContract } from "../../api/contracts";
 import UserInfo from "../../components/UserInfo";
 import { goToAdmin } from "../../routes/coordinator";
-import { WrapContainer, LoadingButton, confirmDialog } from "../../theme";
+import { WrapContainer, confirmDialog } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
 export const UserActions = ({ userId, navigate }) => {
     const [contracts, setContracts] = useState({});
     const [user, setUser] = useState({})
-    const [loading, setloading] = useState(false)
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
 
@@ -25,12 +23,6 @@ export const UserActions = ({ userId, navigate }) => {
         })
     };
 
-    const onChangeStatus = async () => {
-        await changeStatus(userId, !contracts?.currentContract?.active)
-            .catch(err => console.log(err.message))
-            .finally(setloading(!loading))
-    }
-
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContracts(res))
@@ -39,7 +31,7 @@ export const UserActions = ({ userId, navigate }) => {
             .then(res => setUser(res))
             .catch(err => console.log(err.message))
 
-    }, [userId, loading, isAddOpen, isEditOpen]);
+    }, [userId, isAddOpen, isEditOpen]);
 
     return (
         <>
@@ -57,17 +49,6 @@ export const UserActions = ({ userId, navigate }) => {
                 >
                     <Text> Novo Plano</Text>
                 </Button>
-
-                <LoadingButton
-                    color={!contracts?.currentContract?.active ? "brand.100" : "brand.200"}
-                    handler={onChangeStatus}
-                >
-                    <Text
-                        color={!contracts?.currentContract?.active ? "brand.400" : "brand.300"}
-                    >
-                        {contracts?.currentContract?.active ? "Pausar contrato" : "Ativar contrato"}
-                    </Text>
-                </LoadingButton>
 
                 <Button
                     bg={"brand.300"}
@@ -96,7 +77,7 @@ export const UserActions = ({ userId, navigate }) => {
             <AddContractModal
                 isOpen={isAddOpen}
                 onClose={onAddClose}
-                name={user.name}
+                name={user?.name}
                 id={userId}
                 userIsActive={contracts?.name}
 

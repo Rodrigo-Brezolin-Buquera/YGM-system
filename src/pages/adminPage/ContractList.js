@@ -24,18 +24,6 @@ const ContractList = ({ navigate }) => {
 
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
-        .filter(user => {
-            const contract = user?.currentContract;
-            switch (status) {
-                case "Ativos":
-                    return contract?.active === true;
-                case "Inativos":
-                    return contract?.active === false;
-                default:
-                    return contract?.active === true || contract?.active === false;
-
-            }
-        })
         .filter((user) => {
             const contract = user?.currentContract;
             switch (planType) {
@@ -70,7 +58,6 @@ const ContractList = ({ navigate }) => {
                     started={contract.started}
                     ends={contract.ends}
                     availableClasses={contract.availableClasses}
-                    active={contract.active}
                     navigate={navigate}
                 />
             );
@@ -95,14 +82,7 @@ const ContractList = ({ navigate }) => {
                     onChange={handlePlanType}
                 >
                     <TypeOptions />
-                </Select>
-
-                <Select
-                    placeholder='Status'
-                    onChange={handleStatus}
-                >
-                    <StatusOptions />
-                </Select>
+                </Select>   
             </Box>
 
             {userList?.length ? userList : <p> Nenhum contrato encontrado </p>}

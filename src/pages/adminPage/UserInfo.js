@@ -28,7 +28,6 @@ const UserInfo = (props) => {
             width={"100%"}
             backgroundColor={"brand.500"}
             _hover={{ cursor: "pointer" }}
-            status={props.status}
             overflow={"auto"}
             onClick={() => goToContract(props.navigate, props.id)}
         >
