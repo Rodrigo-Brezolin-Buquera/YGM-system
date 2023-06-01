@@ -16,20 +16,23 @@ const UserPage = () => {
     const navigate = useNavigate()
     const [contract, setContract] = useState({});
     const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContract(res))
             .catch(err => console.log(err.message))
         findItemById(usersCol, userId)
-            .then(res => setUser(res))
+            .then(res => {
+                setUser(res)
+                setLoading(false)
+            })
             .catch(err => console.log(err.message))
     }, [userId, loading]);
 
     const changePassword = useCallback(() => {
-        confirmDialog("Enviar email de redefinição de senha?", ()=> resetPassword(user?.email)) 
-    },[user])
+        confirmDialog("Enviar email de redefinição de senha?", () => resetPassword(user?.email))
+    }, [user])
 
     return (
         <>
@@ -45,21 +48,26 @@ const UserPage = () => {
                 justifyContent={"start"}
             >
                 {
-                    user.active ? <>
-                        <SideContainer>
-                            <AvailableClasses
-                                contractId={contract?.id}
-                                userName={contract?.name}
-                                contractLimit={contract?.currentContract?.availableClasses}
-                                loading={loading}
-                                setLoading={setLoading}
-                            />
-                        </SideContainer>
+                    loading ?
+                        <CircularProgress
+                            isIndeterminate
+                            color={"brand.200"}
+                            size="120px"
+                            alignSelf={"center"}
+                            mt={"1em"}
+                        />
+                        :
+                        user.active ?
+                            <>
+                                <SideContainer>
+                                    <AvailableClasses
+                                        contractId={contract?.id}
+                                        userName={contract?.name}
+                                        contractLimit={contract?.currentContract?.availableClasses}
+                                    />
+                                </SideContainer>
 
-                        <MainContainer>
-
-                            {
-                                contract?.id ?
+                                <MainContainer>
                                     <UserInfo
                                         id={contract?.id}
                                         name={contract?.name}
@@ -67,32 +75,28 @@ const UserPage = () => {
                                         planStarted={contract?.currentContract?.started}
                                         planEnds={contract?.currentContract?.ends}
                                         availableClasses={contract?.currentContract?.availableClasses}
-                                    /> :
-                                    <CircularProgress isIndeterminate color={"brand.200"} size="70px" />
-                            }
+                                    />
+                                    <WrapContainer>
+                                        <Button
+                                            backgroundColor={"brand.200"}
+                                            onClick={changePassword}
+                                        >
+                                            <Text> Redefinir senha</Text>
+                                        </Button>
+                                    </WrapContainer>
+                                </MainContainer>
 
-                            <WrapContainer>
-                                <Button
-                                    backgroundColor={"brand.200"}
-                                    onClick={changePassword}
-                                >
-                                    <Text> Redefinir senha</Text>
-                                </Button>
-                            </WrapContainer>
-
-                        </MainContainer>
-
-                        <SideContainer>
-                            <CheckinsDone
-                                userId={userId}
-                                loading={loading}
-                            />
-                        </SideContainer>
-                    </>
-                        :
-                        <MainContainer>
-                            <Text>Sua conta ainda não foi ativada, tente novamente mais tarde.</Text>
-                        </MainContainer>
+                                <SideContainer>
+                                    <CheckinsDone
+                                        userId={userId}
+                                        loading={loading}
+                                    />
+                                </SideContainer>
+                            </>
+                            :
+                            <MainContainer>
+                                <Text>Sua conta ainda não foi ativada, tente novamente mais tarde.</Text>
+                            </MainContainer>
                 }
             </Background>
         </>

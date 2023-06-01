@@ -8,9 +8,11 @@ import SquareCard from "../../theme/SquareCard";
 
 
 export const ClassesCard = (
-    { contractId, userName, yogaClass, contractLimit, loading, setLoading }
+    { contractId, userName, yogaClass, contractLimit }
 ) => {
     const [checkin, setCheckin] = useState(null);
+    const [loading, setLoading] = useState(false);
+
     const { id, day, time, date, teacher, name, capacity } = yogaClass
 
     const checkinId = `${contractId}+${id}`;
@@ -54,7 +56,9 @@ export const ClassesCard = (
             color={checkin ? "brand.200" : "brand.500"}
             onClick={handleCheckin}
         >
-            {loading ? <CircularProgress isIndeterminate color={"brand.200"} alignSelf={"center"} size="75px" /> :
+            {loading ?
+                <CircularProgress isIndeterminate color={"brand.200"} alignSelf={"center"} size="75px" />
+                :
                 <Box
                     display={"flex"}
                     flexDirection={"column"}
