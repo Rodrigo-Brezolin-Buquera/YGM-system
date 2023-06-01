@@ -9,10 +9,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
 import { FormButton } from "../../theme";
+import { PasswordInput } from "./PasswordInput";
 
 export const LoginForm = ({ navigate }) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const {
         handleSubmit,
@@ -60,19 +63,22 @@ export const LoginForm = ({ navigate }) => {
                                 borderRadius={"10px"}
 
                             />
+                            <PasswordInput
+                                setShowPassword={setShowPassword}
+                                showPassword={showPassword}
+                            >
+                                <Input
+                                    id="password"
+                                    placeholder="Senha"
+                                    {...register("password", {
+                                        required: "Campo obrigatório"
 
-                            <Input
-                                id="password"
-                                placeholder="Senha"
-                                {...register("password", {
-                                    required: "Campo obrigatório"
-
-                                })}
-                                variant="filled"
-                                type='password'
-                                borderRadius={"10px"}
-                            />
-
+                                    })}
+                                    variant="filled"
+                                    type='password'
+                                    borderRadius={"10px"}
+                                />
+                            </PasswordInput>
                             <FormButton
                                 isSubmitting={isSubmitting}
                                 color={"brand.200"}
@@ -90,9 +96,9 @@ export const LoginForm = ({ navigate }) => {
                         </FormErrorMessage>
                     </FormControl>
                 </form>
-                                  
+
             </Box>
-            {error ? <Text fontWeight={"bold"} color={"red"} m={"1em"}> {error}</Text> : null}  
+            {error ? <Text fontWeight={"bold"} color={"red"} m={"1em"}> {error}</Text> : null}
         </>
     );
 };
