@@ -34,6 +34,10 @@ export const logout = async (navigate) => {
     }
 };
 
+export const resetPassword = async (email) => {
+await sendPasswordResetEmail(auth, email )
+}
+
 export const isLogged = async (setStatus) => {
 
     onAuthStateChanged(auth, async (user) => {
@@ -48,4 +52,3 @@ export const isLogged = async (setStatus) => {
 };
 
 
-export const genPassword = () => Math.random().toString(36).slice(2) + Math.random().toString(36).toUpperCase().slice(2)

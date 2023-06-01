@@ -2,12 +2,12 @@ import { CircularProgress, Button, Text, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById } from "../../api";
-import { logout } from "../../api/auth";
+import { logout, resetPassword } from "../../api/auth";
 import { contractsCol, usersCol, } from "../../api/config";
 import { CheckinsDone } from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { MainContainer, SideContainer, Header, Background } from "../../theme";
+import { MainContainer, SideContainer, Header, Background, WrapContainer } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
 const UserPage = () => {
@@ -27,6 +27,8 @@ const UserPage = () => {
             .catch(err => console.log(err.message))
     }, [userId, loading]);
 
+    const changePassword = async () => await resetPassword(user?.email)
+    
     return (
         <>
             <Header>
@@ -53,6 +55,15 @@ const UserPage = () => {
                         </SideContainer>
 
                         <MainContainer>
+                            <WrapContainer>
+                                <Button
+                                    backgroundColor={"brand.200"}
+                                    onClick={changePassword}
+                                >
+                                    <Text> Redefinir senha</Text>
+                                </Button>
+                            </WrapContainer>
+
                             {
                                 contract?.id ?
                                     <UserInfo
