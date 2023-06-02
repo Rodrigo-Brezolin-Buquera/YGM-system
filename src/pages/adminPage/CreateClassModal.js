@@ -26,7 +26,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
         await createClasses(values)
             .then(() => {
                 reset()
-                onClose()              
+                onClose()
             })
             .catch(err => console.log(err.message))
             .finally(setLoading(false));
@@ -105,10 +105,12 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
                         <br />
                         {errors.date && errors.date.message}
                     </FormErrorMessage>
+
+                    <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"124px"}>
+                        <Text>Criar aula</Text>
+                    </FormButton>
+
                 </FormControl>
-                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading}>
-                    <Text>Criar aula</Text>
-                </FormButton>
 
             </form>
 

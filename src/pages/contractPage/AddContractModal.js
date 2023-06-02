@@ -42,7 +42,7 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar novo contrato"}>
+        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Novo contrato"}>
 
             <form onSubmit={handleSubmit(onSubmit)} >
                 <FormControl
@@ -80,11 +80,12 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
                         <br />
                         {errors.date && errors.date.message}
                     </FormErrorMessage>
+                    
+                    <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"124px"} >
+                        <Text>Adicionar </Text>
+                    </FormButton>
                 </FormControl>
 
-                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} >
-                    <Text>Adicionar plano </Text>
-                </FormButton>
 
             </form>
         </ModalComponent>

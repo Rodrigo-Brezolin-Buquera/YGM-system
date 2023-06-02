@@ -95,11 +95,13 @@ export const PlanForm = ({ loading, setLoading }) => {
                     <br />
                     {errors.duration && errors.duration.message}
                 </FormErrorMessage>
+
+            <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"136px"}>
+                <Text>Adicionar</Text>
+            </FormButton>
+
             </FormControl>
 
-            <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading}>
-                <Text>Adicionar plano</Text>
-            </FormButton>
         </form>
     )
 }

@@ -47,9 +47,9 @@ export const WeekCalendar = ( { navigate, setSelected, loading }) => {
     return (
         <>
             <WrapContainer>
-                <Button backgroundColor={"brand.200"} onClick={handlePreviousWeekClick}>Semana anterior</Button>
-                <Heading  >Agenda semanal</Heading>
-                <Button backgroundColor={"brand.200"} onClick={handleNextWeekClick}>Próxima Semana</Button>
+                <Button backgroundColor={"brand.200"} onClick={handlePreviousWeekClick}>Anterior</Button>
+                <Heading >Agenda semanal</Heading>
+                <Button backgroundColor={"brand.200"} onClick={handleNextWeekClick}>Próxima</Button>
             </WrapContainer>
 
             <WrapContainer>

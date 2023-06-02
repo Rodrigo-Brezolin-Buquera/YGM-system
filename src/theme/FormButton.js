@@ -4,7 +4,6 @@ const FormButton = ({ isSubmitting, color, loading, children, width }) => {
 
     return (
         <Button
-            mt={4}
             bg={color}
             isLoading={isSubmitting}
             type="submit"

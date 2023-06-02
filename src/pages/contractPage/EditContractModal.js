@@ -6,7 +6,7 @@ import {
     Text,
     FormLabel
 } from "@chakra-ui/react";
-import {  useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, stringPattern } from "../../api/patterns";
@@ -26,11 +26,11 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
         shouldUnregister: true
     });
 
-    useEffect(()=>{
+    useEffect(() => {
         setValue("name", name);
         setValue("plan", contract?.plan);
-        setValue("started",  contract?.started && formatToCalendar(contract?.started));
-        setValue("ends",contract?.ends && formatToCalendar(contract?.ends));
+        setValue("started", contract?.started && formatToCalendar(contract?.started));
+        setValue("ends", contract?.ends && formatToCalendar(contract?.ends));
         setValue("availableClasses", contract?.availableClasses);
     }, [name, contract, setValue])
 
@@ -96,7 +96,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                         </Select>
 
                     </FormLabel>
-                    
+
 
                     <FormLabel
 
@@ -158,15 +158,15 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                         <br />
                         {errors.availableClasses && errors.availableClasses.message}
                     </FormErrorMessage>
+                    <FormButton
+                        isSubmitting={isSubmitting}
+                        oading={loading}
+                        color={"brand.200"}
+                        width={"124px"}
+                    >
+                        <Text>Salvar</Text>
+                    </FormButton>
                 </FormControl>
-
-                <FormButton
-                    isSubmitting={isSubmitting}
-                    oading={loading}
-                    color={"brand.200"}
-                >
-                    <Text>Salvar</Text>
-                </FormButton>
             </form>
         </ModalComponent>
     );
