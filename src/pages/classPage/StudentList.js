@@ -22,7 +22,6 @@ export const StudentList = ({ capacity, classId,loading, setLoading }) => {
                 name={checkin.name}
                 contractless={checkin.contractless}
                 capacity={capacity}
-                loading={loading}
                 setLoading={setLoading}
             />
         );

@@ -72,7 +72,6 @@ const ClassPage = () => {
                     /> :
                         <CircularProgress isIndeterminate color="brand.200" size="70px" />
                     }
-
                     <Booking
                         setSelected={null}
                         selected={yogaClass}

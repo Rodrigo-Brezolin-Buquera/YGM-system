@@ -12,10 +12,11 @@ export const Booking = ({ selected, setSelected, setLoading }) => {
 
     const addStudent = async () => {
         const { date, time, capacity, id } = selected
+        setLoading(true)
         await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
             .then(setSelected && setSelected(null))
             .catch(err => console.log(err.message))
-        setTimeout(setLoading((prevState) => !prevState), 1000)
+        setLoading(false)
     }
 
     return (
