@@ -54,6 +54,7 @@ const UserPage = () => {
                             color={"brand.200"}
                             size="120px"
                             alignSelf={"center"}
+                            justifySelf={"center"}
                             mt={"1em"}
                         />
                         :
