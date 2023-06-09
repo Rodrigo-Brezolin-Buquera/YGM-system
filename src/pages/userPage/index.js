@@ -96,7 +96,9 @@ const UserPage = () => {
                             </>
                             :
                             <MainContainer>
-                                <Text>Sua conta ainda não foi ativada, tente novamente mais tarde.</Text>
+                                <Text
+                                  textAlign={"center"}
+                                >Sua conta ainda não foi ativada, tente novamente mais tarde.</Text>
                             </MainContainer>
                 }
             </Background>
