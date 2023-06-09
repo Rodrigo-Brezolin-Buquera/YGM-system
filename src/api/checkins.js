@@ -73,7 +73,7 @@ export const cancelCheckin = async (checkinId, capacity) => {
 export const createContractlessCheckin = async (checkinData, limits) => {
     const { date, name, time } = checkinData
     const { yogaClassId, capacity} = limits
-    const checkinId = `${yogaClassId}+${name}`
+    const checkinId = `${yogaClassId}+${name}+${Date.now().toString()}`
     const checkin = {
         yogaClassId,
         date,

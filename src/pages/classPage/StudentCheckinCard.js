@@ -17,10 +17,10 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
             });
     }
 
-    const onDelete =  () => {
+    const onDelete = () => {
         confirmDialog("Cancelar este checkin?", () => {
             setCardLoading(true);
-            (contractless ? cancelContractlessCheckin(id, capacity) :  cancelCheckin(id, capacity))
+            (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
                 .catch((err) => { console.log(err.message) })
                 .finally(() => {
                     setCardLoading(false)

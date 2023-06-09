@@ -14,11 +14,11 @@ export const Booking = ({ selected, setSelected, setLoading }) => {
         const { date, time, capacity, id } = selected
         setLoading(true)
         await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
-            .then(setSelected && setSelected(null))
+            .then(setSelected && setSelected(null))               
             .catch(err => console.log(err.message))
         setLoading(false)
     }
-
+    
     return (
         <MainContainer>
             <Heading size={"lg"}> Agendamento </Heading>
