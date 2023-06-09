@@ -2,7 +2,7 @@ import { Box, Input, Select } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findAllItems } from "../../api";
 import { contractsCol } from "../../api/config";
-import { StatusOptions, TypeOptions } from "../../components/selectOptions";
+import { TypeOptions } from "../../components/selectOptions";
 import { useInput } from "../../hooks/useInput";
 import { InputContainer } from "../../theme";
 import UserInfo from "./UserInfo";
@@ -11,7 +11,6 @@ import UserInfo from "./UserInfo";
 const ContractList = ({ navigate }) => {
     const [contracts, setContracts] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
-    const [status, handleStatus] = useInput("");
     const [planType, handlePlanType] = useInput("");
 
 
@@ -24,8 +23,7 @@ const ContractList = ({ navigate }) => {
 
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
-        .filter((user) => {
-            const contract = user?.currentContract;
+        .filter((contract) => {
             switch (planType) {
                 case "1x-Mensal":
                     return contract?.plan === "1x-Mensal";
@@ -47,13 +45,13 @@ const ContractList = ({ navigate }) => {
                     return contract?.plan;
             }
         })
-        .map((user) => {
-            const contract = user?.currentContract;
+        .map((contract) => {
+            
             return (
                 <UserInfo
-                    key={user.id}
-                    id={user.id}
-                    name={user.name}
+                    key={contract.id}
+                    id={contract.id}
+                    name={contract.name}
                     plan={contract.plan}
                     started={contract.started}
                     ends={contract.ends}

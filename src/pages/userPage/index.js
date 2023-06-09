@@ -64,7 +64,7 @@ const UserPage = () => {
                                     <AvailableClasses
                                         contractId={contract?.id}
                                         userName={contract?.name}
-                                        contractLimit={contract?.currentContract?.availableClasses}
+                                        contractLimit={contract?.availableClasses}
                                     />
                                 </SideContainer>
 
@@ -72,10 +72,10 @@ const UserPage = () => {
                                     <UserInfo
                                         id={contract?.id}
                                         name={contract?.name}
-                                        plan={contract?.currentContract?.plan}
-                                        planStarted={contract?.currentContract?.started}
-                                        planEnds={contract?.currentContract?.ends}
-                                        availableClasses={contract?.currentContract?.availableClasses}
+                                        plan={contract?.plan}
+                                        planStarted={contract?.started}
+                                        planEnds={contract?.ends}
+                                        availableClasses={contract?.availableClasses}
                                     />
                                     <WrapContainer>
                                         <Button

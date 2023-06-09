@@ -65,10 +65,10 @@ export const UserActions = ({ userId, navigate }) => {
                     <UserInfo
                         id={contracts.id}
                         name={contracts.name}
-                        plan={contracts.currentContract.plan}
-                        planStarted={contracts.currentContract.started}
-                        planEnds={contracts.currentContract.ends}
-                        availableClasses={contracts.currentContract.availableClasses}
+                        plan={contracts.plan}
+                        planStarted={contracts.started}
+                        planEnds={contracts.ends}
+                        availableClasses={contracts.availableClasses}
                     /> :
                     <Text> Ainda não contrato para este usuário</Text>
                 // <CircularProgress isIndeterminate color="brand.200" size="70px" />
@@ -84,7 +84,7 @@ export const UserActions = ({ userId, navigate }) => {
             />
 
             <EditContractModal
-                contract={contracts?.currentContract}
+                contract={contracts}
                 name={contracts?.name}
                 isOpen={isEditOpen}
                 onClose={onEditClose}

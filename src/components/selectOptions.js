@@ -19,11 +19,14 @@ export const FrequencyOptions = () => {
 export const DurationOptions = () => {
     return (
         <>
-            <option value="Mensal" > Mensal </option>
-            <option value="Trimestral" > Trimestral </option>
-            <option value="Semestral" > Semestral </option>
-            <option value="Anual" > Anual </option>
-            <option value="Contínuo" > Contínuo </option>
+            <option> Mensal </option>
+            <option> Trimestral </option>
+            <option> Semestral </option>
+            <option> Anual </option>
+            <option> Gympass </option>
+            <option> TotalPass </option>
+            <option> Avulso </option>
+
         </>
     );
 };
@@ -32,8 +35,8 @@ export const StatusOptions = () => {
 
     return (
         <>
-            <option > Ativos </option>
-            <option > Inativos </option>
+            <option> Ativos </option>
+            <option> Inativos </option>
         </>
     );
 };
@@ -58,12 +61,12 @@ export const TeacherOptions = () => {
 export const DayOptions = () => {
     return (
         <>
-            <option value="Segunda" > Segunda </option>
-            <option value="Terça" > Terça </option>
-            <option value="Quarta" > Quarta </option>
-            <option value="Quinta" > Quinta </option>
-            <option value="Sexta" > Sexta </option>
-            <option value="Sábado" > Sábado </option>
+            <option> Segunda </option>
+            <option> Terça </option>
+            <option> Quarta </option>
+            <option> Quinta </option>
+            <option> Sexta </option>
+            <option> Sábado </option>
         </>
     );
 };

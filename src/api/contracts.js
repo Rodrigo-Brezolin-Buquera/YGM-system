@@ -1,4 +1,4 @@
-import { collection, doc, runTransaction,   updateDoc } from "firebase/firestore/lite"
+import { collection, doc, runTransaction } from "firebase/firestore/lite"
 import { calculateEndDate, formatDate } from "../utils/dates"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, findItemWhere, updateItem } from "."
@@ -6,16 +6,22 @@ import { createItemWithId, findItemWhere, updateItem } from "."
 export const createContract = async ({ name, plan, date , id}) => {
     const [frequency, dur] = plan.split("-")
     const [duration, quantity] = calculatePlanNumbers(frequency, dur)
-    const contract = {
+
+    const contract =  quantity ?
+     {
         name,
-        currentContract: {
-            active: true,
-            plan,
-            ends: calculateEndDate(date, duration),
-            started: formatDate(date, "DD/MM/YYYY"),
-            availableClasses: quantity
+        plan,
+        ends: calculateEndDate(date, duration),
+        started: formatDate(date, "DD/MM/YYYY"),
+        availableClasses: quantity
         }
-    }
+     : 
+     {
+        name,
+        plan,
+        started: formatDate(date, "DD/MM/YYYY"),  
+     }   
+    
     await createItemWithId(contractsCol, contract, id)
     await updateItem(usersCol, {active:true}, id)
 }
@@ -24,13 +30,10 @@ export const newContract = async ({ plan, date }, id) => {
     const [frequency, dur] = plan.split("-")
     const [duration, quantity] = calculatePlanNumbers(frequency, dur)    
     const contract = {
-        currentContract: {
-            active: true,
-            plan,
-            ends: date && calculateEndDate(date, duration),
-            started:  date && formatDate(date, "DD/MM/YYYY"),
-            availableClasses: quantity
-        }
+        plan,
+        ends: date && calculateEndDate(date, duration),
+        started:  date && formatDate(date, "DD/MM/YYYY"),
+        availableClasses: quantity
     }
     await updateItem(contractsCol, contract, id)
 }
@@ -38,12 +41,11 @@ export const newContract = async ({ plan, date }, id) => {
 export const updateContract = async (values, id) => {
     const contract = {
         name: values.name,
-        currentContract: {
-            plan: values.plan,
-            ends: formatDate(values.ends, "DD/MM/YYYY"),
-            started: formatDate(values.started, "DD/MM/YYYY"),
-            availableClasses: values.availableClasses
-        }
+        plan: values.plan,
+        ends: formatDate(values.ends, "DD/MM/YYYY"),
+        started: formatDate(values.started, "DD/MM/YYYY"),
+        availableClasses: values.availableClasses
+        
     }
     await updateItem(contractsCol, contract, id)
 }
@@ -70,7 +72,9 @@ export const calculatePlanNumbers = (frequency, duration) => {
         Trimestral: 3,
         Semestral: 6,
         Anual: 12,
-        Contínuo: 0
+        Gympass: 0,
+        TotalPass: 0,
+        Avulso: 0
     };
     const freq = frequency.charAt(0);
 

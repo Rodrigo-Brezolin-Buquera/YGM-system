@@ -23,14 +23,15 @@ export const createCheckin = async (checkinData, limits) => {
         name: userName,
         verified: false,
     }
+    const userWithAPlanContract = !isNaN(contractLimit)
 
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)
         transaction.set(checkinDoc, checkin)
 
         const contractDoc = doc(collection(database, contractsCol), contractId)
-        transaction.update(contractDoc, { "currentContract.availableClasses": contractLimit - 1 })
-
+        userWithAPlanContract && transaction.update(contractDoc, { "availableClasses": contractLimit - 1 })
+        
         const classDoc = doc(collection(database, calendarCol), id)
         transaction.update(classDoc, { capacity: capacity - 1 })
     })
@@ -38,13 +39,14 @@ export const createCheckin = async (checkinData, limits) => {
 
 export const deleteCheckin = async (checkinId, limits) => {
     const { id, capacity, contractId, contractLimit } = limits
+    const userWithAPlanContract = !isNaN(contractLimit)
 
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)
         transaction.delete(checkinDoc)
 
         const contractDoc = doc(collection(database, contractsCol), contractId)
-        transaction.update(contractDoc, { "currentContract.availableClasses": contractLimit + 1 })
+        userWithAPlanContract && transaction.update(contractDoc, { "availableClasses": contractLimit + 1 })
 
         const classDoc = doc(collection(database, calendarCol), id)
         transaction.update(classDoc, { capacity: capacity + 1 })
@@ -58,12 +60,12 @@ export const validateCheckin = async (checkinId, status) => {
 
 export const cancelCheckin = async (checkinId, capacity) => {
     const [contractId, yogaClassId] = checkinId.split("+")
-    const { currentContract } = await findItemById(contractsCol, contractId)
+    const  contract  = await findItemById(contractsCol, contractId)
     const limits = {
         yogaClassId,
         capacity,
         contractId,
-        contractLimit: currentContract.availableClasses
+        contractLimit: contract.availableClasses
     }
 
     await deleteCheckin(checkinId, limits)

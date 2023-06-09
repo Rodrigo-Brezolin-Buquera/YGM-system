@@ -17,21 +17,33 @@ const UserInfo = (props) => {
                 <Text as='b' fontSize='lg' >Plano: </Text>
                 <Text fontSize='lg' >{props.plan} </Text>
             </Line>
-
+            
+           
             <Line>
-                <Text as='b' fontSize='lg' >Início do plano: </Text>
+                <Text as='b' fontSize='lg' >Início: </Text>
                 <Text fontSize='lg' > {props.planStarted}</Text>
             </Line>
 
-            <Line>
-                <Text as='b' fontSize='lg' >Fim previsto: </Text>
-                <Text fontSize='lg' > {props.planEnds}</Text>
-            </Line>
+            {
+                props.planEnds ?  
+                <Line>
+                    <Text as='b' fontSize='lg' >Fim previsto: </Text>
+                    <Text fontSize='lg' > {props.planEnds}</Text>
+                 </Line>
+                : 
+                null
+            }
 
-            <Line>
-                <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
-                <Text fontSize='lg' >{props.availableClasses}</Text>
-            </Line>
+            {
+                !isNaN(props.availableClasses) ?  
+                <Line>
+                    <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
+                    <Text fontSize='lg' >{props.availableClasses}</Text>
+                </Line> 
+                : 
+                null
+            }
+           
         </TextContainer>
     );
 };

@@ -20,17 +20,25 @@ export const PlanForm = ({ loading, setLoading }) => {
         formState: { errors, isSubmitting }
     } = useForm();
 
-    const onSubmit = (values) => {
-        const [duration, quantity] = calculatePlanNumbers(values.frequency, values.duration)
+    const onSubmit = ({frequency, duration, price}) => {
+        const [durationInMonths, quantity] = calculatePlanNumbers(frequency, duration)
         setLoading(true);
-        const plan = {
-            id: `${values.frequency}-${values.duration}`,
-            price: `R$ ${values.price},00`,
-            frequency: values.frequency,
-            type: values.duration,
+
+        const plan =  durationInMonths ?
+       {
+            id: `${frequency}-${duration}`,
+            price: `R$ ${price},00`,
+            frequency: frequency,
+            type: duration,
             availableClasses: quantity,
-            durationInMonths: duration
+            durationInMonths: durationInMonths
         }
+        :
+        {
+            id: duration,
+            type: duration     
+        }
+        
         createItemWithId(plansCol, plan, plan.id)
             .then(reset())
             .catch((err) => console.log(err.message))
