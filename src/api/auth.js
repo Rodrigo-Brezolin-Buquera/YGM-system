@@ -1,4 +1,10 @@
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
+import {
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    sendPasswordResetEmail
+} from "firebase/auth";
 import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 import { auth, usersCol } from "./config";
 import { createItemWithId, findItemById } from ".";
@@ -17,10 +23,16 @@ export const login = async (form, navigate) => {
 };
 
 export const singUp = async ({ email, password, name }) => {
-    const { user } = await createUserWithEmailAndPassword(auth, email, password)
-    const id = user.uid
-    await createItemWithId(usersCol, { email, name, admin: false, active: false }, id) // isso pode ser bem problematico
-    return id
+    try {
+        const { user } = await createUserWithEmailAndPassword(auth, email, password)
+        const id = user.uid
+        await createItemWithId(usersCol, { email, name, admin: false, active: false }, id) // isso pode ser bem problematico
+        return id
+    } catch (err) {
+        const message = err.message.includes("auth/email-already-in-use") ? ("Email já cadastrado") : ("Erro na criação, tente novamente")
+        alert(message)
+    }
+
 };
 
 export const logout = async (navigate) => {
@@ -35,7 +47,7 @@ export const logout = async (navigate) => {
 };
 
 export const resetPassword = async (email) => {
-await sendPasswordResetEmail(auth, email )
+    await sendPasswordResetEmail(auth, email)
 }
 
 export const isLogged = async (setStatus) => {
