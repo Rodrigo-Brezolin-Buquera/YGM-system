@@ -1,4 +1,4 @@
-import { CircularProgress, Button, Text } from "@chakra-ui/react";
+import { CircularProgress, Button, Text, Box } from "@chakra-ui/react";
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById } from "../../api";
@@ -49,14 +49,14 @@ const UserPage = () => {
             >
                 {
                     loading ?
-                        <CircularProgress
-                            isIndeterminate
-                            color={"brand.200"}
-                            size="120px"
-                            alignSelf={"center"}
-                            justifySelf={"center"}
-                            mt={"1em"}
-                        />
+                        <Box w={"100%"} h={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                            <CircularProgress
+                                isIndeterminate
+                                color={"brand.200"}
+                                size="120px"
+                                mt={"1em"}
+                            />
+                        </Box>
                         :
                         user.active ?
                             <>
@@ -97,7 +97,7 @@ const UserPage = () => {
                             :
                             <MainContainer>
                                 <Text
-                                  textAlign={"center"}
+                                    textAlign={"center"}
                                 >Sua conta ainda não foi ativada, tente novamente mais tarde.</Text>
                             </MainContainer>
                 }
