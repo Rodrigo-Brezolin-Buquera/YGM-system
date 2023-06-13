@@ -16,7 +16,6 @@ export const login = async (form, navigate) => {
         localStorage.setItem("admin", userDoc.admin)
         userDoc.admin ? goToAdmin(navigate) : goToUser(navigate, user.uid)
     } catch (err) {
-        console.log(err.message);
         const message = err.message.includes("auth/wrong-password") ? ("Email e/ou senha inválidos") : ("Erro no login, tente novamente")
         throw new Error(message)
     }
@@ -30,20 +29,16 @@ export const singUp = async ({ email, password, name }) => {
         return id
     } catch (err) {
         const message = err.message.includes("auth/email-already-in-use") ? ("Email já cadastrado") : ("Erro na criação, tente novamente")
-        alert(message)
+        throw new Error(message)
+
     }
 
 };
 
 export const logout = async (navigate) => {
-    try {
         await signOut(auth);
         localStorage.setItem("admin", "")
-        goToLogin(navigate);
-    } catch (err) {
-        console.log(err.message);
-
-    }
+        goToLogin(navigate); 
 };
 
 export const resetPassword = async (email) => {
