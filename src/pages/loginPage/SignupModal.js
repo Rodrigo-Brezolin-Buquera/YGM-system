@@ -77,6 +77,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                             id="password"
                             placeholder="senha"
                             type={showPassword ? "text" : "password"}
+                            autoComplete="off"
                             {...register("password", {
                                 required: "Campo Obrigátorio",
                                 pattern: passwordPattern
@@ -93,7 +94,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                             id="repetPassword"
                             placeholder="Repita sua senha"
                             type={showRepetPassword ? "text" : "password"}
-
+                            autoComplete="off"
                             {...register("repetPassword", {
                                 required: "Campo Obrigátorio",
                                 pattern: passwordPattern,
