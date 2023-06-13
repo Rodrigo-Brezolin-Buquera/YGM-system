@@ -16,7 +16,6 @@ export const LoginForm = ({ navigate }) => {
     const [error, setError] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
 
-
     const {
         handleSubmit,
         register,
@@ -75,7 +74,7 @@ export const LoginForm = ({ navigate }) => {
 
                                     })}
                                     variant="filled"
-                                    type='password'
+                                    type={showPassword ? "text" : "password"}
                                     borderRadius={"10px"}
                                 />
                             </PasswordInput>
