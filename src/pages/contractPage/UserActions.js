@@ -1,11 +1,11 @@
-import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
+import { Button, CircularProgress, Text, useDisclosure, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { contractsCol, usersCol } from "../../api/config";
 import { deleteContract } from "../../api/contracts";
 import UserInfo from "../../components/UserInfo";
 import { goToAdmin } from "../../routes/coordinator";
-import { WrapContainer, confirmDialog } from "../../theme";
+import { WrapContainer, confirmDialog, toastAlert } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
@@ -14,12 +14,13 @@ export const UserActions = ({ userId, navigate }) => {
     const [user, setUser] = useState({})
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
+    const toast = useToast()
 
     const onDelete = () => {
         confirmDialog("Excluir contrato?", () => {
             deleteContract(userId)
                 .then(setTimeout(() => { goToAdmin(navigate) }, 500))
-                .catch(err => console.log(err.message))
+                .catch(err => toastAlert(toast, err.message, "error"))
         })
     };
 

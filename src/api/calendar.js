@@ -4,7 +4,6 @@ import { calendarCol, database } from "./config"
 import { createItem } from "."
 
 export const createClasses = async (values) => {
-    try {
         let crescentDate = formatDate(values.date, "DD/MM/YYYY")
         let list = []
         const groupId = `${values.date}-${values.time}-${values.name}`
@@ -22,11 +21,6 @@ export const createClasses = async (values) => {
     
         const promises = list.map(async (item)=> await createItem(calendarCol,item ))
         await Promise.all(promises);
-     
-    } catch (err) {
-        console.log(err.message)
-    }
-   
 }
 
 

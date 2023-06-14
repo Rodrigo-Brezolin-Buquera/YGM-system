@@ -2,13 +2,13 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text
+    Select, Text, useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createContract, newContract } from "../../api/contracts";
 import { TypeOptions } from "../../components/selectOptions";
-import { FormButton, ModalComponent } from "../../theme";
+import { FormButton, ModalComponent, toastAlert } from "../../theme";
 
 export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) => {
     const {
@@ -18,6 +18,7 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
         reset
     } = useForm();
     const [loading, setLoading] = useState(false);
+    const toast = useToast()
 
 
     const onSubmit = (values) => {
@@ -33,8 +34,11 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
                     date: values.date
                 })
         )
-            .then(reset())
-            .catch(err => console.log(err.message))
+            .then(()=> {
+                toastAlert(toast, "Contrato criado", "success")
+                reset()
+            })
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => {
                 setLoading(false)
                 onClose()

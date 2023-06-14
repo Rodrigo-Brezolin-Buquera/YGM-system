@@ -1,9 +1,9 @@
-import { Text, CircularProgress, Box } from "@chakra-ui/react";
+import { Text, CircularProgress, Box, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
 import { checkinsCol } from "../../api/config";
-import { confirmDialog } from "../../theme";
+import { confirmDialog, toastAlert } from "../../theme";
 import SquareCard from "../../theme/SquareCard";
 
 
@@ -12,6 +12,7 @@ export const ClassesCard = (
 ) => {
     const [checkin, setCheckin] = useState(null);
     const [loading, setLoading] = useState(false);
+    const toast = useToast()
 
     const { id, day, time, date, teacher, name, capacity } = yogaClass
 
@@ -23,22 +24,25 @@ export const ClassesCard = (
         findItemById(checkinsCol, checkinId)
             .then((res) => setCheckin(res))
             .catch(err => console.log(err.message))
-
     }, [checkinId, contractId, loading]);
 
 
     const onDelete = () => {
         setLoading(true);
         deleteCheckin(checkin.id, limits)
-            .then(setCheckin(null))
-            .catch((err) => { console.log(err.message) })
+            .then(() => {
+                toastAlert(toast, "Checkin cancelado", "success")
+                setCheckin(null)
+            })
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => setLoading(false));
     }
 
     const onCreate = () => {
         setLoading(true);
         createCheckin(checkinData, limits)
-            .catch((err) => { console.log(err.message) })
+            .then(toastAlert(toast, "Checkin realizado", "success"))
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => setLoading(false));
     }
     const handleCheckin = () => {

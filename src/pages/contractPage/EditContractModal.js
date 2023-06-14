@@ -4,14 +4,15 @@ import {
     Input,
     Select,
     Text,
-    FormLabel
+    FormLabel,
+    useToast
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, stringPattern } from "../../api/patterns";
 import { TypeOptions } from "../../components/selectOptions";
-import { FormButton, ModalComponent } from "../../theme";
+import { FormButton, ModalComponent, toastAlert } from "../../theme";
 import { formatToCalendar } from "../../utils/dates"
 
 export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
@@ -25,6 +26,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
     } = useForm({
         shouldUnregister: true
     });
+    const toast = useToast()
 
     useEffect(() => {
         setValue("name", name);
@@ -39,10 +41,11 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
         setLoading(true);
         updateContract(values, id)
             .then(() => {
+                toastAlert(toast, "Contrato alterado", "success")
                 reset()
                 onClose()
             })
-            .catch(err => console.log(err.message))
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => setLoading(false));
     };
 

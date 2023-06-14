@@ -2,7 +2,7 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text
+    Select, Text, useToast
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { createItemWithId } from "../../api";
@@ -10,7 +10,7 @@ import { plansCol } from "../../api/config";
 import { calculatePlanNumbers } from "../../api/contracts";
 import { pricePattern } from "../../api/patterns";
 import { DurationOptions, FrequencyOptions } from "../../components/selectOptions";
-import { FormButton } from "../../theme"
+import { FormButton, toastAlert } from "../../theme"
 
 export const PlanForm = ({ loading, setLoading }) => {
     const {
@@ -19,6 +19,7 @@ export const PlanForm = ({ loading, setLoading }) => {
         reset,
         formState: { errors, isSubmitting }
     } = useForm();
+    const toast = useToast()
 
     const onSubmit = ({frequency, duration, price}) => {
         const [durationInMonths, quantity] = calculatePlanNumbers(frequency, duration)
@@ -41,7 +42,7 @@ export const PlanForm = ({ loading, setLoading }) => {
         
         createItemWithId(plansCol, plan, plan.id)
             .then(reset())
-            .catch((err) => console.log(err.message))
+            .catch((err) => toastAlert(toast, err.message, "error"))
             .finally(()=>setLoading(false))
     };
 

@@ -6,19 +6,19 @@ const toastAlert = (toast, message, type) => {
 
     switch (type) {
         case "success":
-            textColor="white"
-            color="green.300"
+            textColor = "white"
+            color = "green.300"
             break;
         case "error":
-            textColor="white"
-            color="red.500"
+            textColor = "white"
+            color = "red.500"
             break;
         default:
             break;
     }
 
     toast({
-        position: "top-right",
+        position: "top-left",
         render: () => (
             <Box
                 color={textColor}

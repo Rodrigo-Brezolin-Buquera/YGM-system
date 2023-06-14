@@ -2,17 +2,18 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text
+    Select, Text, useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createClasses } from "../../api/calendar";
 import { DayOptions, StyleOptions, TeacherOptions } from "../../components/selectOptions";
-import { ModalComponent, FormButton } from "../../theme";
+import { ModalComponent, FormButton, toastAlert } from "../../theme";
 
 
 export const CreateClassModal = ({ isOpen, onClose }) => {
     const [loading, setLoading] = useState(false);
+    const toast = useToast()
 
     const {
         handleSubmit,
@@ -25,10 +26,11 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
         setLoading(true);
         await createClasses(values)
             .then(() => {
+                toastAlert(toast, "Aula criada", "success")
                 reset()
                 onClose()
             })
-            .catch(err => console.log(err.message))
+            .catch(err =>  toastAlert(toast, err.message, "error"))
             .finally(setLoading(false));
     };
 

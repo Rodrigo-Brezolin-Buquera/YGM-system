@@ -1,21 +1,22 @@
-import { Card, Heading, Text, Input } from "@chakra-ui/react"
+import { Card, Heading, Text, Input, useToast } from "@chakra-ui/react"
 import { useLocation } from "react-router-dom"
 import { createContractlessCheckin } from "../api/checkins"
 import { stringPattern } from "../api/patterns"
 import { useInput } from "../hooks/useInput"
-import { LoadingButton, MainContainer } from "../theme"
+import { LoadingButton, MainContainer, toastAlert } from "../theme"
 import { simplifyDate } from "../utils/dates"
 
 export const Booking = ({ selected, setSelected, setLoading }) => {
     const [name, handleName] = useInput("")
     const { pathname } = useLocation();
+    const toast = useToast()
 
     const addStudent = async () => {
         const { date, time, capacity, id } = selected
         setLoading(true)
         await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
             .then(setSelected && setSelected(null))               
-            .catch(err => console.log(err.message))
+            .catch(err => toastAlert(toast, err.message, "error"))
         setLoading(false)
     }
     
