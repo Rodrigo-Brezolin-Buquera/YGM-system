@@ -3,18 +3,19 @@ import {
     FormControl,
     Input,
     Text,
-    Box
+    Box,
+    useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
-import { FormButton } from "../../theme";
+import { FormButton, toastAlert } from "../../theme";
 import { PasswordInput } from "./PasswordInput";
 
 export const LoginForm = ({ navigate }) => {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
+    const toast = useToast()
 
     const {
         handleSubmit,
@@ -27,12 +28,11 @@ export const LoginForm = ({ navigate }) => {
         setLoading(true);
         await login(values, navigate)
             .then(reset())
-            .catch((err) => setError(err.message))
+            .catch((err) =>  toastAlert(toast, err.message, "error"))
             .finally(setLoading(false));
     };
 
     return (
-        <>
             <Box
                 display={"flex"}
                 flexDirection={"column"}
@@ -97,8 +97,6 @@ export const LoginForm = ({ navigate }) => {
                 </form>
 
             </Box>
-            {error ? <Text fontWeight={"bold"} color={"red"} m={"1em"}> {error}</Text> : null}
-        </>
     );
 };
 
