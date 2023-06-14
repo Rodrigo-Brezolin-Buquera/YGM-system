@@ -33,6 +33,7 @@ export {default as CircularCard} from "./CircularCard";
 export {default as TextCard} from "./TextCard";
 export {default as confirmDialog} from "./confirmDialog";
 export {default as InputContainer} from "./InputContainer";
+export {default as toastAlert} from "./toastAlert";
 
 
 

@@ -2,20 +2,23 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Text
+    Text,
+    useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { singUp } from "../../api/auth";
 import { emailPattern, passwordPattern, stringPattern } from "../../api/patterns";
 import { goToUser } from "../../routes/coordinator";
-import { ModalComponent, FormButton } from "../../theme";
+import { ModalComponent, FormButton, toastAlert } from "../../theme";
 import { PasswordInput } from "./PasswordInput";
 
 export const SignupModal = ({ isOpen, onClose, navigate }) => {
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showRepetPassword, setShowRepetPassword] = useState(false);
+    const toast = useToast()
+
 
     const {
         handleSubmit,
@@ -29,7 +32,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
         setLoading(true);
         singUp({ email, password, name })
             .then((id) => goToUser(navigate, id))
-            .catch((err) => alert(err.message))
+            .catch((err) =>  toastAlert(toast, err.message, "error") )
             .finally(() => {
                 setLoading(false)
                 reset()

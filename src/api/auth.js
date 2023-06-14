@@ -30,7 +30,6 @@ export const singUp = async ({ email, password, name }) => {
     } catch (err) {
         const message = err.message.includes("auth/email-already-in-use") ? ("Email já cadastrado") : ("Erro na criação, tente novamente")
         throw new Error(message)
-
     }
 
 };

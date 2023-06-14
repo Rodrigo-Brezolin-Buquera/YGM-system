@@ -24,7 +24,6 @@ const LoginPage = () => {
             <LoginForm navigate={navigate} />
             <Text _hover={{ cursor: "pointer" }} fontSize={"sm"}  onClick={onOpen} >Não possui conta? Crie uma aqui</Text>
             <SignupModal isOpen={isOpen} onClose={onClose} navigate={navigate} />
-
         </Box>
     );
 };
