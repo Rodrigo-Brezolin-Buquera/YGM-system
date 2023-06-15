@@ -3,38 +3,15 @@ import { calculateEndDate, formatDate } from "../utils/dates"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, findItemWhere, updateItem } from "."
 
-export const createContract = async ({ name, plan, date , id}) => {
-    const [frequency, dur] = plan.split("-")
-    const [duration, quantity] = calculatePlanNumbers(frequency, dur)
-
-    const contract =  quantity ?
-     {
-        name,
-        plan,
-        ends: calculateEndDate(date, duration),
-        started: formatDate(date, "DD/MM/YYYY"),
-        availableClasses: quantity
-        }
-     : 
-     {
-        name,
-        plan,
-        started: formatDate(date, "DD/MM/YYYY"),  
-     }   
-    
+export const createContract = async ({ name, plan, date, id }) => {      
+    const contract = toModelContract(plan, date)
+    contract.name = name
     await createItemWithId(contractsCol, contract, id)
-    await updateItem(usersCol, {active:true}, id)
+    await updateItem(usersCol, { active: true }, id)
 }
 
 export const newContract = async ({ plan, date }, id) => {
-    const [frequency, dur] = plan.split("-")
-    const [duration, quantity] = calculatePlanNumbers(frequency, dur)    
-    const contract = {
-        plan,
-        ends: date && calculateEndDate(date, duration),
-        started:  date && formatDate(date, "DD/MM/YYYY"),
-        availableClasses: quantity
-    }
+    const contract = toModelContract(plan, date )
     await updateItem(contractsCol, contract, id)
 }
 
@@ -42,14 +19,12 @@ export const updateContract = async (values, id) => {
     const contract = {
         name: values.name,
         plan: values.plan,
-        ends: formatDate(values.ends, "DD/MM/YYYY"),
+        ends: values.ends ? formatDate(values.ends, "DD/MM/YYYY") : null,
         started: formatDate(values.started, "DD/MM/YYYY"),
-        availableClasses: values.availableClasses
-        
+        availableClasses: isNaN(values.availableClasses) ? null : values.availableClasses
     }
     await updateItem(contractsCol, contract, id)
 }
-
 
 export const deleteContract = async (userId) => {
     const checkins = await findItemWhere(checkinsCol, "contractId", userId)
@@ -76,12 +51,24 @@ export const calculatePlanNumbers = (frequency, duration) => {
         TotalPass: 0,
         Avulso: 0
     };
-    const freq = frequency.charAt(0);
-
-    const quantity = durationTable[duration] * Number(freq) * 4;
-    return [durationTable[duration], quantity];
+    const weeklyClasses = Number(duration ? frequency.charAt(0) : 0)
+    const monthlyClasses = weeklyClasses * 4
+    const finalQuantity = durationTable[duration] * monthlyClasses;
+    return [durationTable[duration], finalQuantity];
 };
 
+const toModelContract = (plan, date) => {
+    const [frequency, dur] = plan.split("-")
+    const [contractDuration, classesQuantity] = calculatePlanNumbers(frequency, dur)
+    const contract = {
+        plan,
+        ends:  contractDuration ? calculateEndDate(date, contractDuration) : null,
+        started: date && formatDate(date, "DD/MM/YYYY"),
+        availableClasses: classesQuantity || null
+    }
+    return contract
+
+}
 
 
 

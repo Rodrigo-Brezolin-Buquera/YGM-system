@@ -35,7 +35,7 @@ const UserInfo = (props) => {
             }
 
             {
-                !isNaN(props.availableClasses) ?  
+                isNaN(props.availableClasses) ?  
                 <Line>
                     <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
                     <Text fontSize='lg' >{props.availableClasses}</Text>

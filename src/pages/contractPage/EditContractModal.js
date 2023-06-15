@@ -128,7 +128,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                             id="ends"
                             type="date"
                             {...register("ends", {
-                                required: "Campo Obrigátorio",
+                                // required: "Campo Obrigátorio",
 
                             })}
                         />
@@ -145,7 +145,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                             name="availableClasses"
                             type="number"
                             {...register("availableClasses", {
-                                required: "Campo Obrigátorio",
+                                // required: "Campo Obrigátorio",
                                 pattern: numberPattern
                             })}
                         />
