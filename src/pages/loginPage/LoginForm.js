@@ -28,8 +28,10 @@ export const LoginForm = ({ navigate }) => {
         setLoading(true);
         await login(values, navigate)
             .then(reset())
-            .catch((err) =>  toastAlert(toast, err.message, "error"))
-            .finally(setLoading(false));
+            .catch((err) =>  {
+                toastAlert(toast, err.message, "error")
+                setLoading(false)
+            })
     };
 
     return (

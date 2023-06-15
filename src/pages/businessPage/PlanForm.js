@@ -22,7 +22,7 @@ export const PlanForm = ({ loading, setLoading }) => {
     const toast = useToast()
 
     const onSubmit = ({frequency, duration, price}) => {
-        const [durationInMonths, quantity] = calculatePlanNumbers(frequency, duration)
+        const [durationInMonths, classesQuantity] = calculatePlanNumbers(frequency, duration)
         setLoading(true);
 
         const plan =  durationInMonths ?
@@ -31,7 +31,7 @@ export const PlanForm = ({ loading, setLoading }) => {
             price: `R$ ${price},00`,
             frequency: frequency,
             type: duration,
-            availableClasses: quantity,
+            availableClasses: classesQuantity,
             durationInMonths: durationInMonths
         }
         :
