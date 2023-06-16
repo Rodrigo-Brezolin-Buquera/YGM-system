@@ -5,10 +5,8 @@ import {
     Select, Text, useToast
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { createItemWithId } from "../../api";
-import { plansCol } from "../../api/config";
-import { calculatePlanNumbers } from "../../api/contracts";
 import { pricePattern } from "../../api/patterns";
+import { createPlan } from "../../api/plans";
 import { DurationOptions, FrequencyOptions } from "../../components/selectOptions";
 import { FormButton, toastAlert } from "../../theme"
 
@@ -21,29 +19,12 @@ export const PlanForm = ({ loading, setLoading }) => {
     } = useForm();
     const toast = useToast()
 
-    const onSubmit = ({frequency, duration, price}) => {
-        const [durationInMonths, classesQuantity] = calculatePlanNumbers(frequency, duration)
+    const onSubmit = (values) => {
         setLoading(true);
-
-        const plan =  durationInMonths ?
-       {
-            id: `${frequency}-${duration}`,
-            price: `R$ ${price},00`,
-            frequency: frequency,
-            type: duration,
-            availableClasses: classesQuantity,
-            durationInMonths: durationInMonths
-        }
-        :
-        {
-            id: duration,
-            type: duration     
-        }
-        
-        createItemWithId(plansCol, plan, plan.id)
+        createPlan(values)
             .then(reset())
             .catch((err) => toastAlert(toast, err.message, "error"))
-            .finally(()=>setLoading(false))
+            .finally(() => setLoading(false))
     };
 
 
@@ -96,8 +77,8 @@ export const PlanForm = ({ loading, setLoading }) => {
                 >
                     <DurationOptions />
                 </Select>
-                
-                <FormErrorMessage alignItems={"center"}   w={"100%"}  display={"flex"} justifyContent={"center"}   >
+
+                <FormErrorMessage alignItems={"center"} w={"100%"} display={"flex"} justifyContent={"center"}   >
                     {errors.price && errors.price.message}
                     <br />
                     {errors.frequency && errors.frequency.message}
@@ -105,12 +86,10 @@ export const PlanForm = ({ loading, setLoading }) => {
                     {errors.duration && errors.duration.message}
                 </FormErrorMessage>
 
-            <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"136px"}>
-                <Text>Adicionar</Text>
-            </FormButton>
-
+                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"136px"}>
+                    <Text>Adicionar</Text>
+                </FormButton>
             </FormControl>
-
         </form>
     )
 }
