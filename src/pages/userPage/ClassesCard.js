@@ -1,3 +1,4 @@
+import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
@@ -65,18 +66,32 @@ export const ClassesCard = (
                 :
                 <Box
                     display={"flex"}
-                    flexDirection={"column"}
-                    alignItems={"center"}
                     justifyContent={"center"}
+                    alignItems={"center"}
+                    position={"relative"}
                 >
-                    <Text fontSize='lg' as="b" > {day} - {time}</Text>
-                    {capacity > 0 ?
-                        <>
-                            <Text>  {name}   </Text>
-                            <Text> Prof. {teacher}   </Text>
-                        </>
-                        :
-                        <Text  > Não há mais vagas </Text>
+                    <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                    >
+                        <Text fontSize='lg' as="b" > {day} - {time}</Text>
+                        {capacity > 0 ?
+                            <>
+                                <Text>  {name}   </Text>
+                                <Text> Prof. {teacher}   </Text>
+                            </>
+                            :
+                            <Text  > Não há mais vagas </Text>
+                        }
+                    </Box>
+                    {
+                        checkin && <DeleteIcon
+                            boxSize={"6"}
+                            position={"absolute"}
+                            right={"15px"}
+                        />
                     }
                 </Box>
             }
