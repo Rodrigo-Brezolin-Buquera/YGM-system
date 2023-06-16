@@ -4,8 +4,8 @@ import {
     InputRightElement,
     IconButton,
 } from "@chakra-ui/react";
-import Eye from "../../assets/Eye.svg"
 import ClosedEye from "../../assets/ClosedEye.svg"
+import Eye from "../../assets/Eye.svg"
 
 const Icon = ({img}) => {
     return <Image src={img} boxSize={"24px"} />

@@ -38,7 +38,7 @@ describe("Tests simplifyDate", () => {
 })
 
 
-describe("Tests - addOneWeek  ", () => {
+describe("Tests - addOneWeek", () => {
     test("Sucess case in same month", () => {
         const date = "20/05/2020";
         const result = addOneWeek(date)

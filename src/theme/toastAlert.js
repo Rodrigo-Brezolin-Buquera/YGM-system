@@ -5,16 +5,16 @@ const toastAlert = (toast, message, type) => {
     let color
 
     switch (type) {
-        case "success":
-            textColor = "white"
-            color = "green.300"
-            break;
-        case "error":
-            textColor = "white"
-            color = "red.500"
-            break;
-        default:
-            break;
+    case "success":
+        textColor = "white"
+        color = "green.300"
+        break;
+    case "error":
+        textColor = "white"
+        color = "red.500"
+        break;
+    default:
+        break;
     }
 
     toast({

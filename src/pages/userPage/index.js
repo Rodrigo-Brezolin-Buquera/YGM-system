@@ -49,7 +49,13 @@ const UserPage = () => {
             >
                 {
                     loading ?
-                        <Box w={"100%"} h={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                        <Box
+                            w={"100%"}
+                            h={"100%"}
+                            display={"flex"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                        >
                             <CircularProgress
                                 isIndeterminate
                                 color={"brand.200"}
@@ -96,9 +102,9 @@ const UserPage = () => {
                             </>
                             :
                             <MainContainer>
-                                <Text
-                                    textAlign={"center"}
-                                >Sua conta ainda não foi ativada, tente novamente mais tarde.</Text>
+                                <Text textAlign={"center"}
+                                >Sua conta ainda não foi ativada, tente novamente mais tarde.
+                                </Text>
                             </MainContainer>
                 }
             </Background>

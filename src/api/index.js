@@ -1,10 +1,21 @@
-import { doc, setDoc,getDoc, collection, updateDoc, getDocs, deleteDoc, where, query, writeBatch,  } from "firebase/firestore/lite";
+import {
+    doc,
+    setDoc,
+    getDoc,
+    collection,
+    updateDoc,
+    getDocs,
+    deleteDoc,
+    where,
+    query,
+    writeBatch
+} from "firebase/firestore/lite";
 import { database } from "./config";
 
 export const findAllItems = async (itemCol) => {
     const col = collection(database, itemCol);
     const snap = await getDocs(col);
-    const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}});
+    const result = snap.docs.map(doc => { return { ...doc.data(), id: doc.id } });
     return result;
 };
 
@@ -12,25 +23,25 @@ export const findItemById = async (itemCol, id) => {
     const docRef = doc(collection(database, itemCol), id);
     const snap = await getDoc(docRef);
     const data = snap.data()
-    return data ? {...data, id} : null;
+    return data ? { ...data, id } : null;
 };
 
 export const findItemWhere = async (itemCol, atribute, value) => {
     const col = collection(database, itemCol);
     const q = query(col, where(atribute, "==", value));
     const snap = await getDocs(q);
-    const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
+    const result = snap.docs.map(doc => { return { ...doc.data(), id: doc.id } })
     return result;
 };
 
 
 export const createItem = async (itemCol, object) => {
-    const docRef = doc(collection(database, itemCol) ) ;
+    const docRef = doc(collection(database, itemCol));
     await setDoc(docRef, object);
 };
 
 export const createItemWithId = async (itemCol, object, id) => {
-    const docRef = doc(collection(database, itemCol), id ) ;
+    const docRef = doc(collection(database, itemCol), id);
     await setDoc(docRef, object);
 };
 
@@ -50,7 +61,7 @@ export const deleteItemWhere = async (itemCol, atribute, value) => {
 
     list.forEach(item => {
         const docRef = doc(collection(database, itemCol), item.id);
-        batch.delete(docRef )
+        batch.delete(docRef)
     })
 
     await batch.commit();

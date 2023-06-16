@@ -11,7 +11,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
     const onConfirm = () => {
         setCardLoading(true);
         validateCheckin(id, !verified)
-        .catch(err => toastAlert(toast, err.message, "error"))
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => {
                 setCardLoading(false)
                 setLoading((prevState => !prevState));
@@ -22,7 +22,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
         confirmDialog("Cancelar este checkin?", () => {
             setCardLoading(true);
             (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
-            .catch(err => toastAlert(toast, err.message, "error"))
+                .catch(err => toastAlert(toast, err.message, "error"))
                 .finally(() => {
                     setCardLoading(false)
                     setLoading((prevState => !prevState))                

@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Text, useDisclosure, useToast } from "@chakra-ui/react";
+import { Button,  Text, useDisclosure, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { contractsCol, usersCol } from "../../api/config";
@@ -72,7 +72,6 @@ export const UserActions = ({ userId, navigate }) => {
                         availableClasses={contracts.availableClasses}
                     /> :
                     <Text> Ainda não contrato para este usuário</Text>
-                // <CircularProgress isIndeterminate color="brand.200" size="70px" />
             }
 
             <AddContractModal

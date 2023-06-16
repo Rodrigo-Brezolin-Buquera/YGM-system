@@ -26,22 +26,22 @@ const UserInfo = (props) => {
 
             {
                 props.planEnds ?  
-                <Line>
-                    <Text as='b' fontSize='lg' >Fim previsto: </Text>
-                    <Text fontSize='lg' > {props.planEnds}</Text>
-                 </Line>
-                : 
-                null
+                    <Line>
+                        <Text as='b' fontSize='lg' >Fim previsto: </Text>
+                        <Text fontSize='lg' > {props.planEnds}</Text>
+                    </Line>
+                    : 
+                    null
             }
 
             {
                 isNaN(props.availableClasses) ?  
-                <Line>
-                    <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
-                    <Text fontSize='lg' >{props.availableClasses}</Text>
-                </Line> 
-                : 
-                null
+                    <Line>
+                        <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
+                        <Text fontSize='lg' >{props.availableClasses}</Text>
+                    </Line> 
+                    : 
+                    null
             }
            
         </TextContainer>

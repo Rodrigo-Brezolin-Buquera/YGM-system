@@ -35,9 +35,9 @@ export const singUp = async ({ email, password, name }) => {
 };
 
 export const logout = async (navigate) => {
-        await signOut(auth);
-        localStorage.setItem("admin", "")
-        goToLogin(navigate); 
+    await signOut(auth);
+    localStorage.setItem("admin", "")
+    goToLogin(navigate); 
 };
 
 export const resetPassword = async (email) => {

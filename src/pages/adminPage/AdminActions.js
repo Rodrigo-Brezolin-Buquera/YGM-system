@@ -1,8 +1,8 @@
 import { useDisclosure, Button, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { WrapContainer } from "../../theme";
-import { CreateClassModal } from "./CreateClassModal";
 import ContractList from "./ContractList";
+import { CreateClassModal } from "./CreateClassModal";
 import UserList from "./UserList";
 
 

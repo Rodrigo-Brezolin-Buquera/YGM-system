@@ -9,7 +9,7 @@ const InputContainer = ({children}) => {
             width={"100%"}
             margin={"0.5em"}
         >
-           {children}
+            {children}
 
 
         </Box>

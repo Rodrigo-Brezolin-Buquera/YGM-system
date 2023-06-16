@@ -2,12 +2,12 @@ import { Box, Image, Text,useDisclosure } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import defaultLogo from "../../assets/defaultLogo.png";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage";
-import { SignupModal } from "./SignupModal";
 import { LoginForm } from "./LoginForm";
+import { SignupModal } from "./SignupModal";
 
 const LoginPage = () => {
     useUnprotectedPage();
-    const { isOpen: isOpen, onOpen: onOpen, onClose: onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate();
 
     return (

@@ -35,70 +35,70 @@ export const LoginForm = ({ navigate }) => {
     };
 
     return (
-            <Box
-                display={"flex"}
-                flexDirection={"column"}
-                alignItems={"center"}
-                p={"1em"}
-                mt={"1em"}
-                backgroundColor={"brand.100"}
-                borderRadius={"25px"}
-                w={"300px"}
-            >
-                <form onSubmit={handleSubmit(onSubmit)} >
-                    <FormControl isInvalid={errors.email || errors.password} >
-                        <Box
-                            display={"flex"}
-                            flexDirection={"column"}
-                            alignItems={"center"}
-                            gap={"1em"}
-                            w={"276px"}
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+            alignItems={"center"}
+            p={"1em"}
+            mt={"1em"}
+            backgroundColor={"brand.100"}
+            borderRadius={"25px"}
+            w={"300px"}
+        >
+            <form onSubmit={handleSubmit(onSubmit)} >
+                <FormControl isInvalid={errors.email || errors.password} >
+                    <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        alignItems={"center"}
+                        gap={"1em"}
+                        w={"276px"}
+                    >
+                        <Input
+                            id="email"
+                            placeholder="Email"
+                            {...register("email", {
+                                required: "Campo obrigatório",
+                            })}
+                            variant="filled"
+                            borderRadius={"10px"}
+
+                        />
+                        <PasswordInput
+                            setShowPassword={setShowPassword}
+                            showPassword={showPassword}
                         >
                             <Input
-                                id="email"
-                                placeholder="Email"
-                                {...register("email", {
-                                    required: "Campo obrigatório",
+                                id="password"
+                                placeholder="Senha"
+                                {...register("password", {
+                                    required: "Campo obrigatório"
+
                                 })}
                                 variant="filled"
+                                type={showPassword ? "text" : "password"}
                                 borderRadius={"10px"}
-
                             />
-                            <PasswordInput
-                                setShowPassword={setShowPassword}
-                                showPassword={showPassword}
-                            >
-                                <Input
-                                    id="password"
-                                    placeholder="Senha"
-                                    {...register("password", {
-                                        required: "Campo obrigatório"
+                        </PasswordInput>
+                        <FormButton
+                            isSubmitting={isSubmitting}
+                            color={"brand.200"}
+                            loading={loading}
+                            width={"120px"}
+                        >
+                            <Text>Acessar</Text>
+                        </FormButton>
 
-                                    })}
-                                    variant="filled"
-                                    type={showPassword ? "text" : "password"}
-                                    borderRadius={"10px"}
-                                />
-                            </PasswordInput>
-                            <FormButton
-                                isSubmitting={isSubmitting}
-                                color={"brand.200"}
-                                loading={loading}
-                                width={"120px"}
-                            >
-                                <Text>Acessar</Text>
-                            </FormButton>
+                    </Box>
+                    <FormErrorMessage>
+                        {errors.email && errors.email.message}
+                        <br />
+                        {errors.password && errors.password.message}
+                    </FormErrorMessage>
+                </FormControl>
+            </form>
 
-                        </Box>
-                        <FormErrorMessage>
-                            {errors.email && errors.email.message}
-                            <br />
-                            {errors.password && errors.password.message}
-                        </FormErrorMessage>
-                    </FormControl>
-                </form>
-
-            </Box>
+        </Box>
     );
 };
 

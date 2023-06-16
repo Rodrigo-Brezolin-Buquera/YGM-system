@@ -4,8 +4,8 @@ import { findAllItems } from "../../api";
 import { usersCol } from "../../api/config";
 import { StatusOptions } from "../../components/selectOptions";
 import { useInput } from "../../hooks/useInput";
-import { InputContainer, Line } from "../../theme";
 import { goToContract } from "../../routes/coordinator";
+import { InputContainer, Line } from "../../theme";
 
 const UserList = ({ navigate }) => {
     const [users, setUsers] = useState([]);
@@ -22,12 +22,12 @@ const UserList = ({ navigate }) => {
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter(user => {
             switch (status) {
-                case "Ativos":
-                    return user.active === true;
-                case "Inativos":
-                    return user.active === false;
-                default:
-                    return user.active === true || user.active === false;
+            case "Ativos":
+                return user.active === true;
+            case "Inativos":
+                return user.active === false;
+            default:
+                return user.active === true || user.active === false;
 
             }
         })
