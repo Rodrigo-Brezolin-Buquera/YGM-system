@@ -1,6 +1,7 @@
 import { Text  } from "@chakra-ui/react";
+import { memo } from "react";
 import { goToClass } from "../../routes/coordinator";
-import SquareCard from "../../theme/SquareCard";
+import {SquareCard} from "../../theme";
 
 const ClassesCard = (props) => {
     return (
@@ -14,4 +15,4 @@ const ClassesCard = (props) => {
     );
 };
 
-export default ClassesCard;
+export default memo(ClassesCard);
