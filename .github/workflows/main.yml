@@ -25,7 +25,7 @@ jobs:
         with:
           workloadIdentityProvider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           serviceAccount: ${{ secrets.SERVICE_ACCOUNT }}
-          project: github-workflow-sws
+          project: yoga-mangala
           node-version: 16 
           function: false 
           hosting: true 
