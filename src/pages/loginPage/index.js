@@ -1,13 +1,13 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image, Text,useDisclosure } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import defaultLogo from "../../assets/defaultLogo.png";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage";
-
 import { LoginForm } from "./LoginForm";
+import { SignupModal } from "./SignupModal";
 
 const LoginPage = () => {
     useUnprotectedPage();
-
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const navigate = useNavigate();
 
     return (
@@ -22,6 +22,8 @@ const LoginPage = () => {
         >
             <Image maxW={"300px"} src={defaultLogo} alt="logo" />
             <LoginForm navigate={navigate} />
+            <Text _hover={{ cursor: "pointer" }} fontSize={"sm"}  onClick={onOpen} >Não possui conta? Crie uma aqui</Text>
+            <SignupModal isOpen={isOpen} onClose={onClose} navigate={navigate} />
         </Box>
     );
 };

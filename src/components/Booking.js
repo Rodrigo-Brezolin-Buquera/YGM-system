@@ -1,19 +1,29 @@
-import { Card, Heading, Text, Input } from "@chakra-ui/react"
-import { createContractlessCheckin } from "../../api/checkins"
-import { stringPattern } from "../../api/patterns"
-import { useInput } from "../../hooks/useInput"
-import { LoadingButton, MainContainer } from "../../theme"
-import { simplifyDate } from "../../utils/dates"
+import { Card, Heading, Text, Input, useToast } from "@chakra-ui/react"
+import { useLocation } from "react-router-dom"
+import { createContractlessCheckin } from "../api/checkins"
+import { stringPattern } from "../api/patterns"
+import { useInput } from "../hooks/useInput"
+import { LoadingButton, MainContainer, toastAlert } from "../theme"
+import { simplifyDate } from "../utils/dates"
 
-export const Booking = ({ selected,setSelected, setLoading }) => {
+export const Booking = ({ selected, setSelected, setLoading }) => {
     const [name, handleName] = useInput("")
+    const { pathname } = useLocation();
+    const toast = useToast()
 
     const addStudent = async () => {
         const { date, time, capacity, id } = selected
+        setLoading(true)
         await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
-            .then(setSelected(null))
-            .catch(err => console.log(err.message))
-        setTimeout(setLoading((prevState)=> !prevState), 1000)
+            .then(setSelected && setSelected(null))
+            .catch(err => toastAlert(toast, err.message, "error"))
+        setLoading(false)
+    }
+
+    const handleKeyPress = async (e) => {
+        if (e.key === "Enter") {
+            await addStudent()
+        }
     }
 
     return (
@@ -24,7 +34,7 @@ export const Booking = ({ selected,setSelected, setLoading }) => {
                 selected ?
                     <Card
                         display={"flex"}
-                        flexDirection={["column","column", "row", "row"]}
+                        flexDirection={["column", "column", "row", "row"]}
                         minWidth={"auto"}
                         p={"1em  3em"}
                         justifyContent={"center"}
@@ -33,13 +43,16 @@ export const Booking = ({ selected,setSelected, setLoading }) => {
                         backgroundColor={"brand.500"}
                     >
 
-                        <Text minW={"110px"}
-                            fontWeight={"bold"}
-                        >
-                            {simplifyDate(selected?.date)} - {selected?.time}
-                        </Text>
-
-
+                        {
+                            pathname === "/admin/calendar" ?
+                                <Text minW={"110px"}
+                                    fontWeight={"bold"}
+                                >
+                                    {simplifyDate(selected?.date)} - {selected?.time}
+                                </Text>
+                                :
+                                null
+                        }
                         {
                             selected?.capacity <= 0
                                 ?
@@ -54,8 +67,8 @@ export const Booking = ({ selected,setSelected, setLoading }) => {
                                         maxW={"300px"}
                                         placeholder={"Nome "}
                                         onChange={handleName}
-                                        pattern={stringPattern
-                                        }
+                                        pattern={stringPattern}
+                                        onKeyPress={handleKeyPress}
                                     />
                                     <LoadingButton color={"brand.200"} handler={addStudent} >
                                         <Text>Adicionar</Text>

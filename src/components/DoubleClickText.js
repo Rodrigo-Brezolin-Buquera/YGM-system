@@ -1,10 +1,12 @@
-import { Text } from "@chakra-ui/react";
+import { Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { updateItem } from "../api";
+import { toastAlert } from "../theme";
 
 export const DoubleClickText = (props) => {
     const [text, setText] = useState("");
     const [showInput, setShowInput] = useState(false);
+    const toast = useToast()
 
     useEffect(() => {
         setText(props.text)
@@ -13,7 +15,7 @@ export const DoubleClickText = (props) => {
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             updateItem(props.itemCol, { [props.atribute]: text }, props.id)
-                .catch((err) => console.log(err.message));
+                .catch((err) => toastAlert(toast, err.message, "error"));
             setShowInput(false)
         }
     };

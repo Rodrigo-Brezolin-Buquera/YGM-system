@@ -1,16 +1,17 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
+import { Text, CircularProgress, Box, Card, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { validateCheckin, cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
-import { confirmDialog } from "../../theme";
+import { confirmDialog, toastAlert } from "../../theme";
 
-const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless }) => {
+const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless, }) => {
     const [cardLoading, setCardLoading] = useState(false);
+    const toast = useToast()
 
     const onConfirm = () => {
         setCardLoading(true);
         validateCheckin(id, !verified)
-            .catch((err) => { console.log(err.message) })
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => {
                 setCardLoading(false)
                 setLoading((prevState => !prevState));
@@ -21,10 +22,10 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
         confirmDialog("Cancelar este checkin?", () => {
             setCardLoading(true);
             (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
-                .catch((err) => { console.log(err.message) })
+                .catch(err => toastAlert(toast, err.message, "error"))
                 .finally(() => {
                     setCardLoading(false)
-                    setLoading((prevState => !prevState))
+                    setLoading((prevState => !prevState))                
                 });
         })
     }
@@ -41,7 +42,6 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
             padding={"0.2em"}
             minH={"50px"}
             w={"75%"}
-
         >
             {(cardLoading) ?
                 <CircularProgress isIndeterminate color="brand.200" size="50px" />

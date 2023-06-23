@@ -2,15 +2,15 @@ import { Box, Input, Select } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findAllItems } from "../../api";
 import { contractsCol } from "../../api/config";
-import { StatusOptions, TypeOptions } from "../../components/selectOptions";
-import {useInput} from "../../hooks/useInput";
+import { TypeOptions } from "../../components/selectOptions";
+import { useInput } from "../../hooks/useInput";
+import { InputContainer } from "../../theme";
 import UserInfo from "./UserInfo";
 
 
-const StudentList = ({  navigate }) => {
+const ContractList = ({ navigate }) => {
     const [contracts, setContracts] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
-    const [status, handleStatus] = useInput("");
     const [planType, handlePlanType] = useInput("");
 
 
@@ -19,24 +19,11 @@ const StudentList = ({  navigate }) => {
             .then(res => setContracts(res))
             .catch(err => console.log(err.message))
 
-    }, [ ]);
+    }, []);
 
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
-        .filter(user => {
-            const contract = user?.currentContract;
-            switch (status) {
-            case "ativos":
-                return contract?.active === true;
-            case "inativos":
-                return contract?.active === false;
-            default:
-                return contract?.active === true || contract?.active === false;
-
-            }
-        })
-        .filter((user) => {
-            const contract = user?.currentContract;
+        .filter((contract) => {
             switch (planType) {
             case "1x-Mensal":
                 return contract?.plan === "1x-Mensal";
@@ -58,32 +45,24 @@ const StudentList = ({  navigate }) => {
                 return contract?.plan;
             }
         })
-        .map((user) => {
-            const contract = user?.currentContract;
+        .map((contract) => {
+            
             return (
                 <UserInfo
-                    key={user.id}
-                    id={user.id}
-                    name={user.name}
+                    key={contract.id}
+                    id={contract.id}
+                    name={contract.name}
                     plan={contract.plan}
                     started={contract.started}
                     ends={contract.ends}
                     availableClasses={contract.availableClasses}
-                    active={contract.active}
                     navigate={navigate}
                 />
             );
         });
 
     return (
-        <Box
-            display={"flex"}
-            flexDirection={"column"}
-            alignItems={"flex-start"}
-            gap={"0.5em"}
-            width={"100%"}
-            margin={"0.5em"}
-        >
+        <InputContainer>
             <Box
                 display={"flex"}
                 gap={"1em"}
@@ -101,21 +80,14 @@ const StudentList = ({  navigate }) => {
                     onChange={handlePlanType}
                 >
                     <TypeOptions />
-                </Select>
-
-                <Select
-                    placeholder='Status'
-                    onChange={handleStatus}
-                >
-                    <StatusOptions />
-                </Select>
+                </Select>   
             </Box>
 
             {userList?.length ? userList : <p> Nenhum contrato encontrado </p>}
 
 
-        </Box>
+        </InputContainer>
     );
 };
 
-export default StudentList;
+export default ContractList;

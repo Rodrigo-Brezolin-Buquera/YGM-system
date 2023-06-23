@@ -1,15 +1,17 @@
-import {  Heading, } from "@chakra-ui/react";
+import {  Heading, useToast, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems, } from "../../api";
 import { stylesCol, teachersCol } from "../../api/config";
 import { RequestInput } from "../../components/RequestInput";
-import { confirmDialog, WrapContainer } from "../../theme";
+import { confirmDialog, toastAlert, WrapContainer } from "../../theme";
 import ItemCard from "./ItemCard";
 
 export const TeachersAndStyles = () => {
     const [styles, setStyles] = useState([]);
     const [teachers, setTeachers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const toast = useToast()
+
 
     useEffect(() => {
         findAllItems(stylesCol)
@@ -26,7 +28,7 @@ export const TeachersAndStyles = () => {
         confirmDialog(`Remover ${name} da lista?`, () => {
             deleteItemById(itemCol, id)
                 .then(setLoading(!loading))
-                .catch(err => console.log(err.message));
+                .catch(err => toastAlert(toast, err.message, "error"))
         })
     }
 

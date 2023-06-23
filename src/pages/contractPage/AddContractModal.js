@@ -2,15 +2,15 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text
+    Select, Text, useToast
 } from "@chakra-ui/react";
-import {useState} from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { newContract } from "../../api/contracts";
+import { createContract, newContract } from "../../api/contracts";
 import { TypeOptions } from "../../components/selectOptions";
-import { FormButton, ModalComponent } from "../../theme";
+import { FormButton, ModalComponent, toastAlert } from "../../theme";
 
-export const AddContractModal = ({ id,  isOpen, onClose   }) => {
+export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) => {
     const {
         handleSubmit,
         register,
@@ -18,24 +18,38 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
         reset
     } = useForm();
     const [loading, setLoading] = useState(false);
+    const toast = useToast()
 
 
     const onSubmit = (values) => {
         setLoading(true);
-        newContract(values, id)        
-            .then(reset())
-            .catch(err => console.log(err.message))
-            .finally(()=>{
+        (
+            userIsActive ?
+                newContract(values, id)
+                :
+                createContract({
+                    id,
+                    name,
+                    plan: values.plan,
+                    date: values.date
+                })
+        )
+            .then(()=> {
+                toastAlert(toast, "Contrato criado", "success")
+                reset()
+            })
+            .catch(err => toastAlert(toast, err.message, "error"))
+            .finally(() => {
                 setLoading(false)
                 onClose()
             });
     };
 
     return (
-        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar novo contrato"}>
+        <ModalComponent isOpen={isOpen} onClose={onClose} header={"Novo contrato"}>
 
             <form onSubmit={handleSubmit(onSubmit)} >
-                <FormControl 
+                <FormControl
                     isInvalid={errors.plan || errors.date}
                     display={"flex"}
                     flexDirection={"column"}
@@ -43,7 +57,7 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
                     justifyContent={"center"}
                     gap={"1em"}
                     minW={"300px"}
-            
+
                 >
                     <Select
                         id="plan"
@@ -67,14 +81,15 @@ export const AddContractModal = ({ id,  isOpen, onClose   }) => {
                     />
                     <FormErrorMessage>
                         {errors.plan && errors.plan.message}
-                        <br/>
+                        <br />
                         {errors.date && errors.date.message}
                     </FormErrorMessage>
+                    
+                    <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"124px"} >
+                        <Text>Adicionar </Text>
+                    </FormButton>
                 </FormControl>
-           
-                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} >
-                    <Text>Adicionar plano </Text>
-                </FormButton>
+
 
             </form>
         </ModalComponent>

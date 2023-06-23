@@ -2,15 +2,13 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text
+    Select, Text, useToast
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { createItemWithId } from "../../api";
-import { plansCol } from "../../api/config";
-import { calculatePlanNumbers } from "../../api/contracts";
 import { pricePattern } from "../../api/patterns";
+import { createPlan } from "../../api/plans";
 import { DurationOptions, FrequencyOptions } from "../../components/selectOptions";
-import { FormButton } from "../../theme"
+import { FormButton, toastAlert } from "../../theme"
 
 export const PlanForm = ({ loading, setLoading }) => {
     const {
@@ -19,22 +17,14 @@ export const PlanForm = ({ loading, setLoading }) => {
         reset,
         formState: { errors, isSubmitting }
     } = useForm();
+    const toast = useToast()
 
     const onSubmit = (values) => {
-        const [duration, quantity] = calculatePlanNumbers(values.frequency, values.duration)
         setLoading(true);
-        const plan = {
-            id: `${values.frequency}-${values.duration}`,
-            price: `R$ ${values.price},00`,
-            frequency: values.frequency,
-            type: values.duration,
-            availableClasses: quantity,
-            durationInMonths: duration
-        }
-        createItemWithId(plansCol, plan, plan.id)
+        createPlan(values)
             .then(reset())
-            .catch((err) => console.log(err.message))
-            .finally(setLoading(false))
+            .catch((err) => toastAlert(toast, err.message, "error"))
+            .finally(() => setLoading(false))
     };
 
 
@@ -87,19 +77,19 @@ export const PlanForm = ({ loading, setLoading }) => {
                 >
                     <DurationOptions />
                 </Select>
-                
-                <FormErrorMessage alignItems={"center"}   w={"100%"}  display={"flex"} justifyContent={"center"}   >
+
+                <FormErrorMessage alignItems={"center"} w={"100%"} display={"flex"} justifyContent={"center"}   >
                     {errors.price && errors.price.message}
                     <br />
                     {errors.frequency && errors.frequency.message}
                     <br />
                     {errors.duration && errors.duration.message}
                 </FormErrorMessage>
-            </FormControl>
 
-            <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading}>
-                <Text>Adicionar plano</Text>
-            </FormButton>
+                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"136px"}>
+                    <Text>Adicionar</Text>
+                </FormButton>
+            </FormControl>
         </form>
     )
 }

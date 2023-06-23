@@ -9,8 +9,8 @@ export const numberPattern = {
 }
 
 export const stringPattern = {
-    value: /^[a-zA-Z ]{3,30}$/u,
-    message: "Os textos devem ter entre 3 e 30 caracteres sem caracteres especiais"
+    value: /^[a-zA-Z ]{3,40}$/u,
+    message: "Os textos devem ter entre 3 e 40 caracteres sem caracteres especiais"
 }
 
 export const emailPattern = {
@@ -18,3 +18,7 @@ export const emailPattern = {
     message: "Entre com um email válido"
 }
 
+export const passwordPattern = {
+    value:/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/i,
+    message: "A senha precisa ter no mínimo 6 caracteres, com pelo menos 1 letra e 1 número"
+}

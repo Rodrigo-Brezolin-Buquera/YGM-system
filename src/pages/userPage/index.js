@@ -1,13 +1,13 @@
-import {  CircularProgress, Button } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { CircularProgress, Button, Text, Box } from "@chakra-ui/react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { findItemById } from "../../api";
-import { logout } from "../../api/auth";
-import {  contractsCol,  } from "../../api/config";
-import {CheckinsDone} from "../../components/CheckinsDone";
+import { logout, resetPassword } from "../../api/auth";
+import { contractsCol, usersCol, } from "../../api/config";
+import { CheckinsDone } from "../../components/CheckinsDone";
 import UserInfo from "../../components/UserInfo";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { MainContainer, SideContainer, Header, Background } from "../../theme";
+import { MainContainer, SideContainer, Header, Background, WrapContainer, confirmDialog } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
 const UserPage = () => {
@@ -15,12 +15,24 @@ const UserPage = () => {
     const { userId } = useParams();
     const navigate = useNavigate()
     const [contract, setContract] = useState({});
+    const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         findItemById(contractsCol, userId)
             .then(res => setContract(res))
             .catch(err => console.log(err.message))
-    }, [ userId]);
+        findItemById(usersCol, userId)
+            .then(res => {
+                setUser(res)
+                setLoading(false)
+            })
+            .catch(err => console.log(err.message))
+    }, [userId, loading]);
+
+    const changePassword = useCallback(() => {
+        confirmDialog("Enviar email de redefinição de senha?", () => resetPassword(user?.email))
+    }, [user])
 
     return (
         <>
@@ -35,35 +47,66 @@ const UserPage = () => {
                 column={"column"}
                 justifyContent={"start"}
             >
-                <SideContainer>
-                    <AvailableClasses
-                        contractId={contract?.id}
-                        userName={contract?.name}
-                        contractLimit={contract?.currentContract?.availableClasses}
-                              
-                    />
-                </SideContainer>
+                {
+                    loading ?
+                        <Box
+                            w={"100%"}
+                            h={"100%"}
+                            display={"flex"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                        >
+                            <CircularProgress
+                                isIndeterminate
+                                color={"brand.200"}
+                                size="120px"
+                                mt={"1em"}
+                            />
+                        </Box>
+                        :
+                        user.active ?
+                            <>
+                                <SideContainer>
+                                    <AvailableClasses
+                                        contractId={contract?.id}
+                                        userName={contract?.name}
+                                        contractLimit={contract?.availableClasses}
+                                    />
+                                </SideContainer>
 
-                <MainContainer>
-                    {
-                        contract.id ?
-                            <UserInfo
-                                id={contract?.id}
-                                name={contract?.name}
-                                plan={contract?.currentContract?.plan}
-                                planStarted={contract?.currentContract?.started}
-                                planEnds={contract?.currentContract?.ends}
-                                availableClasses={contract?.currentContract?.availableClasses}
-                            /> :
-                            <CircularProgress isIndeterminate color={"brand.200"} size="70px" />
-                    }
+                                <MainContainer>
+                                    <UserInfo
+                                        id={contract?.id}
+                                        name={contract?.name}
+                                        plan={contract?.plan}
+                                        planStarted={contract?.started}
+                                        planEnds={contract?.ends}
+                                        availableClasses={contract?.availableClasses}
+                                    />
+                                    <WrapContainer>
+                                        <Button
+                                            backgroundColor={"brand.200"}
+                                            onClick={changePassword}
+                                        >
+                                            <Text> Redefinir senha</Text>
+                                        </Button>
+                                    </WrapContainer>
+                                </MainContainer>
 
-                </MainContainer>
-
-                <SideContainer>
-                    {<CheckinsDone userId={userId} />}
-                </SideContainer>
-
+                                <SideContainer>
+                                    <CheckinsDone
+                                        userId={userId}
+                                        loading={loading}
+                                    />
+                                </SideContainer>
+                            </>
+                            :
+                            <MainContainer>
+                                <Text textAlign={"center"}
+                                >Sua conta ainda não foi ativada, tente novamente mais tarde.
+                                </Text>
+                            </MainContainer>
+                }
             </Background>
         </>
     );

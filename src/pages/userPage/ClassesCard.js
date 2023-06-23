@@ -1,17 +1,18 @@
-import { Text, CircularProgress, Box } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import { Text, CircularProgress, Box, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
 import { checkinsCol } from "../../api/config";
-import { confirmDialog } from "../../theme";
-import SquareCard from "../../theme/SquareCard";
-
+import { confirmDialog, toastAlert, SquareCard } from "../../theme";
 
 export const ClassesCard = (
     { contractId, userName, yogaClass, contractLimit }
 ) => {
     const [checkin, setCheckin] = useState(null);
     const [loading, setLoading] = useState(false);
+    const toast = useToast()
+
     const { id, day, time, date, teacher, name, capacity } = yogaClass
 
     const checkinId = `${contractId}+${id}`;
@@ -22,22 +23,25 @@ export const ClassesCard = (
         findItemById(checkinsCol, checkinId)
             .then((res) => setCheckin(res))
             .catch(err => console.log(err.message))
-
     }, [checkinId, contractId, loading]);
 
 
     const onDelete = () => {
         setLoading(true);
         deleteCheckin(checkin.id, limits)
-            .then(setCheckin(null))
-            .catch((err) => { console.log(err.message) })
+            .then(() => {
+                toastAlert(toast, "Checkin cancelado", "success")
+                setCheckin(null)
+            })
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => setLoading(false));
     }
 
     const onCreate = () => {
         setLoading(true);
         createCheckin(checkinData, limits)
-            .catch((err) => { console.log(err.message) })
+            .then(toastAlert(toast, "Checkin realizado", "success"))
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => setLoading(false));
     }
     const handleCheckin = () => {
@@ -55,21 +59,37 @@ export const ClassesCard = (
             color={checkin ? "brand.200" : "brand.500"}
             onClick={handleCheckin}
         >
-            {loading ? <CircularProgress isIndeterminate color={"brand.200"} alignSelf={"center"} size="75px" /> :
+            {loading ?
+                <CircularProgress isIndeterminate color={"brand.200"} alignSelf={"center"} size="75px" />
+                :
                 <Box
                     display={"flex"}
-                    flexDirection={"column"}
-                    alignItems={"center"}
                     justifyContent={"center"}
+                    alignItems={"center"}
+                    position={"relative"}
                 >
-                    <Text fontSize='lg' as="b" > {day} - {time}</Text>
-                    {capacity > 0 ?
-                        <>
-                            <Text>  {name}   </Text>
-                            <Text> Prof. {teacher}   </Text>
-                        </>
-                        :
-                        <Text  > Não há mais vagas </Text>
+                    <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                    >
+                        <Text fontSize='lg' as="b" > {day} - {time}</Text>
+                        {capacity > 0 ?
+                            <>
+                                <Text>  {name}   </Text>
+                                <Text> Prof. {teacher}   </Text>
+                            </>
+                            :
+                            <Text  > Não há mais vagas </Text>
+                        }
+                    </Box>
+                    {
+                        checkin && <DeleteIcon
+                            boxSize={"6"}
+                            position={"absolute"}
+                            right={"15px"}
+                        />
                     }
                 </Box>
             }

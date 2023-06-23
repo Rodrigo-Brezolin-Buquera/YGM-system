@@ -4,14 +4,15 @@ import {
     Input,
     Select,
     Text,
-    FormLabel
+    FormLabel,
+    useToast
 } from "@chakra-ui/react";
-import {  useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, stringPattern } from "../../api/patterns";
-import { StatusOptions, TypeOptions } from "../../components/selectOptions";
-import { FormButton, ModalComponent } from "../../theme";
+import { TypeOptions } from "../../components/selectOptions";
+import { FormButton, ModalComponent, toastAlert } from "../../theme";
 import { formatToCalendar } from "../../utils/dates"
 
 export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
@@ -25,13 +26,13 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
     } = useForm({
         shouldUnregister: true
     });
+    const toast = useToast()
 
-    useEffect(()=>{
+    useEffect(() => {
         setValue("name", name);
         setValue("plan", contract?.plan);
-        setValue("status", contract?.status);
-        setValue("started",  contract?.started && formatToCalendar(contract?.started));
-        setValue("ends",contract?.ends && formatToCalendar(contract?.ends));
+        setValue("started", contract?.started && formatToCalendar(contract?.started));
+        setValue("ends", contract?.ends && formatToCalendar(contract?.ends));
         setValue("availableClasses", contract?.availableClasses);
     }, [name, contract, setValue])
 
@@ -40,10 +41,11 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
         setLoading(true);
         updateContract(values, id)
             .then(() => {
+                toastAlert(toast, "Contrato alterado", "success")
                 reset()
                 onClose()
             })
-            .catch(err => console.log(err.message))
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => setLoading(false));
     };
 
@@ -58,7 +60,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                     justifyContent={"center"}
                     gap={"1em"}
                     minW={"300px"}
-                    isInvalid={errors.name || errors.plan || errors.active ||
+                    isInvalid={errors.name || errors.plan ||
                         errors.started || errors.ends || errors.availableClasses}
                 >
 
@@ -97,23 +99,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                         </Select>
 
                     </FormLabel>
-                    <FormLabel
 
-                        display={"flex"}
-                        alignItems={"center"}
-                        gap={"1em"}
-                    > Status:
-                        <Select
-                            w={"250px"}
-                            id="active"
-                            placeholder="Status do plano"
-                            {...register("active", {
-                                required: "Campo Obrigátorio",
-                            })}
-                        >
-                            <StatusOptions />
-                        </Select>
-                    </FormLabel>
 
                     <FormLabel
 
@@ -142,7 +128,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                             id="ends"
                             type="date"
                             {...register("ends", {
-                                required: "Campo Obrigátorio",
+                                // required: "Campo Obrigátorio",
 
                             })}
                         />
@@ -159,7 +145,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                             name="availableClasses"
                             type="number"
                             {...register("availableClasses", {
-                                required: "Campo Obrigátorio",
+                                // required: "Campo Obrigátorio",
                                 pattern: numberPattern
                             })}
                         />
@@ -169,23 +155,21 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose }) => {
                         <br />
                         {errors.name && errors.name.message}
                         <br />
-                        {errors.active && errors.active.message}
-                        <br />
                         {errors.started && errors.started.message}
                         <br />
                         {errors.ends && errors.ends.message}
                         <br />
                         {errors.availableClasses && errors.availableClasses.message}
                     </FormErrorMessage>
+                    <FormButton
+                        isSubmitting={isSubmitting}
+                        oading={loading}
+                        color={"brand.200"}
+                        width={"124px"}
+                    >
+                        <Text>Salvar</Text>
+                    </FormButton>
                 </FormControl>
-
-                <FormButton
-                    isSubmitting={isSubmitting}
-                    oading={loading}
-                    color={"brand.200"}
-                >
-                    <Text>Salvar</Text>
-                </FormButton>
             </form>
         </ModalComponent>
     );

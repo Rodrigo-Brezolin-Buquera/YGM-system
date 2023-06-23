@@ -1,9 +1,11 @@
-import { Input } from "@chakra-ui/react";
+import { Input, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { createItem } from "../api";
+import {toastAlert} from "../theme"
 
 export const RequestInput = ({ placeholder, itemCol, setLoading }) => {
     const [text, setText] = useState("");
+    const toast = useToast()
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
@@ -12,7 +14,8 @@ export const RequestInput = ({ placeholder, itemCol, setLoading }) => {
                     setText("")  
                     setLoading((prevState)=> !prevState)         
                 })
-                .catch(err => console.log(err.message));
+                .catch(err => toastAlert(toast, err.message, "error"))
+
         }
     }
 

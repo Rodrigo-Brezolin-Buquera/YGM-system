@@ -1,58 +1,30 @@
-import { collection, doc, runTransaction,   updateDoc } from "firebase/firestore/lite"
+import { collection, doc, runTransaction } from "firebase/firestore/lite"
 import { calculateEndDate, formatDate } from "../utils/dates"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, findItemWhere, updateItem } from "."
 
-export const createContract = async ({ name, plan, date }, id) => {
-    const [frequency, dur] = plan.split("-")
-    const [duration, quantity] = calculatePlanNumbers(frequency, dur)
-    const contract = {
-        name,
-        currentContract: {
-            active: true,
-            plan,
-            ends: calculateEndDate(date, duration),
-            started: formatDate(date, "DD/MM/YYYY"),
-            availableClasses: quantity
-        }
-    }
+export const createContract = async ({ name, plan, date, id }) => {      
+    const contract = toModelContract(plan, date)
+    contract.name = name
     await createItemWithId(contractsCol, contract, id)
+    await updateItem(usersCol, { active: true }, id)
 }
 
 export const newContract = async ({ plan, date }, id) => {
-    const [frequency, dur] = plan.split("-")
-    const [duration, quantity] = calculatePlanNumbers(frequency, dur)    
-    const contract = {
-        currentContract: {
-            active: true,
-            plan,
-            ends: date && calculateEndDate(date, duration),
-            started:  date && formatDate(date, "DD/MM/YYYY"),
-            availableClasses: quantity
-        }
-    }
+    const contract = toModelContract(plan, date )
     await updateItem(contractsCol, contract, id)
 }
 
 export const updateContract = async (values, id) => {
     const contract = {
         name: values.name,
-        currentContract: {
-            active: Boolean(values.active),
-            plan: values.plan,
-            ends: formatDate(values.ends, "DD/MM/YYYY"),
-            started: formatDate(values.started, "DD/MM/YYYY"),
-            availableClasses: values.availableClasses
-        }
+        plan: values.plan,
+        ends: values.ends ? formatDate(values.ends, "DD/MM/YYYY") : null,
+        started: formatDate(values.started, "DD/MM/YYYY"),
+        availableClasses: isNaN(values.availableClasses) ? null : values.availableClasses
     }
     await updateItem(contractsCol, contract, id)
 }
-
-export const changeStatus = async (id, status) => {
-    const docRef = doc(collection(database, contractsCol), id);
-    await updateDoc(docRef, { "currentContract.active": status });
-}
-
 
 export const deleteContract = async (userId) => {
     const checkins = await findItemWhere(checkinsCol, "contractId", userId)
@@ -75,14 +47,28 @@ export const calculatePlanNumbers = (frequency, duration) => {
         Trimestral: 3,
         Semestral: 6,
         Anual: 12,
-        Contínuo: 0
+        Gympass: 0,
+        TotalPass: 0,
+        Avulso: 0
     };
-    const freq = frequency.charAt(0);
-
-    const quantity = durationTable[duration] * Number(freq) * 4;
-    return [durationTable[duration], quantity];
+    const weeklyClasses = Number(duration ? frequency.charAt(0) : 0)
+    const monthlyClasses = weeklyClasses * 4
+    const finalQuantity = durationTable[duration] * monthlyClasses;
+    return [durationTable[duration], finalQuantity];
 };
 
+const toModelContract = (plan, date) => {
+    const [frequency, dur] = plan.split("-")
+    const [contractDuration, classesQuantity] = calculatePlanNumbers(frequency, dur)
+    const contract = {
+        plan,
+        ends:  contractDuration ? calculateEndDate(date, contractDuration) : null,
+        started: date && formatDate(date, "DD/MM/YYYY"),
+        availableClasses: classesQuantity || null
+    }
+    return contract
+
+}
 
 
 

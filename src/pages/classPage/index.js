@@ -1,12 +1,13 @@
-import { CircularProgress, Text } from "@chakra-ui/react";
+import { CircularProgress, Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteItemById, deleteItemWhere, findItemById } from "../../api";
 import { calendarCol } from "../../api/config";
+import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
-import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background, confirmDialog } from "../../theme";
+import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background, confirmDialog, toastAlert } from "../../theme";
 import { ClassInfo } from "./ClassInfo";
 import { StudentList } from "./StudentList";
 
@@ -15,18 +16,21 @@ const ClassPage = () => {
     const navigate = useNavigate();
     const { classId } = useParams();
     const [yogaClass, setYogaClass] = useState({});
+    const [loading, setLoading] = useState(false)
+    const toast = useToast()
+
 
     useEffect(() => {
         findItemById(calendarCol, classId)
             .then(res => setYogaClass(res))
             .catch(err => console.log(err.message))
-    }, [classId]);
+    }, [classId, loading]);
 
     const deleteClass = () => {
         confirmDialog("Deletar aula?", () => {
             deleteItemById(calendarCol, classId)
                 .then(setTimeout(() => { goToAdmin(navigate) }, 500))
-                .catch(err => console.log(err.message))
+                .catch(err => toastAlert(toast, err.message, "error"))
         })
     }
 
@@ -34,7 +38,7 @@ const ClassPage = () => {
         confirmDialog("Deletar todas as aulas nesse horário?", () => {
             deleteItemWhere(calendarCol, "groupId", yogaClass.groupId)
                 .then(setTimeout(() => { goToAdmin(navigate) }, 500))
-                .catch(err => console.log(err.message))
+                .catch(err => toastAlert(toast, err.message, "error"))
         })
     }
 
@@ -70,12 +74,20 @@ const ClassPage = () => {
                     /> :
                         <CircularProgress isIndeterminate color="brand.200" size="70px" />
                     }
+                    <Booking
+                        setSelected={null}
+                        selected={yogaClass}
+                        setLoading={setLoading}
+                    />
 
                 </MainContainer>
                 <SideContainer>
                     <StudentList
                         capacity={yogaClass?.capacity}
                         classId={classId}
+                        loading={loading}
+                        setLoading={setLoading}
+
                     />
                 </SideContainer>
             </Background>

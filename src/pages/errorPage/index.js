@@ -9,9 +9,7 @@ const ErrorPage = () => {
 
     return (
         <Background>
-
             <MainContainer>
-
                 <Image src={flower} maxWidth={"250px"} alt="logo flor" />
                 <Box
                     display={"flex"}

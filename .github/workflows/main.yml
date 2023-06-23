@@ -1,0 +1,32 @@
+name: Deploy to Firebase
+
+on:
+  push:
+    branches:
+      - main
+
+permissions: read-all
+
+jobs:
+  main:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deploy to Firebase
+        uses: sws2apps/firebase-deployment@main 
+        with:
+          workloadIdentityProvider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          serviceAccount: ${{ secrets.SERVICE_ACCOUNT }}
+          project: github-workflow-sws
+          node-version: 16 
+          function: false 
+          hosting: true 
+          project: YGM 

@@ -1,24 +1,26 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Text, Heading, Box, } from "@chakra-ui/react";
+import { Text, Heading, Box, useToast, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems } from "../../api";
 import { plansCol } from "../../api/config";
 import { DoubleClickText } from "../../components/DoubleClickText";
-import { confirmDialog, WrapContainer } from "../../theme";
+import { confirmDialog, toastAlert, WrapContainer } from "../../theme";
 import { TextCard } from "../../theme";
 import { PlanForm } from "./PlanForm";
 
 export const Plans = () => {
     const [plans, setPlans] = useState([]);
     const [loading, setLoading] = useState(false);
-  
+    const toast = useToast()
+
+
     const onDelete = (id) => {
         confirmDialog("Deletar plano?", () => {
-            setLoading(!loading)
+            setLoading(true)
             deleteItemById(plansCol, id)
-                .then()
-                .catch(err => console.log(err.message))
-                .finally(setLoading(!loading))
+                .then(toastAlert(toast, "Plano removido", "success"))
+                .catch(err => toastAlert(toast, err.message, "error"))
+                .finally(() => setLoading(false))
         })
     }
 
