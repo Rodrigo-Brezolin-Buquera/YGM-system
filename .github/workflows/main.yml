@@ -21,13 +21,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy to Firebase
-        uses: sws2apps/firebase-deployment@main #consider using pin for dependabot auto update
+        uses: sws2apps/firebase-deployment@main 
         with:
           workloadIdentityProvider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           serviceAccount: ${{ secrets.SERVICE_ACCOUNT }}
           project: github-workflow-sws
-          node-version: 16 #optional, node-version you want to use following the Semantic Versioning Specification, default to current
-          config: 'frontend/firebase.json' #optional
-          function: false #optional & boolean
-          hosting: true #optional & boolean
-          project: YGM #required
+          node-version: 16 
+          function: false 
+          hosting: true 
+          project: YGM 
