@@ -29,4 +29,3 @@ jobs:
           node-version: 16 
           function: false 
           hosting: true 
-          project: YGM 
