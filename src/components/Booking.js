@@ -15,11 +15,17 @@ export const Booking = ({ selected, setSelected, setLoading }) => {
         const { date, time, capacity, id } = selected
         setLoading(true)
         await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
-            .then(setSelected && setSelected(null))               
+            .then(setSelected && setSelected(null))
             .catch(err => toastAlert(toast, err.message, "error"))
         setLoading(false)
     }
-    
+
+    const handleKeyPress = async (e) => {
+        if (e.key === "Enter") {
+            await addStudent()
+        }
+    }
+
     return (
         <MainContainer>
             <Heading size={"lg"}> Agendamento </Heading>
@@ -61,8 +67,8 @@ export const Booking = ({ selected, setSelected, setLoading }) => {
                                         maxW={"300px"}
                                         placeholder={"Nome "}
                                         onChange={handleName}
-                                        pattern={stringPattern
-                                        }
+                                        pattern={stringPattern}
+                                        onKeyPress={handleKeyPress}
                                     />
                                     <LoadingButton color={"brand.200"} handler={addStudent} >
                                         <Text>Adicionar</Text>
