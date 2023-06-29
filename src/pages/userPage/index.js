@@ -103,7 +103,7 @@ const UserPage = () => {
                             :
                             <MainContainer>
                                 <Text textAlign={"center"}
-                                >Sua conta ainda não foi ativada, tente novamente mais tarde.
+                                >Sua conta ainda não foi ativada, entre em contato conosco para ativar.
                                 </Text>
                             </MainContainer>
                 }

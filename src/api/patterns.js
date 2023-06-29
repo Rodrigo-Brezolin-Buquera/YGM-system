@@ -20,5 +20,5 @@ export const emailPattern = {
 
 export const passwordPattern = {
     value:/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/i,
-    message: "A senha precisa ter no mínimo 6 caracteres, com pelo menos 1 letra e 1 número"
+    message: "A senha precisa ter no mínimo 6 caracteres, com pelo menos 1 letra e 1 número, sem caracteres especiais"
 }
