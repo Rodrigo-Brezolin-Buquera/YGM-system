@@ -53,11 +53,6 @@ export const deleteCheckin = async (checkinId, limits) => {
     })
 }
 
-export const validateCheckin = async (checkinId, status) => {
-    const checkinDoc = doc(collection(database, checkinsCol), checkinId)
-    await updateDoc(checkinDoc, { verified: status })
-}
-
 export const cancelCheckin = async (checkinId, capacity) => {
     const [contractId, yogaClassId] = checkinId.split("+")
     const  contract  = await findItemById(contractsCol, contractId)

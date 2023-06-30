@@ -1,22 +1,12 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, Card, useToast } from "@chakra-ui/react";
 import { useState } from "react";
-import { validateCheckin, cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
+import { cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
 import { confirmDialog, toastAlert } from "../../theme";
 
-const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contractless, }) => {
+const StudentCheckinCard = ({ id, name, capacity, setLoading, contractless, }) => {
     const [cardLoading, setCardLoading] = useState(false);
     const toast = useToast()
-
-    const onConfirm = () => {
-        setCardLoading(true);
-        validateCheckin(id, !verified)
-            .catch(err => toastAlert(toast, err.message, "error"))
-            .finally(() => {
-                setCardLoading(false)
-                setLoading((prevState => !prevState));
-            });
-    }
 
     const onDelete = () => {
         confirmDialog("Cancelar este checkin?", () => {
@@ -25,7 +15,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
                 .catch(err => toastAlert(toast, err.message, "error"))
                 .finally(() => {
                     setCardLoading(false)
-                    setLoading((prevState => !prevState))                
+                    setLoading((prevState => !prevState))
                 });
         })
     }
@@ -36,7 +26,7 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
             flexDirection={"row"}
             justifyContent={"center"}
             alignItems={"center"}
-            backgroundColor={verified ? "brand.200" : "brand.400"}
+            backgroundColor={"brand.400"}
             borderRadius={"8px"}
             margin={"0.5em"}
             padding={"0.2em"}
@@ -54,9 +44,9 @@ const StudentCheckinCard = ({ id, name, verified, capacity, setLoading, contract
                     w={"100%"}
                 >
 
-                    <Text onClick={onConfirm} fontSize={"mds"} >  {name}  </Text>
+                    <Text fontSize={"mds"} >  {name}  </Text>
 
-                    <DeleteIcon     
+                    <DeleteIcon
                         _hover={{ cursor: "pointer" }}
                         onClick={onDelete}
                         boxSize={"5"}

@@ -18,7 +18,6 @@ export const StudentList = ({ capacity, classId,loading, setLoading }) => {
             <StudentCheckinCard
                 key={checkin.id}
                 id={checkin.id}
-                verified={checkin.verified}
                 name={checkin.name}
                 contractless={checkin.contractless}
                 capacity={capacity}
