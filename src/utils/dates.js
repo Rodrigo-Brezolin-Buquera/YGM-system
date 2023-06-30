@@ -90,7 +90,8 @@ export const sortByDayAndTime = (list) => {
         Sexta: 6,
         Sábado: 7
     };
-    list.sort((a, b) => {
+
+      list.sort((a, b) => {
         if (map[a.day] < map[b.day]) return -1;
         if (map[a.day] > map[b.day]) return 1;
 
