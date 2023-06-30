@@ -2,6 +2,7 @@ import { collection, doc, runTransaction } from "firebase/firestore/lite"
 import { calculateEndDate, formatDate } from "../utils/dates"
 import { checkinsCol, contractsCol, database, usersCol } from "./config"
 import { createItemWithId, findItemWhere, updateItem } from "."
+import { capitalizeFirstLetter } from "../utils/names"
 
 export const createContract = async ({ name, plan, date, id }) => {      
     const contract = toModelContract(plan, date)
@@ -17,7 +18,7 @@ export const newContract = async ({ plan, date }, id) => {
 
 export const updateContract = async (values, id) => {
     const contract = {
-        name: values.name,
+        name: capitalizeFirstLetter(values.name),
         plan: values.plan,
         ends: values.ends ? formatDate(values.ends, "DD/MM/YYYY") : null,
         started: formatDate(values.started, "DD/MM/YYYY"),

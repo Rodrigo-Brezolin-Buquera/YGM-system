@@ -21,9 +21,8 @@ export const createCheckin = async (checkinData, limits) => {
         date,
         time,
         name: userName,
-        verified: false,
     }
-    const userWithAPlanContract = !isNaN(contractLimit)
+    const userWithAPlanContract = isNaN(contractLimit)
 
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)
@@ -31,7 +30,7 @@ export const createCheckin = async (checkinData, limits) => {
 
         const contractDoc = doc(collection(database, contractsCol), contractId)
         userWithAPlanContract && transaction.update(contractDoc, { "availableClasses": contractLimit - 1 })
-        
+
         const classDoc = doc(collection(database, calendarCol), id)
         transaction.update(classDoc, { capacity: capacity - 1 })
     })
@@ -39,7 +38,7 @@ export const createCheckin = async (checkinData, limits) => {
 
 export const deleteCheckin = async (checkinId, limits) => {
     const { id, capacity, contractId, contractLimit } = limits
-    const userWithAPlanContract = !isNaN(contractLimit)
+    const userWithAPlanContract = isNaN(contractLimit)
 
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)
@@ -47,15 +46,10 @@ export const deleteCheckin = async (checkinId, limits) => {
 
         const contractDoc = doc(collection(database, contractsCol), contractId)
         userWithAPlanContract && transaction.update(contractDoc, { "availableClasses": contractLimit + 1 })
-
+        
         const classDoc = doc(collection(database, calendarCol), id)
         transaction.update(classDoc, { capacity: capacity + 1 })
     })
-}
-
-export const validateCheckin = async (checkinId, status) => {
-    const checkinDoc = doc(collection(database, checkinsCol), checkinId)
-    await updateDoc(checkinDoc, { verified: status })
 }
 
 export const cancelCheckin = async (checkinId, capacity) => {
@@ -82,7 +76,6 @@ export const createContractlessCheckin = async (checkinData, limits) => {
         time,
         name,
         contractless:"contractless",
-        verified: false,
     }
 
     await runTransaction(database, async (transaction) => {
