@@ -21,7 +21,6 @@ export const createCheckin = async (checkinData, limits) => {
         date,
         time,
         name: userName,
-        verified: false,
     }
     const userWithAPlanContract = !isNaN(contractLimit)
 
@@ -77,7 +76,6 @@ export const createContractlessCheckin = async (checkinData, limits) => {
         time,
         name,
         contractless:"contractless",
-        verified: false,
     }
 
     await runTransaction(database, async (transaction) => {
