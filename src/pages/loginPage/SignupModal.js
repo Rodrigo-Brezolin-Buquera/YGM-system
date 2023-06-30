@@ -11,6 +11,7 @@ import { singUp } from "../../api/auth";
 import { emailPattern, passwordPattern, stringPattern } from "../../api/patterns";
 import { goToUser } from "../../routes/coordinator";
 import { ModalComponent, FormButton, toastAlert } from "../../theme";
+import { capitalizeFirstLetter } from "../../utils/names";
 import { PasswordInput } from "./PasswordInput";
 
 export const SignupModal = ({ isOpen, onClose, navigate }) => {
@@ -30,7 +31,7 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
 
     const onSubmit = ({ email, name, password }) => {
         setLoading(true);
-        singUp({ email, password, name })
+        singUp({ email, password, name: capitalizeFirstLetter(name) })
             .then((id) => goToUser(navigate, id))
             .catch((err) =>  toastAlert(toast, err.message, "error") )
             .finally(() => {
