@@ -100,7 +100,6 @@ export const SignupModal = ({ isOpen, onClose, navigate }) => {
                             autoComplete="off"
                             {...register("repetPassword", {
                                 required: "Campo Obrigátorio",
-                                pattern: passwordPattern,
                                 validate: (value) => value === password || "As senhas não coincidem"
                             })}
                         />
