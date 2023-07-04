@@ -5,6 +5,7 @@ import { stringPattern } from "../api/patterns"
 import { useInput } from "../hooks/useInput"
 import { LoadingButton, MainContainer, toastAlert } from "../theme"
 import { simplifyDate } from "../utils/dates"
+import { capitalizeFirstLetter } from "../utils/names"
 
 export const Booking = ({ selected, setSelected, setLoading }) => {
     const [name, handleName] = useInput("")
@@ -14,7 +15,10 @@ export const Booking = ({ selected, setSelected, setLoading }) => {
     const addStudent = async () => {
         const { date, time, capacity, id } = selected
         setLoading(true)
-        await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
+        await createContractlessCheckin(
+            { name: capitalizeFirstLetter(name), date, time },
+            { capacity, yogaClassId: id }
+        )
             .then(setSelected && setSelected(null))
             .catch(err => toastAlert(toast, err.message, "error"))
         setLoading(false)
