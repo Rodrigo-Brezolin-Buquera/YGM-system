@@ -101,11 +101,19 @@ describe("Tests - sortByTime", () => {
     })
 })
 
-// describe("Tests - sortDayAndTime", () => {
-//     test("Sucess case", () => {
-//         const result = sortByDayAndTime(classesList)
-//         expect(result[0].time).toBe("00:00")
-//         expect(result[1].time).toBe("09:00")
-//         expect(result[result.length - 1].time).toBe("22:00")
-//     })
-// })
+describe("Tests - sortDayAndTime", () => {
+    const classesList = [
+        { day: "Terça", time: "17:00" },
+        { day: "Terça", time: "21:00" },
+        { day: "Segunda", time: "09:00" },
+        { day: "Sábado", time: "22:00" },
+        { day: "Quinta", time: "00:00" },
+    ]
+
+    test("Sucess case", () => {
+        const result = sortByDayAndTime(classesList)
+        expect(result[0]).toEqual({ day: "Segunda", time: "09:00" })
+        expect(result[1]).toEqual({ day: "Terça", time: "17:00" })
+        expect(result[4]).toEqual({ day: "Sábado", time: "22:00" })
+    })
+})
