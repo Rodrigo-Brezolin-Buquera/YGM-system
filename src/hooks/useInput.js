@@ -7,7 +7,11 @@ export const useInput = () => {
         setValue(e.target.value);
     };
 
-    return [value, handleValue];
+    const reset = () => {
+        setValue("")
+    }
+
+    return [value, handleValue, reset];
 };
 
 ;
