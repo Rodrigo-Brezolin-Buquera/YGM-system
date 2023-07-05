@@ -1,23 +1,28 @@
 import { Card, Heading, Text, Input, useToast } from "@chakra-ui/react"
 import { useLocation } from "react-router-dom"
 import { createContractlessCheckin } from "../api/checkins"
-import { stringPattern } from "../api/patterns"
 import { useInput } from "../hooks/useInput"
 import { LoadingButton, MainContainer, toastAlert } from "../theme"
 import { simplifyDate } from "../utils/dates"
+import { capitalizeFirstLetter } from "../utils/names"
 
 export const Booking = ({ selected, setSelected, setLoading }) => {
-    const [name, handleName] = useInput("")
+    const [name, handleName, reset] = useInput("")
     const { pathname } = useLocation();
     const toast = useToast()
 
     const addStudent = async () => {
         const { date, time, capacity, id } = selected
         setLoading(true)
-        await createContractlessCheckin({ name, date, time }, { capacity, yogaClassId: id })
-            .then(setSelected && setSelected(null))
-            .catch(err => toastAlert(toast, err.message, "error"))
+        await createContractlessCheckin(
+            { name: capitalizeFirstLetter(name), date, time },
+            { capacity, yogaClassId: id }
+        ).then(() => {
+            setSelected && setSelected(null)
+            reset()
+        }).catch(err => toastAlert(toast, err.message, "error"))
         setLoading(false)
+
     }
 
     const handleKeyPress = async (e) => {
@@ -65,10 +70,10 @@ export const Booking = ({ selected, setSelected, setLoading }) => {
 
                                     <Input
                                         maxW={"300px"}
-                                        placeholder={"Nome "}
+                                        placeholder={"Nome"}
                                         onChange={handleName}
-                                        pattern={stringPattern}
                                         onKeyPress={handleKeyPress}
+                                        value={name}
                                     />
                                     <LoadingButton color={"brand.200"} handler={addStudent} >
                                         <Text>Adicionar</Text>

@@ -1,7 +1,8 @@
-import { runTransaction, doc, collection, updateDoc, query, getDocs, where, limit } from "firebase/firestore/lite"
+import { runTransaction, doc, collection, query, getDocs, where, limit } from "firebase/firestore/lite"
 import { contractsCol, calendarCol, checkinsCol, } from "./config"
 import { database } from "./config"
 import { findItemById } from "."
+import { stringPattern } from "./patterns";
 
 export const findCheckinsLimit = async (userId, n) => {
     const col = collection(database, checkinsCol);
@@ -69,6 +70,11 @@ export const cancelCheckin = async (checkinId, capacity) => {
 export const createContractlessCheckin = async (checkinData, limits) => {
     const { date, name, time } = checkinData
     const { yogaClassId, capacity} = limits
+
+    if (!name.match(stringPattern.value)) {
+        throw new Error(stringPattern.message)
+    }
+    
     const checkinId = `${yogaClassId}+${name}+${Date.now().toString()}`
     const checkin = {
         yogaClassId,

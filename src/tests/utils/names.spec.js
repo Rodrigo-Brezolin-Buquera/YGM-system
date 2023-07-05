@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from "./names"
+import { capitalizeFirstLetter } from "../../utils/names"
 
 describe("Tests capitalizeFirstLetter", () => {
     test("Input: Test Name", () => {

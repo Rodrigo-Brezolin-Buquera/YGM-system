@@ -8,7 +8,7 @@ const AvailableClasses = ({ contractId, contractLimit, userName }) => {
     const [yogaClasses, setyogaClasses] = useState([]);
 
     useEffect(() => {
-        findClassesByPeriod(getNextNDays(5))
+        findClassesByPeriod(getNextNDays(2))
             .then(res => setyogaClasses(res))
             .catch(err => console.log(err.message))
     }, [ contractId]);
