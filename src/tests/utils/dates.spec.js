@@ -1,4 +1,4 @@
-import { addOneWeek, calculateEndDate, formatDate, formatToCalendar, getToday, simplifyDate, sortByDayAndTime, sortByTime } from "./dates"
+import { addOneWeek, calculateEndDate, formatDate, formatToCalendar, getToday, simplifyDate, sortByDayAndTime, sortByTime } from "../../utils/dates"
 
 describe("Tests formatDate", () => {
     test("Input AAAA-MM-DD", () => {
