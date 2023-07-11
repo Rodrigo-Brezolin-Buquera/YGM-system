@@ -13,7 +13,7 @@ import AvailableClasses from "./AvailableClasses";
 const UserPage = () => {
     useProtectedPage("user")
     const router = useRouter()
-    const { id } = router.query   
+    const { id } = router.query
     const [contract, setContract] = useState({});
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
@@ -34,71 +34,70 @@ const UserPage = () => {
         confirmDialog("Enviar email de redefinição de senha?", () => resetPassword(user?.email))
     }, [user])
 
+
+    if (loading) {
+        return (
+            <Box
+                w={"100%"}
+                h={"100%"}
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+            >
+                <CircularProgress
+                    isIndeterminate
+                    color={"brand.200"}
+                    size="120px"
+                    mt={"1em"}
+                />
+            </Box>
+        )
+    }
+
     return (
         <>
             <Header>
-                <Button
-                    onClick={() => logout(router)}
-                >
+                <Button onClick={() => logout(router)} >
                     Sair
                 </Button>
             </Header>
-            <Background
-                column={"column"}
-                justifyContent={"start"}
-            >
+            <Background column={"column"} justifyContent={"start"}>
                 {
-                    loading ?
-                        <Box
-                            w={"100%"}
-                            h={"100%"}
-                            display={"flex"}
-                            justifyContent={"center"}
-                            alignItems={"center"}
-                        >
-                            <CircularProgress
-                                isIndeterminate
-                                color={"brand.200"}
-                                size="120px"
-                                mt={"1em"}
-                            />
-                        </Box>
-                        :
-                        user.active ?
-                            <>
-                                <SideContainer>
-                                    <AvailableClasses
-                                        contractId={contract?.id}
-                                        userName={contract?.name}
-                                        contractLimit={contract?.availableClasses}
-                                    />
-                                </SideContainer>
+                    user.active ?
+                        <>
+                            <SideContainer>
+                                <AvailableClasses
+                                    contractId={contract?.id}
+                                    userName={contract?.name}
+                                    contractLimit={contract?.availableClasses}
+                                />
+                            </SideContainer>
 
-                                <MainContainer>
-                                    <ContractDetails contract={contract}/>
-                                    <WrapContainer>
-                                        <Button
-                                            backgroundColor={"brand.200"}
-                                            onClick={changePassword}
-                                        >
-                                            <Text> Redefinir senha</Text>
-                                        </Button>
-                                    </WrapContainer>
-                                </MainContainer>
-
-                                <SideContainer>
-                                    <CheckinsDone
-                                        userId={id}
-                                        loading={loading}
-                                    />
-                                </SideContainer>
-                            </>
-                            :
                             <MainContainer>
-                                <Text textAlign={"center"}
-                                >Sua conta ainda não foi ativada, entre em contato conosco para ativar.
-                                </Text>
+                                <ContractDetails contract={contract} />
+                                <WrapContainer>
+                                    <Button
+                                        backgroundColor={"brand.200"}
+                                        onClick={changePassword}
+                                    >
+                                        <Text> Redefinir senha</Text>
+                                    </Button>
+                                </WrapContainer>
                             </MainContainer>
+
+                            <SideContainer>
+                                <CheckinsDone
+                                    userId={id}
+                                    loading={loading}
+                                />
+                            </SideContainer>
+                        </>
+                        :
+                        <MainContainer>
+                            <Text textAlign={"center"}
+                            >Sua conta ainda não foi ativada, entre em contato conosco para ativar.
+                            </Text>
+                        </MainContainer>
                 }
             </Background>
         </>
