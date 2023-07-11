@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_TEST_API_KEY,
+    apiKey: process.env.NEXT_PUBLIC_TEST_API_KEY,
     authDomain: "ygm-control.firebaseapp.com",
     projectId: "ygm-control",
     storageBucket: "ygm-control.appspot.com",
@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 
 // const firebaseConfig = {
-//     apiKey: process.env.REACT_APP_PROD_API_KEY,
+//     apiKey: process.env.NEXT_PUBLIC_PROD_API_KEY,
 //     authDomain: "yoga-mangala.firebaseapp.com",
 //     projectId: "yoga-mangala",
 //     storageBucket: "yoga-mangala.appspot.com",

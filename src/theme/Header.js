@@ -1,5 +1,4 @@
 import { Box, Image } from "@chakra-ui/react";
-import whiteLogo from "../assets/whiteLogo.png";
 
 const Header = ({ children }) => {
 
@@ -12,7 +11,7 @@ const Header = ({ children }) => {
             justifyContent={"space-between"}
             p={"0.3em"}
         >
-            <Image maxH={"60px"} src={whiteLogo} alt="logo"  />
+            <Image maxH={"60px"} src={"/assets/whiteLogo.png"} alt="logo"  />
             <Box
                 display={"flex"}
                 gap={"0.5em"}

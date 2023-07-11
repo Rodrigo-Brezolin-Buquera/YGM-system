@@ -1,5 +1,5 @@
 import { Card, Heading, Text, Input, useToast } from "@chakra-ui/react"
-import { useLocation } from "react-router-dom"
+import { useRouter } from "next/router"
 import { createContractlessCheckin } from "../api/checkins"
 import { useInput } from "../hooks/useInput"
 import { LoadingButton, MainContainer, toastAlert } from "../theme"
@@ -8,7 +8,7 @@ import { capitalizeFirstLetter } from "../utils/names"
 
 export const Booking = ({ selected, setSelected, setLoading }) => {
     const [name, handleName, reset] = useInput("")
-    const { pathname } = useLocation();
+    const { pathname } = useRouter();
     const toast = useToast()
 
     const addStudent = async () => {

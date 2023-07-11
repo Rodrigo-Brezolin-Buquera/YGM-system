@@ -11,27 +11,29 @@ import {
 import { logout } from "../api/auth";
 import { goToAdmin, goToBusiness, goToCalendar } from "../routes/coordinator";
 import Header from "../theme/Header"
+import { useRouter } from 'next/router';
 
-const HeaderAdmin = ({ navigate }) => {
+const HeaderAdmin = () => {
+    const router = useRouter();
 
     return (
         <Header>
             <Show above='md' >
                 <Hide below="md"    >
                     <Button 
-                        onClick={() => goToAdmin(navigate)}
+                        onClick={() => goToAdmin(router)}
                     >Home
                     </Button>
                     <Button                  
-                        onClick={() => goToBusiness(navigate)}
+                        onClick={() => goToBusiness(router)}
                     >Negócio
                     </Button>                              
                     <Button
-                        onClick={() => goToCalendar(navigate)}
+                        onClick={() => goToCalendar(router)}
                     >Agenda
                     </Button>
                     <Button               
-                        onClick={() => logout(navigate)}
+                        onClick={() => logout(router)}
                     >Sair
                     </Button>
                 </Hide>
@@ -44,10 +46,10 @@ const HeaderAdmin = ({ navigate }) => {
                             Menu
                         </MenuButton>
                         <MenuList>
-                            <MenuItem onClick={() => goToAdmin(navigate)} >Home</MenuItem>
-                            <MenuItem onClick={() => goToBusiness(navigate)} >Negócio</MenuItem>
-                            <MenuItem onClick={() => goToCalendar(navigate)} >Agenda</MenuItem>
-                            <MenuItem onClick={() => logout(navigate)}>Sair</MenuItem>
+                            <MenuItem onClick={() => goToAdmin(router)} >Home</MenuItem>
+                            <MenuItem onClick={() => goToBusiness(router)} >Negócio</MenuItem>
+                            <MenuItem onClick={() => goToCalendar(router)} >Agenda</MenuItem>
+                            <MenuItem onClick={() => logout(router)}>Sair</MenuItem>
                         </MenuList>
                     </Menu>
                 </Hide>
