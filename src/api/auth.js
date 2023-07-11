@@ -14,13 +14,11 @@ export const login = async (form, router) => {
         const { user } = await signInWithEmailAndPassword(auth, form.email, form.password);
         const userDoc = await findItemById(usersCol, user.uid)
 
-        // redundancia, o hook já faz isso
         if (typeof window !== "undefined") {
             localStorage.setItem("admin", userDoc.admin)
         }
         userDoc.admin ? goToAdmin(router) : goToUser(router, user.uid)
     } catch (err) {
-        console.log(err.message)
         const message = err.message.includes("auth/wrong-password") ? ("Email e/ou senha inválidos") : ("Erro no login, tente novamente")
         throw new Error(message)
     }
@@ -50,13 +48,11 @@ export const resetPassword = async (email) => {
 }
 
 export const isLogged = async (setStatus) => {
-
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             setStatus({ loggedIn: true, userId: user.uid });
         } else {
             setStatus({ loggedIn: false, userId: null })
-
         }
     });
 

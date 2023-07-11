@@ -5,13 +5,20 @@ import ContractList from "./ContractList";
 import { CreateClassModal } from "./CreateClassModal";
 import UserList from "./UserList";
 
-
-
 export const AdminActions = () => {
     const { isOpen: isClassOpen, onOpen: onClassOpen, onClose: onClassClose } = useDisclosure()
-    const [view, setView] = useState(true)
+    const [view, setView] = useState(null)
 
-    const changeView = () => setView(!view)
+    const ListView = () => {
+        switch (view) {
+            case "users":
+                return <UserList />
+            case "contracts":
+                return <ContractList />
+            default:
+                return null
+        }
+    }
 
     return (
         <>
@@ -24,19 +31,21 @@ export const AdminActions = () => {
                 </Button>
                 <Button
                     backgroundColor={"brand.200"}
-                    onClick={changeView}
+                    onClick={() => setView("users")}
                     w={"180px"}
                 >
-                    <Text> {view ? "Visualizar Usuários" : "Visualizar Contratos"} </Text>
+                    <Text>Visualizar Usuários</Text>
+                </Button>
+                <Button
+                    backgroundColor={"brand.200"}
+                    onClick={() => setView("contracts")}
+                    w={"180px"}
+                >
+                    <Text> Visualizar Contratos </Text>
                 </Button>
             </WrapContainer>
-            {
-                view ?
-                    <ContractList  />
-                    :
-                    <UserList   />
-            }
-
+           
+            <ListView/>
 
             <CreateClassModal isOpen={isClassOpen} onClose={onClassClose} />
 
