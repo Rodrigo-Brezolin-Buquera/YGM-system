@@ -4,7 +4,7 @@ import { goToContract } from "../../routes/coordinator";
 import { Line } from "../../theme";
 import { useRouter } from 'next/router';
 
-const ContractInfo = (props) => {
+const ContractInfo = ({contract}) => {
     const router = useRouter();
 
     const Column = ({ children }) => {
@@ -31,36 +31,36 @@ const ContractInfo = (props) => {
             backgroundColor={"brand.500"}
             _hover={{ cursor: "pointer" }}
             overflow={"auto"}
-            onClick={() => goToContract( router, props.id)}
+            onClick={() => goToContract( router, contract.id)}
         >
             <Column>
                 <Line  justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b">Nome:</Text>
-                    <Text >{props.name}</Text>
+                    <Text >{contract.name}</Text>
                 </Line>
 
                 <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b" >Plano: </Text>
-                    <Text >{props.plan}</Text>
+                    <Text >{contract.plan}</Text>
                 </Line>
             </Column>
 
             <Column>
                 <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b" >Início do plano: </Text>
-                    <Text >{props.started}</Text>
+                    <Text >{contract.started}</Text>
                 </Line>
 
                 <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b"  >Fim previsto: </Text>
-                    <Text > {props.ends}</Text>
+                    <Text > {contract.ends}</Text>
                 </Line>
             </Column>
 
             <Column>
                 <Line justifyContent={["center", "center", "center", "flex-start"]}>
                     <Text as="b" >Aulas disponíveis:</Text>
-                    <Text >{props.availableClasses}</Text>
+                    <Text >{contract.availableClasses}</Text>
                 </Line>
             </Column>
         </Card>

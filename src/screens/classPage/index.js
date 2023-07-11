@@ -8,7 +8,7 @@ import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
 import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background, confirmDialog, toastAlert } from "../../theme";
-import { ClassInfo } from "./ClassInfo";
+import  ClassInfo  from "./ClassInfo";
 import { StudentList } from "./StudentList";
 
 const ClassPage = () => {
@@ -44,7 +44,7 @@ const ClassPage = () => {
 
     return (
         <>
-            <HeaderAdmin  />
+            <HeaderAdmin />
             <Background  >
                 <MainContainer            >
                     <WrapContainer>
@@ -64,14 +64,9 @@ const ClassPage = () => {
 
                     </WrapContainer>
 
-                    {yogaClass.id ? <ClassInfo
-                        key={yogaClass.id}
-                        day={yogaClass.day}
-                        time={yogaClass.time}
-                        date={yogaClass.date}
-                        teacher={yogaClass.teacher}
-                        name={yogaClass.name}
-                    /> :
+                    {yogaClass.id ?
+                        <ClassInfo key={yogaClass.id} yogaClass={yogaClass} />
+                        :
                         <CircularProgress isIndeterminate color="brand.200" size="70px" />
                     }
                     <Booking

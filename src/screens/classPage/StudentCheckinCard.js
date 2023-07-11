@@ -4,15 +4,18 @@ import { useState } from "react";
 import { cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
 import { confirmDialog, toastAlert } from "../../theme";
 
-const StudentCheckinCard = ({ id, name, capacity, setLoading, contractless, }) => {
+const StudentCheckinCard = ({ checkin, capacity, setLoading }) => {
     const [cardLoading, setCardLoading] = useState(false);
     const toast = useToast()
 
     const onDelete = () => {
         confirmDialog("Cancelar este checkin?", () => {
             setCardLoading(true);
-            (contractless ? cancelContractlessCheckin(id, capacity) : cancelCheckin(id, capacity))
-                .catch(err => toastAlert(toast, err.message, "error"))
+            (checkin.contractless ?
+                    cancelContractlessCheckin(checkin.id, capacity)
+                    :
+                    cancelCheckin(checkin.id, capacity)
+            ).catch(err => toastAlert(toast, err.message, "error"))
                 .finally(() => {
                     setCardLoading(false)
                     setLoading((prevState => !prevState))
@@ -44,7 +47,7 @@ const StudentCheckinCard = ({ id, name, capacity, setLoading, contractless, }) =
                     w={"100%"}
                 >
 
-                    <Text fontSize={"mds"} >  {name}  </Text>
+                    <Text fontSize={"mds"} >  {checkin.name}  </Text>
 
                     <DeleteIcon
                         _hover={{ cursor: "pointer" }}

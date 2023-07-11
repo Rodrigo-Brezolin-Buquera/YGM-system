@@ -19,11 +19,7 @@ const AvailableClasses = () => {
         return (
             <ClassesCard
                 key={yogaClass.id}
-                id={yogaClass.id}
-                day={yogaClass.day}
-                time={yogaClass.time}
-                teacher={yogaClass.teacher}
-                name={yogaClass.name}
+                yogaClass={yogaClass}
             />
         );
     });

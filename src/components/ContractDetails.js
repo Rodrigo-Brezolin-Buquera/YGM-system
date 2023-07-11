@@ -2,7 +2,7 @@ import {  Heading, Text } from "@chakra-ui/react";
 import { memo } from "react";
 import { Line, TextContainer } from "../theme";
 
-const UserInfo = (props) => {
+const ContractDetails = ({contract}) => {
     return (
         < TextContainer
             alignItems={"center"}
@@ -10,35 +10,34 @@ const UserInfo = (props) => {
             <Heading size={"md"}>Informações do plano</Heading>
             <Line>
                 <Text as='b' fontSize='lg' >Nome:</Text>
-                <Text fontSize='lg' >{props.name}</Text>
+                <Text fontSize='lg' >{contract?.name}</Text>
             </Line>
 
             <Line>
                 <Text as='b' fontSize='lg' >Plano: </Text>
-                <Text fontSize='lg' >{props.plan} </Text>
+                <Text fontSize='lg' >{contract?.plan} </Text>
             </Line>
-            
-           
+              
             <Line>
                 <Text as='b' fontSize='lg' >Início: </Text>
-                <Text fontSize='lg' > {props.planStarted}</Text>
+                <Text fontSize='lg' > {contract?.planStarted}</Text>
             </Line>
 
             {
-                props.planEnds ?  
+                contract?.planEnds ?  
                     <Line>
                         <Text as='b' fontSize='lg' >Fim previsto: </Text>
-                        <Text fontSize='lg' > {props.planEnds}</Text>
+                        <Text fontSize='lg' > {contract?.planEnds}</Text>
                     </Line>
                     : 
                     null
             }
 
             {
-                isNaN(props.availableClasses) ?  
+                isNaN(contract?.availableClasses) ?  
                     <Line>
                         <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
-                        <Text fontSize='lg' >{props.availableClasses}</Text>
+                        <Text fontSize='lg' >{contract?.availableClasses}</Text>
                     </Line> 
                     : 
                     null
@@ -48,4 +47,4 @@ const UserInfo = (props) => {
     );
 };
 
-export default memo(UserInfo);
+export default memo(ContractDetails);

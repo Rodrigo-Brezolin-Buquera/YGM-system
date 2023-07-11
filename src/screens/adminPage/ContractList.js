@@ -50,12 +50,7 @@ const ContractList = () => {
             return (
                 <ContractInfo
                     key={contract.id}
-                    id={contract.id}
-                    name={contract.name}
-                    plan={contract.plan}
-                    started={contract.started}
-                    ends={contract.ends}
-                    availableClasses={contract.availableClasses}
+                    contract={contract}          
                 />
             );
         });

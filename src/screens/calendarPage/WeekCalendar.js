@@ -37,8 +37,7 @@ export const WeekCalendar = ( {  setSelected, loading }) => {
                 key={day}
                 date={datesOfWeek[i]}
                 yogaClasses={classes}
-                day={day}
-             
+                day={day}            
                 setSelected={setSelected}
             />
         )

@@ -4,16 +4,16 @@ import { goToClass } from "../../routes/coordinator";
 import {SquareCard} from "../../theme";
 import { useRouter } from 'next/router';
 
-const ClassesCard = (props) => {
+const ClassesCard = ({yogaClass}) => {
     const router = useRouter();
 
     return (
         <SquareCard
          
-            onClick={() => goToClass(router, props.id)}
+            onClick={() => goToClass(router, yogaClass.id)}
         >
-            <Text fontSize='lg' as="b" textAlign={"center"} > {props.day} - {props.time}</Text>
-            <Text textAlign={"center"} > {props.teacher} - {props.name}  </Text>
+            <Text fontSize='lg' as="b" textAlign={"center"} > {yogaClass.day} - {yogaClass.time}</Text>
+            <Text textAlign={"center"} > {yogaClass.teacher} - {yogaClass.name}  </Text>
         </SquareCard>
     );
 };

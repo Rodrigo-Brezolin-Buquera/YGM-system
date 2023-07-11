@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { contractsCol, usersCol } from "../../api/config";
 import { deleteContract } from "../../api/contracts";
-import UserInfo from "../../components/UserInfo";
+import ContractDetails from "../../components/ContractDetails";
 import { goToAdmin } from "../../routes/coordinator";
 import { WrapContainer, confirmDialog, toastAlert } from "../../theme";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
 export const UserActions = ({ userId, router  }) => {
-    const [contracts, setContracts] = useState({});
+    const [contract, setContract] = useState({});
     const [user, setUser] = useState({})
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
@@ -26,7 +26,7 @@ export const UserActions = ({ userId, router  }) => {
 
     useEffect(() => {
         findItemById(contractsCol, userId)
-            .then(res => setContracts(res))
+            .then(res => setContract(res))
             .catch(err => console.log(err.message))
         findItemById(usersCol, userId)
             .then(res => setUser(res))
@@ -62,15 +62,9 @@ export const UserActions = ({ userId, router  }) => {
             </WrapContainer>
 
             {
-                contracts?.id ?
-                    <UserInfo
-                        id={contracts.id}
-                        name={contracts.name}
-                        plan={contracts.plan}
-                        planStarted={contracts.started}
-                        planEnds={contracts.ends}
-                        availableClasses={contracts.availableClasses}
-                    /> :
+                contract?.id ?
+                    <ContractDetails contract={contract} /> 
+                    :
                     <Text> Ainda não contrato para este usuário</Text>
             }
 
@@ -79,13 +73,12 @@ export const UserActions = ({ userId, router  }) => {
                 onClose={onAddClose}
                 name={user?.name}
                 id={userId}
-                userIsActive={contracts?.name}
-
+                userIsActive={contract?.name}
             />
 
             <EditContractModal
-                contract={contracts}
-                name={contracts?.name}
+                contract={contract}
+                name={contract?.name}
                 isOpen={isEditOpen}
                 onClose={onEditClose}
                 id={userId}

@@ -5,7 +5,7 @@ import { findItemById } from "../../api";
 import { logout, resetPassword } from "../../api/auth";
 import { contractsCol, usersCol, } from "../../api/config";
 import { CheckinsDone } from "../../components/CheckinsDone";
-import UserInfo from "../../components/UserInfo";
+import ContractDetails from "../../components/ContractDetails";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { MainContainer, SideContainer, Header, Background, WrapContainer, confirmDialog } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
@@ -75,14 +75,7 @@ const UserPage = () => {
                                 </SideContainer>
 
                                 <MainContainer>
-                                    <UserInfo
-                                        id={contract?.id}
-                                        name={contract?.name}
-                                        plan={contract?.plan}
-                                        planStarted={contract?.started}
-                                        planEnds={contract?.ends}
-                                        availableClasses={contract?.availableClasses}
-                                    />
+                                    <ContractDetails contract={contract}/>
                                     <WrapContainer>
                                         <Button
                                             backgroundColor={"brand.200"}

@@ -17,9 +17,7 @@ export const StudentList = ({ capacity, classId,loading, setLoading }) => {
         return (
             <StudentCheckinCard
                 key={checkin.id}
-                id={checkin.id}
-                name={checkin.name}
-                contractless={checkin.contractless}
+                checkin={checkin}
                 capacity={capacity}
                 setLoading={setLoading}
             />

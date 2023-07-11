@@ -1,18 +1,20 @@
 import {  Text } from "@chakra-ui/react";
+import { memo } from "react";
 import { TextContainer } from "../../theme";
 import { simplifyDate } from "../../utils/dates";
 
-export const ClassInfo = ({ day, time, date, teacher, name  }) => {
+const ClassInfo = ({ yogaClass }) => {
     return (
         <TextContainer
             alignItems={"center"}
         >
-            <Text fontWeight={"bold"}>  {day} - {time} </Text>
-            <Text  > Data: { simplifyDate(date)} </Text>
-            <Text  > Prof.: {teacher} </Text>
-            <Text  > Estilo:  {name}  </Text>
+            <Text fontWeight={"bold"}>  {yogaClass.day} - {tyogaClass.ime} </Text>
+            <Text  > Data: { simplifyDate(yogaClass.date)} </Text>
+            <Text  > Prof.: {yogaClass.teacher} </Text>
+            <Text  > Estilo:  {yogaClass.name}  </Text>
 
         </TextContainer>
     );
 };
 
+export default memo(ClassInfo)

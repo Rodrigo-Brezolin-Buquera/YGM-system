@@ -20,7 +20,6 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
     const [loading, setLoading] = useState(false);
     const toast = useToast()
 
-
     const onSubmit = (values) => {
         setLoading(true);
         (
