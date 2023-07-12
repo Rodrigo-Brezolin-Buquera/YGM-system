@@ -7,7 +7,7 @@ import {
 import { useForm } from "react-hook-form";
 import { pricePattern } from "../../api/patterns";
 import { createPlan } from "../../api/plans";
-import { DurationOptions, FrequencyOptions } from "../../components/selectOptions";
+import { DurationOptions, FrequencyOptions } from "./selectOptions";
 import { FormButton, toastAlert } from "../../theme"
 
 export const PlanForm = ({ loading, setLoading }) => {

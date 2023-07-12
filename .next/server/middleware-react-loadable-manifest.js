@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"admin/index.js -> ../../screens/adminPage\":{\"id\":\"admin/index.js -> ../../screens/adminPage\",\"files\":[\"static/chunks/src_screens_adminPage_index_js.js\"]},\"index.js -> ../screens/loginPage\":{\"id\":\"index.js -> ../screens/loginPage\",\"files\":[\"static/chunks/src_screens_loginPage_index_js.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{\"admin/contract/[id].js -> ../../../screens/contractPage\":{\"id\":\"admin/contract/[id].js -> ../../../screens/contractPage\",\"files\":[\"static/chunks/src_screens_contractPage_index_js.js\"]}}"

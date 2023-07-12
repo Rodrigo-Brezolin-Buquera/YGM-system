@@ -7,14 +7,11 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createClasses } from "../../api/calendar";
-import { DayOptions, StyleOptions, TeacherOptions } from "../../components/selectOptions";
 import { ModalComponent, FormButton, toastAlert } from "../../theme";
 
-
-export const CreateClassModal = ({ isOpen, onClose }) => {
+export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, styleOptions }) => {
     const [loading, setLoading] = useState(false);
     const toast = useToast()
-
     const {
         handleSubmit,
         register,
@@ -24,13 +21,13 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
 
     const onSubmit = async (values) => {
         setLoading(true);
-        await createClasses(values)
+        await createClasses(values, classLimit)
             .then(() => {
                 toastAlert(toast, "Aula criada", "success")
                 reset()
                 onClose()
             })
-            .catch(err =>  toastAlert(toast, err.message, "error"))
+            .catch(err => toastAlert(toast, err.message, "error"))
             .finally(setLoading(false));
     };
 
@@ -56,7 +53,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
                             required: "Campo Obrigatório",
                         })}
                     >
-                        <StyleOptions />
+                        {styleOptions}
                     </Select>
                     <Select
                         variant="outline"
@@ -66,7 +63,12 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
                             required: "Campo Obrigatório",
                         })}
                     >
-                        <DayOptions />
+                        <option> Segunda </option>
+                        <option> Terça </option>
+                        <option> Quarta </option>
+                        <option> Quinta </option>
+                        <option> Sexta </option>
+                        <option> Sábado </option>
                     </Select>
                     <Select
                         variant="outline"
@@ -76,7 +78,7 @@ export const CreateClassModal = ({ isOpen, onClose }) => {
                             required: "Campo Obrigatório",
                         })}
                     >
-                        <TeacherOptions />
+                        {teacherOptions}
                     </Select>
 
                     <Input

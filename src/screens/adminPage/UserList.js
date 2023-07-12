@@ -2,7 +2,6 @@ import { Box, Input, Select } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findAllItems } from "../../api";
 import { usersCol } from "../../api/config";
-import { StatusOptions } from "../../components/selectOptions";
 import { useInput } from "../../hooks/useInput";
 import { InputContainer } from "../../theme";
 import UserInfo from "./UserInfo";
@@ -57,7 +56,8 @@ const UserList = () => {
                     placeholder='Status'
                     onChange={handleStatus}
                 >
-                    <StatusOptions />
+                    <option> Ativos </option>
+                    <option> Inativos </option>
                 </Select>
             </Box>
             {userList?.length ? userList : <p> Nenhum usuário encontrado </p>}

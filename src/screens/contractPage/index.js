@@ -5,7 +5,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer, SideContainer } from "../../theme";
 import { UserActions } from "./UserActions";
 
-const ContractPage = () => {
+const ContractPage = ({plansOptions}) => {
     useProtectedPage("admin")
     const router = useRouter()
     const { id } = router.query
@@ -18,7 +18,7 @@ const ContractPage = () => {
                     <CheckinsDone userId={id} />
                 </SideContainer>
                 <MainContainer>
-                    <UserActions userId={id} router={router}  />
+                    <UserActions userId={id} router={router} plansOptions={plansOptions}  />
                 </MainContainer>
             </Background>
 

@@ -7,10 +7,9 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createContract, newContract } from "../../api/contracts";
-import { TypeOptions } from "../../components/selectOptions";
 import { FormButton, ModalComponent, toastAlert } from "../../theme";
 
-export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) => {
+export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose, plansOptions }) => {
     const {
         handleSubmit,
         register,
@@ -33,7 +32,7 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
                     date: values.date
                 })
         )
-            .then(()=> {
+            .then(() => {
                 toastAlert(toast, "Contrato criado", "success")
                 reset()
             })
@@ -66,7 +65,7 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
                             required: "Campo Obrigatório"
                         })}
                     >
-                        <TypeOptions />
+                        {plansOptions}
                     </Select>
 
                     <Input
@@ -83,7 +82,7 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose }) =>
                         <br />
                         {errors.date && errors.date.message}
                     </FormErrorMessage>
-                    
+
                     <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"124px"} >
                         <Text>Adicionar </Text>
                     </FormButton>

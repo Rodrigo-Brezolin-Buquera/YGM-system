@@ -6,10 +6,11 @@ import { deleteContract } from "../../api/contracts";
 import ContractDetails from "../../components/ContractDetails";
 import { goToAdmin } from "../../routes/coordinator";
 import { WrapContainer, confirmDialog, toastAlert } from "../../theme";
+import { selectOptionsMapper } from "../../utils/selectOptionsMapper";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"
 
-export const UserActions = ({ userId, router  }) => {
+export const UserActions = ({ userId, router, plansOptions }) => {
     const [contract, setContract] = useState({});
     const [user, setUser] = useState({})
     const { isOpen: isAddOpen, onOpen: onAddOpen, onClose: onAddClose } = useDisclosure()
@@ -74,6 +75,7 @@ export const UserActions = ({ userId, router  }) => {
                 name={user?.name}
                 id={userId}
                 userIsActive={contract?.name}
+                plansOptions={selectOptionsMapper(plansOptions, "id")}
             />
 
             <EditContractModal
@@ -82,6 +84,7 @@ export const UserActions = ({ userId, router  }) => {
                 isOpen={isEditOpen}
                 onClose={onEditClose}
                 id={userId}
+                plansOptions={selectOptionsMapper(plansOptions, "id")}
             />
         </>
     );

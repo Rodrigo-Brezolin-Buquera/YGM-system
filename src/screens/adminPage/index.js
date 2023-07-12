@@ -4,15 +4,14 @@ import { Background,  MainContainer, SideContainer } from "../../theme";
 import { AdminActions } from "./AdminActions";
 import AvailableClasses from "./AvailableClasses";
 
-const AdminPage = () => {
+const AdminPage = ({classLimit, selectOptions}) => {
     useProtectedPage("admin")
-
     return (
         <>
             <HeaderAdmin />
             <Background >
                 <MainContainer>
-                    <AdminActions />
+                    <AdminActions classLimit={classLimit} selectOptions={selectOptions} />
                 </MainContainer>
 
                 <SideContainer>

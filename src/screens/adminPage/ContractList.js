@@ -2,17 +2,15 @@ import { Box, Input, Select } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findAllItems } from "../../api";
 import { contractsCol } from "../../api/config";
-import { TypeOptions } from "../../components/selectOptions";
 import { useInput } from "../../hooks/useInput";
 import { InputContainer } from "../../theme";
 import ContractInfo from "./ContractInfo";
 
 
-const ContractList = () => {
+const ContractList = ({plansOptions}) => {
     const [contracts, setContracts] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
     const [planType, handlePlanType] = useInput("");
-
 
     useEffect(() => {
         findAllItems(contractsCol)
@@ -73,7 +71,7 @@ const ContractList = () => {
                     placeholder='Plano'
                     onChange={handlePlanType}
                 >
-                    <TypeOptions />
+                    {plansOptions}
                 </Select>   
             </Box>
 

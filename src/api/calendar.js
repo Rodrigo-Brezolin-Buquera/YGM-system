@@ -3,7 +3,7 @@ import { addOneWeek, formatDate } from "../utils/dates"
 import { calendarCol, database } from "./config"
 import { createItem } from "."
 
-export const createClasses = async (values) => {
+export const createClasses = async (values, classLimit) => {
     let crescentDate = formatDate(values.date, "DD/MM/YYYY")
     let list = []
     const groupId = `${values.date}-${values.time}-${values.name}`
@@ -12,7 +12,7 @@ export const createClasses = async (values) => {
         const yogaClass = {
             ...values,
             date: crescentDate,
-            capacity: 16,
+            capacity: classLimit,
             groupId
         }
         crescentDate = addOneWeek(crescentDate)

@@ -8,7 +8,7 @@ const ClassInfo = ({ yogaClass }) => {
         <TextContainer
             alignItems={"center"}
         >
-            <Text fontWeight={"bold"}>  {yogaClass.day} - {tyogaClass.ime} </Text>
+            <Text fontWeight={"bold"}>  {yogaClass.day} - {yogaClass.time} </Text>
             <Text  > Data: { simplifyDate(yogaClass.date)} </Text>
             <Text  > Prof.: {yogaClass.teacher} </Text>
             <Text  > Estilo:  {yogaClass.name}  </Text>
