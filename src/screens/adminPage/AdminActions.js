@@ -48,7 +48,6 @@ export const AdminActions = () => {
             <ListView/>
 
             <CreateClassModal isOpen={isClassOpen} onClose={onClassClose} />
-
         </>
     )
 }

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { isLogged } from "../api/auth";
 import { goToLogin } from "../routes/coordinator"
 import { useRouter } from 'next/router';
@@ -8,7 +8,7 @@ export const useProtectedPage = (role) => {
     const router = useRouter()
     const [status, setStatus] = useState({ loggedIn: null })
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         isLogged(setStatus);
     }, [])
 
