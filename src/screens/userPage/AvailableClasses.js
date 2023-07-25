@@ -4,7 +4,7 @@ import { findClassesByPeriod } from "../../api/calendar";
 import { getNextNDays, sortByDayAndTime } from "../../utils/dates";
 import {ClassesCard} from "./ClassesCard";
 
-const AvailableClasses = ({ contractId, contractLimit, userName }) => {
+const AvailableClasses = ({ contractId, contractLimit, userName, setNewRender }) => {
     const [yogaClasses, setyogaClasses] = useState([]);
 
     useEffect(() => {
@@ -20,7 +20,8 @@ const AvailableClasses = ({ contractId, contractLimit, userName }) => {
                 userName={userName}
                 contractId={contractId}
                 contractLimit={contractLimit}
-                yogaClass={yogaClass}     
+                yogaClass={yogaClass}
+                setNewRender={setNewRender}     
             />
         );
     });

@@ -7,7 +7,7 @@ import { checkinsCol } from "../../api/config";
 import { confirmDialog, toastAlert, SquareCard } from "../../theme";
 
 export const ClassesCard = (
-    { contractId, userName, yogaClass, contractLimit }
+    { contractId, userName, yogaClass, contractLimit, setNewRender }
 ) => {
     const [checkin, setCheckin] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ export const ClassesCard = (
     const checkinId = `${contractId}+${id}`;
     const checkinData = { checkinId, date, userName, time };
     const limits = { id, capacity, contractId, contractLimit }
-    
+
     useEffect(() => {
         findItemById(checkinsCol, checkinId)
             .then((res) => setCheckin(res))
@@ -34,7 +34,10 @@ export const ClassesCard = (
                 setCheckin(null)
             })
             .catch(err => toastAlert(toast, err.message, "error"))
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false)
+                setNewRender((prevState) => !prevState)
+            });
     }
 
     const onCreate = () => {
@@ -42,7 +45,10 @@ export const ClassesCard = (
         createCheckin(checkinData, limits)
             .then(toastAlert(toast, "Checkin realizado", "success"))
             .catch(err => toastAlert(toast, err.message, "error"))
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false)
+                setNewRender((prevState) => !prevState)
+            });
     }
     const handleCheckin = () => {
         if (capacity === 0) return null

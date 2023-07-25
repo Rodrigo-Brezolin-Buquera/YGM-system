@@ -1,27 +1,21 @@
 import { CircularProgress, Button, Text, Box } from "@chakra-ui/react";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { findItemById } from "../../api";
-import { logout, resetPassword } from "../../api/auth";
-import { contractsCol, usersCol, } from "../../api/config";
-import { CheckinsDone } from "../../components/CheckinsDone";
-import ContractDetails from "../../components/ContractDetails";
+import { logout } from "../../api/auth";
+import { usersCol, } from "../../api/config";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { MainContainer, SideContainer, Header, Background, WrapContainer, confirmDialog } from "../../theme";
-import AvailableClasses from "./AvailableClasses";
+import { MainContainer, Header, Background } from "../../theme";
+import { ContractInfo } from "./ContractInfo";
 
 const UserPage = () => {
     useProtectedPage("user")
     const router = useRouter()
     const { id } = router.query
-    const [contract, setContract] = useState({});
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        findItemById(contractsCol, id)
-            .then(res => setContract(res))
-            .catch(err => console.log(err.message))
         findItemById(usersCol, id)
             .then(res => {
                 setUser(res)
@@ -29,10 +23,6 @@ const UserPage = () => {
             })
             .catch(err => console.log(err.message))
     }, [id, loading]);
-
-    const changePassword = useCallback(() => {
-        confirmDialog("Enviar email de redefinição de senha?", () => resetPassword(user?.email))
-    }, [user])
 
 
     if (loading) {
@@ -53,7 +43,7 @@ const UserPage = () => {
             </Box>
         )
     }
-    console.log("page inicial",contract)
+
     return (
         <>
             <Header>
@@ -64,34 +54,7 @@ const UserPage = () => {
             <Background column={"column"} justifyContent={"start"}>
                 {
                     user.active ?
-                        <>
-                            <SideContainer>
-                                <AvailableClasses
-                                    contractId={contract?.id}
-                                    userName={contract?.name}
-                                    contractLimit={contract?.availableClasses}
-                                />
-                            </SideContainer>
-
-                            <MainContainer>
-                                <ContractDetails contract={contract} />
-                                <WrapContainer>
-                                    <Button
-                                        backgroundColor={"brand.200"}
-                                        onClick={changePassword}
-                                    >
-                                        <Text> Redefinir senha</Text>
-                                    </Button>
-                                </WrapContainer>
-                            </MainContainer>
-
-                            <SideContainer>
-                                <CheckinsDone
-                                    userId={id}
-                                    loading={loading}
-                                />
-                            </SideContainer>
-                        </>
+                        <ContractInfo id={id} user={user} />
                         :
                         <MainContainer>
                             <Text textAlign={"center"}
