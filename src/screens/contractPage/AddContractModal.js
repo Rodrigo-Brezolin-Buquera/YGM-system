@@ -87,8 +87,6 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose, plan
                         <Text>Adicionar </Text>
                     </FormButton>
                 </FormControl>
-
-
             </form>
         </ModalComponent>
 

@@ -17,6 +17,17 @@ export const UserActions = ({ userId, router, plansOptions }) => {
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
     const toast = useToast()
 
+    
+    useEffect(() => {
+        findItemById(contractsCol, userId)
+        .then(res => setContract(res))
+        .catch(err => console.log(err.message))
+        findItemById(usersCol, userId)
+        .then(res => setUser(res))
+        .catch(err => console.log(err.message))
+        
+    }, [userId, isAddOpen, isEditOpen]);
+    
     const onDelete = () => {
         confirmDialog("Excluir contrato?", () => {
             deleteContract(userId)
@@ -24,17 +35,7 @@ export const UserActions = ({ userId, router, plansOptions }) => {
                 .catch(err => toastAlert(toast, err.message, "error"))
         })
     };
-
-    useEffect(() => {
-        findItemById(contractsCol, userId)
-            .then(res => setContract(res))
-            .catch(err => console.log(err.message))
-        findItemById(usersCol, userId)
-            .then(res => setUser(res))
-            .catch(err => console.log(err.message))
-
-    }, [userId, isAddOpen, isEditOpen]);
-
+    
     return (
         <>
             <WrapContainer>

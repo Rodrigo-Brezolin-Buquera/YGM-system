@@ -19,8 +19,6 @@ export const SignupModal = ({ isOpen, onClose, router }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showRepetPassword, setShowRepetPassword] = useState(false);
     const toast = useToast()
-
-
     const {
         handleSubmit,
         register,
@@ -40,7 +38,9 @@ export const SignupModal = ({ isOpen, onClose, router }) => {
                 onClose()
             })
     };
+
     const password = watch("password")
+
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Preencha seu cadastro"} >
             <form onSubmit={handleSubmit(onSubmit)} >

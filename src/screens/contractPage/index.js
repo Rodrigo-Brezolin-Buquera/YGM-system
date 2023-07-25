@@ -9,6 +9,7 @@ const ContractPage = ({plansOptions}) => {
     useProtectedPage("admin")
     const router = useRouter()
     const { id } = router.query
+    
     return (
         <>
             <Header  />

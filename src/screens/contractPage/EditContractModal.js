@@ -35,7 +35,6 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose, plansOp
         setValue("availableClasses", contract?.availableClasses);
     }, [name, contract, setValue])
 
-
     const onSubmit = (values) => {
         setLoading(true);
         updateContract(values, id)
@@ -47,7 +46,6 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose, plansOp
             .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => setLoading(false));
     };
-
 
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Editar contrato"}>
@@ -126,10 +124,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose, plansOp
                             w="250px"
                             id="ends"
                             type="date"
-                            {...register("ends", {
-                                // required: "Campo Obrigátorio",
-
-                            })}
+                            {...register("ends", {})}
                         />
                     </FormLabel>
 
@@ -144,7 +139,6 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose, plansOp
                             name="availableClasses"
                             type="number"
                             {...register("availableClasses", {
-                                // required: "Campo Obrigátorio",
                                 pattern: numberPattern
                             })}
                         />

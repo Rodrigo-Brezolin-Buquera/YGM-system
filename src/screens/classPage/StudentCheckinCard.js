@@ -12,9 +12,9 @@ const StudentCheckinCard = ({ checkin, capacity, setLoading }) => {
         confirmDialog("Cancelar este checkin?", () => {
             setCardLoading(true);
             (checkin.contractless ?
-                    cancelContractlessCheckin(checkin.id, capacity)
-                    :
-                    cancelCheckin(checkin.id, capacity)
+                cancelContractlessCheckin(checkin.id, capacity)
+                :
+                cancelCheckin(checkin.id, capacity)
             ).catch(err => toastAlert(toast, err.message, "error"))
                 .finally(() => {
                     setCardLoading(false)
@@ -36,25 +36,24 @@ const StudentCheckinCard = ({ checkin, capacity, setLoading }) => {
             minH={"50px"}
             w={"75%"}
         >
-            {(cardLoading) ?
-                <CircularProgress isIndeterminate color="brand.200" size="50px" />
-                :
-                <Box
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    _hover={{ cursor: "pointer" }}
-                    p={"0 0.5em"}
-                    w={"100%"}
-                >
-
-                    <Text fontSize={"mds"} >  {checkin.name}  </Text>
-
-                    <DeleteIcon
+            {
+                (cardLoading) ?
+                    <CircularProgress isIndeterminate color="brand.200" size="50px" />
+                    :
+                    <Box
+                        display={"flex"}
+                        justifyContent={"space-between"}
                         _hover={{ cursor: "pointer" }}
-                        onClick={onDelete}
-                        boxSize={"5"}
-                    />
-                </Box>
+                        p={"0 0.5em"}
+                        w={"100%"}
+                    >
+                        <Text fontSize={"mds"} >  {checkin.name}  </Text>
+                        <DeleteIcon
+                            _hover={{ cursor: "pointer" }}
+                            onClick={onDelete}
+                            boxSize={"5"}
+                        />
+                    </Box>
             }
         </Card>
     );
