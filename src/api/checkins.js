@@ -23,8 +23,8 @@ export const createCheckin = async (checkinData, limits) => {
         time,
         name: userName,
     }
-    const userWithAPlanContract = isNaN(contractLimit)
-
+    const userWithAPlanContract = !isNaN(contractLimit)
+    console.log("criação checkin",userWithAPlanContract )
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)
         transaction.set(checkinDoc, checkin)
@@ -39,7 +39,7 @@ export const createCheckin = async (checkinData, limits) => {
 
 export const deleteCheckin = async (checkinId, limits) => {
     const { id, capacity, contractId, contractLimit } = limits
-    const userWithAPlanContract = isNaN(contractLimit)
+    const userWithAPlanContract = !isNaN(contractLimit)
 
     await runTransaction(database, async (transaction) => {
         const checkinDoc = doc(collection(database, checkinsCol), checkinId)

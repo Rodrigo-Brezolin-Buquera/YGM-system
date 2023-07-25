@@ -1,8 +1,9 @@
-import {  Heading, Text } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 import { memo } from "react";
 import { Line, TextContainer } from "../theme";
 
-const ContractDetails = ({contract}) => {
+const ContractDetails = ({ contract }) => {
+
     return (
         < TextContainer
             alignItems={"center"}
@@ -17,32 +18,32 @@ const ContractDetails = ({contract}) => {
                 <Text as='b' fontSize='lg' >Plano: </Text>
                 <Text fontSize='lg' >{contract?.plan} </Text>
             </Line>
-              
+
             <Line>
                 <Text as='b' fontSize='lg' >Início: </Text>
                 <Text fontSize='lg' > {contract?.planStarted}</Text>
             </Line>
 
             {
-                contract?.planEnds ?  
+                contract?.planEnds ?
                     <Line>
                         <Text as='b' fontSize='lg' >Fim previsto: </Text>
                         <Text fontSize='lg' > {contract?.planEnds}</Text>
                     </Line>
-                    : 
+                    :
                     null
             }
 
             {
-                isNaN(contract?.availableClasses) ?  
+                isNaN(contract?.availableClasses) ?
+                    null
+                    :
                     <Line>
                         <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
                         <Text fontSize='lg' >{contract?.availableClasses}</Text>
-                    </Line> 
-                    : 
-                    null
+                    </Line>
             }
-           
+
         </TextContainer>
     );
 };

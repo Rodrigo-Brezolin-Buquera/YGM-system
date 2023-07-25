@@ -18,7 +18,7 @@ export const ClassesCard = (
     const checkinId = `${contractId}+${id}`;
     const checkinData = { checkinId, date, userName, time };
     const limits = { id, capacity, contractId, contractLimit }
-
+    
     useEffect(() => {
         findItemById(checkinsCol, checkinId)
             .then((res) => setCheckin(res))

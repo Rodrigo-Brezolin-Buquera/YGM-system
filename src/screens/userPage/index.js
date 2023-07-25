@@ -53,7 +53,7 @@ const UserPage = () => {
             </Box>
         )
     }
-
+    console.log("page inicial",contract)
     return (
         <>
             <Header>

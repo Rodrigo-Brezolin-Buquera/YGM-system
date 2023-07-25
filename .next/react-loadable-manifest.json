@@ -1,10 +1,4 @@
 {
-  "admin/index.js -> ../../screens/adminPage": {
-    "id": "admin/index.js -> ../../screens/adminPage",
-    "files": [
-      "static/chunks/src_screens_adminPage_index_js.js"
-    ]
-  },
   "index.js -> ../screens/loginPage": {
     "id": "index.js -> ../screens/loginPage",
     "files": [
