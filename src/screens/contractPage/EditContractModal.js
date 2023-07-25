@@ -10,7 +10,7 @@ import {
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
-import { numberPattern, stringPattern } from "../../api/patterns";
+import { numberPattern, namePattern } from "../../api/patterns";
 import { FormButton, ModalComponent, toastAlert } from "../../theme";
 import { formatToCalendar } from "../../utils/dates"
 
@@ -75,7 +75,7 @@ export const EditContractModal = ({ contract, name, id, isOpen, onClose, plansOp
                             placeholder="name"
                             {...register("name", {
                                 required: "Campo Obrigátorio",
-                                pattern: stringPattern
+                                pattern: namePattern
                             })}
                         />
                     </FormLabel>

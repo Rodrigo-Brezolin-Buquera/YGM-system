@@ -2,7 +2,7 @@ import { runTransaction, doc, collection, query, getDocs, where, limit } from "f
 import { contractsCol, calendarCol, checkinsCol, } from "./config"
 import { database } from "./config"
 import { findItemById } from "."
-import { stringPattern } from "./patterns";
+import { namePattern } from "./patterns";
 
 export const findCheckinsLimit = async (userId, n) => {
     const col = collection(database, checkinsCol);
@@ -71,8 +71,8 @@ export const createContractlessCheckin = async (checkinData, limits) => {
     const { date, name, time } = checkinData
     const { yogaClassId, capacity} = limits
 
-    if (!name.match(stringPattern.value)) {
-        throw new Error(stringPattern.message)
+    if (!name.match(namePattern.value)) {
+        throw new Error(namePattern.message)
     }
     
     const checkinId = `${yogaClassId}+${name}+${Date.now().toString()}`

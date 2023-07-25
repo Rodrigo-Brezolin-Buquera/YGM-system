@@ -2,6 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/admin/contract/[id]": "pages/admin/contract/[id].js",
-  "/admin": "pages/admin.js"
+  "/": "pages/index.js",
+  "/admin/calendar": "pages/admin/calendar.js",
+  "/admin": "pages/admin.js",
+  "/user/[id]": "pages/user/[id].js"
 }
