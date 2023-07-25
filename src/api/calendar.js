@@ -25,8 +25,7 @@ export const createClasses = async (values, classLimit) => {
 
 
 export const findClassesByPeriod = async (dates) => {
-    const col = collection (database, calendarCol);
-    const q = query(col, where("date", "in", dates));
+    const q = query(collection (database, calendarCol), where("date", "in", dates));
     const snap = await getDocs(q);
     const result = snap.docs.map(doc => {return {...doc.data(), id: doc.id}} )
     return result;
