@@ -1,14 +1,88 @@
 {
-  "index.js -> ../screens/loginPage": {
-    "id": "index.js -> ../screens/loginPage",
+  "404.js -> ../screens/errorPage": {
+    "id": 349,
     "files": [
-      "static/chunks/src_screens_loginPage_index_js.js"
+      "static/chunks/349.8de8040fdec9e3f8.js"
+    ]
+  },
+  "admin/business.js -> ../../screens/businessPage": {
+    "id": 4019,
+    "files": [
+      "static/chunks/cccc6244.1c46d8db81625898.js",
+      "static/chunks/c97d5db8.a1dd04f33ea68c37.js",
+      "static/chunks/359.ab1d94c3cc773ae6.js",
+      "static/chunks/186.4812f7394f5cd38a.js",
+      "static/chunks/514.302a7cdd5fbc1822.js",
+      "static/chunks/153.1e63d7af4149bcd6.js",
+      "static/chunks/19.ecdecea53939cba1.js"
+    ]
+  },
+  "admin/calendar.js -> ../../screens/calendarPage": {
+    "id": 1507,
+    "files": [
+      "static/chunks/cccc6244.1c46d8db81625898.js",
+      "static/chunks/c97d5db8.a1dd04f33ea68c37.js",
+      "static/chunks/359.ab1d94c3cc773ae6.js",
+      "static/chunks/186.4812f7394f5cd38a.js",
+      "static/chunks/153.1e63d7af4149bcd6.js",
+      "static/chunks/554.be6d4eeb298d7ef4.js",
+      "static/chunks/507.e18d4b8cdad32cef.js"
+    ]
+  },
+  "admin/class/[id].js -> ../../../screens/classPage": {
+    "id": 4743,
+    "files": [
+      "static/chunks/cccc6244.1c46d8db81625898.js",
+      "static/chunks/c97d5db8.a1dd04f33ea68c37.js",
+      "static/chunks/359.ab1d94c3cc773ae6.js",
+      "static/chunks/186.4812f7394f5cd38a.js",
+      "static/chunks/153.1e63d7af4149bcd6.js",
+      "static/chunks/554.be6d4eeb298d7ef4.js",
+      "static/chunks/743.edfe89ca3d801255.js"
+    ]
+  },
+  "admin/contract/[id].js -> ../../../screens/contractPage": {
+    "id": 2396,
+    "files": [
+      "static/chunks/cccc6244.1c46d8db81625898.js",
+      "static/chunks/c97d5db8.a1dd04f33ea68c37.js",
+      "static/chunks/359.ab1d94c3cc773ae6.js",
+      "static/chunks/186.4812f7394f5cd38a.js",
+      "static/chunks/514.302a7cdd5fbc1822.js",
+      "static/chunks/153.1e63d7af4149bcd6.js",
+      "static/chunks/396.fff25e69e514ce23.js"
+    ]
+  },
+  "admin/index.js -> ../../screens/adminPage": {
+    "id": 9643,
+    "files": [
+      "static/chunks/cccc6244.1c46d8db81625898.js",
+      "static/chunks/c97d5db8.a1dd04f33ea68c37.js",
+      "static/chunks/359.ab1d94c3cc773ae6.js",
+      "static/chunks/186.4812f7394f5cd38a.js",
+      "static/chunks/514.302a7cdd5fbc1822.js",
+      "static/chunks/153.1e63d7af4149bcd6.js",
+      "static/chunks/643.d77c9bdb6b32c868.js"
+    ]
+  },
+  "index.js -> ../screens/loginPage": {
+    "id": 343,
+    "files": [
+      "static/chunks/cccc6244.1c46d8db81625898.js",
+      "static/chunks/c97d5db8.a1dd04f33ea68c37.js",
+      "static/chunks/359.ab1d94c3cc773ae6.js",
+      "static/chunks/514.302a7cdd5fbc1822.js",
+      "static/chunks/108.7f7d3454afeb268c.js"
     ]
   },
   "user/[id].js -> ../../screens/userPage": {
-    "id": "user/[id].js -> ../../screens/userPage",
+    "id": 6516,
     "files": [
-      "static/chunks/src_screens_userPage_index_js.js"
+      "static/chunks/cccc6244.1c46d8db81625898.js",
+      "static/chunks/c97d5db8.a1dd04f33ea68c37.js",
+      "static/chunks/359.ab1d94c3cc773ae6.js",
+      "static/chunks/153.1e63d7af4149bcd6.js",
+      "static/chunks/516.82d402547b3ed34c.js"
     ]
   }
 }

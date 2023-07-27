@@ -35,7 +35,7 @@
     "start": "next start",
     "lint": "eslint src",
     "lint-fix": "eslint src --fix",
-    "deploy": "firebase deploy"
+    "deploy": "vercel --prod"
   },
   "browserslist": {
     "production": [
