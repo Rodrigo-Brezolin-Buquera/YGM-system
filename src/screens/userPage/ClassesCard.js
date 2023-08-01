@@ -1,10 +1,10 @@
-import { DeleteIcon } from "@chakra-ui/icons";
+import { DeleteIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
 import { checkinsCol } from "../../api/config";
-import { confirmDialog, toastAlert, SquareCard } from "../../theme";
+import { confirmDialog, toastAlert, SquareCard, Line, CircularCard } from "../../theme";
 
 export const ClassesCard = (
     { contractId, userName, yogaClass, contractLimit, setNewRender }
@@ -62,7 +62,7 @@ export const ClassesCard = (
 
     return (
         <SquareCard
-            color={checkin ? "brand.200" : "brand.500"}
+            color={"brand.500"}
             onClick={handleCheckin}
         >
             {loading ?
@@ -70,33 +70,55 @@ export const ClassesCard = (
                 :
                 <Box
                     display={"flex"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
                     position={"relative"}
+                    h={"96px"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
                 >
+                        <Text fontSize='lg' as="b" > {day} - {time}</Text>
+                    {capacity > 0 ?
+                        <Line>
+                            <Text fontSize='md'>  {name}   </Text>
+                            <Text fontSize='md'>- Prof. {teacher}   </Text>
+                        </Line>
+                        :
+                        <Text> Não há mais vagas </Text>
+                    }
+                    
                     <Box
                         display={"flex"}
-                        flexDirection={"column"}
+                        justifyContent={"space-between"}
                         alignItems={"center"}
-                        justifyContent={"center"}
+                        borderRadius={"25px"}
+                        backgroundColor={"brand.200"}
+                        paddingX={"1em"}
+                        paddingY={"0.3em"}
+                        _hover={{ 
+                            cursor: "pointer",
+                            backgroundColor: "rgba(221, 174, 39, 0.8)"                
+                            }}
+                        w={"136px"}
+                        position={"absolute"}
+                        right={0}
+                        bottom={0}
                     >
-                        <Text fontSize='lg' as="b" > {day} - {time}</Text>
-                        {capacity > 0 ?
-                            <>
-                                <Text>  {name}   </Text>
-                                <Text> Prof. {teacher}   </Text>
-                            </>
-                            :
-                            <Text  > Não há mais vagas </Text>
-                        }
+                        <Text fontSize='sm'> { checkin ? "Cancelar" : "Agendar"  }</Text>
+                        <Box
+                            border={"solid 1px black"}
+                            boxSize={6}
+                            borderRadius={"25px"}
+                            display={"flex"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                        >
+                            {
+                                checkin ?
+                                    <DeleteIcon boxSize={"3"} />
+                                    :
+                                    <ChevronRightIcon boxSize={"6"} />
+                            }
+                        </Box>
                     </Box>
-                    {
-                        checkin && <DeleteIcon
-                            boxSize={"6"}
-                            position={"absolute"}
-                            right={"15px"}
-                        />
-                    }
                 </Box>
             }
         </SquareCard>
