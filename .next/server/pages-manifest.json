@@ -1,10 +1,13 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/user/[id]": "pages/user/[id].js",
-  "/admin/class/[id]": "pages/admin/class/[id].js",
-  "/admin/calendar": "pages/admin/calendar.js",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html",
+  "/admin/calendar": "pages/admin/calendar.html",
+  "/admin/business": "pages/admin/business.html",
+  "/admin/class/[id]": "pages/admin/class/[id].html",
+  "/": "pages/index.html",
+  "/user/[id]": "pages/user/[id].html",
   "/admin": "pages/admin.js",
-  "/": "pages/index.js"
+  "/admin/contract/[id]": "pages/admin/contract/[id].js"
 }
