@@ -14,10 +14,10 @@ describe("Tests formatDate", () => {
     })
 })
 
-describe.skip("Tests getToday", () => {
+describe("Tests getToday", () => {
     test("Default", () => {
         const result = getToday()
-        expect(result).toBe("02/03/2023") // o dia irá mudar
+        expect(result).toBe(new Date().toLocaleDateString("pt-br"))
     })
 })
 
