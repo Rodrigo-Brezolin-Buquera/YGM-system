@@ -1,8 +1,10 @@
 {
     "extends": [
       "react-app",
-      "react-app/jest"
-      
+      "react-app/jest" 
+      //  "next/core-web-vitals",
+      // "next"
+
     ],
     "rules": {
       "indent": ["warn", 4],

@@ -1,4 +1,4 @@
-import { emailPattern, numberPattern, passwordPattern, pricePattern, stringPattern } from "../../api/patterns"
+import { emailPattern, numberPattern, passwordPattern, pricePattern, namePattern } from "../../api/patterns"
 
 describe("Test - Price regex", () => {
     test("Sucess case - 1 digits", () => {
@@ -67,31 +67,31 @@ describe("Test - number regex", () => {
 describe("Test - string regex", () => {
     test("Sucess case ", () => {
         const input = "Ana Maria"
-        const result = input.match(stringPattern.value)
+        const result = input.match(namePattern.value)
         expect(result).not.toBeNull()
     })
 
     test("Fail case - less than 3 characters", () => {
         const input = "aa"
-        const result = input.match(stringPattern.value)
+        const result = input.match(namePattern.value)
         expect(result).toBeNull()
     })
 
     test("Fail case - more than 30 characters", () => {
         const input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        const result = input.match(stringPattern.value)
+        const result = input.match(namePattern.value)
         expect(result).toBeNull()
     })
 
     test("Fail case - numbers", () => {
         const input = "123124"
-        const result = input.match(stringPattern.value)
+        const result = input.match(namePattern.value)
         expect(result).toBeNull()
     })
 
     test("Fail case - special Chars", () => {
         const input = "@!@#"
-        const result = input.match(stringPattern.value)
+        const result = input.match(namePattern.value)
         expect(result).toBeNull()
     })
 

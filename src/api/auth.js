@@ -9,12 +9,15 @@ import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 import { auth, usersCol } from "./config";
 import { createItemWithId, findItemById } from ".";
 
-export const login = async (form, navigate) => {
+export const login = async (form, router) => {
     try {
         const { user } = await signInWithEmailAndPassword(auth, form.email, form.password);
         const userDoc = await findItemById(usersCol, user.uid)
-        localStorage.setItem("admin", userDoc.admin)
-        userDoc.admin ? goToAdmin(navigate) : goToUser(navigate, user.uid)
+
+        if (typeof window !== "undefined") {
+            localStorage.setItem("admin", userDoc.admin)
+        }
+        userDoc.admin ? goToAdmin(router) : goToUser(router, user.uid)
     } catch (err) {
         const message = err.message.includes("auth/wrong-password") ? ("Email e/ou senha inválidos") : ("Erro no login, tente novamente")
         throw new Error(message)
@@ -34,10 +37,10 @@ export const singUp = async ({ email, password, name }) => {
 
 };
 
-export const logout = async (navigate) => {
+export const logout = async (router) => {
     await signOut(auth);
     localStorage.setItem("admin", "")
-    goToLogin(navigate); 
+    goToLogin(router);
 };
 
 export const resetPassword = async (email) => {
@@ -45,13 +48,11 @@ export const resetPassword = async (email) => {
 }
 
 export const isLogged = async (setStatus) => {
-
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             setStatus({ loggedIn: true, userId: user.uid });
         } else {
             setStatus({ loggedIn: false, userId: null })
-
         }
     });
 

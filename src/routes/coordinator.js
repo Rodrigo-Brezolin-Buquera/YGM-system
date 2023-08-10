@@ -1,31 +1,32 @@
-export const goToLogin = (navigate) => {
-    navigate("/");
+
+export const goToLogin = (router) => {
+    router.push("/");
 };
 
-export const goToUser = (navigate, id) => {
-    navigate(`/user/${id}`);
+export const goToUser = (router, id) => {
+    router.push(`/user/${id}`);
 };
 
-export const goToAdmin = (navigate) => {
-    navigate("/admin");
+export const goToAdmin = (router) => {
+    router.push("/admin");
 };
-export const goToBusiness = (navigate) => {
-    navigate("/admin/business");
-};
-
-export const goToCalendar = (navigate) => {
-    navigate("/admin/calendar");
+export const goToBusiness = (router) => {
+    router.push("/admin/business");
 };
 
-export const goToClass = (navigate, id) => {
-    navigate(`/admin/class/${id}`);
+export const goToCalendar = (router) => {
+    router.push("/admin/calendar");
 };
 
-export const goToContract = (navigate, id) => {
-    navigate(`/admin/contract/${id}`);
+export const goToClass = (router, id) => {
+    router.push(`/admin/class/${id}`);
 };
 
-export const goBack = (navigate) => {
-    navigate(-1);
+export const goToContract = (router, id) => {
+    router.push(`/admin/contract/${id}`);
+};
+
+export const goBack = (router) => {
+    router.back();
 };
 

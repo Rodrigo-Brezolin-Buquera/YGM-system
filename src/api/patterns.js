@@ -8,9 +8,9 @@ export const numberPattern = {
     message: "Entre com valores possitivos entre 0 e 99"
 }
 
-export const stringPattern = {
+export const namePattern = {
     value: /^[a-zA-Z ]{3,30}$/u,
-    message: "Os textos devem ter entre 3 e 30 caracteres sem caracteres especiais"
+    message: "Os nomes devem ter entre 3 e 30 caracteres sem caracteres especiais"
 }
 
 export const emailPattern = {

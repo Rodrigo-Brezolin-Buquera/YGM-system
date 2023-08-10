@@ -1,30 +1,33 @@
-import { useLayoutEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { isLogged } from "../api/auth";
 import { goToLogin } from "../routes/coordinator"
+import { useRouter } from 'next/router';
 
 
 export const useProtectedPage = (role) => {
-
+    const router = useRouter()
     const [status, setStatus] = useState({ loggedIn: null })
-    const navigate = useNavigate()
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         isLogged(setStatus);
     }, [])
 
     if (status.loggedIn === false) {
-        goToLogin(navigate)
+        goToLogin(router)
     }
-    const admin = localStorage.getItem("admin")
 
+    let admin
+    if (typeof window !== "undefined") {
+        admin = localStorage.getItem("admin")
+    }
+    
     if (status.loggedIn === true) {
         if (role === "user" && admin === "true") {
-            goToLogin(navigate)
+            goToLogin(router)
         }
 
         if (role === "admin" && admin === "false") {
-            goToLogin(navigate)
+            goToLogin(router)
         }
     }
 };

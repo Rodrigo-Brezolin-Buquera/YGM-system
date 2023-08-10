@@ -23,7 +23,7 @@ export const CheckinsDone = ({ userId, loading }) => {
                 color={"brand.200"}
                 hover={"simple"}
             >
-                <Text as="b" > {simplifyDate(checkin.date)} -{checkin.time} </Text>
+                <Text as="b" > {simplifyDate(checkin.date)} - {checkin.time} </Text>
             </CircularCard>
         );
     });
