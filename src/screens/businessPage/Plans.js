@@ -3,8 +3,10 @@ import { Text, Heading, Box, useToast, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems } from "../../api";
 import { plansCol } from "../../api/config";
+import confirmDialog from "../../components/confirmDialog";
 import { DoubleClickText } from "../../components/DoubleClickText";
-import { confirmDialog, toastAlert, WrapContainer } from "../../theme";
+import toastAlert from "../../components/toastAlert";
+import { WrapContainer } from "../../theme";
 import { TextCard } from "../../theme";
 import { PlanForm } from "./PlanForm";
 

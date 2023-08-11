@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { createCheckin, deleteCheckin } from "../../api/checkins";
 import { checkinsCol } from "../../api/config";
-import { confirmDialog, toastAlert, SquareCard, Line, CircularCard } from "../../theme";
+import confirmDialog from "../../components/confirmDialog";
+import toastAlert from "../../components/toastAlert";
+import { SquareCard, Line } from "../../theme";
 
 export const ClassesCard = (
     { contractId, userName, yogaClass, contractLimit, setNewRender }

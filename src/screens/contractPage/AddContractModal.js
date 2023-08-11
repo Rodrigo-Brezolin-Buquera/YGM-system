@@ -7,7 +7,8 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createContract, newContract } from "../../api/contracts";
-import { FormButton, ModalComponent, toastAlert } from "../../theme";
+import toastAlert from "../../components/toastAlert";
+import { FormButton, ModalComponent } from "../../theme";
 
 export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose, plansOptions }) => {
     const {

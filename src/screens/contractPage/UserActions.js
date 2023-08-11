@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { findItemById } from "../../api";
 import { contractsCol, usersCol } from "../../api/config";
 import { deleteContract } from "../../api/contracts";
+import confirmDialog from "../../components/confirmDialog";
 import ContractDetails from "../../components/ContractDetails";
+import toastAlert from "../../components/toastAlert";
 import { goToAdmin } from "../../routes/coordinator";
-import { WrapContainer, confirmDialog, toastAlert } from "../../theme";
+import { WrapContainer } from "../../theme";
 import { selectOptionsMapper } from "../../utils/selectOptionsMapper";
 import { AddContractModal } from "./AddContractModal";
 import { EditContractModal } from "./EditContractModal"

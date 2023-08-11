@@ -1,7 +1,7 @@
 import { Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { updateItem } from "../api";
-import { toastAlert } from "../theme";
+import toastAlert from "./toastAlert";
 
 export const DoubleClickText = (props) => {
     const [text, setText] = useState("");

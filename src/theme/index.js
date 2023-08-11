@@ -31,9 +31,7 @@ export {default as TextContainer} from "./TextContainer";
 export {default as Line} from "./Line";
 export {default as CircularCard} from "./CircularCard";
 export {default as TextCard} from "./TextCard";
-export {default as confirmDialog} from "./confirmDialog";
 export {default as InputContainer} from "./InputContainer";
-export {default as toastAlert} from "./toastAlert";
 export {default as SquareCard} from "./SquareCard";
 
 

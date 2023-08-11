@@ -7,9 +7,11 @@ import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { goToAdmin } from "../../routes/coordinator";
-import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background, confirmDialog, toastAlert } from "../../theme";
+import { SideContainer, WrapContainer, LoadingButton, MainContainer, Background } from "../../theme";
 import ClassInfo from "./ClassInfo";
 import { StudentList } from "./StudentList";
+import toastAlert from "../../components/toastAlert";
+import confirmDialog from "../../components/confirmDialog";
 
 const ClassPage = () => {
     useProtectedPage("admin")
