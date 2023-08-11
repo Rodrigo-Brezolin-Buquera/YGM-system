@@ -3,6 +3,7 @@ import { memo } from "react";
 import { Line, TextContainer } from "../theme";
 
 const ContractDetails = ({ contract }) => {
+    console.log("availableClasses", contract?.availableClasses)
 
     return (
         < TextContainer
@@ -35,13 +36,12 @@ const ContractDetails = ({ contract }) => {
             }
 
             {
-                isNaN(contract?.availableClasses) ?
-                    null
-                    :
-                    <Line>
-                        <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
-                        <Text fontSize='lg' >{contract?.availableClasses}</Text>
-                    </Line>
+                contract?.availableClasses !== null
+                &&
+                <Line>
+                    <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
+                    <Text fontSize='lg' >{contract?.availableClasses}</Text>
+                </Line>
             }
 
         </TextContainer>
