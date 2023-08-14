@@ -9,8 +9,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { singUp } from "../../api/auth";
 import { emailPattern, passwordPattern, namePattern } from "../../api/patterns";
+import toastAlert from "../../components/toastAlert";
 import { goToUser } from "../../routes/coordinator";
-import { ModalComponent, FormButton, toastAlert } from "../../theme";
+import { ModalComponent, FormButton } from "../../theme";
 import { capitalizeFirstLetter } from "../../utils/names";
 import { PasswordInput } from "./PasswordInput";
 

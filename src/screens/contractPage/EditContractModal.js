@@ -11,7 +11,8 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { updateContract } from "../../api/contracts";
 import { numberPattern, namePattern } from "../../api/patterns";
-import { FormButton, ModalComponent, toastAlert } from "../../theme";
+import toastAlert from "../../components/toastAlert";
+import { FormButton, ModalComponent } from "../../theme";
 import { formatToCalendar } from "../../utils/dates"
 
 export const EditContractModal = ({ contract, name, id, isOpen, onClose, plansOptions }) => {

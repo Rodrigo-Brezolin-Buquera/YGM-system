@@ -2,8 +2,10 @@ import {  Heading, useToast, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
 import { deleteItemById, findAllItems, } from "../../api";
 import { stylesCol, teachersCol } from "../../api/config";
+import confirmDialog from "../../components/confirmDialog";
 import { RequestInput } from "../../components/RequestInput";
-import { confirmDialog, toastAlert, WrapContainer } from "../../theme";
+import toastAlert from "../../components/toastAlert";
+import { WrapContainer } from "../../theme";
 import ItemCard from "./ItemCard";
 
 export const TeachersAndStyles = () => {

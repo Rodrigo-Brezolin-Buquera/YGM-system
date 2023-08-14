@@ -4,8 +4,9 @@ import { findItemById } from "../../api";
 import { resetPassword } from "../../api/auth";
 import { contractsCol } from "../../api/config";
 import { CheckinsDone } from "../../components/CheckinsDone";
+import confirmDialog from "../../components/confirmDialog";
 import ContractDetails from "../../components/ContractDetails";
-import { MainContainer, SideContainer, WrapContainer, confirmDialog } from "../../theme";
+import { MainContainer, SideContainer, WrapContainer } from "../../theme";
 import AvailableClasses from "./AvailableClasses";
 
 export const ContractInfo = ({ id, user }) => {

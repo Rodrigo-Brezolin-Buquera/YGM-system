@@ -1,7 +1,7 @@
 import { Input, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { createItem } from "../api";
-import {toastAlert} from "../theme"
+import toastAlert from "./toastAlert";
 
 export const RequestInput = ({ placeholder, itemCol, setLoading }) => {
     const [text, setText] = useState("");

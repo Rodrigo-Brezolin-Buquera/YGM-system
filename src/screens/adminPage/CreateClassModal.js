@@ -7,7 +7,8 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createClasses } from "../../api/calendar";
-import { ModalComponent, FormButton, toastAlert } from "../../theme";
+import toastAlert from "../../components/toastAlert";
+import { ModalComponent, FormButton } from "../../theme";
 
 export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, styleOptions }) => {
     const [loading, setLoading] = useState(false);

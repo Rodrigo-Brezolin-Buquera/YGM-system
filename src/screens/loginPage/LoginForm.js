@@ -9,7 +9,8 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
-import { FormButton, toastAlert } from "../../theme";
+import toastAlert from "../../components/toastAlert";
+import { FormButton } from "../../theme";
 import { PasswordInput } from "./PasswordInput";
 
 export const LoginForm = ({router}) => {
