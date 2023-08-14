@@ -3,7 +3,6 @@ import { memo } from "react";
 import { Line, TextContainer } from "../theme";
 
 const ContractDetails = ({ contract }) => {
-    console.log("availableClasses", contract?.availableClasses)
 
     return (
         < TextContainer
@@ -22,26 +21,23 @@ const ContractDetails = ({ contract }) => {
 
             <Line>
                 <Text as='b' fontSize='lg' >Início: </Text>
-                <Text fontSize='lg' > {contract?.planStarted}</Text>
+                <Text fontSize='lg' > {contract?.started}</Text>
             </Line>
-
-            {
-                contract?.planEnds ?
-                    <Line>
-                        <Text as='b' fontSize='lg' >Fim previsto: </Text>
-                        <Text fontSize='lg' > {contract?.planEnds}</Text>
-                    </Line>
-                    :
-                    null
-            }
 
             {
                 contract?.availableClasses !== null
                 &&
-                <Line>
-                    <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
-                    <Text fontSize='lg' >{contract?.availableClasses}</Text>
-                </Line>
+                <>
+                    <Line>
+                        <Text as='b' fontSize='lg' >Fim previsto: </Text>
+                        <Text fontSize='lg' > {contract?.ends}</Text>
+                    </Line>
+                    <Line>
+                        <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
+                        <Text fontSize='lg' >{contract?.availableClasses}</Text>
+                    </Line>
+                </>
+
             }
 
         </TextContainer>
