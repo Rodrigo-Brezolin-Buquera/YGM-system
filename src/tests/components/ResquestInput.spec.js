@@ -4,7 +4,7 @@ import toastAlert from "../../components/toastAlert";
 import {RequestInput} from "../../components/RequestInput"
 
 
-jest.mock("../../api", ()=> jest.fn())
+jest.mock("../../api", ()=> {})
 jest.mock("../../components/toastAlert");
 jest.mock("@chakra-ui/react", () => ({
   ...jest.requireActual("@chakra-ui/react"),
@@ -12,11 +12,11 @@ jest.mock("@chakra-ui/react", () => ({
 }));
 
 
-describe("RequestInput Tests", () => {
-  test("handles Enter key press and calls createItem", async () => {
-    const mockToastAlert = toastAlert;
-   
 
+
+describe("RequestInput Tests", () => {
+  test("Controlled input", async () => {
+    const mockToastAlert = toastAlert;
      render(
       <RequestInput placeholder="Test Placeholder" itemCol="testItemCol" setLoading={jest.fn()} />
     );
@@ -25,14 +25,8 @@ describe("RequestInput Tests", () => {
 
     fireEvent.change(inputElement, { target: { value: "Test Item" } });
     expect(inputElement.value).toBe("Test Item");
-
-    //fireEvent.keyPress(inputElement, { key: "Enter", code: 13, charCode: 13 });
-    // expect(mockCreateItem).toHaveBeenCalledWith("testItemCol", { name: "Test Item" });
-    // await mockCreateItem.mock.results[0].value;
-
     expect(mockToastAlert).not.toHaveBeenCalled();
 
-    // expect(inputElement.value).toBe("");
   });
 
   
