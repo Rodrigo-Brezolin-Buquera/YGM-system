@@ -19,8 +19,7 @@ O espaço Yoga Mangala é um studio de Yoga. Dessa forma, a aplicação permite 
 Aplicação feita usando React/Next.js. 
 
 As relações entre as páginas pode ser vista na imagem:
-
-<img width="609" alt="Captura de Tela 2023-02-19 às 17 10 40" src="https://user-images.githubusercontent.com/81428197/219972665-e37a4752-f4fa-444d-b37a-cb0ae0358233.png">
+![Captura de Tela 2023-09-14 às 16 26 28](https://github.com/Rodrigo-Brezolin-Buquera/YGM-system/assets/81428197/acff9ba0-8985-425c-b022-407a871286be)
 
 ---
 ## Rodando o Projeto localmente
