@@ -10,44 +10,22 @@ O espaço Yoga Mangala é um studio de Yoga. Dessa forma, a aplicação permite 
 ---
 ##  Status do Projeto
 
-📥 Testando 
+📥 Em produção 
 
 ---
 
 ## Concepção do Projeto
 
-Aplicação feita usando React. 
+Aplicação feita usando React/Next.js. 
 
 As relações entre as páginas pode ser vista na imagem:
 
 <img width="609" alt="Captura de Tela 2023-02-19 às 17 10 40" src="https://user-images.githubusercontent.com/81428197/219972665-e37a4752-f4fa-444d-b37a-cb0ae0358233.png">
 
-
 ---
+## Rodando o Projeto localmente
 
-## Surge
-Link: https://yoga-mangala.web.app
-
----
-
-## Usuários de teste
-Estudante:
-
-email: rodrigobbuquera@gmail.com
-
-senha: 123456
-
-Admin:
-
-email: admintest@email.com
-
-senha: 123456
-
----
-## Rodando o Projeto
-
-
-Para Rodar o projeto, siga as seguintes etapas :
+Para Rodar o projeto, siga as seguintes etapas:
 
 - Baixe os arquivos
 - Dentro da pasta, no terminal rode: npm i
@@ -84,5 +62,5 @@ Para Rodar o projeto, siga as seguintes etapas :
 
 - BusinessPage
 
-     Visualição e edição das informações do espaço como: local, contatos, professores, estilos e planos
+     Visualição e edição das informações do espaço como: local, contatos e planos
 
