@@ -41,3 +41,6 @@ In production
 - ClassPage
     View class information and list of students; check-in validation, delete check-ins, delete class, and schedule on the calendar.
 
+- BusinessPage 
+     Manage the business information and available plans.
+
