@@ -3,37 +3,17 @@ import {
     FormControl,
     Input,
     Text,
-    Box,
-    useToast
+    Box
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { login } from "../../api/auth";
-import toastAlert from "../../components/toastAlert";
+
 import { FormButton } from "../../theme";
 import { PasswordInput } from "./PasswordInput";
+import { useLoginLogic } from "./useLoginLogic";
 
-export const LoginForm = ({router}) => {
-    const [loading, setLoading] = useState(false)
-    const [showPassword, setShowPassword] = useState(false);
-    const toast = useToast()
-
-    const {
-        handleSubmit,
-        register,
-        formState: { errors, isSubmitting },
-        reset
-    } = useForm();
-
-    const onSubmit = async (values) => {
-        setLoading(true);
-        await login(values, router)
-            .then(reset())
-            .catch((err) =>  {
-                toastAlert(toast, err.message, "error")
-                setLoading(false)
-            })
-    };
+export const LoginForm = () => {
+    const { loading, passwordControl, formControls } = useLoginLogic()
+    const {showPassword, setShowPassword } = passwordControl
+    const { register, onSubmit, errors, isSubmitting } = formControls
 
     return (
         <Box
@@ -46,7 +26,7 @@ export const LoginForm = ({router}) => {
             borderRadius={"25px"}
             w={"300px"}
         >
-            <form onSubmit={handleSubmit(onSubmit)} >
+            <form onSubmit={onSubmit} >
                 <FormControl isInvalid={errors.email || errors.password} >
                     <Box
                         display={"flex"}

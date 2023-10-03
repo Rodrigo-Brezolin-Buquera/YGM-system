@@ -1,3 +1,4 @@
+import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
@@ -37,6 +38,11 @@ export const checkinsCol = "checkins"
 export const businessCol = "business"
 export const stylesCol = "styles"
 export const teachersCol = "teachers"
+
+
+export const api = axios.create({
+    baseURL: "http://localhost:3003",
+});
 
 
 

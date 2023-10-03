@@ -1,14 +1,12 @@
 import { Box, Image, Text,useDisclosure } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage";
 import { LoginForm } from "./LoginForm";
 import { SignupModal } from "./SignupModal";
 
 
 const LoginPage = () => {
-    // useUnprotectedPage();
+    useUnprotectedPage();
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const router = useRouter()
 
     return (
         <Box
@@ -21,9 +19,9 @@ const LoginPage = () => {
             minH={"100vh"}
         >
             <Image maxW={"300px"} src={"/assets/defaultLogo.png"} alt="logo" />
-            <LoginForm router={router}  />
+            <LoginForm />
             <Text _hover={{ cursor: "pointer" }} fontSize={"sm"}  onClick={onOpen} >Não possui conta? Crie uma aqui</Text>
-            <SignupModal isOpen={isOpen} onClose={onClose} router={router}  />
+            <SignupModal isOpen={isOpen} onClose={onClose} />
         </Box>
     );
 };

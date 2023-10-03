@@ -6,43 +6,23 @@ import {
     sendPasswordResetEmail
 } from "firebase/auth";
 import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
-import { auth, usersCol } from "./config";
-import { createItemWithId, findItemById } from ".";
-import axios from "axios";
+import { api, auth } from "./config";
+import { getHeaders, setStorageItem, deleteStorageItem } from "../utils/storageManager";
 
 export const login = async (form, router) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
 
-    // //    console.log( userCredential.user.accessToken)
+        const {accessToken, uid} = userCredential.user
+        setStorageItem("token", accessToken)
 
-    //  const res = await axios.post("http://localhost:3003/auth/login", {}, {headers: { 
-    //         Authorization: userCredential.user.accessToken
-    //      } 
-    // } ) 
-    //res.data.role // vai para o local storage para direcionar as páginas, não tem como abrir as custom claims no front
+        const res = await api.post("/auth/login", {}, getHeaders() ) 
+        const userRole = res.data.result.userRole
+        setStorageItem("userRole", userRole)
 
-
-
-    // teste de uma requisição com autenticção
-//     const test = await axios.get("http://localhost:3003/contracts",{headers: { 
-//         Authorization: userCredential.user.accessToken
-//      } 
-// } ).then(
-//     res =>     console.log(res.data)
-
-// ).catch(
-//     error =>     console.log(error)
-// )
-
-        // const userDoc = await findItemById(usersCol, user.uid)
-
-        // if (typeof window !== "undefined") {
-        //     localStorage.setItem("admin", userDoc.admin)
-        // }
-        // userDoc.admin ? goToAdmin(router) : goToUser(router, user.uid)
+        userRole === "admin" ? goToAdmin(router) : goToUser(router, uid ) 
     } catch (err) {
-        console.log(err)
+        // melhorar isso 
         const message = err.message.includes("auth/wrong-password") ? ("Email e/ou senha inválidos") : ("Erro no login, tente novamente")
         throw new Error(message)
     }
@@ -52,7 +32,7 @@ export const singUp = async ({ email, password, name }) => {
     try {
         const { user } = await createUserWithEmailAndPassword(auth, email, password)
         const id = user.uid
-        await createItemWithId(usersCol, { email, name, admin: false, active: false }, id) // isso pode ser bem problematico
+        // await createItemWithId(usersCol, { email, name, admin: false, active: false }, id)  // axios
         return id
     } catch (err) {
         const message = err.message.includes("auth/email-already-in-use") ? ("Email já cadastrado") : ("Erro na criação, tente novamente")
@@ -63,8 +43,9 @@ export const singUp = async ({ email, password, name }) => {
 
 export const logout = async (router) => {
     await signOut(auth);
-    localStorage.setItem("admin", "")
-    goToLogin(router);
+    deleteStorageItem("token")
+    deleteStorageItem("userRole")
+    goToLogin(router); // tirar a lógica daqui
 };
 
 export const resetPassword = async (email) => {

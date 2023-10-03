@@ -4,5 +4,11 @@
     "files": [
       "static/chunks/src_screens_loginPage_index_js.js"
     ]
+  },
+  "user/[id].js -> ../../screens/userPage": {
+    "id": "user/[id].js -> ../../screens/userPage",
+    "files": [
+      "static/chunks/src_screens_userPage_index_js.js"
+    ]
   }
 }
