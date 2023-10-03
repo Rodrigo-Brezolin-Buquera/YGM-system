@@ -10,10 +10,8 @@ const theme = extendTheme({
             200: "#F3C046",
             300: "#2D3748",
             400: "#f2f3f7",
-            500: "#fafafa",
-           
-
-        }  
+            500: "#fafafa"
+         }  
     }
 });
 

@@ -15,7 +15,6 @@ export const Local = () => {
 
     }, []);
 
- 
     return (
         <MainContainer>
             <Heading size={"md"}>Espaço</Heading>

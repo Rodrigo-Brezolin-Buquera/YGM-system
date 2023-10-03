@@ -18,7 +18,6 @@ const ContractList = ({plansOptions}) => {
             .catch(err => console.log(err.message))
 
     }, []);
-
     const userList = contracts?.length && contracts
         .filter(user => user.name?.toLowerCase().includes(nameFilter.toLowerCase()))
         .filter((contract) => {

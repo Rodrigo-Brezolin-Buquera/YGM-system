@@ -25,7 +25,6 @@ export async function getStaticProps() {
     }
   }
 
-
 export default function Home({classLimit, selectOptions}) {
   return (
       <PageLoading>

@@ -8,17 +8,41 @@ import {
 import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 import { auth, usersCol } from "./config";
 import { createItemWithId, findItemById } from ".";
+import axios from "axios";
 
 export const login = async (form, router) => {
     try {
-        const { user } = await signInWithEmailAndPassword(auth, form.email, form.password);
-        const userDoc = await findItemById(usersCol, user.uid)
+        const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
 
-        if (typeof window !== "undefined") {
-            localStorage.setItem("admin", userDoc.admin)
-        }
-        userDoc.admin ? goToAdmin(router) : goToUser(router, user.uid)
+    // //    console.log( userCredential.user.accessToken)
+
+    //  const res = await axios.post("http://localhost:3003/auth/login", {}, {headers: { 
+    //         Authorization: userCredential.user.accessToken
+    //      } 
+    // } ) 
+    //res.data.role // vai para o local storage para direcionar as páginas, não tem como abrir as custom claims no front
+
+
+
+    // teste de uma requisição com autenticção
+//     const test = await axios.get("http://localhost:3003/contracts",{headers: { 
+//         Authorization: userCredential.user.accessToken
+//      } 
+// } ).then(
+//     res =>     console.log(res.data)
+
+// ).catch(
+//     error =>     console.log(error)
+// )
+
+        // const userDoc = await findItemById(usersCol, user.uid)
+
+        // if (typeof window !== "undefined") {
+        //     localStorage.setItem("admin", userDoc.admin)
+        // }
+        // userDoc.admin ? goToAdmin(router) : goToUser(router, user.uid)
     } catch (err) {
+        console.log(err)
         const message = err.message.includes("auth/wrong-password") ? ("Email e/ou senha inválidos") : ("Erro no login, tente novamente")
         throw new Error(message)
     }

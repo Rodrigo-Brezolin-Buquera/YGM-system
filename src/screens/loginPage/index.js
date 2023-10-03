@@ -6,7 +6,7 @@ import { SignupModal } from "./SignupModal";
 
 
 const LoginPage = () => {
-    useUnprotectedPage();
+    // useUnprotectedPage();
     const { isOpen, onOpen, onClose } = useDisclosure()
     const router = useRouter()
 

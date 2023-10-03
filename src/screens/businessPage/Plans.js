@@ -15,7 +15,7 @@ export const Plans = () => {
     const [loading, setLoading] = useState(false);
     const toast = useToast()
 
-
+console.log(plans)
     const onDelete = (id) => {
         confirmDialog("Deletar plano?", () => {
             setLoading(true)

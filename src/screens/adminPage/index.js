@@ -6,6 +6,7 @@ import AvailableClasses from "./AvailableClasses";
 
 const AdminPage = ({classLimit, selectOptions}) => {
     useProtectedPage("admin")
+
     return (
         <>
             <HeaderAdmin />
