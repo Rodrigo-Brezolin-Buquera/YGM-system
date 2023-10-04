@@ -2,49 +2,22 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Text,
-    useToast
+    Text
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { singUp } from "../../api/auth";
+
 import { emailPattern, passwordPattern, namePattern } from "../../api/patterns";
-import toastAlert from "../../components/toastAlert";
-import { goToUser } from "../../routes/coordinator";
 import { ModalComponent, FormButton } from "../../theme";
-import { capitalizeFirstLetter } from "../../utils/names";
 import { PasswordInput } from "./PasswordInput";
+import { useSignupLogic } from "./useSignupLogic";
 
 export const SignupModal = ({ isOpen, onClose, router }) => {
-    const [loading, setLoading] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-    const [showRepetPassword, setShowRepetPassword] = useState(false);
-    const toast = useToast()
-    const {
-        handleSubmit,
-        register,
-        reset,
-        formState: { errors, isSubmitting },
-        watch
-    } = useForm();
-
-    const onSubmit = ({ email, name, password }) => {
-        setLoading(true);
-        singUp({ email, password, name: capitalizeFirstLetter(name) })
-            .then((id) => goToUser(router, id))
-            .catch((err) =>  toastAlert(toast, err.message, "error") )
-            .finally(() => {
-                setLoading(false)
-                reset()
-                onClose()
-            })
-    };
-
-    const password = watch("password")
+    const { loading, passwordControl, formControls } = useSignupLogic(onClose)
+    const {password, showPassword, setShowPassword, showRepetPassword, setShowRepetPassword } = passwordControl
+    const { register, onSubmit, errors, isSubmitting } = formControls
 
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Preencha seu cadastro"} >
-            <form onSubmit={handleSubmit(onSubmit)} >
+            <form onSubmit={onSubmit} >
                 <FormControl
                     isInvalid={errors.name || errors.email || errors.password || errors.repetPassword}
                     display={"flex"}

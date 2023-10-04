@@ -1,12 +1,15 @@
+import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/auth";
-import { useSubmit } from "../../hooks/useSubmit";
+import toastAlert from "../../components/toastAlert";
 
 export const useLoginLogic = () => {
+    const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter()
+    const toast = useToast()
     const {
         handleSubmit,
         register,
@@ -14,18 +17,19 @@ export const useLoginLogic = () => {
         reset
     } = useForm();
 
-
     const onSubmit = handleSubmit(async (values) => {
-        await login(values, router)
+        try {
+            await login(values, router)
+        } catch (error) {
+            toastAlert(toast, err.message, "error");
+        } finally {
+            setLoading(false);
+            reset()
+        }
     })
 
-    const { loading } = useSubmit({
-        mainHandler: onSubmit,
-        successHandler: reset
-    })
-
-    const passwordControl = {showPassword, setShowPassword}
-    const formControls = {register, onSubmit, errors, isSubmitting}
+    const passwordControl = { showPassword, setShowPassword }
+    const formControls = { register, onSubmit, errors, isSubmitting }
 
     return { loading, passwordControl, formControls }
 }

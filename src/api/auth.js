@@ -28,24 +28,26 @@ export const login = async (form, router) => {
     }
 };
 
-export const singUp = async ({ email, password, name }) => {
+export const singUp = async ({ email, password, name }, router) => {
     try {
-        const { user } = await createUserWithEmailAndPassword(auth, email, password)
-        const id = user.uid
-        // await createItemWithId(usersCol, { email, name, admin: false, active: false }, id)  // axios
-        return id
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+
+        const {accessToken} = userCredential.user
+        setStorageItem("token", accessToken)
+        setStorageItem("userRole", "user")
+
+        await api.post("/auth/signup", {}, getHeaders() ) 
     } catch (err) {
         const message = err.message.includes("auth/email-already-in-use") ? ("Email já cadastrado") : ("Erro na criação, tente novamente")
         throw new Error(message)
     }
-
 };
 
 export const logout = async (router) => {
     await signOut(auth);
     deleteStorageItem("token")
     deleteStorageItem("userRole")
-    goToLogin(router); // tirar a lógica daqui
+    goToLogin(router);
 };
 
 export const resetPassword = async (email) => {
