@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { singUp } from "../../../api/auth";
 import { capitalizeFirstLetter } from "../../../utils/names";
+import toastAlert from "../../../components/toastAlert";
 
 export const useSignupLogic = (onClose) => {
     const [showPassword, setShowPassword] = useState(false);

@@ -11,7 +11,7 @@ import { PasswordInput } from "../passwordInput/PasswordInput";
 import { useSignupLogic } from "./useSignupLogic";
 
 
-export const SignupModal = ({ isOpen, onClose, router }) => {
+export const SignupModal = ({ isOpen, onClose }) => {
     const { loading, passwordControl, formControls } = useSignupLogic(onClose)
     const {password, showPassword, setShowPassword, showRepetPassword, setShowRepetPassword } = passwordControl
     const { register, onSubmit, errors, isSubmitting } = formControls
