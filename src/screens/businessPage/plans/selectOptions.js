@@ -2,10 +2,10 @@
 export const FrequencyOptions = () => {
     return (
         <>
-            <option value="1x" > 1x </option>
-            <option value="2x" > 2x </option>
-            <option value="3x" > 3x </option>
-            <option value="---" > --- </option>
+            <option> 1x </option>
+            <option> 2x </option>
+            <option> 3x </option>
+            <option> --- </option>
         </>
     );
 };

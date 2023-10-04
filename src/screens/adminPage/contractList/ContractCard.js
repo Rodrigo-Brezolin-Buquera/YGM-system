@@ -2,7 +2,6 @@ import { Text,  Card, Box } from "@chakra-ui/react";
 import { memo } from "react";
 import { goToContract } from "../../../routes/coordinator";
 import { Line } from "../../../theme";
-import { useRouter } from 'next/router';
 
 const ContractCard = ({contract, router}) => {
 
