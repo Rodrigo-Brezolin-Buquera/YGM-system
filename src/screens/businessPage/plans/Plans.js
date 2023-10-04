@@ -1,75 +1,32 @@
-import { DeleteIcon } from "@chakra-ui/icons";
-import { Text, Heading, Box, useToast, } from "@chakra-ui/react";
-import { useState, useEffect } from "react"
-import { deleteItemById, findAllItems } from "../../../api";
-import { plansCol } from "../../../api/config";
-import confirmDialog from "../../../components/confirmDialog";
-import { DoubleClickText } from "../../../components/DoubleClickText";
-import toastAlert from "../../../components/toastAlert";
+import { Heading, CircularProgress, } from "@chakra-ui/react";
 import { MainContainer, WrapContainer } from "../../../theme";
-import { TextCard } from "../../../theme";
+import PlanCard from "./PlanCard";
 import { PlanForm } from "./PlanForm";
+import { usePlansLogic } from "./usePlansLogic";
 
 export const Plans = () => {
-    const [plans, setPlans] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const toast = useToast()
+    const { plans, deletePlan, loading, formControls } = usePlansLogic()
 
-    const onDelete = (id) => {
-        confirmDialog("Deletar plano?", () => {
-            setLoading(true)
-            deleteItemById(plansCol, id)
-                .then(toastAlert(toast, "Plano removido", "success"))
-                .catch(err => toastAlert(toast, err.message, "error"))
-                .finally(() => setLoading(false))
-        })
+    const renderList = () => {
+        if (loading) {
+            return <CircularProgress isIndeterminate color="brand.200" size="160px" />
+        }
+
+        const result = plans?.length ? plans.map(plan => {
+            return (
+                <PlanCard key={plan.id} plan={plan} deletePlan={deletePlan} />
+            )
+        }) : null
+        return result
     }
-
-    useEffect(() => {
-        findAllItems(plansCol)
-            .then(res => setPlans(res))
-            .catch(err => console.log(err.message))
-    }, [loading]);
-
-    const list = plans?.length ? plans.map(plan => {
-        return (
-            <TextCard
-                width={"180px"}
-                key={plan.id}
-            >
-                <Box
-                    display={"flex"}
-                    flexDirection={"column"}
-                    justifyContent={"center"}
-                    gap={"0.1em"}
-                    marginLeft={"0.5em"}
-                >
-                    <Text fontWeight={"bold"}>{plan.id}</Text>
-                    <DoubleClickText
-                        itemCol={plansCol}
-                        id={plan.id}
-                        atribute={"price"}
-                        text={plan.price} size={"10"}
-                    />
-                </Box>
-
-                <DeleteIcon
-                    _hover={{ cursor: "pointer" }}
-                    boxSize={"22px"}
-                    onClick={() => onDelete(plan.id)}
-                />
-            </TextCard>
-        )
-    }) : null
-
 
     return (
         <MainContainer>
             <Heading size={"md"}>Planos</Heading>
-            <PlanForm loading={loading} setLoading={setLoading} />
+            <PlanForm loading={loading} formControls={formControls} />
             <br />
             <WrapContainer>
-                {list}
+                {renderList()}
             </WrapContainer>
         </MainContainer>
     )

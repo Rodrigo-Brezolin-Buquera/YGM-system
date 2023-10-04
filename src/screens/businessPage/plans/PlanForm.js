@@ -2,37 +2,18 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text, useToast
+    Select, Text, Button
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
 import { pricePattern } from "../../../api/patterns";
-import { createPlan } from "../../../api/plans";
 import { DurationOptions, FrequencyOptions } from "./selectOptions";
-import { FormButton } from "../../../theme"
-import toastAlert from "../../../components/toastAlert";
 
-export const PlanForm = ({ loading, setLoading }) => {
-    const {
-        handleSubmit,
-        register,
-        reset,
-        formState: { errors, isSubmitting }
-    } = useForm();
-    const toast = useToast()
-
-    const onSubmit = (values) => {
-        setLoading(true);
-        createPlan(values)
-            .then(reset())
-            .catch((err) => toastAlert(toast, err.message, "error"))
-            .finally(() => setLoading(false))
-    };
-
+export const PlanForm = ({ loading, formControls }) => {
+    const { register, onSubmit, errors, isSubmitting } = formControls
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
             <FormControl
-                isInvalid={errors.price || errors.frequency || errors.duration}
+                isInvalid={errors.price || errors.frequency || errors.type}
                 display={"flex"}
                 flexDirection={"row"}
                 flexWrap={"wrap"}
@@ -43,7 +24,6 @@ export const PlanForm = ({ loading, setLoading }) => {
                 minW={"250px"}
             >
                 <Input
-
                     w={"100px"}
                     variant={"outline"}
                     id="price"
@@ -67,12 +47,11 @@ export const PlanForm = ({ loading, setLoading }) => {
                 </Select>
 
                 <Select
-
                     w={"130px"}
                     variant={"outline"}
-                    id="duration"
+                    id="type"
                     placeholder="Duração"
-                    {...register("duration", {
+                    {...register("type", {
                         required: "Campo Obrigátorio"
                     })}
                 >
@@ -84,12 +63,19 @@ export const PlanForm = ({ loading, setLoading }) => {
                     <br />
                     {errors.frequency && errors.frequency.message}
                     <br />
-                    {errors.duration && errors.duration.message}
+                    {errors.type && errors.type.message}
                 </FormErrorMessage>
 
-                <FormButton isSubmitting={isSubmitting} color={"brand.200"} loading={loading} width={"136px"}>
+                <Button
+                    isSubmitting={isSubmitting}
+                    bg={"brand.200"}
+                    type="submit"
+                    loading={loading}
+                    borderRadius={"10px"}
+                    width={"136px"}
+                >
                     <Text>Adicionar</Text>
-                </FormButton>
+                </Button>
             </FormControl>
         </form>
     )

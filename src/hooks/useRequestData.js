@@ -4,7 +4,7 @@ import { api } from "../api/config";
 import toastAlert from "../components/toastAlert";
 import { getHeaders } from "../utils/storageManager";
 
-export const useRequestData = (path) => {
+export const useRequestData = (path, trigger) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
     const toast = useToast()
@@ -15,7 +15,7 @@ export const useRequestData = (path) => {
             const res = await api.get(path, getHeaders());
             setData(res.data.result);
         } catch (err) {
-            toastAlert(toast, err.message, "error");
+            toastAlert(toast, err.response.data.message, "error");
         } finally {
             setLoading(false);
         }
@@ -23,7 +23,7 @@ export const useRequestData = (path) => {
 
     useEffect(() => {
         fetchData()
-    }, []);
+    }, [trigger]);
 
-    return {data, loading }
+    return {data, loading, setLoading }
 }
