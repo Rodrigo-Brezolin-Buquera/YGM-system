@@ -1,21 +1,21 @@
 import { Box, Input, Select } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { findAllItems } from "../../api";
-import { contractsCol } from "../../api/config";
-import { useInput } from "../../hooks/useInput";
-import { InputContainer } from "../../theme";
-import ContractInfo from "./ContractInfo";
+// import { findAllItems } from "../../api";
+// import { contractsCol } from "../../api/config";
+import { useInput } from "../../../hooks/useInput";
+import { InputContainer } from "../../../theme";
+import ContractCard from "./ContractCard";
 
 
-const ContractList = ({plansOptions}) => {
+const ContractList = ({plansOptions, router}) => {
     const [contracts, setContracts] = useState([]);
     const [nameFilter, handleNameFilter] = useInput("");
     const [planType, handlePlanType] = useInput("");
 
     useEffect(() => {
-        findAllItems(contractsCol)
-            .then(res => setContracts(res))
-            .catch(err => console.log(err.message))
+        // findAllItems(contractsCol)
+        //     .then(res => setContracts(res))
+        //     .catch(err => console.log(err.message))
 
     }, []);
     const userList = contracts?.length && contracts
@@ -43,11 +43,11 @@ const ContractList = ({plansOptions}) => {
             }
         })
         .map((contract) => {
-            
-            return (
-                <ContractInfo
+               return (
+                <ContractCard
                     key={contract.id}
-                    contract={contract}          
+                    contract={contract}    
+                    router={router}      
                 />
             );
         });

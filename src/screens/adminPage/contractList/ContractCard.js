@@ -1,11 +1,10 @@
 import { Text,  Card, Box } from "@chakra-ui/react";
 import { memo } from "react";
-import { goToContract } from "../../routes/coordinator";
-import { Line } from "../../theme";
+import { goToContract } from "../../../routes/coordinator";
+import { Line } from "../../../theme";
 import { useRouter } from 'next/router';
 
-const ContractInfo = ({contract}) => {
-    const router = useRouter();
+const ContractCard = ({contract, router}) => {
 
     const Column = ({ children }) => {
         return (
@@ -67,4 +66,4 @@ const ContractInfo = ({contract}) => {
     );
 };
 
-export default memo(ContractInfo);
+export default memo(ContractCard);

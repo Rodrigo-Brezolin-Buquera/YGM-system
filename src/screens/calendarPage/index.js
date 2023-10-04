@@ -11,6 +11,24 @@ const CalendarPage = () => {
     const [selected, setSelected] = useState(null)
     const [loading, setLoading] = useState(false)
 
+
+//     const { isOpen: isClassOpen, onOpen: onClassOpen, onClose: onClassClose } = useDisclosure()
+//     <Button
+//     backgroundColor={"brand.200"}
+//     onClick={onClassOpen}
+// >
+//     <Text> Nova Aula</Text>
+// </Button>
+
+// <CreateClassModal
+// isOpen={isClassOpen}
+// onClose={onClassClose}
+// classLimit={classLimit}
+// teacherOptions={selectOptionsMapper(teachersOptions, "name")}
+// styleOptions={selectOptionsMapper(stylesOptions, "name")}
+// />
+
+
     return (
         <>
             <HeaderAdmin  />

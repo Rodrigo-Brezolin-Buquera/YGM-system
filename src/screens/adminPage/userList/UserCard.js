@@ -1,12 +1,9 @@
 import { memo } from "react";
-import { goToContract } from "../../routes/coordinator";
+import { goToContract } from "../../../routes/coordinator";
 import { Card, Text } from "@chakra-ui/react";
-import { Line } from "../../theme";
-import { useRouter } from 'next/router';
+import { Line } from "../../../theme";
 
-
-const UserInfo = ({user}) => {
-    const router = useRouter();
+const UserCard = ({user, router}) => {
 
     return (
         <Card
@@ -32,4 +29,4 @@ const UserInfo = ({user}) => {
     )
 }
 
-export default memo(UserInfo)
+export default memo(UserCard)

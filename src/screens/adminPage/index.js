@@ -1,22 +1,57 @@
+import { Button, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { Background,  MainContainer, SideContainer } from "../../theme";
-import { AdminActions } from "./AdminActions";
-import AvailableClasses from "./AvailableClasses";
+import { Background, MainContainer, SideContainer, WrapContainer } from "../../theme";
+import AvailableClasses from "./availableClasses/AvailableClasses";
+import ContractList from "./contractList/ContractList";
+import UserList from "./userList/UserList";
 
-const AdminPage = ({classLimit, selectOptions}) => {
+const AdminPage = () => {
     useProtectedPage("admin")
+    const [view, setView] = useState(null)   
+     const router = useRouter();
+
+
+    const ListView = () => {
+        switch (view) {
+            case "users":
+                return <UserList  router={router} />
+            case "contracts":
+                return <ContractList router={router} />
+            default:
+                return null
+        }
+    }
 
     return (
         <>
             <HeaderAdmin />
             <Background >
                 <MainContainer>
-                    <AdminActions classLimit={classLimit} selectOptions={selectOptions} />
+                    <WrapContainer>
+                        <Button
+                            backgroundColor={"brand.200"}
+                            onClick={() => setView("users")}
+                            w={"180px"}
+                        >
+                            <Text>Ativar contas</Text>
+                        </Button>
+                        <Button
+                            backgroundColor={"brand.200"}
+                            onClick={() => setView("contracts")}
+                            w={"180px"}
+                        >
+                            <Text> Visualizar Contratos </Text>
+                        </Button>
+                    </WrapContainer>
+
+                    <ListView />
                 </MainContainer>
 
                 <SideContainer>
-                    <AvailableClasses />
+                    {/* <AvailableClasses /> */}
                 </SideContainer>
             </Background>
         </>
