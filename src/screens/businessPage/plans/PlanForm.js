@@ -5,11 +5,11 @@ import {
     Select, Text, useToast
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { pricePattern } from "../../api/patterns";
-import { createPlan } from "../../api/plans";
+import { pricePattern } from "../../../api/patterns";
+import { createPlan } from "../../../api/plans";
 import { DurationOptions, FrequencyOptions } from "./selectOptions";
-import { FormButton } from "../../theme"
-import toastAlert from "../../components/toastAlert";
+import { FormButton } from "../../../theme"
+import toastAlert from "../../../components/toastAlert";
 
 export const PlanForm = ({ loading, setLoading }) => {
     const {

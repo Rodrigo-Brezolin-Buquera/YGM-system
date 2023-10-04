@@ -1,13 +1,13 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, Heading, Box, useToast, } from "@chakra-ui/react";
 import { useState, useEffect } from "react"
-import { deleteItemById, findAllItems } from "../../api";
-import { plansCol } from "../../api/config";
-import confirmDialog from "../../components/confirmDialog";
-import { DoubleClickText } from "../../components/DoubleClickText";
-import toastAlert from "../../components/toastAlert";
-import { WrapContainer } from "../../theme";
-import { TextCard } from "../../theme";
+import { deleteItemById, findAllItems } from "../../../api";
+import { plansCol } from "../../../api/config";
+import confirmDialog from "../../../components/confirmDialog";
+import { DoubleClickText } from "../../../components/DoubleClickText";
+import toastAlert from "../../../components/toastAlert";
+import { MainContainer, WrapContainer } from "../../../theme";
+import { TextCard } from "../../../theme";
 import { PlanForm } from "./PlanForm";
 
 export const Plans = () => {
@@ -15,7 +15,6 @@ export const Plans = () => {
     const [loading, setLoading] = useState(false);
     const toast = useToast()
 
-console.log(plans)
     const onDelete = (id) => {
         confirmDialog("Deletar plano?", () => {
             setLoading(true)
@@ -65,14 +64,14 @@ console.log(plans)
 
 
     return (
-        <>
+        <MainContainer>
             <Heading size={"md"}>Planos</Heading>
             <PlanForm loading={loading} setLoading={setLoading} />
             <br />
             <WrapContainer>
                 {list}
             </WrapContainer>
-        </>
+        </MainContainer>
     )
 }
 
