@@ -2,8 +2,8 @@ import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { singUp } from "../../api/auth";
-import { capitalizeFirstLetter } from "../../utils/names";
+import { singUp } from "../../../api/auth";
+import { capitalizeFirstLetter } from "../../../utils/names";
 
 export const useSignupLogic = (onClose) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -25,12 +25,12 @@ export const useSignupLogic = (onClose) => {
         try {
             const input = { email, password, name: capitalizeFirstLetter(name) }
             await singUp(input, router)  
-        } catch (error) {
+            reset()
+            onClose()
+        } catch (err) {
             toastAlert(toast, err.message, "error")
         } finally {
             setLoading(false);
-            reset()
-            onClose()
         }
     })
  

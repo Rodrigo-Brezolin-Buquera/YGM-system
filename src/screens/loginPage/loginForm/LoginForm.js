@@ -6,8 +6,8 @@ import {
     Box
 } from "@chakra-ui/react";
 
-import { FormButton } from "../../theme";
-import { PasswordInput } from "./PasswordInput";
+import { FormButton } from "../../../theme";
+import { PasswordInput } from "../passwordInput/PasswordInput";
 import { useLoginLogic } from "./useLoginLogic";
 
 export const LoginForm = () => {

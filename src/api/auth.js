@@ -32,11 +32,12 @@ export const singUp = async ({ email, password, name }, router) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password)
 
-        const {accessToken} = userCredential.user
+        const {accessToken, uid} = userCredential.user
         setStorageItem("token", accessToken)
         setStorageItem("userRole", "user")
 
-        await api.post("/auth/signup", {}, getHeaders() ) 
+        await api.post("/auth/signup", {name}, getHeaders() ) 
+        goToUser(router, uid) 
     } catch (err) {
         const message = err.message.includes("auth/email-already-in-use") ? ("Email já cadastrado") : ("Erro na criação, tente novamente")
         throw new Error(message)
@@ -50,7 +51,7 @@ export const logout = async (router) => {
     goToLogin(router);
 };
 
-export const resetPassword = async (email) => {
+export const sendResetPasswordLink = async (email) => {
     await sendPasswordResetEmail(auth, email)
 }
 

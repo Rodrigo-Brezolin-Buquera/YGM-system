@@ -5,10 +5,11 @@ import {
     Text
 } from "@chakra-ui/react";
 
-import { emailPattern, passwordPattern, namePattern } from "../../api/patterns";
-import { ModalComponent, FormButton } from "../../theme";
-import { PasswordInput } from "./PasswordInput";
+import { emailPattern, passwordPattern, namePattern } from "../../../api/patterns";
+import { ModalComponent, FormButton } from "../../../theme";
+import { PasswordInput } from "../passwordInput/PasswordInput";
 import { useSignupLogic } from "./useSignupLogic";
+
 
 export const SignupModal = ({ isOpen, onClose, router }) => {
     const { loading, passwordControl, formControls } = useSignupLogic(onClose)

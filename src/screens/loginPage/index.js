@@ -1,12 +1,14 @@
-import { Box, Image, Text,useDisclosure } from "@chakra-ui/react";
+import { Box, Image, Text, useDisclosure } from "@chakra-ui/react";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage";
-import { LoginForm } from "./LoginForm";
-import { SignupModal } from "./SignupModal";
+import { LoginForm } from "./loginForm/LoginForm";
+import { ResetPasswordModal } from "./resetPasswordModal/ResetPasswordModal";
+import { SignupModal } from "./signupModal/SignupModal";
 
 
 const LoginPage = () => {
     useUnprotectedPage();
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen: isSignupOpen, onOpen: onSignupOpen, onClose: onSignupClose } = useDisclosure()
+    const { isOpen: isResetOpen, onOpen: onResetOpen, onClose: onResetClose } = useDisclosure()
 
     return (
         <Box
@@ -20,8 +22,22 @@ const LoginPage = () => {
         >
             <Image maxW={"300px"} src={"/assets/defaultLogo.png"} alt="logo" />
             <LoginForm />
-            <Text _hover={{ cursor: "pointer" }} fontSize={"sm"}  onClick={onOpen} >Não possui conta? Crie uma aqui</Text>
-            <SignupModal isOpen={isOpen} onClose={onClose} />
+            <Text
+                _hover={{ cursor: "pointer", textDecoration: "underline" }}
+                fontSize={"sm"}
+                onClick={onSignupOpen}
+            >
+                Não possui conta? Crie uma aqui
+            </Text>
+            <Text
+                _hover={{ cursor: "pointer", textDecoration: "underline" }}
+                fontSize={"sm"}
+                onClick={onResetOpen}
+            >
+                Esqueceu a senha? Clique aqui
+            </Text>
+            <SignupModal isOpen={isSignupOpen} onClose={onSignupClose} />
+            <ResetPasswordModal isOpen={isResetOpen} onClose={onResetClose} />
         </Box>
     );
 };

@@ -2,8 +2,8 @@ import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { login } from "../../api/auth";
-import toastAlert from "../../components/toastAlert";
+import { login } from "../../../api/auth";
+import toastAlert from "../../../components/toastAlert";
 
 export const useLoginLogic = () => {
     const [loading, setLoading] = useState(false)
@@ -20,7 +20,7 @@ export const useLoginLogic = () => {
     const onSubmit = handleSubmit(async (values) => {
         try {
             await login(values, router)
-        } catch (error) {
+        } catch (err) {
             toastAlert(toast, err.message, "error");
         } finally {
             setLoading(false);
