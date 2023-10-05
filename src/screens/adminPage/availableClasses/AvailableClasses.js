@@ -1,42 +1,41 @@
-// import { Box, Text } from "@chakra-ui/react";
-// import { useState, useEffect } from "react";
-// import { findItemWhere,  } from "../../../api";
-// import {  calendarCol } from "../../../api/config";
-// import { getToday, sortByTime } from "../../../utils/dates";
-// import ClassesCard from "./ClassesCard";
+import { Box, CircularProgress, Text } from "@chakra-ui/react";
+import ClassesCard from "./ClassesCard";
+import { useAvailableClassesLogic } from "./useAvailableClassesLogic";
 
+const AvailableClasses = ({router}) => {
+   const {yogaClasses, loading} = useAvailableClassesLogic()
 
-// const AvailableClasses = () => {
-//     const [yogaClasses, setyogaClasses] = useState([]);
-    
-//     useEffect(() => {
-//         findItemWhere(calendarCol, "date", getToday())
-//             .then(res => setyogaClasses(sortByTime(res)))
-//             .catch(err => console.log(err.message))
-//     }, [ ]);
+    const classesList = yogaClasses.length
+     ?
+     yogaClasses.map((yogaClass) => {
+        return (
+            <ClassesCard
+                key={yogaClass.id}
+                yogaClass={yogaClass}
+                router={router} 
+            />
+        );
+    })
+    :
+    <p> Não há aulas hoje </p>
 
-//     const classesList = yogaClasses.length && yogaClasses.map((yogaClass) => {
-//         return (
-//             <ClassesCard
-//                 key={yogaClass.id}
-//                 yogaClass={yogaClass}
-//             />
-//         );
-//     });
+    if (loading) {
+        return <CircularProgress isIndeterminate color="brand.200" size="160px" />
+    }
 
-//     return (
-//         <Box
-//             display={"flex"}
-//             flexDirection={"column"}
-//             alignItems={"center"}
-//             justifyContent={"center"}
-//             gap={"0.5em"}
-//             width={"100%"}
-//         >
-//             <Text fontSize='xl' > Aulas de hoje:</Text>
-//             {classesList.length ? classesList : <p> Não há aulas hoje </p>}
-//         </Box>
-//     );
-// };
+    return (
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={"0.5em"}
+            width={"100%"}
+        >
+            <Text fontSize='xl' > Aulas de hoje:</Text>
+            {classesList}
+        </Box>
+    );
+};
 
-// export default AvailableClasses;
+export default AvailableClasses;

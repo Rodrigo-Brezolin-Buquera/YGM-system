@@ -65,7 +65,8 @@ export const getNextNDays = (n) => {
         const day = nextDay.getDate().toString().padStart(2, "0");
         const month = (nextDay.getMonth() + 1).toString().padStart(2, "0");
         const year = nextDay.getFullYear().toString();
-        const formattedDate = `${day}/${month}/${year}`;
+        // const formattedDate = `${day}/${month}/${year}`;
+        const formattedDate = `${year}-${month}-${day}`
         result.push(formattedDate);
     }
 
@@ -81,26 +82,14 @@ export const sortByTime = (list) => {
 }
 
 export const sortByDayAndTime = (list) => {
-    const map = {
-        Domingo: 1,
-        Segunda: 2,
-        Terça: 3,
-        Quarta: 4,
-        Quinta: 5,
-        Sexta: 6,
-        Sábado: 7
-    };
-
-      list.sort((a, b) => {
-        if (map[a.day] < map[b.day]) return -1;
-        if (map[a.day] > map[b.day]) return 1;
-
-        if (a.time < b.time) return -1;
-        if (a.time > b.time) return 1;
-
-        return 0;
+    return list.sort((a, b) => {
+      if (a.day < b.day) return -1;
+      if (a.day > b.day) return 1;
+  
+      if (a.time < b.time) return -1;
+      if (a.time > b.time) return 1;
+  
+      return 0;
     });
-
-    return list;
-}
+  };
 

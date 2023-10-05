@@ -13,7 +13,6 @@ const AdminPage = () => {
     const [view, setView] = useState(null)   
      const router = useRouter();
 
-
     const ListView = () => {
         switch (view) {
             case "users":
@@ -51,7 +50,7 @@ const AdminPage = () => {
                 </MainContainer>
 
                 <SideContainer>
-                    {/* <AvailableClasses /> */}
+                    <AvailableClasses  router={router} />
                 </SideContainer>
             </Background>
         </>
