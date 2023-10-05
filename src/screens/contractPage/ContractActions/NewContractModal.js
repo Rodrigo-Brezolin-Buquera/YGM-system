@@ -2,52 +2,16 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text, useToast
+    Select, Text
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { createContract, newContract } from "../../../api/contracts";
-import toastAlert from "../../../components/toastAlert";
 import { FormButton, ModalComponent } from "../../../theme";
 import { useNewContractLogic } from "./useNewContractLogic";
-import {plansOptions} from "../../../components/planOptions"
-export const NewContractModal = ({ id, name, isOpen, onClose  }) => {
-    const { loading, formControls } = useNewContractLogic(`/auth/${id}`, name, onClose)
+import {planOptions} from "../../../components/planOptions"
+
+export const NewContractModal = ({ id, name, isOpen, onClose, setLoading  }) => {
+    const { loading, formControls } = useNewContractLogic(id, name, onClose, setLoading)
     const { register, onSubmit, errors, isSubmitting } = formControls
-    // const {
-    //     handleSubmit,
-    //     register,
-    //     formState: { errors, isSubmitting },
-    //     reset
-    // } = useForm();
-    // const [loading, setLoading] = useState(false);
-    // const toast = useToast()
-
-    // const onSubmit = (values) => {
-    //     setLoading(true);
-    //     (
-    //         // será o mesmo endpoint
-    //         // userIsActive ?
-    //             // newContract(values, id)
-    //             // :
-    //             createContract({
-    //                 id,
-    //                 name,
-    //                 plan: values.plan,
-    //                 date: values.date
-    //             })
-    //     )
-    //         .then(() => {
-    //             toastAlert(toast, "Contrato criado", "success")
-    //             reset()
-    //         })
-    //         .catch(err => toastAlert(toast, err.message, "error"))
-    //         .finally(() => {
-    //             setLoading(false)
-    //             onClose()
-    //         });
-    // };
-
+    
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Novo contrato"}>
 
@@ -70,7 +34,7 @@ export const NewContractModal = ({ id, name, isOpen, onClose  }) => {
                             required: "Campo Obrigatório"
                         })}
                     >
-                        {plansOptions}
+                        {planOptions()}
                     </Select>
 
                     <Input

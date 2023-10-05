@@ -36,7 +36,7 @@ export const ContractActions = ({ userId, userName }) => {
 
             {
                 contract?.id ?
-                    <ContractDetails contract={contract} />
+                    <ContractDetails contract={contract} admin={true} />
                     :
                     <Text> Ainda não contrato para este usuário</Text>
             } 
@@ -44,7 +44,7 @@ export const ContractActions = ({ userId, userName }) => {
             <NewContractModal
                 isOpen={isOpen}
                 onClose={onClose}
-                name={userName || contract.name}
+                name={userName}
                 id={userId}
             /> 
         </>

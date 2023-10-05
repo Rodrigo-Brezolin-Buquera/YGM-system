@@ -1,5 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { api } from "../api/config";
 import confirmDialog from "../components/confirmDialog";
 import toastAlert from "../components/toastAlert";
@@ -10,6 +11,7 @@ export const useDeleteItem = (path, message) => {
     const toast = useToast()
     const router = useRouter()
 
+
     const onDelete = () => {
         confirmDialog(message, async () => {
             try {
@@ -18,7 +20,7 @@ export const useDeleteItem = (path, message) => {
                 setTimeout(() => { goToAdmin(router) }, 500)
             } catch (err) {
                 toastAlert(toast, err.response.data, "error")
-            } 
+            }
         })
     };
 

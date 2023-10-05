@@ -5,7 +5,7 @@ import { getHeaders } from "../../../utils/storageManager";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-export const useNewContractLogic = (path, name, onClose) => {
+export const useNewContractLogic = (id, name, onClose) => {
     const [loading, setLoading] = useState(false);
     const toast = useToast()
     const {
@@ -20,10 +20,15 @@ export const useNewContractLogic = (path, name, onClose) => {
         const body = {
                 name,
                 plan: values.plan,
-                date: values.date
+                started: values.date
         }
+
         try {
-            await api.post(path, body, getHeaders())
+            name === "" ? 
+            await api.put(`/contracts/changePlan/${id}`, body, getHeaders())
+            :
+            await api.post(`/contracts/${id}`, body, getHeaders())
+
             toastAlert(toast, "Contrato criado", "success")
             reset()
             onClose()
@@ -31,6 +36,7 @@ export const useNewContractLogic = (path, name, onClose) => {
             toastAlert(toast, err.response.data, "error")
         } finally {
             setLoading(false)
+
         }
     })
 

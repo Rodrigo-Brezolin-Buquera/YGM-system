@@ -10,7 +10,7 @@ const ContractPage = () => {
     const router = useRouter()
     const {id} =router.query
     const [userId, userName] = (id || '').split("++")
- console.log([userId, userName])
+
     return (
         <>
             <Header  />
