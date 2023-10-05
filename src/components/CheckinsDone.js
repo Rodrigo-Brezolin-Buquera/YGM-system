@@ -1,20 +1,14 @@
-import { Text } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import { findCheckinsLimit } from "../api/checkins";
+import { CircularProgress, Text } from "@chakra-ui/react";
+import { useRequestData } from "../hooks/useRequestData";
 import { CircularCard } from "../theme";
 import { simplifyDate } from "../utils/dates";
 
-
 export const CheckinsDone = ({ userId }) => {
-    const [checkins, setCheckins] = useState([]);
-
-    useEffect(() => {
-        findCheckinsLimit(userId, 5)
-            .then(res => setCheckins(res))
-            .catch(err => console.log(err.message))
-
-    }, [userId]);
-
+    const {data:checkins, loading} = useRequestData(`/booking/contract/${userId}`, userId)
+    
+    if (loading) {
+        return <CircularProgress isIndeterminate color="brand.200" size="160px" />
+    }
 
     const checkinsList = checkins?.length && checkins.map((checkin) => {
         return (
