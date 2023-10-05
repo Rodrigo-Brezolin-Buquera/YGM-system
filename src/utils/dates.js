@@ -1,6 +1,10 @@
 export const formatDate = (date, format = "DD/MM/YYYY") => {
-    const [year, month, day] = date.split("-");
+    if(format === "YYYY-MM-DD") {
+        const [day, month, year] = date.split("/");
 
+        return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
+    }
+    
     if (format === "DD/MM") {
         return `${day.padStart(2, "0")}/${month.padStart(2, "0")}`
     }

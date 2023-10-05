@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { findItemWhere } from "../../api";
-import { checkinsCol } from "../../api/config";
+import { findItemWhere } from "../../../api";
+import { checkinsCol } from "../../../api/config";
 import StudentCheckinCard from "./StudentCheckinCard";
 
 export const StudentList = ({ capacity, classId,loading, setLoading }) => {

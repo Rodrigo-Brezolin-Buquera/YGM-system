@@ -1,9 +1,9 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, Card, useToast } from "@chakra-ui/react";
 import { useState } from "react";
-import { cancelCheckin, cancelContractlessCheckin } from "../../api/checkins";
-import confirmDialog from "../../components/confirmDialog";
-import toastAlert from "../../components/toastAlert";
+import { cancelCheckin, cancelContractlessCheckin } from "../../../api/checkins";
+import confirmDialog from "../../../components/confirmDialog";
+import toastAlert from "../../../components/toastAlert";
 
 const StudentCheckinCard = ({ checkin, capacity, setLoading }) => {
     const [cardLoading, setCardLoading] = useState(false);

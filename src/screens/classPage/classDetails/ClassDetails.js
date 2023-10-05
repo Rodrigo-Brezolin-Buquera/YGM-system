@@ -1,9 +1,14 @@
-import {  Text } from "@chakra-ui/react";
+import {  CircularProgress, Text } from "@chakra-ui/react";
 import { memo } from "react";
-import { TextContainer } from "../../theme";
-import { simplifyDate } from "../../utils/dates";
+import { TextContainer } from "../../../theme";
+import { simplifyDate } from "../../../utils/dates";
 
-const ClassInfo = ({ yogaClass }) => {
+const ClassDetails = ({ yogaClass }) => {
+
+    if(!yogaClass.id) {
+        return <CircularProgress isIndeterminate color="brand.200" size="120px" />
+    }
+
     return (
         <TextContainer
             alignItems={"center"}
@@ -17,4 +22,4 @@ const ClassInfo = ({ yogaClass }) => {
     );
 };
 
-export default memo(ClassInfo)
+export default memo(ClassDetails)
