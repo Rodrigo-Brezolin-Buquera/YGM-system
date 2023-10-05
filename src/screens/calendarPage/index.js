@@ -1,9 +1,8 @@
 import {   useState } from "react";
-import { Booking } from "../../components/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin"
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer } from "../../theme";
-import  {WeekCalendar}  from "./WeekCalendar";
+import  {Agenda}  from "./agenda/Agenda";
 
 
 const CalendarPage = () => {
@@ -36,15 +35,10 @@ const CalendarPage = () => {
             <Background>
 
                 <MainContainer>
-                    <WeekCalendar
+                    <Agenda
                         setSelected={setSelected}
                         loading={loading}
-                    />
-                    <Booking
-                        setSelected={setSelected}
-                        selected={selected}
-                        setLoading={setLoading}
-                    />
+                    />      
                 </MainContainer>
             </Background>
         </>

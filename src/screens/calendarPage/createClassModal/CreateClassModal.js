@@ -6,9 +6,9 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createClasses } from "../../api/calendar";
-import toastAlert from "../../components/toastAlert";
-import { ModalComponent, FormButton } from "../../theme";
+import { createClasses } from "../../../api/calendar";
+import toastAlert from "../../../components/toastAlert";
+import { ModalComponent, FormButton } from "../../../theme";
 
 export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, styleOptions }) => {
     const [loading, setLoading] = useState(false);
