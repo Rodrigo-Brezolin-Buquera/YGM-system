@@ -4,8 +4,8 @@ import { WrapContainer } from "../../../theme";
 import  DayColumn  from "./DayColumn";
 import { useAgendaLogic } from "./useAgendaLogic";
 
-export const Agenda = ( ) => {
-    const daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+export const Agenda = () => {
+    const daysOfWeek = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
     const {yogaClasses,datesOfWeek, handleNextWeekClick, handlePreviousWeekClick } = useAgendaLogic()
     const router = useRouter()
 
@@ -29,7 +29,7 @@ export const Agenda = ( ) => {
                 <Heading >Agenda semanal</Heading>
                 <Button backgroundColor={"brand.200"} onClick={handleNextWeekClick}>Próxima</Button>
             </WrapContainer>
-
+           
             <WrapContainer>
                 {list}
             </WrapContainer>

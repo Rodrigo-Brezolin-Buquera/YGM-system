@@ -2,40 +2,18 @@ import {
     FormErrorMessage,
     FormControl,
     Input,
-    Select, Text, useToast
+    Select, Text
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { createClasses } from "../../../api/calendar";
-import toastAlert from "../../../components/toastAlert";
 import { ModalComponent, FormButton } from "../../../theme";
+import { useCreateClassLogic } from "./useCreateClassLogic";
 
-export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, styleOptions }) => {
-    const [loading, setLoading] = useState(false);
-    const toast = useToast()
-    const {
-        handleSubmit,
-        register,
-        formState: { errors, isSubmitting },
-        reset
-    } = useForm();
-
-    const onSubmit = async (values) => {
-        setLoading(true);
-        await createClasses(values, classLimit)
-            .then(() => {
-                toastAlert(toast, "Aula criada", "success")
-                reset()
-                onClose()
-            })
-            .catch(err => toastAlert(toast, err.message, "error"))
-            .finally(setLoading(false));
-    };
-
+export const CreateClassModal = ({ isOpen, onClose }) => {
+    const {loading, formControls } = useCreateClassLogic(onClose)
+    const { register, onSubmit, errors, isSubmitting } = formControls
+    
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Adicionar Aula"}>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
                 <FormControl
                     isInvalid={errors.name || errors.day || errors.teacher || errors.time || errors.date}
                     display={"flex"}
@@ -45,7 +23,6 @@ export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, 
                     gap={"1em"}
                     minW={"300px"}
                 >
-
                     <Select
                         variant="outline"
                         id="name"
@@ -54,7 +31,9 @@ export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, 
                             required: "Campo Obrigatório",
                         })}
                     >
-                        {styleOptions}
+                        <option> Hatha Yoga </option>
+                        <option> Vinyasa Flow </option>
+                        <option> Yoga Restaurativo </option>
                     </Select>
                     <Select
                         variant="outline"
@@ -79,9 +58,9 @@ export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, 
                             required: "Campo Obrigatório",
                         })}
                     >
-                        {teacherOptions}
+                        <option> Rodrigo </option>
+                        <option> Louize </option>
                     </Select>
-
                     <Input
                         variant="outline"
                         id="time"
@@ -116,9 +95,7 @@ export const CreateClassModal = ({ isOpen, onClose, classLimit, teacherOptions, 
                     </FormButton>
 
                 </FormControl>
-
             </form>
-
         </ModalComponent>
     );
 };

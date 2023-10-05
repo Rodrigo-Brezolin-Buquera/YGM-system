@@ -1,46 +1,34 @@
-import {   useState } from "react";
+import { useDisclosure, Button, Text } from "@chakra-ui/react";
 import HeaderAdmin from "../../components/HeaderAdmin"
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer } from "../../theme";
-import  {Agenda}  from "./agenda/Agenda";
-
+import { Agenda } from "./agenda/Agenda";
+import { CreateClassModal } from "./createClassModal/CreateClassModal";
 
 const CalendarPage = () => {
     useProtectedPage("admin")
-    const [selected, setSelected] = useState(null)
-    const [loading, setLoading] = useState(false)
-
-
-//     const { isOpen: isClassOpen, onOpen: onClassOpen, onClose: onClassClose } = useDisclosure()
-//     <Button
-//     backgroundColor={"brand.200"}
-//     onClick={onClassOpen}
-// >
-//     <Text> Nova Aula</Text>
-// </Button>
-
-// <CreateClassModal
-// isOpen={isClassOpen}
-// onClose={onClassClose}
-// classLimit={classLimit}
-// teacherOptions={selectOptionsMapper(teachersOptions, "name")}
-// styleOptions={selectOptionsMapper(stylesOptions, "name")}
-// />
-
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <>
-            <HeaderAdmin  />
+            <HeaderAdmin />
 
             <Background>
-
                 <MainContainer>
-                    <Agenda
-                        setSelected={setSelected}
-                        loading={loading}
-                    />      
+                    <Button
+                        backgroundColor={"brand.200"}
+                        onClick={onOpen}
+                    >
+                        <Text fontSize={"larger"} fontWeight={"bold"}>
+                            Nova Aula
+                        </Text>
+                    </Button>
+
+                    <Agenda />
                 </MainContainer>
             </Background>
+
+            <CreateClassModal isOpen={isOpen} onClose={onClose} />
         </>
     );
 };
