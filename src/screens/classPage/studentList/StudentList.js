@@ -1,28 +1,25 @@
-import { Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { findItemWhere } from "../../../api";
-import { checkinsCol } from "../../../api/config";
+import { CircularProgress, Text } from "@chakra-ui/react";
+import { useRequestData } from "../../../hooks/useRequestData";
 import StudentCheckinCard from "./StudentCheckinCard";
 
-export const StudentList = ({ capacity, classId,loading, setLoading }) => {
-    const [checkins, setCheckins] = useState([]);
+export const StudentList = ({ classId,loading, setLoading }) => {
+    const {data:checkins, loading: listLoading} = useRequestData(`/booking/class/${classId}`, loading)
+    
+    if(listLoading) {
+        return <CircularProgress isIndeterminate color="brand.200" size="120px" />
 
-    useEffect(() => {
-        findItemWhere(checkinsCol, "yogaClassId", classId)
-            .then(res => setCheckins(res))
-            .catch(err => console.log(err.message))
-    }, [loading, classId]);
+    }
 
     const studentList = checkins?.length && checkins.map((checkin) => {
         return (
             <StudentCheckinCard
                 key={checkin.id}
                 checkin={checkin}
-                capacity={capacity}
                 setLoading={setLoading}
             />
         );
     });
+
     return (
         <>
             <Text fontSize='xl' > Checkins </Text>
