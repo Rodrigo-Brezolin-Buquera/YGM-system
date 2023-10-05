@@ -1,31 +1,10 @@
-import {  Text, useToast} from "@chakra-ui/react";
-import { deleteItemById, deleteItemWhere } from "../../../api";
-import { calendarCol } from "../../../api/config";
-import { goToAdmin } from "../../../routes/coordinator";
+import {  Text} from "@chakra-ui/react";
 import {  WrapContainer, LoadingButton,  } from "../../../theme";
-import toastAlert from "../../../components/toastAlert";
-import confirmDialog from "../../../components/confirmDialog";
+import {useDeleteItem} from "../../../hooks/useDeleteItem"
 
-
-
-export const ClassActions = () => {
-    const toast = useToast()
-
-    const deleteClass = () => {
-        confirmDialog("Deletar aula?", () => {
-            deleteItemById(calendarCol, id)
-                .then(setTimeout(() => { goToAdmin(router) }, 500))
-                .catch(err => toastAlert(toast, err.message, "error"))
-        })
-    }
-
-    const deleteClasses = () => {
-        confirmDialog("Deletar todas as aulas nesse horário?", () => {
-            deleteItemWhere(calendarCol, "groupId", yogaClass.groupId)
-                .then(setTimeout(() => { goToAdmin(router) }, 500))
-                .catch(err => toastAlert(toast, err.message, "error"))
-        })
-    }
+export const ClassActions = ({id, groupId}) => {
+    const {onDelete:deleteClass } = useDeleteItem(`/calendar/${id}`,"Deletar aula?")
+    const {onDelete:deleteClasses } = useDeleteItem(`/calendar/${groupId}?allClasses=true`,"Deletar todas as aulas nesse horário?")
 
     return (
         <WrapContainer>
@@ -42,7 +21,6 @@ export const ClassActions = () => {
             >
                 <Text> Excluir horário</Text>
             </LoadingButton>
-
         </WrapContainer>
     )
 }

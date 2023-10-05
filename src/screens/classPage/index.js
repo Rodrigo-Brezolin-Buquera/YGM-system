@@ -20,7 +20,7 @@ const ClassPage = () => {
             <HeaderAdmin />
             <Background  >
                 <MainContainer>
-                    <ClassActions/>
+                    <ClassActions id={id} groupId={yogaClass.groupId}/>
                     <ClassDetails key={yogaClass.id} yogaClass={yogaClass} />
                    
                     <Booking
