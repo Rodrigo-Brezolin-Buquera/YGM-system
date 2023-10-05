@@ -16,7 +16,7 @@ export const DoubleClickText = (props) => {
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             api.put(props.path, { [props.atribute]: text }, getHeaders())
-                .catch((err) => toastAlert(toast, err.message, "error"));
+                .catch((err) => toastAlert(toast, err.response.data, "error"));
             setShowInput(false)
         }
     };

@@ -5,7 +5,7 @@ import { getHeaders } from "../../../utils/storageManager";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-export const useCreateClassLogic = (onClose ) => {
+export const useNewContractLogic = (path, name, onClose) => {
     const [loading, setLoading] = useState(false);
     const toast = useToast()
     const {
@@ -17,9 +17,14 @@ export const useCreateClassLogic = (onClose ) => {
 
     const onSubmit = handleSubmit(async (values) => {
         setLoading(true)
+        const body = {
+                name,
+                plan: values.plan,
+                date: values.date
+        }
         try {
-            await api.post("/calendar", values, getHeaders())
-            toastAlert(toast, "Aula criada", "success")
+            await api.post(path, body, getHeaders())
+            toastAlert(toast, "Contrato criado", "success")
             reset()
             onClose()
         } catch (err) {
@@ -28,10 +33,10 @@ export const useCreateClassLogic = (onClose ) => {
             setLoading(false)
         }
     })
- 
+
     const formControls = { register, onSubmit, errors, isSubmitting }
 
-    return {loading, formControls }
+    return { loading, formControls }
 
 
 }

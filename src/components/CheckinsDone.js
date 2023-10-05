@@ -5,7 +5,7 @@ import { CircularCard } from "../theme";
 import { simplifyDate } from "../utils/dates";
 
 
-export const CheckinsDone = ({ userId, loading }) => {
+export const CheckinsDone = ({ userId }) => {
     const [checkins, setCheckins] = useState([]);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ export const CheckinsDone = ({ userId, loading }) => {
             .then(res => setCheckins(res))
             .catch(err => console.log(err.message))
 
-    }, [userId, loading]);
+    }, [userId]);
 
 
     const checkinsList = checkins?.length && checkins.map((checkin) => {

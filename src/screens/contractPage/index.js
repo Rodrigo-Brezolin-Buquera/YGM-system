@@ -3,23 +3,24 @@ import { CheckinsDone } from "../../components/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer, SideContainer } from "../../theme";
-import { UserActions } from "./UserActions";
+import { ContractActions } from "./ContractActions/ContractActions";
 
-const ContractPage = ({plansOptions}) => {
+const ContractPage = () => {
     useProtectedPage("admin")
     const router = useRouter()
-    const { id } = router.query
-    
+    const {id} =router.query
+    const [userId, userName] = (id || '').split("++")
+ console.log([userId, userName])
     return (
         <>
             <Header  />
 
             <Background >
                 <SideContainer>
-                    <CheckinsDone userId={id} />
+                    <CheckinsDone userId={userId} />
                 </SideContainer>
                 <MainContainer>
-                    <UserActions userId={id} router={router} plansOptions={plansOptions}  />
+                    <ContractActions userId={userId} userName={userName || ""}/>
                 </MainContainer>
             </Background>
 

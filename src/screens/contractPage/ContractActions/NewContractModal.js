@@ -6,48 +6,52 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createContract, newContract } from "../../api/contracts";
-import toastAlert from "../../components/toastAlert";
-import { FormButton, ModalComponent } from "../../theme";
+import { createContract, newContract } from "../../../api/contracts";
+import toastAlert from "../../../components/toastAlert";
+import { FormButton, ModalComponent } from "../../../theme";
+import { useNewContractLogic } from "./useNewContractLogic";
+import {plansOptions} from "../../../components/planOptions"
+export const NewContractModal = ({ id, name, isOpen, onClose  }) => {
+    const { loading, formControls } = useNewContractLogic(`/auth/${id}`, name, onClose)
+    const { register, onSubmit, errors, isSubmitting } = formControls
+    // const {
+    //     handleSubmit,
+    //     register,
+    //     formState: { errors, isSubmitting },
+    //     reset
+    // } = useForm();
+    // const [loading, setLoading] = useState(false);
+    // const toast = useToast()
 
-export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose, plansOptions }) => {
-    const {
-        handleSubmit,
-        register,
-        formState: { errors, isSubmitting },
-        reset
-    } = useForm();
-    const [loading, setLoading] = useState(false);
-    const toast = useToast()
-
-    const onSubmit = (values) => {
-        setLoading(true);
-        (
-            userIsActive ?
-                newContract(values, id)
-                :
-                createContract({
-                    id,
-                    name,
-                    plan: values.plan,
-                    date: values.date
-                })
-        )
-            .then(() => {
-                toastAlert(toast, "Contrato criado", "success")
-                reset()
-            })
-            .catch(err => toastAlert(toast, err.message, "error"))
-            .finally(() => {
-                setLoading(false)
-                onClose()
-            });
-    };
+    // const onSubmit = (values) => {
+    //     setLoading(true);
+    //     (
+    //         // será o mesmo endpoint
+    //         // userIsActive ?
+    //             // newContract(values, id)
+    //             // :
+    //             createContract({
+    //                 id,
+    //                 name,
+    //                 plan: values.plan,
+    //                 date: values.date
+    //             })
+    //     )
+    //         .then(() => {
+    //             toastAlert(toast, "Contrato criado", "success")
+    //             reset()
+    //         })
+    //         .catch(err => toastAlert(toast, err.message, "error"))
+    //         .finally(() => {
+    //             setLoading(false)
+    //             onClose()
+    //         });
+    // };
 
     return (
         <ModalComponent isOpen={isOpen} onClose={onClose} header={"Novo contrato"}>
 
-            <form onSubmit={handleSubmit(onSubmit)} >
+            <form onSubmit={onSubmit} >
                 <FormControl
                     isInvalid={errors.plan || errors.date}
                     display={"flex"}
@@ -77,6 +81,7 @@ export const AddContractModal = ({ id, name, userIsActive, isOpen, onClose, plan
                         {...register("date", {
                             required: "Campo Obrigatório"
                         })}
+
                     />
                     <FormErrorMessage>
                         {errors.plan && errors.plan.message}

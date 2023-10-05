@@ -1,14 +1,13 @@
 import { Heading, Text } from "@chakra-ui/react";
-import { memo } from "react";
 import { Line, TextContainer } from "../theme";
 
-const ContractDetails = ({ contract }) => {
+export const ContractDetails = ({ contract }) => {
 
     return (
-        < TextContainer
-            alignItems={"center"}
-        >
+        <TextContainer alignItems={"center"}>
+
             <Heading size={"md"}>Informações do plano</Heading>
+
             <Line>
                 <Text as='b' fontSize='lg' >Nome:</Text>
                 <Text fontSize='lg' >{contract?.name}</Text>
@@ -37,11 +36,9 @@ const ContractDetails = ({ contract }) => {
                         <Text fontSize='lg' >{contract?.availableClasses}</Text>
                     </Line>
                 </>
-
             }
 
         </TextContainer>
     );
 };
 
-export default memo(ContractDetails);

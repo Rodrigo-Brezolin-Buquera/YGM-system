@@ -16,7 +16,7 @@ const UserCard = ({user, router}) => {
             backgroundColor={"brand.500"}
             _hover={{ cursor: "pointer" }}
             overflow={"auto"}
-            onClick={() => goToContract(router, user.id)}
+            onClick={() => goToContract(router, `${user.id}++${user.name}`)}
         >
             <Line justifyContent={["center", "center", "center", "flex-start"]} >
                 <Text as="b">Nome:</Text>
