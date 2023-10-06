@@ -24,13 +24,13 @@ export const Agenda = () => {
 
     return (
         <>
-            <WrapContainer>
+            <WrapContainer shadow={true}>
                 <Button backgroundColor={"brand.200"} onClick={handlePreviousWeekClick}>Anterior</Button>
                 <Heading >Agenda semanal</Heading>
                 <Button backgroundColor={"brand.200"} onClick={handleNextWeekClick}>Próxima</Button>
             </WrapContainer>
            
-            <WrapContainer>
+            <WrapContainer shadow={true}>
                 {list}
             </WrapContainer>
         </>

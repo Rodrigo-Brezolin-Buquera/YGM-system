@@ -16,32 +16,32 @@ export const Local = () => {
             <TextContainer>
                 <Heading alignSelf={"center"} size={"md"}>Espaço e Contatos</Heading>
                 <Line>
-                    <Text> Endereço:</Text>
+                    <Text fontWeight={"bold"} > Endereço:</Text>
                     <DoubleClickText text={data.address} atribute={"address"} path={editPath} />
                 </Line>
 
                 <Line>
-                    <Text> Telefone: </Text>
+                    <Text fontWeight={"bold"} > Telefone: </Text>
                     <DoubleClickText text={data.phone} atribute={"phone"} path={editPath} />
                 </Line>
 
                 <Line>
-                    <Text> Email:</Text>
+                    <Text fontWeight={"bold"} > Email:</Text>
                     <DoubleClickText text={data.email} atribute={"email"} path={editPath} />
                 </Line>
 
                 <Line>
-                    <Text> Site:</Text>
+                    <Text fontWeight={"bold"} > Site:</Text>
                     <DoubleClickText text={data.website} atribute={"website"} path={editPath} />
                 </Line>
 
                 <Line>
-                    <Text> Facebook:</Text>
+                    <Text fontWeight={"bold"} > Facebook:</Text>
                     <DoubleClickText text={data.facebook} atribute={"facebook"} path={editPath} />
                 </Line>
 
                 <Line>
-                    <Text> Instagram:</Text>
+                    <Text fontWeight={"bold"} > Instagram:</Text>
                     <DoubleClickText text={data.instagram} atribute={"instagram"} path={editPath} />
                 </Line>
 

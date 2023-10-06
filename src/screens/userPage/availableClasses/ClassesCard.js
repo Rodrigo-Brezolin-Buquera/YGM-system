@@ -58,7 +58,7 @@ export const ClassesCard = ({ contractId, name, yogaClass }) => {
                     right={0}
                     bottom={0}
                 >
-                    <Text fontSize='sm'> {checkinExists ? "Cancelar" : "Agendar"}</Text>
+                    <Text fontSize='sm' fontWeight={"bold"}> {checkinExists ? "Cancelar" : "Agendar"}</Text>
                     <Box
                         border={"solid 1px black"}
                         boxSize={6}

@@ -20,6 +20,13 @@ const ClassPage = () => {
         <>
             <HeaderAdmin />
             <Background  >
+                <SideContainer>
+                    <StudentList
+                        classId={id}
+                        reload={reload}
+                        setReload={setReload}
+                    />
+                </SideContainer>
                 <MainContainer>
                     <ClassActions id={id} groupId={yogaClass.groupId}/>
                    
@@ -30,13 +37,6 @@ const ClassPage = () => {
 
                     <ClassDetails key={yogaClass.id} yogaClass={yogaClass} />
                 </MainContainer>
-                <SideContainer>
-                    <StudentList
-                        classId={id}
-                        reload={reload}
-                        setReload={setReload}
-                    />
-                </SideContainer>
             </Background>
         </>
     );

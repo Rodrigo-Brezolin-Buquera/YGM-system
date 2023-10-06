@@ -1,8 +1,8 @@
-import { Card } from "@chakra-ui/react"
+import { Card, Box } from "@chakra-ui/react"
 
-const WrapContainer = ({ children }) => {
+const WrapContainer = ({ children, shadow }) => {
     return (
-        <Card
+        <Box
             display={"flex"}
             flexDirection={"row"}
             flexWrap={"wrap"}
@@ -11,9 +11,12 @@ const WrapContainer = ({ children }) => {
             w={"100%"}
             p={"0.5em"}
             gap={["1em","1em","2em"]}
+            borderRadius={"8px"}
+            boxShadow={ shadow ? "md" : "none"}
+
         >
             {children}
-        </Card>
+        </Box>
     )
 }
 

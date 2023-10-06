@@ -1,4 +1,4 @@
-import { CircularProgress, Text } from "@chakra-ui/react";
+import { CircularProgress, Heading, Text } from "@chakra-ui/react";
 import { WrapContainer } from "../../../theme";
 import { ClassesCard } from "./ClassesCard";
 import { useAvailableClassesLogic } from "./useAvailableClassesLogic";
@@ -23,7 +23,7 @@ const AvailableClasses = ({ contractId, name, }) => {
 
     return (
         <>
-            <Text fontSize='lg' as="b" > Faça seu check-in</Text>
+            <Heading fontSize='xl' fontWeight={"bold"} > Faça seu check-in</Heading>
             <WrapContainer  >
                 {
                     classesList.length

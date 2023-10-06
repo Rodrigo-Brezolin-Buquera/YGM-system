@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Text } from "@chakra-ui/react";
+import { Box, CircularProgress, Heading } from "@chakra-ui/react";
 import ClassesCard from "./ClassesCard";
 import { useAvailableClassesLogic } from "./useAvailableClassesLogic";
 
@@ -32,7 +32,7 @@ const AvailableClasses = ({router}) => {
             gap={"0.5em"}
             width={"100%"}
         >
-            <Text fontSize='xl' > Aulas de hoje:</Text>
+            <Heading fontSize='xl' > Aulas de hoje:</Heading>
             {classesList}
         </Box>
     );

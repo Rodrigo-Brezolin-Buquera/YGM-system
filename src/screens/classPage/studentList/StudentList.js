@@ -18,7 +18,7 @@ export const StudentList = ({ classId, reload, setReload }) => {
 
     return (
         <>
-            <Text fontSize='xl' > Checkins </Text>
+            <Text fontSize='xl' fontWeight={"bold"} > Checkins </Text>
             {studentList}
         </>
     );

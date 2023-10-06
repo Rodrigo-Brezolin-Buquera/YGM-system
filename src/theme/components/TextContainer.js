@@ -1,8 +1,8 @@
-import { Card } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 
 const TextContainer = ({ children, alignItems }) => {
     return (
-        <Card
+        <Box
             display={"flex"}
             flexDirection={"column"}
             flexWrap={"wrap"}
@@ -15,7 +15,7 @@ const TextContainer = ({ children, alignItems }) => {
             fontSize={"lg"}
         >
             {children}
-        </Card>)
+        </Box>)
 }
 
 export default TextContainer

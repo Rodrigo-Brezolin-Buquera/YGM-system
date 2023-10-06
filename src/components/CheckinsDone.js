@@ -1,4 +1,4 @@
-import { CircularProgress, Text } from "@chakra-ui/react";
+import { CircularProgress, Heading, Text } from "@chakra-ui/react";
 import { useRequestData } from "../hooks/useRequestData";
 import { CircularCard } from "../theme";
 import { simplifyDate } from "../utils/dates";
@@ -25,7 +25,7 @@ export const CheckinsDone = ({ userId, admin }) => {
 
     return (
         <>
-            <Text fontSize='lg' as="b" > Checkins realizados: </Text>
+            <Heading fontSize='xl'  as="b" > Checkins realizados: </Heading>
             {checkins?.length ? checkinsList : <Text> Não há check-ins</Text>}
         </>
     );
