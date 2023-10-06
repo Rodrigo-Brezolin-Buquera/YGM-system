@@ -6,24 +6,24 @@ import toastAlert from "../../../components/toastAlert";
 import { getHeaders } from "../../../utils/storageManager";
 
 export const useCheckinCardLogic = (checkin, setReload) => {
-    // const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const toast = useToast()
 
     const onDelete = () => {
         confirmDialog("Cancelar este checkin?", async () => {
             const {id, contractId} = checkin
             const path = contractId === "none" ? `/booking/${id}?type=single` : `/booking/${id}`
+            setLoading(true);
             try {
-                // setLoading(true);
                 await api.delete(path, getHeaders())
             } catch (err) {
                 toastAlert(toast, err.response.data, "error")
             } finally {
-                // setLoading(false)
+                setLoading(false)
                 setReload((prevState)=>!prevState)
             }
         })
     }
-    return {onDelete}
+    return {onDelete, loading}
 }
 
