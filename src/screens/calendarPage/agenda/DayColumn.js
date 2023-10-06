@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { formatDate, sortByTime } from "../../../utils/dates";
+import { formatDate, sortByDayAndTime } from "../../../utils/dates";
 import ClassCard from "./ClassCard";
 import { CircularCard } from "../../../theme"
 
@@ -11,7 +11,7 @@ const DayColumn = ({ day, date, yogaClasses, router }) => {
         setClasses(yogaClasses)
     }, [date, yogaClasses])
 
-    const list = classes?.length ? sortByTime(classes).map((yogaClass) => {
+    const list = classes?.length ? sortByDayAndTime(classes).map((yogaClass) => {
         return (
           <ClassCard
             key={yogaClass.id}

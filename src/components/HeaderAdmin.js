@@ -9,7 +9,7 @@ import {
     Hide
 } from "@chakra-ui/react";
 import { logout } from "../api/auth";
-import { goToAdmin, goToBusiness, goToCalendar } from "../routes/coordinator";
+import { goToAdmin, goToBusiness, goToCalendar } from "../utils/coordinator";
 import Header from "../theme/Header"
 import { useRouter } from 'next/router';
 

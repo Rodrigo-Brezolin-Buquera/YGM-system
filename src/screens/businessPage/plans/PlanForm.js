@@ -4,7 +4,7 @@ import {
     Input,
     Select, Text, Button
 } from "@chakra-ui/react";
-import { pricePattern } from "../../../api/patterns";
+import { pricePattern } from "../../../utils/patterns";
 import { DurationOptions, FrequencyOptions } from "./selectOptions";
 
 export const PlanForm = ({ loading, formControls }) => {

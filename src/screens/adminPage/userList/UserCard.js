@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { goToContract } from "../../../routes/coordinator";
+import { goToContract } from "../../../utils/coordinator";
 import { Card, Text } from "@chakra-ui/react";
 import { Line } from "../../../theme";
 

@@ -3,11 +3,6 @@ export const pricePattern = {
     message: "Entre com valores possitivos entre 0 e 999"
 }
 
-export const numberPattern = {
-    value: /^[0-9]{1,2}$/,
-    message: "Entre com valores possitivos entre 0 e 99"
-}
-
 export const namePattern = {
     value: /^[a-zA-ZÀ-ÖØ-öø-ÿ ]{3,30}$/u,
     message: "Os nomes devem ter entre 3 e 30 caracteres sem caracteres especiais"

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { api } from "../api/config";
 import confirmDialog from "../components/confirmDialog";
 import toastAlert from "../components/toastAlert";
-import { goToAdmin } from "../routes/coordinator";
+import { goToAdmin } from "../utils/coordinator";
 import { getHeaders } from "../utils/storageManager";
 
 export const useDeleteItem = (path, message) => {

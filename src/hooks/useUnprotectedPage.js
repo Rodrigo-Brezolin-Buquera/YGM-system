@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { isLogged } from "../api/auth";
-import { goToUser, goToAdmin } from "../routes/coordinator"
+import { goToUser, goToAdmin } from "../utils/coordinator"
 import { useRouter } from 'next/router';
 import { getStorageItem } from "../utils/storageManager";
 

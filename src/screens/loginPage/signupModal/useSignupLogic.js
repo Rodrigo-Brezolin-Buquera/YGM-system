@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { singUp } from "../../../api/auth";
-import { capitalizeFirstLetter } from "../../../utils/names";
 import toastAlert from "../../../components/toastAlert";
 
 export const useSignupLogic = (onClose) => {
@@ -24,7 +23,7 @@ export const useSignupLogic = (onClose) => {
 
     const onSubmit = handleSubmit(async ({ email, password, name }) => {
         try {
-            const input = { email, password, name: capitalizeFirstLetter(name) }
+            const input = { email, password, name }
             await singUp(input, router)  
             reset()
             onClose()
