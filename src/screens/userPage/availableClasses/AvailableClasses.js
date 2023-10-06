@@ -1,10 +1,10 @@
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { findClassesByPeriod } from "../../api/calendar";
-import { getNextNDays, sortByDayAndTime } from "../../utils/dates";
+import { findClassesByPeriod } from "../../../api/calendar";
+import { getNextNDays, sortByDayAndTime } from "../../../utils/dates";
 import {ClassesCard} from "./ClassesCard";
 
-const AvailableClasses = ({ contractId, contractLimit, userName, setNewRender }) => {
+const AvailableClasses = ({ contractId, contractLimit, name,  }) => {
     const [yogaClasses, setyogaClasses] = useState([]);
 
     useEffect(() => {
@@ -17,11 +17,10 @@ const AvailableClasses = ({ contractId, contractLimit, userName, setNewRender })
         return (
             <ClassesCard
                 key={yogaClass.id}               
-                userName={userName}
+                userName={name}
                 contractId={contractId}
                 contractLimit={contractLimit}
                 yogaClass={yogaClass}
-                setNewRender={setNewRender}     
             />
         );
     });

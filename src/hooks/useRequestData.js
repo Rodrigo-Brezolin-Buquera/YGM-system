@@ -15,6 +15,7 @@ export const useRequestData = (path, trigger) => {
             const res = await api.get(path, getHeaders());
             setData(res.data.result);
         } catch (err) {
+            console.log(err.response.data)
             toastAlert(toast, err.response.data, "error");
         } finally {
             setLoading(false);

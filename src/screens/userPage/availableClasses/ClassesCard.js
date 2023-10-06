@@ -1,15 +1,15 @@
 import { DeleteIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { findItemById } from "../../api";
-import { createCheckin, deleteCheckin } from "../../api/checkins";
-import { checkinsCol } from "../../api/config";
-import confirmDialog from "../../components/confirmDialog";
-import toastAlert from "../../components/toastAlert";
-import { SquareCard, Line } from "../../theme";
+import { findItemById } from "../../../api";
+import { createCheckin, deleteCheckin } from "../../../api/checkins";
+import { checkinsCol } from "../../../api/config";
+import confirmDialog from "../../../components/confirmDialog";
+import toastAlert from "../../../components/toastAlert";
+import { SquareCard, Line } from "../../../theme";
 
 export const ClassesCard = (
-    { contractId, userName, yogaClass, contractLimit, setNewRender }
+    { contractId, userName, yogaClass, contractLimit,  }
 ) => {
     const [checkin, setCheckin] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -38,7 +38,6 @@ export const ClassesCard = (
             .catch(err => toastAlert(toast, err.message, "error"))
             .finally(() => {
                 setLoading(false)
-                setNewRender((prevState) => !prevState)
             });
     }
 

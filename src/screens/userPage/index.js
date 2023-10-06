@@ -1,30 +1,16 @@
-import { CircularProgress, Button, Text, Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { CircularProgress, Text, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { findItemById } from "../../api";
-import { logout } from "../../api/auth";
-import { usersCol, } from "../../api/config";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { MainContainer, Header, Background } from "../../theme";
-import { ContractInfo } from "./ContractInfo";
+import { MainContainer, Background } from "../../theme";
+import { UserActions } from "./userActions/UserActions";
 import HeaderUser from "../../components/HeaderUser";
+import { useRequestData } from "../../hooks/useRequestData";
 
 const UserPage = () => {
     useProtectedPage("user")
     const router = useRouter()
     const { id } = router.query
-    const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        findItemById(usersCol, id)
-            .then(res => {
-                setUser(res)
-                setLoading(false)
-            })
-            .catch(err => console.log(err.message))
-    }, [id, loading]);
-
+    const { data: contract, loading } = useRequestData("/contracts/user", id)
 
     if (loading) {
         return (
@@ -47,18 +33,19 @@ const UserPage = () => {
 
     return (
         <>
-           <HeaderUser/>
+            <HeaderUser />
             <Background column={"column"} justifyContent={"start"}>
-                {
-                    user.active ?
-                        <ContractInfo id={id} user={user} />
-                        :
-                        <MainContainer>
-                            <Text textAlign={"center"}
-                            >Sua conta ainda não foi ativada, entre em contato conosco para ativar.
+                <MainContainer>
+                    {
+                        contract === null
+                            ?
+                            <Text textAlign={"center"}>
+                                Sua conta ainda não foi ativada, entre em contato conosco para ativar.
                             </Text>
-                        </MainContainer>
-                }
+                            :
+                            <UserActions />
+                    }
+                </MainContainer>
             </Background>
         </>
     );
