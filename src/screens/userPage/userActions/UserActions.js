@@ -24,7 +24,6 @@ export const UserActions = ({ contract }) => {
                 <AvailableClasses
                     contractId={contract.id}
                     name={contract.name}
-                    contractLimit={contract.availableClasses}
                 />
             )
         }

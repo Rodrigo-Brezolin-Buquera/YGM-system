@@ -1,16 +1,10 @@
-import { Box, CircularProgress, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { findClassesByPeriod } from "../../../api/calendar";
+import { CircularProgress, Text } from "@chakra-ui/react";
 import { WrapContainer } from "../../../theme";
-import { getNextNDays, sortByDayAndTime } from "../../../utils/dates";
-import {ClassesCard} from "./ClassesCard";
+import { ClassesCard } from "./ClassesCard";
 import { useAvailableClassesLogic } from "./useAvailableClassesLogic";
 
-const AvailableClasses = ({ contractId, contractLimit, name,  }) => {
-    const {yogaClasses, loading} = useAvailableClassesLogic(contractId)
-
-
-    console.log(yogaClasses)
+const AvailableClasses = ({ contractId, name, }) => {
+    const { yogaClasses, loading } = useAvailableClassesLogic(contractId)
 
     if (loading) {
         return <CircularProgress isIndeterminate color="brand.200" size="160px" />
@@ -19,10 +13,9 @@ const AvailableClasses = ({ contractId, contractLimit, name,  }) => {
     const classesList = yogaClasses?.length && yogaClasses.map((yogaClass) => {
         return (
             <ClassesCard
-                key={yogaClass.id}               
-                userName={name}
+                key={yogaClass.id}
+                name={name}
                 contractId={contractId}
-                contractLimit={contractLimit}
                 yogaClass={yogaClass}
             />
         );
@@ -32,8 +25,12 @@ const AvailableClasses = ({ contractId, contractLimit, name,  }) => {
         <>
             <Text fontSize='lg' as="b" > Faça seu check-in</Text>
             <WrapContainer  >
-            {classesList.length ? classesList : <Text fontSize='lg' > Não há aulas disponíveis </Text>}
-
+                {
+                    classesList.length
+                        ? classesList
+                        :
+                        <Text fontSize='lg' > Não há aulas disponíveis </Text>
+                }
             </WrapContainer>
         </>
     );
