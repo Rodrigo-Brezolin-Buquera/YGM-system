@@ -51,7 +51,7 @@ export const ClassesCard = ({ contractId, name, yogaClass }) => {
                     paddingY={"0.3em"}
                     _hover={{
                         cursor: "pointer",
-                        backgroundColor: "rgba(221, 174, 39, 0.8)"
+                        backgroundColor: "brand.600"
                     }}
                     w={"136px"}
                     position={"absolute"}

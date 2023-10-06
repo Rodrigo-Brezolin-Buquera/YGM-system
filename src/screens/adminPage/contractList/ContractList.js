@@ -1,11 +1,14 @@
 import { Box, CircularProgress, Input, Select } from "@chakra-ui/react";
-import { InputContainer } from "../../../theme";
 import ContractCard from "./ContractCard";
 import { useContractListLogic } from "./useContractListLogic";
 import { planOptions } from "../../../components/planOptions";
 
-const ContractList = ({router }) => {
+const ContractList = ({ router }) => {
     const { contractList, loading, handleName, handlePlan } = useContractListLogic()
+    
+    if (loading) {
+        return <CircularProgress isIndeterminate color="brand.200" size="160px" />
+    }
 
     const list = contractList?.length
         ?
@@ -21,13 +24,15 @@ const ContractList = ({router }) => {
         :
         <p> Nenhum contrato encontrado </p>
 
-
-    if (loading) {
-        return <CircularProgress isIndeterminate color="brand.200" size="160px" />
-    }
-
     return (
-        <InputContainer>
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+            alignItems={"flex-start"}
+            gap={"0.5em"}
+            width={"100%"}
+            margin={"0.5em"}
+        >
             <Box
                 display={"flex"}
                 gap={"1em"}
@@ -49,7 +54,7 @@ const ContractList = ({router }) => {
             </Box>
 
             {list}
-        </InputContainer>
+        </Box>
     );
 };
 

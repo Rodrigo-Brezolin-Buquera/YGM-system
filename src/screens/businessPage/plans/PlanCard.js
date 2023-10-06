@@ -1,16 +1,22 @@
 import { memo } from 'react'
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Text, Box } from "@chakra-ui/react";
+import { Text, Box, Card } from "@chakra-ui/react";
 import { DoubleClickText } from "../../../components/DoubleClickText";
-import { TextCard } from "../../../theme";
 
-const PlanCard = ({plan, deletePlan}) => {
+const PlanCard = ({ plan, deletePlan }) => {
     const price = plan.monthlyPayment
 
     return (
-        <TextCard
-            width={"180px"}
-            key={plan.id}
+        <Card
+            minW={"180px"}
+            minH={"2em"}
+            display={"flex"}
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            backgroundColor={"brand.200"}
+            padding={"1em"}
+            borderRadius={"20px"}
         >
             <Box
                 display={"flex"}
@@ -33,7 +39,7 @@ const PlanCard = ({plan, deletePlan}) => {
                 boxSize={"22px"}
                 onClick={() => deletePlan(plan.id)}
             />
-        </TextCard>
+        </Card>
     )
 }
 

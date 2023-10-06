@@ -10,27 +10,27 @@ const theme = extendTheme({
             200: "#F3C046",
             300: "#2D3748",
             400: "#f2f3f7",
-            500: "#fafafa"
+            500: "#fafafa",
+            600: "#ddae27cc",
+            700: "#95C3C4"
          }  
     }
 });
 
 export default theme;
 
-export {default as WrapContainer} from "./WrapContainer";
-export {default as FormButton} from "./FormButton";
-export {default as Header} from "./Header";
-export {default as LoadingButton} from "./LoadingButton";
-export {default as ModalComponent} from "./ModalComponent";
-export {default as SideContainer} from "./SideContainer";
-export {default as MainContainer} from "./MainContainer";
-export {default as Background} from "./Background";
-export {default as TextContainer} from "./TextContainer";
-export {default as Line} from "./Line";
-export {default as CircularCard} from "./CircularCard";
-export {default as TextCard} from "./TextCard";
-export {default as InputContainer} from "./InputContainer";
-export {default as SquareCard} from "./SquareCard";
+export {default as WrapContainer} from "./components/WrapContainer";
+export {default as FormButton} from "./components/FormButton";
+export {default as Header} from "./components/Header";
+export {default as LoadingButton} from "./components/LoadingButton";
+export {default as ModalComponent} from "./components/ModalComponent";
+export {default as SideContainer} from "./components/SideContainer";
+export {default as MainContainer} from "./components/MainContainer";
+export {default as Background} from "./components/Background";
+export {default as TextContainer} from "./components/TextContainer";
+export {default as Line} from "./components/Line";
+export {default as CircularCard} from "./components/CircularCard";
+export {default as SquareCard} from "./components/SquareCard";
 
 
 
