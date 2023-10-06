@@ -43,7 +43,7 @@ const UserPage = () => {
                                 Sua conta ainda não foi ativada, entre em contato conosco para ativar.
                             </Text>
                             :
-                            <UserActions />
+                            <UserActions contract={contract} />
                     }
                 </MainContainer>
             </Background>
