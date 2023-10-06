@@ -1,6 +1,5 @@
 import { DeleteIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box } from "@chakra-ui/react";
-import { useRequestData } from "../../../hooks/useRequestData";
 import { SquareCard, Line } from "../../../theme";
 import { useCheckinLogic } from "./useCheckinLogic";
 
@@ -8,7 +7,6 @@ export const ClassesCard = ({ contractId, name, yogaClass }) => {
     const { id: classId, time, date, day, teacher, capacity } = yogaClass
     const checkinData = { capacity, classId, contractId, name, time, date }
     const { handleCheckin, loading, checkinExists } = useCheckinLogic(checkinData)
-
 
     if (loading) {
         return (

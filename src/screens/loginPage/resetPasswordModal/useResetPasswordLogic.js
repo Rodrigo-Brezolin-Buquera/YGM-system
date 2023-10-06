@@ -22,7 +22,7 @@ export const useResetPasswordLogic = (onClose) => {
             reset()
             onClose()        
         } catch (err) {
-            toastAlert(toast, err.message, "error");
+            toastAlert(toast, err.response.data, "error");
         } finally {
             setLoading(false);
         }

@@ -21,7 +21,7 @@ export const useLoginLogic = () => {
         try {
             await login(values, router)
         } catch (err) {
-            toastAlert(toast, err.message, "error");
+            toastAlert(toast, err.response.data, "error");
         } finally {
             setLoading(false);
             reset()
