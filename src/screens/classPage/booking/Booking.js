@@ -5,10 +5,8 @@ import { useBookingLogic } from "./useBookingLogic"
 export const Booking = ({ yogaClass, setReload }) => {
     const {name, handleName, addStudent, handleKeyPress} = useBookingLogic(yogaClass, setReload)
    
-   
     return (
-        <>
-             
+        <>   
                 <WrapContainer>
                 {
                     yogaClass?.capacity <= 0

@@ -16,8 +16,6 @@ const ClassPage = () => {
     const {data:yogaClass} = useRequestData(`/calendar/${id}`, id)
     const [reload, setReload] = useState(false)
 
-
-    console.log("aula", yogaClass)
     return (
         <>
             <HeaderAdmin />

@@ -4,10 +4,7 @@ import StudentCheckinCard from "./StudentCheckinCard";
 
 export const StudentList = ({ classId, reload, setReload }) => {
     const {data:checkins} = useRequestData(`/booking/class/${classId}`, reload)
-    
-  
-    console.log("lista", checkins)
-
+    console.log("reload", reload)
     const studentList = checkins?.length ? checkins.map((checkin) => {
         return (
             <StudentCheckinCard

@@ -3,11 +3,10 @@ import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useCheckinCardLogic } from "./useCheckinCardLogic";
 
 const StudentCheckinCard = ({ checkin, setReload }) => {
-    const {onDelete, cardLoading} = useCheckinCardLogic(checkin, setReload)
+    const {onDelete, loading} = useCheckinCardLogic(checkin, setReload)
    
 
-    // não está funcionando legal as renderizações!
-
+    console.log("cardLoading",loading)
 
     return (
         <Card
@@ -23,7 +22,7 @@ const StudentCheckinCard = ({ checkin, setReload }) => {
             w={"75%"}
         >
             {
-                cardLoading ?
+                loading ?
                     <CircularProgress isIndeterminate color="brand.200" size="50px" />
                     :
                     <Box
