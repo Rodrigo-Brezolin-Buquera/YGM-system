@@ -5,7 +5,7 @@ import confirmDialog from "../../../components/confirmDialog";
 import toastAlert from "../../../components/toastAlert";
 import { getHeaders } from "../../../utils/storageManager";
 
-export const useCheckinCardLogic = (checkin, setLoading) => {
+export const useCheckinCardLogic = (checkin, setReload) => {
     const [cardLoading, setCardLoading] = useState(false);
     const toast = useToast()
 
@@ -20,7 +20,7 @@ export const useCheckinCardLogic = (checkin, setLoading) => {
                 toastAlert(toast, err.response.data, "error")
             } finally {
                 setCardLoading(false)
-                // setLoading((prevState => !prevState))
+                setReload((prevState => !prevState))
             }
         })
     }

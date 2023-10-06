@@ -5,7 +5,7 @@ import { simplifyDate } from "../../../utils/dates";
 
 const ClassDetails = ({ yogaClass }) => {
 
-    if(!yogaClass.id) {
+    if(!yogaClass.date) {
         return <CircularProgress isIndeterminate color="brand.200" size="120px" />
     }
 

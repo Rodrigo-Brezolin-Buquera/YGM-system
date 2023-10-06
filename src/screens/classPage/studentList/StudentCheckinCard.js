@@ -2,16 +2,11 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useCheckinCardLogic } from "./useCheckinCardLogic";
 
-const StudentCheckinCard = ({ checkin, setLoading }) => {
-    const {onDelete, cardLoading} = useCheckinCardLogic(checkin, setLoading)
+const StudentCheckinCard = ({ checkin, setReload }) => {
+    const {onDelete, cardLoading} = useCheckinCardLogic(checkin, setReload)
    
 
-    // não está funcionando legal as renderizações!!!
-
-
-
-
-
+    // não está funcionando legal as renderizações!
 
 
     return (

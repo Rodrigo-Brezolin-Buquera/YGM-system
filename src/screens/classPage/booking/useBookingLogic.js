@@ -5,7 +5,7 @@ import { api } from "../../../api/config"
 import { getHeaders } from "../../../utils/storageManager"
 import { formatDate } from "../../../utils/dates"
 
-export const useBookingLogic = (yogaClass, setLoading) => {
+export const useBookingLogic = (yogaClass, setReload) => {
     const [name, handleName, reset] = useInput("")
     const toast = useToast()
 
@@ -16,14 +16,13 @@ export const useBookingLogic = (yogaClass, setLoading) => {
             date: formatDate(date, "YYYY-MM-DD"),
             time
         }
-        setLoading(true)
         try {
             await api.post(`/booking/single/${id}`, body, getHeaders())
             reset()
         } catch (err) {
             toastAlert(toast, err.response.data, "error")
         } finally {
-            setLoading(false)
+            setReload((prevState)=>!prevState)
         }
     }
 

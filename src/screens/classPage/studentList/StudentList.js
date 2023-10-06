@@ -1,30 +1,27 @@
-import { CircularProgress, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { useRequestData } from "../../../hooks/useRequestData";
 import StudentCheckinCard from "./StudentCheckinCard";
 
-export const StudentList = ({ classId, loading }) => {
-    const {data:checkins, loading: listLoading, setLoading:setListLoading} = useRequestData(`/booking/class/${classId}`, loading)
+export const StudentList = ({ classId, reload }) => {
+    const {data:checkins} = useRequestData(`/booking/class/${classId}`, reload)
     
-    if(listLoading) {
-        return <CircularProgress isIndeterminate color="brand.200" size="120px" />
+  
+    console.log("lista", checkins)
 
-    }
-
-    const studentList = checkins?.length && checkins.map((checkin) => {
+    const studentList = checkins?.length ? checkins.map((checkin) => {
         return (
             <StudentCheckinCard
                 key={checkin.id}
-                checkin={checkin}
-                loading={listLoading}
-                setLoading={setListLoading}
+                checkin={checkin}  
             />
         );
-    });
+    }):
+    null
 
     return (
         <>
             <Text fontSize='xl' > Checkins </Text>
-            {checkins?.length ? studentList : <p> Nenhum até o momento </p>}
+            {studentList}
         </>
     );
 };

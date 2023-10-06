@@ -1,4 +1,3 @@
-
 import { useRouter } from "next/router";
 import { Booking } from "./booking/Booking";
 import HeaderAdmin from "../../components/HeaderAdmin";
@@ -8,32 +7,35 @@ import ClassDetails from "./classDetails/ClassDetails";
 import { StudentList } from "./studentList/StudentList";
 import { ClassActions } from "./classActions/ClassActions";
 import {useRequestData} from "../../hooks/useRequestData"
+import { useState } from "react";
 
 const ClassPage = () => {
     useProtectedPage("admin")
     const router = useRouter()
     const { id } = router.query
-    const {data:yogaClass, loading, setLoading} = useRequestData(`/calendar/${id}`, id)
+    const {data:yogaClass} = useRequestData(`/calendar/${id}`, id)
+    const [reload, setReload] = useState(false)
 
+
+    console.log("aula", yogaClass)
     return (
         <>
             <HeaderAdmin />
             <Background  >
                 <MainContainer>
                     <ClassActions id={id} groupId={yogaClass.groupId}/>
-                    <ClassDetails key={yogaClass.id} yogaClass={yogaClass} />
                    
                     <Booking
                         yogaClass={yogaClass}
-                        loading={loading}
-                        setLoading={setLoading}
+                        setReload={setReload}
                     />
 
+                    <ClassDetails key={yogaClass.id} yogaClass={yogaClass} />
                 </MainContainer>
                 <SideContainer>
                     <StudentList
                         classId={id}
-                        loading={loading}
+                        reload={reload}
                     />
                 </SideContainer>
             </Background>
