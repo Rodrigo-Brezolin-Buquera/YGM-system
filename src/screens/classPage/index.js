@@ -36,6 +36,7 @@ const ClassPage = () => {
                     <StudentList
                         classId={id}
                         reload={reload}
+                        setReload={setReload}
                     />
                 </SideContainer>
             </Background>
