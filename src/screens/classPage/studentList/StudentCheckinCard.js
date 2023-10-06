@@ -6,7 +6,7 @@ const StudentCheckinCard = ({ checkin, setReload }) => {
     const {onDelete, loading} = useCheckinCardLogic(checkin, setReload)
    
 
-    console.log("cardLoading",loading)
+    // console.log("cardLoading",loading)
 
     return (
         <Card
@@ -22,9 +22,9 @@ const StudentCheckinCard = ({ checkin, setReload }) => {
             w={"75%"}
         >
             {
-                loading ?
-                    <CircularProgress isIndeterminate color="brand.200" size="50px" />
-                    :
+                // loading ?
+                //     <CircularProgress isIndeterminate color="brand.200" size="50px" />
+                //     :
                     <Box
                         display={"flex"}
                         justifyContent={"space-between"}

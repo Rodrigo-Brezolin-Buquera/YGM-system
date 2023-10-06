@@ -6,7 +6,7 @@ import toastAlert from "../../../components/toastAlert";
 import { getHeaders } from "../../../utils/storageManager";
 
 export const useCheckinCardLogic = (checkin, setReload) => {
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const toast = useToast()
 
     const onDelete = () => {
@@ -14,16 +14,16 @@ export const useCheckinCardLogic = (checkin, setReload) => {
             const {id, contractId} = checkin
             const path = contractId === "none" ? `/booking/${id}?type=single` : `/booking/${id}`
             try {
-                setLoading(true);
-                api.delete(path, getHeaders())
+                // setLoading(true);
+                await api.delete(path, getHeaders())
             } catch (err) {
                 toastAlert(toast, err.response.data, "error")
             } finally {
-                setLoading(false)
-                setReload((prevState) => !prevState)
+                // setLoading(false)
+                setReload((prevState)=>!prevState)
             }
         })
     }
-    return {onDelete, loading}
+    return {onDelete}
 }
 
