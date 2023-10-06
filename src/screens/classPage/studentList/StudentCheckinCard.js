@@ -1,28 +1,18 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Text, CircularProgress, Box, Card, useToast } from "@chakra-ui/react";
-import { useState } from "react";
-import { cancelCheckin, cancelContractlessCheckin } from "../../../api/checkins";
-import confirmDialog from "../../../components/confirmDialog";
-import toastAlert from "../../../components/toastAlert";
+import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
+import { useCheckinCardLogic } from "./useCheckinCardLogic";
 
-const StudentCheckinCard = ({ checkin, capacity, setLoading }) => {
-    const [cardLoading, setCardLoading] = useState(false);
-    const toast = useToast()
+const StudentCheckinCard = ({ checkin, setLoading }) => {
+    const {onDelete, cardLoading} = useCheckinCardLogic(checkin, setLoading)
+   
 
-    const onDelete = () => {
-        confirmDialog("Cancelar este checkin?", () => {
-            setCardLoading(true);
-            (checkin.contractless ?
-                cancelContractlessCheckin(checkin.id, capacity)
-                :
-                cancelCheckin(checkin.id, capacity)
-            ).catch(err => toastAlert(toast, err.message, "error"))
-                .finally(() => {
-                    setCardLoading(false)
-                    setLoading((prevState => !prevState))
-                });
-        })
-    }
+    // não está funcionando legal as renderizações!!!
+
+
+
+
+
+
 
     return (
         <Card
@@ -38,7 +28,7 @@ const StudentCheckinCard = ({ checkin, capacity, setLoading }) => {
             w={"75%"}
         >
             {
-                (cardLoading) ?
+                cardLoading ?
                     <CircularProgress isIndeterminate color="brand.200" size="50px" />
                     :
                     <Box

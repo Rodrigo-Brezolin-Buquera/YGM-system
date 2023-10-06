@@ -34,7 +34,6 @@ const ClassPage = () => {
                     <StudentList
                         classId={id}
                         loading={loading}
-                        setLoading={setLoading}
                     />
                 </SideContainer>
             </Background>
