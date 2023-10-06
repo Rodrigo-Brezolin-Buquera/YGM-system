@@ -24,7 +24,7 @@ export const LoginForm = () => {
             mt={"1em"}
             backgroundColor={"brand.100"}
             borderRadius={"25px"}
-            w={"300px"}
+            w={["290px","300px"]}
         >
             <form onSubmit={onSubmit} >
                 <FormControl isInvalid={errors.email || errors.password} >
@@ -33,7 +33,7 @@ export const LoginForm = () => {
                         flexDirection={"column"}
                         alignItems={"center"}
                         gap={"1em"}
-                        w={"276px"}
+                        w={["270px","276px"]}
                     >
                         <Input
                             id="email"

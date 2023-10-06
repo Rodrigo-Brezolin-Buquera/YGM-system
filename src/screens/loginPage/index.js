@@ -20,7 +20,7 @@ const LoginPage = () => {
             backgroundColor={"brand.400"}
             minH={"100vh"}
         >
-            <Image maxW={"300px"} src={"/assets/defaultLogo.png"} alt="logo" />
+            <Image maxW={"280px"} src={"/assets/defaultLogo.png"} alt="logo" />
             <LoginForm />
             <Text
                 _hover={{ cursor: "pointer", textDecoration: "underline" }}

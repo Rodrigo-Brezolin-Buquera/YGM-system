@@ -8,7 +8,7 @@ const ErrorPage = () => {
     return (
         <Background>
             <MainContainer>
-                <Image src={"/assets/flower.png"} maxWidth={"250px"} alt="logo flor" />
+                <Image src={"/assets/defaultLogo.png"} maxWidth={"250px"} alt="logo flor" />
                 <Box
                     display={"flex"}
                     flexDirection={"column"}
@@ -16,7 +16,7 @@ const ErrorPage = () => {
                     alignItems={"center"}
                     gap={"0.5em"}
                 >
-                    <Text fontSize='2xl' textAlign={"center"}> Erro 404: Página não encontrada </Text>
+                    <Text fontSize='xl' textAlign={"center"}> Erro 404: Página não encontrada </Text>
                     <Text > Verifique a URL ou clique em voltar </Text>
 
                     <Button
