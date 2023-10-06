@@ -25,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export const api = axios.create({
-    baseURL: "http://localhost:3003",
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });
 
 
