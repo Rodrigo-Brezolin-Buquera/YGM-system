@@ -1,6 +1,6 @@
-import { memo } from 'react'
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Text, Box, Card } from "@chakra-ui/react";
+import { memo } from "react"
 import { DoubleClickText } from "../../../components/DoubleClickText";
 
 const PlanCard = ({ plan, deletePlan }) => {

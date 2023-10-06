@@ -7,27 +7,27 @@ export const Booking = ({ yogaClass, setReload }) => {
    
     return (
         <>   
-                <WrapContainer>
+            <WrapContainer>
                 {
                     yogaClass?.capacity <= 0
-                    ?
-                    <Text >Não há mais vagas</Text>
-                    :
-                    <>
-                        <Heading size={"md"} alignSelf={"center"} > Agendamento: </Heading>
+                        ?
+                        <Text >Não há mais vagas</Text>
+                        :
+                        <>
+                            <Heading size={"md"} alignSelf={"center"} > Agendamento: </Heading>
                             <Input
                                 maxW={"300px"}
                                 placeholder={"Nome"}
                                 onChange={handleName}
                                 onKeyPress={handleKeyPress}
                                 value={name}
-                                />
+                            />
                             <LoadingButton color={"brand.200"} handler={addStudent} >
                                 <Text>Adicionar</Text>
                             </LoadingButton>
                         </>
                 }
-                </WrapContainer>
+            </WrapContainer>
         </>
     )
 }

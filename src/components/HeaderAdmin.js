@@ -8,10 +8,10 @@ import {
     Show,
     Hide
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { logout } from "../api/auth";
+import { Header } from "../theme";
 import { goToAdmin, goToBusiness, goToCalendar } from "../utils/coordinator";
-import Header from "../theme/Header"
-import { useRouter } from 'next/router';
 
 const HeaderAdmin = () => {
     const router = useRouter();

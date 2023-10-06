@@ -3,9 +3,9 @@ import { useState } from "react";
 import { api } from "../../../api/config";
 import confirmDialog from "../../../components/confirmDialog";
 import toastAlert from "../../../components/toastAlert";
+import { useRequestData } from "../../../hooks/useRequestData";
 import { formatDate } from "../../../utils/dates";
 import { getHeaders } from "../../../utils/storageManager";
-import { useRequestData } from "../../../hooks/useRequestData";
 
 export const useCheckinLogic = (checkinData) => {
     const {  capacity, classId, contractId, name, time, date } =  checkinData;

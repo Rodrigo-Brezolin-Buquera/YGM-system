@@ -1,6 +1,6 @@
 import {  Text} from "@chakra-ui/react";
-import {  WrapContainer, LoadingButton,  } from "../../../theme";
 import {useDeleteItem} from "../../../hooks/useDeleteItem"
+import {  WrapContainer, LoadingButton,  } from "../../../theme";
 
 export const ClassActions = ({id, groupId}) => {
     const {onDelete:deleteClass } = useDeleteItem(`/calendar/${id}`,"Deletar aula?")

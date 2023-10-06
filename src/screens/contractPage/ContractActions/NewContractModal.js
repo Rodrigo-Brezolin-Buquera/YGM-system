@@ -4,9 +4,9 @@ import {
     Input,
     Select, Text
 } from "@chakra-ui/react";
+import {planOptions} from "../../../components/planOptions"
 import { FormButton, ModalComponent } from "../../../theme";
 import { useNewContractLogic } from "./useNewContractLogic";
-import {planOptions} from "../../../components/planOptions"
 
 export const NewContractModal = ({ id, name, isOpen, onClose, setLoading  }) => {
     const { loading, formControls } = useNewContractLogic(id, name, onClose, setLoading)

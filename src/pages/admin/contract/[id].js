@@ -4,9 +4,9 @@ import PageLoading from "../../../components/PageLoading"
 const ContractPage = lazy(() => import("../../../screens/contractPage"))
 
 export default function Contract() {
-  return (
-      <PageLoading>
-        <ContractPage />
-      </PageLoading>
-  )
+    return (
+        <PageLoading>
+            <ContractPage />
+        </PageLoading>
+    )
 }

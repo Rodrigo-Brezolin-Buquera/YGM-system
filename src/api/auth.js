@@ -6,8 +6,8 @@ import {
     sendPasswordResetEmail
 } from "firebase/auth";
 import { goToAdmin, goToLogin, goToUser } from "../utils/coordinator";
-import { api, auth } from "./config";
 import { getHeaders, setStorageItem, deleteStorageItem } from "../utils/storageManager";
+import { api, auth } from "./config";
 
 export const login = async (form, router) => {
     try {

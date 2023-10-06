@@ -1,4 +1,4 @@
-import { Main } from "next/document";
+
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer } from "../../theme";

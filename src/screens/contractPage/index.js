@@ -9,7 +9,7 @@ const ContractPage = () => {
     useProtectedPage("admin")
     const router = useRouter()
     const {id} =router.query
-    const [userId, userName] = (id || '').split("++")
+    const [userId, userName] = (id || "").split("++")
 
     return (
         <>

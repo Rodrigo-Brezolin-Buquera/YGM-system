@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Input, Select } from "@chakra-ui/react";
+import { planOptions } from "../../../components/planOptions";
 import ContractCard from "./ContractCard";
 import { useContractListLogic } from "./useContractListLogic";
-import { planOptions } from "../../../components/planOptions";
 
 const ContractList = ({ router }) => {
     const { contractList, loading, handleName, handlePlan } = useContractListLogic()

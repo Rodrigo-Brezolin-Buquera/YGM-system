@@ -1,11 +1,11 @@
-import { useRequestData } from "../../../hooks/useRequestData"
-import confirmDialog from "../../../components/confirmDialog";
 import { useToast } from "@chakra-ui/react";
-import toastAlert from "../../../components/toastAlert";
-import { api } from "../../../api/config";
-import { getHeaders } from "../../../utils/storageManager";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { api } from "../../../api/config";
+import confirmDialog from "../../../components/confirmDialog";
+import toastAlert from "../../../components/toastAlert";
+import { useRequestData } from "../../../hooks/useRequestData"
+import { getHeaders } from "../../../utils/storageManager";
 
 export const usePlansLogic = () => {
     const [actionLoading, setActionLoading] = useState(false);
@@ -33,7 +33,7 @@ export const usePlansLogic = () => {
 
     const onSubmit = handleSubmit(async (values) => {
         try {
-            await api.post(`/plans`, values, getHeaders())
+            await api.post("/plans", values, getHeaders())
             reset()
         } catch (err) {
             toastAlert(toast, err.response.data, "error")

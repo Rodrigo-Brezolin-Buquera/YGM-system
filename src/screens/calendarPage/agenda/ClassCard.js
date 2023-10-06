@@ -1,8 +1,8 @@
 
 import { Text } from "@chakra-ui/react"
 import { memo } from "react"
-import { goToClass } from "../../../utils/coordinator"
 import { CircularCard } from "../../../theme"
+import { goToClass } from "../../../utils/coordinator"
 
 const ClassCard = ({ yogaClass, router }) => {
     return (

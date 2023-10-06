@@ -5,8 +5,8 @@ import {
     Text
 } from "@chakra-ui/react";
 
-import { emailPattern, passwordPattern, namePattern } from "../../../utils/patterns";
 import { ModalComponent, FormButton } from "../../../theme";
+import { emailPattern, passwordPattern, namePattern } from "../../../utils/patterns";
 import { PasswordInput } from "../passwordInput/PasswordInput";
 import { useSignupLogic } from "./useSignupLogic";
 

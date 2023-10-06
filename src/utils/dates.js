@@ -31,13 +31,13 @@ export const getNextNDays = (n) => {
 
 export const sortByDayAndTime = (list) => {
     return list.sort((a, b) => {
-      if (a.day < b.day) return -1;
-      if (a.day > b.day) return 1;
+        if (a.day < b.day) return -1;
+        if (a.day > b.day) return 1;
   
-      if (a.time < b.time) return -1;
-      if (a.time > b.time) return 1;
+        if (a.time < b.time) return -1;
+        if (a.time > b.time) return 1;
   
-      return 0;
+        return 0;
     });
-  };
+};
 

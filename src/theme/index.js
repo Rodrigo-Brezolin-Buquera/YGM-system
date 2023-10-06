@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
     fonts: {
-     
+        body: "'Raleway', sans-serif",
     },
     colors:{
         brand: {
@@ -13,7 +13,7 @@ const theme = extendTheme({
             500: "#fafafa",
             600: "#ddae27cc",
             700: "#95C3C4"
-         }  
+        }  
     }
 });
 

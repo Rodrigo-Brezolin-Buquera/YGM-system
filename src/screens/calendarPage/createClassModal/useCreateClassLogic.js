@@ -1,9 +1,9 @@
 import { useToast } from "@chakra-ui/react";
-import toastAlert from "../../../components/toastAlert";
-import { api } from "../../../api/config";
-import { getHeaders } from "../../../utils/storageManager";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { api } from "../../../api/config";
+import toastAlert from "../../../components/toastAlert";
+import { getHeaders } from "../../../utils/storageManager";
 
 export const useCreateClassLogic = (onClose ) => {
     const [loading, setLoading] = useState(false);

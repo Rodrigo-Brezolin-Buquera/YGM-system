@@ -39,6 +39,6 @@ export const useAgendaLogic = () => {
         setDatesOfWeek(getDatesOfWeek(previousSunday));
     },[sunday])
     
-   return {yogaClasses: data,datesOfWeek, handleNextWeekClick, handlePreviousWeekClick }
+    return {yogaClasses: data,datesOfWeek, handleNextWeekClick, handlePreviousWeekClick }
 }
 

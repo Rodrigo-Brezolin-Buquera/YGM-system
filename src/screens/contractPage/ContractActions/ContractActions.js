@@ -1,9 +1,9 @@
 import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
 import { ContractDetails } from "../../../components/ContractDetails";
+import { useDeleteItem } from "../../../hooks/useDeleteItem";
+import { useRequestData } from "../../../hooks/useRequestData"
 import { LoadingButton, WrapContainer } from "../../../theme";
 import { NewContractModal } from "./NewContractModal";
-import { useRequestData } from "../../../hooks/useRequestData"
-import { useDeleteItem } from "../../../hooks/useDeleteItem";
 
 export const ContractActions = ({ userId, userName }) => {
     const { data: contract, loading } = useRequestData(`/contracts/${userId}`, userId)

@@ -19,19 +19,19 @@ describe("Tests capitalizeFirstLetter", () => {
         expect(result).toBe("Test Name")
     })
 
-    test("Input: `` ", () => {
+    test("Input: ``", () => {
         const input = ""
         const result = capitalizeFirstLetter(input)
         expect(result).toBe("")
     })
 
-    test("Input: name ", () => {
+    test("Input: name", () => {
         const input = "name"
         const result = capitalizeFirstLetter(input)
         expect(result).toBe("Name")
     })
 
-    test("Input: Name NAME NAme ", () => {
+    test("Input: Name NAME NAme", () => {
         const input = "Name NAME NAme"
         const result = capitalizeFirstLetter(input)
         expect(result).toBe("Name Name Name")

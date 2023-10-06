@@ -1,10 +1,10 @@
 import { CircularProgress, Text, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import HeaderUser from "../../components/HeaderUser";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
+import { useRequestData } from "../../hooks/useRequestData";
 import { MainContainer, Background } from "../../theme";
 import { UserActions } from "./userActions/UserActions";
-import HeaderUser from "../../components/HeaderUser";
-import { useRequestData } from "../../hooks/useRequestData";
 
 const UserPage = () => {
     useProtectedPage("user")

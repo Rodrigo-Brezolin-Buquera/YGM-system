@@ -1,7 +1,7 @@
 import { Box, Text, Image, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { goBack } from "../../utils/coordinator";
 import { Background, MainContainer } from "../../theme"
+import { goBack } from "../../utils/coordinator";
 
 const ErrorPage = () => {
     const router = useRouter()

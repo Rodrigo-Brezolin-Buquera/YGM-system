@@ -1,9 +1,9 @@
 import {  useToast} from "@chakra-ui/react"
-import { useInput } from "../../../hooks/useInput"
-import toastAlert from "../../../components/toastAlert"
 import { api } from "../../../api/config"
-import { getHeaders } from "../../../utils/storageManager"
+import toastAlert from "../../../components/toastAlert"
+import { useInput } from "../../../hooks/useInput"
 import { formatDate } from "../../../utils/dates"
+import { getHeaders } from "../../../utils/storageManager"
 
 export const useBookingLogic = (yogaClass, setReload) => {
     const [name, handleName, reset] = useInput("")

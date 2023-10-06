@@ -11,16 +11,16 @@ import UserList from "./userList/UserList";
 const AdminPage = () => {
     useProtectedPage("admin")
     const [view, setView] = useState(null)   
-     const router = useRouter();
+    const router = useRouter();
 
     const ListView = () => {
         switch (view) {
-            case "users":
-                return <UserList  router={router} />
-            case "contracts":
-                return <ContractList router={router} />
-            default:
-                return null
+        case "users":
+            return <UserList  router={router} />
+        case "contracts":
+            return <ContractList router={router} />
+        default:
+            return null
         }
     }
 

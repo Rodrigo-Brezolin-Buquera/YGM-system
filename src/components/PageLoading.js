@@ -3,12 +3,12 @@ import { Suspense } from "react";
 
 export const PageLoading = ({children}) => {
     return (
-            <Suspense
-                fallback={
-                    <CircularProgress alignSelf={"center"} marginTop={"2em"} size='120px' isIndeterminate color="brand.200" />
-                }>
-                    {children}
-            </Suspense>
+        <Suspense
+            fallback={
+                <CircularProgress alignSelf={"center"} marginTop={"2em"} size='120px' isIndeterminate color="brand.200" />
+            }>
+            {children}
+        </Suspense>
     )
 }
 

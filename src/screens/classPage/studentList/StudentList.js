@@ -14,7 +14,7 @@ export const StudentList = ({ classId, reload, setReload }) => {
             />
         );
     }):
-    null
+        null
 
     return (
         <>
