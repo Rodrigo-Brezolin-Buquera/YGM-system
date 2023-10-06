@@ -7,6 +7,7 @@ import { usersCol, } from "../../api/config";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { MainContainer, Header, Background } from "../../theme";
 import { ContractInfo } from "./ContractInfo";
+import HeaderUser from "../../components/HeaderUser";
 
 const UserPage = () => {
     useProtectedPage("user")
@@ -46,11 +47,7 @@ const UserPage = () => {
 
     return (
         <>
-            <Header>
-                <Button onClick={() => logout(router)} >
-                    Sair
-                </Button>
-            </Header>
+           <HeaderUser/>
             <Background column={"column"} justifyContent={"start"}>
                 {
                     user.active ?

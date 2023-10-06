@@ -11,15 +11,13 @@ const Header = ({ children }) => {
             justifyContent={"space-between"}
             p={"0.3em"}
         >
-            <Image maxH={"60px"} src={"/assets/whiteLogo.png"} alt="logo"  />
+            <Image maxH={"52px"} src={"/assets/defaultLogo.png"} alt="logo"  />
             <Box
                 display={"flex"}
                 gap={"0.5em"}
                 marginRight={"0.2em"}
             >
-
-                {children}
-               
+                {children}     
             </Box>
         </Box>
     );
