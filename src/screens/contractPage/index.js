@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import { CheckinsDone } from "../../components/CheckinsDone";
+import { CheckinsDone } from "./checkinsDone/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer, SideContainer } from "../../theme";
-import { ContractActions } from "./ContractActions/ContractActions";
+import { ContractActions } from "./contractActions/contractActions";
 
 const ContractPage = () => {
     useProtectedPage("admin")

@@ -1,7 +1,7 @@
 import { CircularProgress, Heading, Text } from "@chakra-ui/react";
-import { useRequestData } from "../hooks/useRequestData";
-import { CircularCard } from "../theme";
-import { simplifyDate } from "../utils/dates";
+import { useRequestData } from "../../../hooks/useRequestData";
+import { CircularCard } from "../../../theme";
+import { simplifyDate } from "../../../utils/dates";
 
 export const CheckinsDone = ({ userId, admin }) => {
     const path = admin ? `/booking/contract/${userId}` : "/booking"

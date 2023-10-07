@@ -18,9 +18,15 @@ const CalendarPage = () => {
                     <Button
                         backgroundColor={"brand.200"}
                         onClick={onOpen}
+                        position={"absolute"}
+                        top={2}
+                        right={2}
+                        borderRadius={"50%"}
+                        width={["40px", "40px"]} 
+                        height={["40px", "40px"]}
                     >
-                        <Text fontSize={"larger"} fontWeight={"bold"}>
-                            Nova Aula
+                        <Text fontSize={["3xl","4xl"]} fontWeight={"bold"}   >
+                            +
                         </Text>
                     </Button>
 

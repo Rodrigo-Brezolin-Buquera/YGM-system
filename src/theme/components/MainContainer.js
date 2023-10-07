@@ -14,6 +14,7 @@ const MainContainer = ({ children }) => {
             gap={"1em"}
             w={["auto","100%","100%"]}
             m={"0.8em"}
+            position={"relative"}
         >
             {children}
 

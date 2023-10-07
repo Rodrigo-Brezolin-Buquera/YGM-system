@@ -24,7 +24,7 @@ export const Agenda = () => {
 
     return (
         <>
-            <WrapContainer shadow={true}>
+            <WrapContainer >
                 <Button backgroundColor={"brand.200"} onClick={handlePreviousWeekClick}>Anterior</Button>
                 <Heading >Agenda semanal</Heading>
                 <Button backgroundColor={"brand.200"} onClick={handleNextWeekClick}>Próxima</Button>
