@@ -3,9 +3,8 @@ import { useRequestData } from "../../../hooks/useRequestData";
 import { CircularCard } from "../../../theme";
 import { simplifyDate } from "../../../utils/dates";
 
-export const CheckinsDone = ({ userId, admin }) => {
-    const path = admin ? `/booking/contract/${userId}` : "/booking"
-    const {data:checkins, loading} = useRequestData(path, userId)
+export const CheckinsDone = ({ userId }) => {
+    const {data:checkins, loading} = useRequestData(`/booking/contract/${userId}`, userId)
     
     if (loading) {
         return <CircularProgress isIndeterminate color="brand.200" size="160px" />
