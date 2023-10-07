@@ -1,10 +1,11 @@
 import { CircularProgress, Text, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { ContractDetails } from "../../components/ContractDetails";
 import HeaderUser from "../../components/HeaderUser";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { useRequestData } from "../../hooks/useRequestData";
-import { MainContainer, Background } from "../../theme";
-import { UserActions } from "./userActions/UserActions";
+import { MainContainer, Background, WrapContainer } from "../../theme";
+import AvailableClasses from "./availableClasses/AvailableClasses";
 
 const UserPage = () => {
     useProtectedPage("user")
@@ -42,10 +43,22 @@ const UserPage = () => {
                             <Text textAlign={"center"}>
                                 Sua conta ainda não foi ativada, entre em contato conosco para ativar.
                             </Text>
-                            :
-                            <UserActions contract={contract} />
+                            : <>
+                              
+                                <WrapContainer shadow={true}>
+                                    <ContractDetails
+                                        contract={contract}
+                                        admin={false}
+                                    />
+                                </WrapContainer>
+                                <AvailableClasses
+                                    contractId={contract.id}
+                                    name={contract.name}
+                                />
+                            </>
                     }
                 </MainContainer>
+
             </Background>
         </>
     );

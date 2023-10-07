@@ -12,7 +12,7 @@ export const ContractDetails = ({ contract, admin }) => {
         return (
             <>
                 <Line>
-                    <Text as='b' fontSize='lg' >Fim previsto: </Text>
+                    <Text as='b' fontSize='lg' >Fim: </Text>
                     <Text fontSize='lg' > {contract?.ends}</Text>
                 </Line>
                 <Line>
@@ -25,7 +25,7 @@ export const ContractDetails = ({ contract, admin }) => {
 
     return (
         <TextContainer alignItems={"center"}>
-            <Heading size={"md"}>Informações do plano</Heading>
+            <Heading size={"md"}>Dados do plano</Heading>
 
             <Line>
                 <Text as='b' fontSize='lg' >Nome:</Text>
