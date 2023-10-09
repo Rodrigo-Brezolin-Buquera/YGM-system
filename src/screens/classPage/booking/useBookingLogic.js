@@ -10,6 +10,10 @@ export const useBookingLogic = (yogaClass, setReload) => {
     const toast = useToast()
 
     const addStudent = async () => {
+        if(!name) {
+            toastAlert(toast, "Preencha um nome", "error")
+            return null
+        }
         const { date, time, id } = yogaClass
         const body = {
             name,

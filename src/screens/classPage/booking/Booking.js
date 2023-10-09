@@ -21,6 +21,7 @@ export const Booking = ({ yogaClass, setReload }) => {
                                 onChange={handleName}
                                 onKeyPress={handleKeyPress}
                                 value={name}
+                                width={200}
                             />
                             <LoadingButton color={"brand.200"} handler={addStudent} >
                                 <Text>Adicionar</Text>
