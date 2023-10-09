@@ -3,8 +3,8 @@ import { Text, CircularProgress, Box, Card } from "@chakra-ui/react";
 import { useCheckinCardLogic } from "./useCheckinCardLogic";
 
 const StudentCheckinCard = ({ checkin, setReload }) => {
-    const {onDelete, loading} = useCheckinCardLogic(checkin, setReload)
-   
+    const { onDelete, loading } = useCheckinCardLogic(checkin, setReload)
+
     return (
         <Card
             display={"flex"}
@@ -29,7 +29,10 @@ const StudentCheckinCard = ({ checkin, setReload }) => {
                         p={"0 0.5em"}
                         w={"100%"}
                     >
-                        <Text fontSize={"mds"} >  {checkin.name}  </Text>
+                        <Box>
+                            <Text fontSize={"md"} fontWeight={"bold"} >  {checkin.name}  </Text>
+                            <Text fontSize={"xs"} >  {checkin.plan}  </Text>
+                        </Box>
                         <DeleteIcon
                             _hover={{ cursor: "pointer" }}
                             onClick={onDelete}

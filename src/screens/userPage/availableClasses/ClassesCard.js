@@ -3,9 +3,9 @@ import { Text, CircularProgress, Box } from "@chakra-ui/react";
 import { SquareCard, Line } from "../../../theme";
 import { useCheckinLogic } from "./useCheckinLogic";
 
-export const ClassesCard = ({ contractId, name, yogaClass }) => {
-    const { id: classId, time, date, day, teacher, capacity } = yogaClass
-    const checkinData = { capacity, classId, contractId, name, time, date }
+export const ClassesCard = ({ contract, yogaClass }) => {
+    const { id: classId, time, date, day, teacher, capacity, name } = yogaClass
+    const checkinData = { capacity, classId, time, date, ...contract }
     const { handleCheckin, loading, checkinExists } = useCheckinLogic(checkinData)
 
     if (loading) {

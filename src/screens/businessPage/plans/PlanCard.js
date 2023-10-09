@@ -4,8 +4,6 @@ import { memo } from "react"
 import { DoubleClickText } from "../../../components/DoubleClickText";
 
 const PlanCard = ({ plan, deletePlan }) => {
-    const price = plan.monthlyPayment
-
     return (
         <Card
             minW={"180px"}
@@ -29,7 +27,7 @@ const PlanCard = ({ plan, deletePlan }) => {
                 <DoubleClickText
                     path={`/plans/${plan.id}`}
                     atribute={"price"}
-                    text={price}
+                    text={plan.price}
                     size={"10"}
                 />
             </Box>

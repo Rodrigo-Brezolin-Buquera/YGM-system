@@ -8,7 +8,7 @@ import { formatDate } from "../../../utils/dates";
 import { getHeaders } from "../../../utils/storageManager";
 
 export const useCheckinLogic = (checkinData) => {
-    const {  capacity, classId, contractId, name, time, date } =  checkinData;
+    const {  capacity, classId, contractId, name, time, date, plan } =  checkinData;
     const checkinId = `${contractId}+${classId}`;
     const [loading, setLoading] = useState(false);
     const {data} = useRequestData (`/booking/${checkinId}`, loading) 
@@ -33,13 +33,14 @@ export const useCheckinLogic = (checkinData) => {
         const body ={
             date: formatDate(date, "YYYY-MM-DD"), 
             name, 
-            time
+            time, 
+            plan
         }
         try {
             await api.post(`/booking/${classId}`, body , getHeaders())
             toastAlert(toast, "Checkin realizado", "success")
         } catch (err) {
-            toastAlert(toast, err.response.data, "error")
+            toastAlert(toast, err.response.data ? err.response.data : "Erro ao fazer checkin", "error")
         } finally {
             setLoading(false)
         }  

@@ -3,7 +3,7 @@ import { WrapContainer } from "../../../theme";
 import { ClassesCard } from "./ClassesCard";
 import { useAvailableClassesLogic } from "./useAvailableClassesLogic";
 
-const AvailableClasses = ({ contractId, name, }) => {
+const AvailableClasses = ({ contractId, name, plan }) => {
     const { yogaClasses, loading } = useAvailableClassesLogic(contractId)
 
     if (loading) {
@@ -11,11 +11,11 @@ const AvailableClasses = ({ contractId, name, }) => {
     }
 
     const classesList = yogaClasses?.length && yogaClasses.map((yogaClass) => {
+        const contract = { contractId, name, plan }
         return (
             <ClassesCard
                 key={yogaClass.id}
-                name={name}
-                contractId={contractId}
+                contract={contract}
                 yogaClass={yogaClass}
             />
         );

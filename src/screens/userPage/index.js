@@ -54,6 +54,7 @@ const UserPage = () => {
                                 <AvailableClasses
                                     contractId={contract.id}
                                     name={contract.name}
+                                    plan={contract.plan}
                                 />
                             </>
                     }

@@ -17,7 +17,8 @@ export const useCheckinCardLogic = (checkin, setReload) => {
             try {
                 await api.delete(path, getHeaders())
             } catch (err) {
-                toastAlert(toast, err.response.data, "error")
+                console.log(err)
+                toastAlert(toast, err.response.data ? err.response.data : "Erro inesperado, tente novamente", "error")
             } finally {
                 setLoading(false)
                 setReload((prevState)=>!prevState)
