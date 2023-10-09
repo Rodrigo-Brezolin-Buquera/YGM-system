@@ -24,7 +24,7 @@ export const useBookingLogic = (yogaClass, setReload) => {
             await api.post(`/booking/single/${id}`, body, getHeaders())
             reset()
         } catch (err) {
-            toastAlert(toast, err.response.data, "error")
+            toastAlert(toast, err.response.data || "Erro ao adicionar pessoa", "error")
         } finally {
             setReload((prevState)=>!prevState)
         }

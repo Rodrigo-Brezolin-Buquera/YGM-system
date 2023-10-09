@@ -4,12 +4,13 @@ import {
     Input,
     Select, Text, Button
 } from "@chakra-ui/react";
+import FormButton from "../../../theme/components/FormButton";
 import { pricePattern } from "../../../utils/patterns";
 import { DurationOptions, FrequencyOptions } from "./selectOptions";
 
 export const PlanForm = ({ loading, formControls }) => {
     const { register, onSubmit, errors, isSubmitting } = formControls
-
+    console.log(loading)
     return (
         <form onSubmit={onSubmit}>
             <FormControl
@@ -66,16 +67,14 @@ export const PlanForm = ({ loading, formControls }) => {
                     {errors.type && errors.type.message}
                 </FormErrorMessage>
 
-                <Button
+                <FormButton
                     isSubmitting={isSubmitting}
-                    bg={"brand.200"}
-                    type="submit"
+                    color={"brand.200"}
                     loading={loading}
-                    borderRadius={"10px"}
                     width={"136px"}
                 >
                     <Text>Adicionar</Text>
-                </Button>
+                </FormButton>
             </FormControl>
         </form>
     )

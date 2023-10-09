@@ -24,7 +24,7 @@ export const usePlansLogic = () => {
                 await api.delete(`/plans/${id}`, getHeaders())
                 toastAlert(toast, "Plano removido", "success")
             } catch (err) {
-                toastAlert(toast, err.response.data, "error")
+                toastAlert(toast, err.response.data || "Error ao deletar plano", "error")
             } finally {
                 setActionLoading((prevState)=> !prevState)
             }
@@ -36,7 +36,7 @@ export const usePlansLogic = () => {
             await api.post("/plans", values, getHeaders())
             reset()
         } catch (err) {
-            toastAlert(toast, err.response.data, "error")
+            toastAlert(toast, err.response.data || "Error ao criar plano", "error")
         } finally {
             setActionLoading((prevState)=> !prevState)
         }

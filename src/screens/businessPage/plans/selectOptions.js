@@ -16,7 +16,6 @@ export const DurationOptions = () => {
             <option> Mensal </option>
             <option> Trimestral </option>
             <option> Semestral </option>
-            <option> Anual </option>
             <option> Gympass </option>
             <option> TotalPass </option>
             <option> Avulso </option>

@@ -23,7 +23,7 @@ export const useCreateClassLogic = (onClose ) => {
             reset()
             onClose()
         } catch (err) {
-            toastAlert(toast, err.response.data, "error")
+            toastAlert(toast, err.response.data || "Erro ao criar aula", "error")
         } finally {
             setLoading(false)
         }

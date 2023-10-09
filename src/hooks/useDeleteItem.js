@@ -17,7 +17,7 @@ export const useDeleteItem = (path, message) => {
                 toastAlert(toast, "Item deletado", "sucess")
                 setTimeout(() => { goToAdmin(router) }, 300)
             } catch (err) {
-                toastAlert(toast, err.response.data, "error")
+                toastAlert(toast, err.response.data || "Error ao deletar item", "error")
             } 
         })
     };

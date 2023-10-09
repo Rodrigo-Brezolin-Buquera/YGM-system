@@ -22,7 +22,7 @@ export const useResetPasswordLogic = (onClose) => {
             reset()
             onClose()        
         } catch (err) {
-            toastAlert(toast, err.response.data, "error");
+            toastAlert(toast, err.message || "Erro ao enviar email, tente novamente", "error");
         } finally {
             setLoading(false);
         }

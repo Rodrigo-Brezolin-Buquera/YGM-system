@@ -21,7 +21,7 @@ export const useCheckinLogic = (checkinData) => {
             await api.delete(`/booking/${checkinId}` , getHeaders())
             toastAlert(toast, "Checkin cancelado", "success")
         } catch (err) {
-            toastAlert(toast, err.response.data, "error")
+            toastAlert(toast, err.response.data || "Erro ao cancelar checkin", "error")
         } finally {
             setLoading(false)
 
@@ -40,7 +40,7 @@ export const useCheckinLogic = (checkinData) => {
             await api.post(`/booking/${classId}`, body , getHeaders())
             toastAlert(toast, "Checkin realizado", "success")
         } catch (err) {
-            toastAlert(toast, err.response.data ? err.response.data : "Erro ao fazer checkin", "error")
+            toastAlert(toast, err.response.data || "Erro ao fazer checkin", "error")
         } finally {
             setLoading(false)
         }  
