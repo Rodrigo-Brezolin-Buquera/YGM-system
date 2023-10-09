@@ -13,17 +13,16 @@ export const login = async (form, router) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
 
-        const {accessToken, uid} = userCredential.user
+        const { accessToken, uid } = userCredential.user
         setStorageItem("token", accessToken)
 
-        const res = await api.post("/auth/login", {}, getHeaders() ) 
+        const res = await api.post("/auth/login", {}, getHeaders())
         const userRole = res.data.result.userRole
         setStorageItem("userRole", userRole)
 
-        userRole === "admin" ? goToAdmin(router) : goToUser(router, uid ) 
+        userRole === "admin" ? goToAdmin(router) : goToUser(router, uid)
     } catch (err) {
-        // melhorar isso 
-        const message = err.message.includes("auth/wrong-password") ? ("Email e/ou senha inválidos") : ("Erro no login, tente novamente")
+        const message = firebaseErrorFilter(err.message)
         throw new Error(message)
     }
 };
@@ -32,14 +31,16 @@ export const singUp = async ({ email, password, name }, router) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password)
 
-        const {accessToken, uid} = userCredential.user
+        const { accessToken, uid } = userCredential.user
         setStorageItem("token", accessToken)
         setStorageItem("userRole", "user")
 
-        await api.post("/auth/signup", {name}, getHeaders() ) 
-        goToUser(router, uid) 
+        await api.post("/auth/signup", { name }, getHeaders())
+        goToUser(router, uid)
     } catch (err) {
-        const message = err.message.includes("auth/email-already-in-use") ? ("Email já cadastrado") : ("Erro na criação, tente novamente")
+        console.log(err.message)
+
+        const message = firebaseErrorFilter(err.message)
         throw new Error(message)
     }
 };
@@ -58,12 +59,33 @@ export const sendResetPasswordLink = async (email) => {
 export const isLogged = async (setStatus) => {
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            setStatus({ loggedIn: true, userId: user.uid });
+            setStatus({ loggedIn: true, user });
         } else {
-            setStatus({ loggedIn: false, userId: null })
+            setStatus({ loggedIn: false, user })
         }
     });
 
 };
 
+export const refreshAuthToken = async (user) => {
+    if (user) {
+        try {
+            const refreshToken = await user.getIdToken();
+            setStorageItem("token", refreshToken)
+        } catch (error) {
+            console.error('Error refreshing ID token:', error);
+        }
+    }
+};
 
+const firebaseErrorFilter = (errorMessage) => {
+    if(errorMessage.includes("auth/wrong-password")){
+        return "Senha inválidos"
+    } else if (errorMessage.includes("auth/user-not-found")) {
+        return "Email não encontrado"
+    } else if (errorMessage.includes("auth/email-already-in-use")) {
+        return "Email já cadastrado"
+    } else {
+         return "Erro, tente novamente" 
+    }
+}

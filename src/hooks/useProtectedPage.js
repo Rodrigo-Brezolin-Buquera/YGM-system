@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { isLogged } from "../api/auth";
+import { isLogged, refreshAuthToken } from "../api/auth";
 import { goToLogin } from "../utils/coordinator"
 import { getStorageItem } from "../utils/storageManager";
 
@@ -12,6 +12,7 @@ export const useProtectedPage = (role) => {
         isLogged(setStatus);
     }, [])
 
+
     if (status.loggedIn === false) {
         goToLogin(router)
     }
@@ -19,6 +20,9 @@ export const useProtectedPage = (role) => {
     let userRole = getStorageItem("userRole")
     
     if (status.loggedIn === true) {
+        const refreshInterval = 60 * 60 * 500; 
+        setInterval(refreshAuthToken, refreshInterval);
+
         if (role === "user" && userRole === "admin") {
             goToLogin(router)
         }

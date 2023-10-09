@@ -28,7 +28,7 @@ export const useSignupLogic = (onClose) => {
             reset()
             onClose()
         } catch (err) {
-            toastAlert(toast, err.response.data, "error")
+            toastAlert(toast, err.message, "error")
         } finally {
             setLoading(false);
         }
