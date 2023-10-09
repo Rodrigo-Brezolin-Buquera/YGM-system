@@ -5,7 +5,7 @@ import { api } from "../../../api/config";
 import toastAlert from "../../../components/toastAlert";
 import { getHeaders } from "../../../utils/storageManager";
 
-export const useNewContractLogic = (id, name, onClose) => {
+export const useNewContractLogic = (id, name, onClose, setReload) => {
     const [loading, setLoading] = useState(false);
     const toast = useToast()
     const {
@@ -24,19 +24,21 @@ export const useNewContractLogic = (id, name, onClose) => {
         }
 
         try {
-            name === "" ? 
-                await api.put(`/contracts/changePlan/${id}`, body, getHeaders())
+            name === "" ?
+   
+                    await api.put(`/contracts/changePlan/${id}`, body, getHeaders())
                 :
-                await api.post(`/contracts/${id}`, body, getHeaders())
+                    await api.post(`/contracts/${id}`, body, getHeaders())
 
             toastAlert(toast, "Contrato criado", "success")
             reset()
             onClose()
+            setReload((prevState)=> !prevState)
         } catch (err) {
-            toastAlert(toast, err.response.data, "error")
+            console.log(err)
+            toastAlert(toast, err.response?.data ? err.response.data : "Erro ao criar plano, tente novamente", "error")
         } finally {
             setLoading(false)
-
         }
     })
 

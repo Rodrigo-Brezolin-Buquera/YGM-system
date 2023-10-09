@@ -1,15 +1,17 @@
 import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
 import { ContractDetails } from "../../../components/ContractDetails";
 import { useDeleteItem } from "../../../hooks/useDeleteItem";
-import { useRequestData } from "../../../hooks/useRequestData"
+import { useRequestParamsData } from "../../../hooks/useRequestParamsData";
 import { LoadingButton, WrapContainer } from "../../../theme";
 import { NewContractModal } from "./NewContractModal";
 
 export const ContractActions = ({ userId, userName }) => {
-    const { data: contract, loading } = useRequestData(`/contracts/${userId}`, userId)
+    const [reload, setReload] = useState(false)
+    const { data: contract, loading } = useRequestParamsData(`/contracts/${userId}`, userId, reload)
     const { onDelete } = useDeleteItem(`/auth/${userId}`, "Excluir usuário?")
     const { isOpen, onOpen, onClose } = useDisclosure()
-    
+
     if (loading) {
         return <CircularProgress isIndeterminate color="brand.200" size="160px" />
     }
@@ -46,6 +48,7 @@ export const ContractActions = ({ userId, userName }) => {
                 onClose={onClose}
                 name={userName}
                 id={userId}
+                setReload={setReload}
             /> 
         </>
     );

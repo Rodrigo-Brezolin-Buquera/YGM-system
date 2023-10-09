@@ -1,11 +1,11 @@
 import { useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { api } from "../../api/config";
-import toastAlert from "../../components/toastAlert";
-import { getHeaders } from "../../utils/storageManager";
+import toastAlert from "../components/toastAlert";
+import { getHeaders } from "../utils/storageManager";
+import { api } from "../api/config";
 
 
-export const useClassPageLogic = (id) => {
+export const useRequestParamsData = (path, id, trigger) => {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
     const toast = useToast()
@@ -13,7 +13,7 @@ export const useClassPageLogic = (id) => {
     const fetchData = async () => {
         try {
             setLoading(true);
-            const res = await api.get(`/calendar/${id}`, getHeaders());
+            const res = await api.get(path, getHeaders());
             setData(res.data.result);
         } catch (err) {
             toastAlert(toast, err.response?.data ? err.response.data : "Erro inesperado tente novamente"   , "error");
@@ -26,9 +26,9 @@ export const useClassPageLogic = (id) => {
         if(id) {
             fetchData()
         }
-    }, [id]);
+    }, [id, trigger]);
 
-    return {yogaClass:data, loading }
+    return {data, loading }
 
 
 

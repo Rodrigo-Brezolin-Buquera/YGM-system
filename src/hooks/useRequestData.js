@@ -16,7 +16,7 @@ export const useRequestData = (path, trigger) => {
             setData(res.data.result);
         } catch (err) {
             console.log(err.response.data)
-            toastAlert(toast, err.response?.data ? err.response.data : "Erro inesperado tente novamente"   , "error");
+            toastAlert(toast, err.response?.data ? err.response.data : "Erro inesperado tente novamente", "error");
         } finally {
             setLoading(false);
         }

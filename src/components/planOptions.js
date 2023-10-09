@@ -12,7 +12,7 @@ export const planOptions = () => {
             <option> 3x-Semestral </option>
             <option> Avulsa</option>
             <option> Gympass </option>
-            <option> TotalPass </option>
+            <option> Totalpass </option>
         </>
     );
 };

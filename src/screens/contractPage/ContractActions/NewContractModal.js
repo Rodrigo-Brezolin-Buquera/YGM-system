@@ -8,8 +8,8 @@ import {planOptions} from "../../../components/planOptions"
 import { FormButton, ModalComponent } from "../../../theme";
 import { useNewContractLogic } from "./useNewContractLogic";
 
-export const NewContractModal = ({ id, name, isOpen, onClose, setLoading  }) => {
-    const { loading, formControls } = useNewContractLogic(id, name, onClose, setLoading)
+export const NewContractModal = ({ id, name, isOpen, onClose, setReload  }) => {
+    const { loading, formControls } = useNewContractLogic(id, name, onClose, setReload)
     const { register, onSubmit, errors, isSubmitting } = formControls
     
     return (

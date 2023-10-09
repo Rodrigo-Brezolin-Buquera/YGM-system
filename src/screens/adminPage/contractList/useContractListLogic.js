@@ -2,7 +2,7 @@ import { useInput } from "../../../hooks/useInput";
 import { useRequestData } from "../../../hooks/useRequestData";
 
 export const useContractListLogic = () => {
-    const { data, loading } = useRequestData("contracts")
+    const { data, loading } = useRequestData("/contracts/list")
 
     const [nameFilter, handleName] = useInput("");
     const [planType, handlePlan] = useInput("");

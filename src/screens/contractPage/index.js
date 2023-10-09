@@ -8,19 +8,22 @@ import { ContractActions } from "./contractActions/contractActions";
 const ContractPage = () => {
     useProtectedPage("admin")
     const router = useRouter()
-    const {id} =router.query
+    const { id } = router.query
     const [userId, userName] = (id || "").split("++")
 
     return (
         <>
-            <Header  />
+            <Header />
 
             <Background >
                 <SideContainer>
                     <CheckinsDone userId={userId} />
                 </SideContainer>
                 <MainContainer>
-                    <ContractActions userId={userId} userName={userName || ""}/>
+                    <ContractActions
+                        userId={userId}
+                        userName={userName || ""}
+                    />
                 </MainContainer>
             </Background>
 
