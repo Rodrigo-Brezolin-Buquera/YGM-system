@@ -8,7 +8,7 @@ const SquareCard = ({ children, color, onClick }) => {
             alignContent={"center"}
             justifyContent={"center"}
             backgroundColor={color || "brand.500"}
-            w={"220px"}
+            w={"240px"}
             gap={"0.5em"}
             borderRadius={"10px"}
             p={"0.5em"}

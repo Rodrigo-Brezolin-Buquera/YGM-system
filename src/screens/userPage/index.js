@@ -6,6 +6,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { useRequestData } from "../../hooks/useRequestData";
 import { MainContainer, Background, WrapContainer } from "../../theme";
 import AvailableClasses from "./availableClasses/AvailableClasses";
+import { WhatsappLink } from "./whatsappLink/WhatsappLink";
 
 const UserPage = () => {
     useProtectedPage("user")
@@ -44,7 +45,7 @@ const UserPage = () => {
                                 Sua conta ainda não foi ativada, entre em contato conosco para ativar.
                             </Text>
                             : <>
-                              
+                                <WhatsappLink/>
                                 <WrapContainer shadow={true}>
                                     <ContractDetails
                                         contract={contract}
