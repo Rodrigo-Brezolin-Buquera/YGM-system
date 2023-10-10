@@ -10,7 +10,6 @@ import { DurationOptions, FrequencyOptions } from "./selectOptions";
 
 export const PlanForm = ({ loading, formControls }) => {
     const { register, onSubmit, errors, isSubmitting } = formControls
-    console.log(loading)
     return (
         <form onSubmit={onSubmit}>
             <FormControl

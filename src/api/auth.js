@@ -38,8 +38,6 @@ export const singUp = async ({ email, password, name }, router) => {
         await api.post("/auth/signup", { name }, getHeaders())
         goToUser(router, uid)
     } catch (err) {
-        console.log(err.message)
-
         const message = firebaseErrorFilter(err.message)
         throw new Error(message)
     }

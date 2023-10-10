@@ -20,8 +20,8 @@ export const useProtectedPage = (role) => {
     let userRole = getStorageItem("userRole")
     
     if (status.loggedIn === true) {
-        const refreshInterval = 60 * 60 * 500; 
-        setInterval(refreshAuthToken, refreshInterval);
+         const refreshInterval = 60 * 60 * 500; 
+        setInterval(()=>refreshAuthToken(status.user), refreshInterval);
 
         if (role === "user" && userRole === "admin") {
             goToLogin(router)

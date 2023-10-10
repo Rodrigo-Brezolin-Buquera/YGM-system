@@ -35,7 +35,6 @@ export const useNewContractLogic = (id, name, onClose, setReload) => {
             onClose()
             setReload((prevState)=> !prevState)
         } catch (err) {
-            console.log(err)
             toastAlert(toast, err.response?.data || "Erro ao criar plano, tente novamente", "error")
         } finally {
             setLoading(false)
