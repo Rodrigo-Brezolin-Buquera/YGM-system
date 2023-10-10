@@ -1,9 +1,8 @@
 import { CircularProgress } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { useRequestParamsData } from "../../hooks/useRequestParamsData";
+import { useRequestData } from "../../hooks/useRequestData";
 import { SideContainer, MainContainer, Background } from "../../theme";
 import { Booking } from "./booking/Booking";
 import { ClassActions } from "./classActions/ClassActions";
@@ -12,7 +11,7 @@ import { StudentList } from "./studentList/StudentList";
 
 const ClassPage = ({id}) => {
     useProtectedPage("admin")
-    const { data:yogaClass, loading } = useRequestParamsData(`/calendar/${id}`, id)
+    const { data:yogaClass, loading } = useRequestData(`/calendar/${id}`, id)
     const [reload, setReload] = useState(false)
 
     return (

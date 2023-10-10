@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { isLogged, refreshAuthToken } from "../api/auth";
+import { isLogged } from "../api/auth";
 import { goToLogin } from "../utils/coordinator"
 import { deleteStorageItem, getStorageItem } from "../utils/storageManager";
 
@@ -20,13 +20,9 @@ export const useProtectedPage = (role) => {
     }
 
     
-    if (status.loggedIn === true) {
-        
+    if (status.loggedIn === true) {   
         let userRole = getStorageItem("userRole")
-        // if (router.pathname === "/admin" || router.pathname.includes("/user/") )  {
-        //    refreshAuthToken(status.user)
-        //  }
-
+     
         if (role === "user" && userRole === "admin") {
             goToLogin(router)
         }

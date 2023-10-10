@@ -1,8 +1,4 @@
-"use client"
-
-
 import { CircularProgress, Text, Box } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import { ContractDetails } from "../../components/ContractDetails";
 import HeaderUser from "../../components/HeaderUser";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
@@ -13,8 +9,6 @@ import { WhatsappLink } from "./whatsappLink/WhatsappLink";
 
 const UserPage = ({id}) => {
     useProtectedPage("user")
-    const router = useRouter()
-  
     const { data: contract, loading } = useRequestData("/contracts/user", id)
 
     if (loading) {
