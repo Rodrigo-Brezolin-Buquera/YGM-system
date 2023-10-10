@@ -24,7 +24,7 @@ export const ClassesCard = ({ contract, yogaClass }) => {
             <Box
                 display={"flex"}
                 position={"relative"}
-                h={"96px"}
+                minH={"96px"}
                 flexDirection={"column"}
                 alignItems={"center"}
             >
@@ -35,7 +35,7 @@ export const ClassesCard = ({ contract, yogaClass }) => {
                         ?
                         <Line>
                             <Text fontSize='md'>  {name}   </Text>
-                            <Text fontSize='md'>- Prof. {teacher}   </Text>
+                            <Text fontSize='md'>- {teacher}   </Text>
                         </Line>
                         :
                         <Text> Não há mais vagas </Text>
