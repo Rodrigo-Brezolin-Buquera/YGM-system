@@ -18,7 +18,8 @@ export const useBookingLogic = (yogaClass, setReload) => {
         const body = {
             name,
             date: formatDate(date, "YYYY-MM-DD"),
-            time
+            time,
+            plan: "Agendamento"
         }
         try {
             await api.post(`/booking/single/${id}`, body, getHeaders())

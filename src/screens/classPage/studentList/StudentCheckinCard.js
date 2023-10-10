@@ -28,6 +28,7 @@ const StudentCheckinCard = ({ checkin, setReload }) => {
                         _hover={{ cursor: "pointer" }}
                         p={"0 0.5em"}
                         w={"100%"}
+                        alignItems={"center"}
                     >
                         <Box>
                             <Text fontSize={"md"} fontWeight={"bold"} >  {checkin.name}  </Text>
@@ -36,7 +37,7 @@ const StudentCheckinCard = ({ checkin, setReload }) => {
                         <DeleteIcon
                             _hover={{ cursor: "pointer" }}
                             onClick={onDelete}
-                            boxSize={"5"}
+                            boxSize={"6"}
                         />
                     </Box>
             }
