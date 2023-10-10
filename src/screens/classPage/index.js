@@ -1,5 +1,5 @@
 import { CircularProgress } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
@@ -10,10 +10,8 @@ import { ClassActions } from "./classActions/ClassActions";
 import ClassDetails from "./classDetails/ClassDetails";
 import { StudentList } from "./studentList/StudentList";
 
-const ClassPage = () => {
+const ClassPage = ({id}) => {
     useProtectedPage("admin")
-    const router = useRouter()
-    const { id } = router.query
     const { data:yogaClass, loading } = useRequestParamsData(`/calendar/${id}`, id)
     const [reload, setReload] = useState(false)
 

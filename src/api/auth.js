@@ -68,7 +68,6 @@ export const isLogged = async (setStatus) => {
 export const refreshAuthToken = async (user) => {
     if (user) {
         try {
-            console.count("novotoken")
             const refreshToken = await user.getIdToken(true);
             setStorageItem("token", refreshToken)
         } catch (error) {

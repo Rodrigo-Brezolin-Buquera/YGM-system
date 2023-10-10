@@ -8,7 +8,7 @@ import {
     Show,
     Hide
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { logout } from "../api/auth";
 import { Header } from "../theme";
 import { goToAdmin, goToBusiness, goToCalendar } from "../utils/coordinator";

@@ -1,12 +1,13 @@
+"use client"
 import { lazy } from "react";
 import PageLoading from "../../../components/PageLoading"
 
-const ContractPage = lazy(() => import("../../../screens/contractPage"))
+const BusinessPage = lazy(() => import("../../../screens/businessPage"))
 
-export default function Contract() {
+export default function Home() {
     return (
         <PageLoading>
-            <ContractPage />
+            <BusinessPage />
         </PageLoading>
     )
 }

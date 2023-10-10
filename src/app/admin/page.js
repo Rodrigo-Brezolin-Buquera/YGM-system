@@ -1,3 +1,4 @@
+"use client"
 import { lazy } from "react";
 import PageLoading from "../../components/PageLoading"
 

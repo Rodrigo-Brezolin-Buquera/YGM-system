@@ -1,5 +1,5 @@
 import { useToast } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { api } from "../api/config";
 import confirmDialog from "../components/confirmDialog";
 import toastAlert from "../components/toastAlert";

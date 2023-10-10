@@ -1,5 +1,5 @@
 import { Heading, Button } from "@chakra-ui/react"
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { WrapContainer } from "../../../theme";
 import  DayColumn  from "./DayColumn";
 import { useAgendaLogic } from "./useAgendaLogic";

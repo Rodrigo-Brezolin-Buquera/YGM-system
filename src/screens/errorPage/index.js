@@ -1,5 +1,5 @@
 import { Box, Text, Image, Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Background, MainContainer } from "../../theme"
 import { goBack } from "../../utils/coordinator";
 
