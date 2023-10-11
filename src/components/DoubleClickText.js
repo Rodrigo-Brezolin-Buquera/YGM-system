@@ -1,6 +1,7 @@
 import { Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { updateItem } from "../api";
+import { api } from "../api/config";
+import { getHeaders } from "../utils/storageManager";
 import toastAlert from "./toastAlert";
 
 export const DoubleClickText = (props) => {
@@ -14,8 +15,10 @@ export const DoubleClickText = (props) => {
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
-            updateItem(props.itemCol, { [props.atribute]: text }, props.id)
-                .catch((err) => toastAlert(toast, err.message, "error"));
+            api.put(props.path, { [props.atribute]: text }, getHeaders())
+                .catch((err) => {
+                    toastAlert(toast, err.response.data || "Error ao editar", "error")
+                });
             setShowInput(false)
         }
     };

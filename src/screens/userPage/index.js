@@ -1,29 +1,15 @@
-import { CircularProgress, Button, Text, Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { findItemById } from "../../api";
-import { logout } from "../../api/auth";
-import { usersCol, } from "../../api/config";
+import { CircularProgress, Text, Box } from "@chakra-ui/react";
+import { ContractDetails } from "../../components/ContractDetails";
+import HeaderUser from "../../components/HeaderUser";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { MainContainer, Header, Background } from "../../theme";
-import { ContractInfo } from "./ContractInfo";
+import { useRequestData } from "../../hooks/useRequestData";
+import { MainContainer, Background, WrapContainer } from "../../theme";
+import AvailableClasses from "./availableClasses/AvailableClasses";
+import { WhatsappLink } from "./whatsappLink/WhatsappLink";
 
-const UserPage = () => {
+const UserPage = ({id}) => {
     useProtectedPage("user")
-    const router = useRouter()
-    const { id } = router.query
-    const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        findItemById(usersCol, id)
-            .then(res => {
-                setUser(res)
-                setLoading(false)
-            })
-            .catch(err => console.log(err.message))
-    }, [id, loading]);
-
+    const { data: contract, loading } = useRequestData("/contracts/user", id)
 
     if (loading) {
         return (
@@ -46,22 +32,32 @@ const UserPage = () => {
 
     return (
         <>
-            <Header>
-                <Button onClick={() => logout(router)} >
-                    Sair
-                </Button>
-            </Header>
+            <HeaderUser />
             <Background column={"column"} justifyContent={"start"}>
-                {
-                    user.active ?
-                        <ContractInfo id={id} user={user} />
-                        :
-                        <MainContainer>
-                            <Text textAlign={"center"}
-                            >Sua conta ainda não foi ativada, entre em contato conosco para ativar.
+                <MainContainer>
+                    {
+                        contract === null
+                            ?
+                            <Text textAlign={"center"}>
+                                Sua conta ainda não foi ativada, entre em contato conosco para ativar.
                             </Text>
-                        </MainContainer>
-                }
+                            : <>
+                                <WhatsappLink/>
+                                <WrapContainer shadow={true}>
+                                    <ContractDetails
+                                        contract={contract}
+                                        admin={false}
+                                    />
+                                </WrapContainer>
+                                <AvailableClasses
+                                    contractId={contract.id}
+                                    name={contract.name}
+                                    plan={contract.plan}
+                                />
+                            </>
+                    }
+                </MainContainer>
+
             </Background>
         </>
     );

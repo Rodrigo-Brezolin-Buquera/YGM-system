@@ -1,14 +1,14 @@
-import { Box, Image, Text,useDisclosure } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Box, Image, Text, useDisclosure } from "@chakra-ui/react";
 import { useUnprotectedPage } from "../../hooks/useUnprotectedPage";
-import { LoginForm } from "./LoginForm";
-import { SignupModal } from "./SignupModal";
+import { LoginForm } from "./loginForm/LoginForm";
+import { ResetPasswordModal } from "./resetPasswordModal/ResetPasswordModal";
+import { SignupModal } from "./signupModal/SignupModal";
 
 
 const LoginPage = () => {
     useUnprotectedPage();
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const router = useRouter()
+    const { isOpen: isSignupOpen, onOpen: onSignupOpen, onClose: onSignupClose } = useDisclosure()
+    const { isOpen: isResetOpen, onOpen: onResetOpen, onClose: onResetClose } = useDisclosure()
 
     return (
         <Box
@@ -20,10 +20,24 @@ const LoginPage = () => {
             backgroundColor={"brand.400"}
             minH={"100vh"}
         >
-            <Image maxW={"300px"} src={"/assets/defaultLogo.png"} alt="logo" />
-            <LoginForm router={router}  />
-            <Text _hover={{ cursor: "pointer" }} fontSize={"sm"}  onClick={onOpen} >Não possui conta? Crie uma aqui</Text>
-            <SignupModal isOpen={isOpen} onClose={onClose} router={router}  />
+            <Image maxW={"280px"} src={"/assets/defaultLogo.png"} alt="logo" />
+            <LoginForm />
+            <Text
+                _hover={{ cursor: "pointer", textDecoration: "underline" }}
+                fontSize={"sm"}
+                onClick={onSignupOpen}
+            >
+                Não possui conta? Crie uma aqui
+            </Text>
+            <Text
+                _hover={{ cursor: "pointer", textDecoration: "underline" }}
+                fontSize={"sm"}
+                onClick={onResetOpen}
+            >
+                Esqueceu a senha? Clique aqui
+            </Text>
+            <SignupModal isOpen={isSignupOpen} onClose={onSignupClose} />
+            <ResetPasswordModal isOpen={isResetOpen} onClose={onResetClose} />
         </Box>
     );
 };

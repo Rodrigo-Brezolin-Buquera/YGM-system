@@ -1,14 +1,32 @@
 import { Heading, Text } from "@chakra-ui/react";
-import { memo } from "react";
 import { Line, TextContainer } from "../theme";
+import { DoubleClickText } from "./DoubleClickText";
 
-const ContractDetails = ({ contract }) => {
+export const ContractDetails = ({ contract, admin }) => {
+
+    const OptionalDetails = ({ children }) => {
+        if (contract?.ends === null) {
+            return null
+        }
+
+        return (
+            <>
+                <Line>
+                    <Text as='b' fontSize='lg' >Fim: </Text>
+                    <Text fontSize='lg' > {contract?.ends}</Text>
+                </Line>
+                <Line>
+                    <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
+                    {children}
+                </Line>
+            </>
+        )
+    }
 
     return (
-        < TextContainer
-            alignItems={"center"}
-        >
-            <Heading size={"md"}>Informações do plano</Heading>
+        <TextContainer alignItems={"center"}>
+            <Heading size={"md"}>Dados do plano</Heading>
+
             <Line>
                 <Text as='b' fontSize='lg' >Nome:</Text>
                 <Text fontSize='lg' >{contract?.name}</Text>
@@ -24,24 +42,22 @@ const ContractDetails = ({ contract }) => {
                 <Text fontSize='lg' > {contract?.started}</Text>
             </Line>
 
-            {
-                contract?.availableClasses !== null
-                &&
-                <>
-                    <Line>
-                        <Text as='b' fontSize='lg' >Fim previsto: </Text>
-                        <Text fontSize='lg' > {contract?.ends}</Text>
-                    </Line>
-                    <Line>
-                        <Text as='b' fontSize='lg' >Aulas disponíveis:</Text>
-                        <Text fontSize='lg' >{contract?.availableClasses}</Text>
-                    </Line>
-                </>
-
-            }
-
+            <OptionalDetails>
+                {
+                    admin ?
+                        <DoubleClickText
+                            text={contract?.availableClasses}
+                            atribute={"availableClasses"}
+                            path={`/contracts/changeClasses/${contract?.id}`}
+                            size={4}
+                        />
+                        :
+                        <Text fontSize='lg' >
+                            {contract?.availableClasses}
+                        </Text>
+                }
+            </OptionalDetails>
         </TextContainer>
     );
 };
 
-export default memo(ContractDetails);

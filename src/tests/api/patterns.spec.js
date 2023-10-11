@@ -65,7 +65,7 @@ describe("Test - number regex", () => {
 })
 
 describe("Test - string regex", () => {
-    test("Sucess case ", () => {
+    test("Sucess case", () => {
         const input = "Ana Maria"
         const result = input.match(namePattern.value)
         expect(result).not.toBeNull()

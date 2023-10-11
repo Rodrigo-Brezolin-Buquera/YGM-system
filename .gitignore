@@ -12,6 +12,10 @@
 # production
 /build
 .next
+/.next
+/.swc
+/.vercel
+
 
 # misc
 .DS_Store

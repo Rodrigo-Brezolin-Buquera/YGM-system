@@ -1,25 +1,26 @@
-import { useRouter } from "next/router";
-import { CheckinsDone } from "../../components/CheckinsDone";
+import { CheckinsDone } from "./checkinsDone/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer, SideContainer } from "../../theme";
-import { UserActions } from "./UserActions";
+import { ContractActions } from "./contractActions/contractActions";
 
-const ContractPage = ({plansOptions}) => {
+const ContractPage = ({id}) => {
     useProtectedPage("admin")
-    const router = useRouter()
-    const { id } = router.query
-    
+    const [userId, userName] = (id || "").split("----")
+
     return (
         <>
-            <Header  />
+            <Header />
 
             <Background >
                 <SideContainer>
-                    <CheckinsDone userId={id} />
+                    <CheckinsDone userId={userId} />
                 </SideContainer>
                 <MainContainer>
-                    <UserActions userId={id} router={router} plansOptions={plansOptions}  />
+                    <ContractActions
+                        userId={userId}
+                        userName={userName || ""}
+                    />
                 </MainContainer>
             </Background>
 

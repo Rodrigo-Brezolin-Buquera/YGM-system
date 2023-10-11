@@ -1,34 +1,40 @@
-import {   useState } from "react";
-import { Booking } from "../../components/Booking";
+import { useDisclosure, Button, Text } from "@chakra-ui/react";
 import HeaderAdmin from "../../components/HeaderAdmin"
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer } from "../../theme";
-import  {WeekCalendar}  from "./WeekCalendar";
-
+import { Agenda } from "./agenda/Agenda";
+import { CreateClassModal } from "./createClassModal/CreateClassModal";
 
 const CalendarPage = () => {
     useProtectedPage("admin")
-    const [selected, setSelected] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <>
-            <HeaderAdmin  />
+            <HeaderAdmin />
 
             <Background>
-
                 <MainContainer>
-                    <WeekCalendar
-                        setSelected={setSelected}
-                        loading={loading}
-                    />
-                    <Booking
-                        setSelected={setSelected}
-                        selected={selected}
-                        setLoading={setLoading}
-                    />
+                    <Button
+                        backgroundColor={"brand.200"}
+                        onClick={onOpen}
+                        position={"absolute"}
+                        top={2}
+                        right={2}
+                        borderRadius={"50%"}
+                        width={["40px", "40px"]} 
+                        height={["40px", "40px"]}
+                    >
+                        <Text fontSize={["3xl","4xl"]} fontWeight={"bold"}   >
+                            +
+                        </Text>
+                    </Button>
+
+                    <Agenda />
                 </MainContainer>
             </Background>
+
+            <CreateClassModal isOpen={isOpen} onClose={onClose} />
         </>
     );
 };

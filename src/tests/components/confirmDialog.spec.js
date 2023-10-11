@@ -1,5 +1,5 @@
-import confirmDialog from "../../components/confirmDialog";
 import { confirmAlert } from "react-confirm-alert";
+import confirmDialog from "../../components/confirmDialog";
 
 jest.mock("react-confirm-alert", () => ({
     confirmAlert: jest.fn(),
