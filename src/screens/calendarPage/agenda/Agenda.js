@@ -14,7 +14,7 @@ export const Agenda = () => {
         return (
             <DayColumn
                 key={day}
-                date={datesOfWeek[i]}
+                date={datesOfWeek[i+1]}
                 yogaClasses={classes}
                 day={day}    
                 router={router}        
