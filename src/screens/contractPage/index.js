@@ -6,7 +6,7 @@ import { ContractActions } from "./contractActions/contractActions";
 
 const ContractPage = ({id}) => {
     useProtectedPage("admin")
-    const [userId, userName] = (id || "").split("++")
+    const [userId, userName] = (id || "").split("----")
 
     return (
         <>

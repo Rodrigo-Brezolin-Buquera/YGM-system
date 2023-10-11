@@ -18,7 +18,7 @@ export const useNewContractLogic = (id, name, onClose, setReload) => {
     const onSubmit = handleSubmit(async (values) => {
         setLoading(true)
         const body = {
-            name,
+            name: name.replace("%20", " ").replace("%2B", " ").replace("+", " "),
             plan: values.plan,
             started: values.date
         }

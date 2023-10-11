@@ -15,7 +15,7 @@ export const ContractActions = ({ userId, userName }) => {
     if (loading) {
         return <CircularProgress isIndeterminate color="brand.200" size="160px" />
     }
-
+console.log("userName", userName)
     return (
         <>
             <WrapContainer>
