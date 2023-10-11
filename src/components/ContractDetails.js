@@ -5,7 +5,7 @@ import { DoubleClickText } from "./DoubleClickText";
 export const ContractDetails = ({ contract, admin }) => {
 
     const OptionalDetails = ({ children }) => {
-        if (contract?.availableClasses === null) {
+        if (contract?.ends === null) {
             return null
         }
 
