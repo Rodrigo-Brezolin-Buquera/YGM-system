@@ -8,44 +8,45 @@ import { formatDate } from "../../../utils/dates";
 import { getHeaders } from "../../../utils/storageManager";
 
 export const useCheckinLogic = (checkinData) => {
-    const {  capacity, classId, contractId, name, time, date, plan } =  checkinData;
+    const { capacity, classId, contractId, name, time, date, plan } = checkinData;
     const checkinId = `${contractId}+${classId}`;
     const [loading, setLoading] = useState(false);
-    const {data} = useRequestData (`/booking/${checkinId}`, loading) 
+    const { data } = useRequestData(`/booking/${checkinId}`, loading)
     const checkinExists = data ? true : false
     const toast = useToast()
 
-    const onDelete =  async () => {
+    const onDelete = async () => {
         setLoading(true);
         try {
-            await api.delete(`/booking/${checkinId}` , getHeaders())
+            const hasNoPlan = plan === "Gympass" || plan === "Totalpass" || plan === "Avulsa";
+            const path = hasNoPlan ? `/booking/${checkinId}?type=single` : `/booking/${checkinId}`
+            await api.delete(path, getHeaders())
             toastAlert(toast, "Checkin cancelado", "success")
         } catch (err) {
             toastAlert(toast, err.response.data || "Erro ao cancelar checkin", "error")
         } finally {
             setLoading(false)
-
         }
     }
 
     const onCreate = async () => {
         setLoading(true);
-        const body ={
-            date: formatDate(date, "YYYY-MM-DD"), 
-            name, 
-            time, 
+        const body = {
+            date: formatDate(date, "YYYY-MM-DD"),
+            name,
+            time,
             plan
         }
         try {
-            await api.post(`/booking/${classId}`, body , getHeaders())
+            await api.post(`/booking/${classId}`, body, getHeaders())
             toastAlert(toast, "Checkin realizado", "success")
         } catch (err) {
             toastAlert(toast, err.response.data || "Erro ao fazer checkin", "error")
         } finally {
             setLoading(false)
-        }  
+        }
     }
-    
+
     const handleCheckin = () => {
         if (capacity === 0) return null
 
@@ -56,6 +57,6 @@ export const useCheckinLogic = (checkinData) => {
         }
     };
 
-    return {handleCheckin, loading, checkinExists}
+    return { handleCheckin, loading, checkinExists }
 }
 
