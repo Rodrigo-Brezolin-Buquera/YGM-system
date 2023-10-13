@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "16.15.0",
+    "node": "18",
     "npm": "8.5.5"
   },
   "dependencies": {
@@ -43,8 +43,7 @@
     "lint:fix": "eslint src --fix",
     "test": "jest --watch",
     "test:ci": "jest --ci",
-    "test:coverage": "jest --collect-coverage",
-    "deploy": "vercel --prod"
+    "test:coverage": "jest --collect-coverage"
   },
   "browserslist": {
     "production": [

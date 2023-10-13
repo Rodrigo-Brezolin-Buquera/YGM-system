@@ -21,6 +21,7 @@ export const useBookingLogic = (yogaClass, setReload) => {
             time,
             plan: "Agendamento"
         }
+        console.log(body)
         try {
             await api.post(`/booking/single/${id}`, body, getHeaders())
             reset()
