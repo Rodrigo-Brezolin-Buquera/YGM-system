@@ -2,7 +2,7 @@ import { CheckinsDone } from "./checkinsDone/CheckinsDone";
 import Header from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer, SideContainer } from "../../theme";
-import { ContractActions } from "./contractActions/contractActions";
+import { ContractActions } from "./contractActions/ContractActions";
 
 const ContractPage = ({id}) => {
     useProtectedPage("admin")
