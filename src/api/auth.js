@@ -5,7 +5,7 @@ import {
     signOut,
     sendPasswordResetEmail
 } from "firebase/auth";
-import { goToAdmin, goToLogin, goToUser } from "../utils/coordinator";
+import { goToAdmin, goToLogin, goToUser } from "../routes/coordinator";
 import { getHeaders, setStorageItem, deleteStorageItem } from "../utils/storageManager";
 import { api, auth } from "./config";
 

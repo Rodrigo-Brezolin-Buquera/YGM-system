@@ -1,12 +1,13 @@
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { isLogged, refreshAuthToken } from "../api/auth";
-import { goToUser, goToAdmin } from "../utils/coordinator"
+import { goToUser, goToAdmin } from "../routes/coordinator"
 import { getStorageItem } from "../utils/storageManager";
+import { useNavigate } from "react-router-dom";
+
 
 export const useUnprotectedPage = () => {
     const [status, setStatus] = useState({ loggedIn: null, user: null })
-    const router = useRouter()
+    const router = useNavigate()
 
     useEffect(() => {
         isLogged(setStatus);

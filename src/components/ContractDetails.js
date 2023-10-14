@@ -24,7 +24,7 @@ export const ContractDetails = ({ contract, admin }) => {
     }
 
     return (
-        <TextContainer alignItems={"center"}>
+        <TextContainer alignItems={"start"}>
             <Heading size={"md"}>Dados do plano</Heading>
 
             <Line>
