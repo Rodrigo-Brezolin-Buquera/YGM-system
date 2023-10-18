@@ -8,13 +8,14 @@ import {
     Show,
     Hide
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import { logout } from "../api/auth";
 import { Header } from "../theme";
-import { goToAdmin, goToBusiness, goToCalendar } from "../utils/coordinator";
+import { goToAdmin, goToBusiness, goToCalendar } from "../routes/coordinator";
+import { useNavigate } from "react-router-dom";
+
 
 const HeaderAdmin = () => {
-    const router = useRouter();
+    const router = useNavigate();
 
     return (
         <Header>

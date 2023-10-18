@@ -1,14 +1,15 @@
 import { useToast } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import { api } from "../api/config";
 import confirmDialog from "../components/confirmDialog";
 import toastAlert from "../components/toastAlert";
-import { goToAdmin } from "../utils/coordinator";
+import { goToAdmin } from "../routes/coordinator";
 import { getHeaders } from "../utils/storageManager";
+import { useNavigate } from "react-router-dom";
+
 
 export const useDeleteItem = (path, message) => {
     const toast = useToast()
-    const router = useRouter()
+    const router = useNavigate()
 
     const onDelete = () => {
         confirmDialog(message, async () => {

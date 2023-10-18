@@ -1,4 +1,5 @@
 import { Box, Image } from "@chakra-ui/react";
+import defaultLogo from "../../assets/defaultLogo.png"
 
 const Header = ({ children }) => {
 
@@ -11,7 +12,7 @@ const Header = ({ children }) => {
             justifyContent={"space-between"}
             p={"0.3em"}
         >
-            <Image maxH={"52px"} src={"/assets/defaultLogo.png"} alt="logo"  />
+            <Image maxH={"52px"} src={defaultLogo} alt="logo"  />
             <Box
                 display={"flex"}
                 gap={"0.5em"}

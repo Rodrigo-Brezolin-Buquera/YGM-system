@@ -1,10 +1,11 @@
 import { Button} from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import { logout } from "../api/auth";
 import {  Header } from "../theme";
+import { useNavigate } from "react-router-dom";
+
 
 const HeaderUser = () => {
-    const router = useRouter()
+    const router = useNavigate()
 
     return (
         <Header>

@@ -13,7 +13,7 @@ In production
 ---
 
 ## Technologies Used
-- Next.js  - ChakraUI - Firebase  - Jest
+- React - React-router-dom - ChakraUI - Firebase 
 
 ---
 
@@ -43,4 +43,3 @@ In production
 
 - BusinessPage 
      Manage the business information and available plans.
-
