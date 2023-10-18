@@ -5,7 +5,7 @@ import { getStorageItem } from "../utils/storageManager";
 import { useNavigate } from "react-router-dom";
 
 
-export const useUnprotectedPage = () => {
+export const useUnprotectedPage = async () => {
     const [status, setStatus] = useState({ loggedIn: null, user: null })
     const router = useNavigate()
 
@@ -15,9 +15,8 @@ export const useUnprotectedPage = () => {
 
     if (status.loggedIn === true) {
         let userRole = getStorageItem("userRole")
-        refreshAuthToken(status.user)
+        await refreshAuthToken(status.user)
 
-       
         if (userRole === "admin") {
             goToAdmin(router)
         }
