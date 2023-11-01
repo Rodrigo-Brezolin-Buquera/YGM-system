@@ -1,8 +1,8 @@
 import { Heading, Text } from "@chakra-ui/react";
-import { Line, TextContainer } from "../theme";
-import { DoubleClickText } from "./DoubleClickText";
+import { Line, TextContainer } from "../../theme";
+import { DoubleClickText } from "../DoubleClickText";
 
-export const ContractDetails = ({ contract, admin }) => {
+const ContractDetails = ({ contract, admin }) => {
 
     const OptionalDetails = ({ children }) => {
         if (contract?.ends === null) {
@@ -61,3 +61,4 @@ export const ContractDetails = ({ contract, admin }) => {
     );
 };
 
+export default ContractDetails

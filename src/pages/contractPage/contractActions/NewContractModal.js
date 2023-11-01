@@ -4,7 +4,7 @@ import {
     Input,
     Select, Text
 } from "@chakra-ui/react";
-import {planOptions} from "../../../components/planOptions"
+import planOptions from "../../../components/planOptions"
 import { FormButton, ModalComponent } from "../../../theme";
 import { useNewContractLogic } from "./useNewContractLogic";
 

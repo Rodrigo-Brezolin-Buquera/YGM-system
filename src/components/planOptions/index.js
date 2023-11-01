@@ -1,4 +1,4 @@
-export const planOptions = () => {
+const planOptions = () => {
     return (
         <>
             <option> 1x-Mensal </option>
@@ -17,3 +17,4 @@ export const planOptions = () => {
     );
 };
 
+export default planOptions

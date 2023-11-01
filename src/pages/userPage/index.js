@@ -1,6 +1,6 @@
 import { CircularProgress, Text, Box } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { ContractDetails } from "../../components/ContractDetails";
+import ContractDetails from "../../components/ContractDetails";
 import HeaderUser from "../../components/HeaderUser";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { useRequestData } from "../../hooks/useRequestData";

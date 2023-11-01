@@ -8,9 +8,9 @@ import {
     Show,
     Hide
 } from "@chakra-ui/react";
-import { logout } from "../api/auth";
-import { Header } from "../theme";
-import { goToAdmin, goToBusiness, goToCalendar } from "../routes/coordinator";
+import { logout } from "../../api/auth";
+import { Header } from "../../theme";
+import { goToAdmin, goToBusiness, goToCalendar } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 
 
