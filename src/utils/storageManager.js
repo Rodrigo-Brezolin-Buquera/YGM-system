@@ -1,11 +1,11 @@
 export const getHeaders = () => {
-        const token = localStorage.getItem("token")
-        const auth = {
-            headers: {
-                Authorization: token
-            }
+    const token = localStorage.getItem("token")
+    const auth = {
+        headers: {
+            Authorization: token
         }
-        return auth
+    }
+    return auth
 }
 
 export const getStorageItem = (item) => {
@@ -13,7 +13,7 @@ export const getStorageItem = (item) => {
 }
 
 export const setStorageItem = (item, value) => {
-   localStorage.setItem(item, value) 
+    localStorage.setItem(item, value) 
 }
 
 export const deleteStorageItem = (item) => {

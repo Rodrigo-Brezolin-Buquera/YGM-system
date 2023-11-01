@@ -14,7 +14,7 @@ export const useUnprotectedPage = async () => {
     }, [])
 
     if (status.loggedIn === true) {
-        let userRole = getStorageItem("userRole")
+        const userRole = getStorageItem("userRole")
         await refreshAuthToken(status.user)
 
         if (userRole === "admin") {

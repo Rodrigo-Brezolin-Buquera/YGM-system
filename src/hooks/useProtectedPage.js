@@ -22,7 +22,7 @@ export const useProtectedPage = (role) => {
 
     
     if (status.loggedIn === true) {   
-        let userRole = getStorageItem("userRole")
+        const userRole = getStorageItem("userRole")
      
         if (role === "user" && userRole === "admin") {
             goToLogin(router)

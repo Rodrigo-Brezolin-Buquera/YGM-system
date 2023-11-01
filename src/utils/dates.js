@@ -30,8 +30,8 @@ export const getNextNDays = (n) => {
 
 export const sortByDayAndTime = (list) => {
     return list.sort((a, b) => {
-        const dateA = new Date(a.date.split('/').reverse().join('/'));
-        const dateB = new Date(b.date.split('/').reverse().join('/'));
+        const dateA = new Date(a.date.split("/").reverse().join("/"));
+        const dateB = new Date(b.date.split("/").reverse().join("/"));
 
         if (dateA < dateB) return -1;
         if (dateA > dateB) return 1;

@@ -71,7 +71,7 @@ export const refreshAuthToken = async (user) => {
             const refreshToken = await user.getIdToken(true);
             setStorageItem("token", refreshToken)
         } catch (error) {
-            console.error('Error refreshing ID token:', error);
+            console.error("Error refreshing ID token:", error);
         }
     }
 };
@@ -86,6 +86,6 @@ const firebaseErrorFilter = (errorMessage) => {
     } else if (errorMessage.includes(" auth/too-many-requests")) {
         return "Número de tentativas excedidas, tente novamente mais tarde"
     } else {
-         return "Erro, tente novamente" 
+        return "Erro, tente novamente" 
     }
 }

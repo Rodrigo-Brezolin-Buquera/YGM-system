@@ -19,20 +19,20 @@ const ContractCard = ({contract, router}) => {
             gap={["0.1em","0.5em"]}
             onClick={() => goToContract( router, contract.id)}
         >
-                <Line  justifyContent={["center", "center", "center", "flex-start"]}>
-                    <Text as="b">Nome:</Text>
-                    <Text >{contract.name}</Text>
-                </Line>
+            <Line  justifyContent={["center", "center", "center", "flex-start"]}>
+                <Text as="b">Nome:</Text>
+                <Text >{contract.name}</Text>
+            </Line>
 
-                <Line justifyContent={["center", "center", "center", "flex-start"]}>
-                    <Text as="b" >Plano: </Text>
-                    <Text >{contract.plan}</Text>
-                </Line>
+            <Line justifyContent={["center", "center", "center", "flex-start"]}>
+                <Text as="b" >Plano: </Text>
+                <Text >{contract.plan}</Text>
+            </Line>
 
-                <Line justifyContent={["center", "center", "center", "flex-start"]}>
-                    <Text as="b" >Início: </Text>
-                    <Text >{contract.started}</Text>
-                </Line>
+            <Line justifyContent={["center", "center", "center", "flex-start"]}>
+                <Text as="b" >Início: </Text>
+                <Text >{contract.started}</Text>
+            </Line>
         </Card>
     );
 };

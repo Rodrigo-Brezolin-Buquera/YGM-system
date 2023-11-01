@@ -14,4 +14,3 @@ export const useInput = () => {
     return [value, handleValue, reset];
 };
 
-;
