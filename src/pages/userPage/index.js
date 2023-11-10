@@ -6,7 +6,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { useRequestData } from "../../hooks/useRequestData";
 import { MainContainer, Background, WrapContainer } from "../../theme";
 import AvailableClasses from "./availableClasses/AvailableClasses";
-import { MessageBoard } from "./messageBoard/messageBoard";
+import { MessageBoard } from "./messageBoard/MessageBoard";
 
 const UserPage = () => {
     useProtectedPage("user")
