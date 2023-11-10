@@ -24,7 +24,7 @@ const ContractDetails = ({ contract, admin }) => {
     }
 
     return (
-        <TextContainer alignItems={"start"}>
+        <TextContainer alignItems={"center"}>
             <Heading size={"md"}>Dados do plano</Heading>
 
             <Line>
