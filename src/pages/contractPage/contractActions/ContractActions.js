@@ -1,6 +1,6 @@
 import { Button, CircularProgress, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import { ContractDetails } from "../../../components/ContractDetails";
+import ContractDetails from "../../../components/ContractDetails";
 import { useDeleteItem } from "../../../hooks/useDeleteItem";
 import { useRequestData } from "../../../hooks/useRequestData";
 import { LoadingButton, WrapContainer } from "../../../theme";

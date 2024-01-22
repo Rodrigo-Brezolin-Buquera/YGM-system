@@ -26,9 +26,9 @@ export const useNewContractLogic = (id, name, onClose, setReload) => {
         try {
             name === "" ?
    
-                    await api.put(`/contracts/changePlan/${id}`, body, getHeaders())
+                await api.put(`/contracts/changePlan/${id}`, body, getHeaders())
                 :
-                    await api.post(`/contracts/${id}`, body, getHeaders())
+                await api.post(`/contracts/${id}`, body, getHeaders())
 
             toastAlert(toast, "Contrato criado", "success")
             reset()

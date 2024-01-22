@@ -1,8 +1,8 @@
 import { Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { api } from "../api/config";
-import { getHeaders } from "../utils/storageManager";
-import toastAlert from "./toastAlert";
+import { api } from "../../api/config";
+import { getHeaders } from "../../utils/storageManager";
+import toastAlert from "../toastAlert";
 
 export const DoubleClickText = (props) => {
     const [text, setText] = useState("");

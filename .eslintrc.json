@@ -1,0 +1,33 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": ["eslint:recommended", "plugin:react-hooks/recommended"],
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "plugins": ["react", "react-hooks"],
+    "rules": {
+        "prefer-const":"warn",
+        "indent": ["warn", 4],
+        "linebreak-style": ["warn", "unix"],
+        "semi":[0, "always"],
+        "no-duplicate-case": "error",
+        "no-unreachable": "warn",
+        "for-direction": "error",
+        "no-dupe-else-if": "error",
+        "no-empty-pattern": "error",
+        "no-invalid-regexp": "error",
+        "no-self-compare": "error",
+        "no-empty": "warn",
+        "no-nested-ternary": "warn",
+        "no-new-wrappers": "warn",
+        "quotes":["warn", "double"],
+        "no-unused-vars": "off"  
+    }
+}  

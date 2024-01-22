@@ -1,5 +1,5 @@
 import { Box, Image, Text } from "@chakra-ui/react"
-import Whatsapp from "../../../assets/Whatsapp.png"
+import Whatsapp from "../../../../assets/Whatsapp.png"
 
 export const WhatsappLink = () => {
     const link = "https://chat.whatsapp.com/JMHCFe5fo0O13fjJeGcvfG"

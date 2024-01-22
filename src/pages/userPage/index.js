@@ -1,12 +1,12 @@
 import { CircularProgress, Text, Box } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { ContractDetails } from "../../components/ContractDetails";
+import ContractDetails from "../../components/ContractDetails";
 import HeaderUser from "../../components/HeaderUser";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { useRequestData } from "../../hooks/useRequestData";
 import { MainContainer, Background, WrapContainer } from "../../theme";
 import AvailableClasses from "./availableClasses/AvailableClasses";
-import { WhatsappLink } from "./whatsappLink/WhatsappLink";
+import { MessageBoard } from "./messageBoard/MessageBoard";
 
 const UserPage = () => {
     useProtectedPage("user")
@@ -44,7 +44,7 @@ const UserPage = () => {
                                 Sua conta ainda não foi ativada, entre em contato conosco para ativar.
                             </Text>
                             : <>
-                                <WhatsappLink/>
+                                <MessageBoard/>
                                 <WrapContainer shadow={true}>
                                     <ContractDetails
                                         contract={contract}
