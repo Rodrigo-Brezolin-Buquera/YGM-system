@@ -11,6 +11,8 @@ export const MessageBoard = () => {
         return <CircularProgress isIndeterminate color="brand.200" size="160px" />
     }
 
+    console.log(message)
+
   return (
     <TextContainer alignItems={"center"}>
         <Heading size={"md"}>{message.content && "Avisos"}</Heading>

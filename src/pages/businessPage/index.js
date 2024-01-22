@@ -3,6 +3,7 @@ import HeaderAdmin from "../../components/HeaderAdmin";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { Background, MainContainer } from "../../theme";
 import { Local } from "./local/Local";
+import { Messages } from "./messages/Messages";
 import { Plans } from "./plans/Plans";
 
 const BusinessPage = () => {
@@ -14,6 +15,7 @@ const BusinessPage = () => {
             <Background>
                 <MainContainer>
                     <Local />
+                    <Messages/>
                 </MainContainer>
                 <MainContainer>
                     <Plans />
