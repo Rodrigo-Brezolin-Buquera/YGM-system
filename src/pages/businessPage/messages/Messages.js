@@ -1,10 +1,10 @@
-import { CircularProgress, Heading, Input, Text } from "@chakra-ui/react";
+import { CircularProgress, Heading, Text, Textarea } from "@chakra-ui/react";
 import { Line, LoadingButton, TextContainer } from "../../../theme";
 import { useMessagesLogic } from "./useMessagesLogic";
 
 export const Messages = () => {
   const { message, loading, editMessage, handleInput, input } =
-    useMessagesLogic();
+  useMessagesLogic();
 
   if (loading) {
     return <CircularProgress isIndeterminate color="brand.200" size="160px" />;
@@ -17,11 +17,10 @@ export const Messages = () => {
       </Heading>
       <Text alignSelf={"center"}> {message.content}</Text>
 
-      <Input
+      <Textarea
         value={input}
         onChange={handleInput}
-        placeholder="Envie em branco para limpar mensagem"
-        h={"3xs"}
+        placeholder="Altere ou limpe a mensagem atual"
       />
       <Line>
         <LoadingButton handler={editMessage} color={"brand.200"}>
