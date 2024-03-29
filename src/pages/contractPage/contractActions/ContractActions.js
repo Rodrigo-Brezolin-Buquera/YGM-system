@@ -11,7 +11,7 @@ export const ContractActions = ({ userId, userName }) => {
     const { data: contract, loading } = useRequestData(`/contracts/${userId}`, reload)
     const { onDelete } = useDeleteItem(`/auth/${userId}`, "Excluir usuário?")
     const { isOpen, onOpen, onClose } = useDisclosure()
-    console.log(contract)
+
     if (loading) {
         return <CircularProgress isIndeterminate color="brand.200" size="160px" />
     }

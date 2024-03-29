@@ -57,12 +57,12 @@ describe("sortByDayAndTime tests", () => {
         ]
         const result = sortByDayAndTime(input)
         expect(result).toEqual([
-            { date: '19/02/2023', time: '17:30' },
-            { date: '17/03/2023', time: '11:00' },
-            { date: '17/03/2023', time: '11:30' },
-            { date: '17/03/2023', time: '19:00' },
-            { date: '19/03/2023', time: '11:30' },
-            { date: '11/05/2023', time: '07:30' }
+            { date: "19/02/2023", time: "17:30" },
+            { date: "17/03/2023", time: "11:00" },
+            { date: "17/03/2023", time: "11:30" },
+            { date: "17/03/2023", time: "19:00" },
+            { date: "19/03/2023", time: "11:30" },
+            { date: "11/05/2023", time: "07:30" }
         ])
     })
 
