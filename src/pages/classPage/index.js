@@ -12,7 +12,7 @@ import { StudentList } from "./studentList/StudentList";
 
 const ClassPage = () => {
     useProtectedPage("admin")
-    const {id} = useParams() 
+    const {id} = useParams()
     const { data:yogaClass, loading } = useRequestData(`/calendar/${id}`, id)
     const [reload, setReload] = useState(false)
 
